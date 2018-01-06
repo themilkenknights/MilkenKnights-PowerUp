@@ -1,5 +1,7 @@
 package frc.team1836.robot.util.state;
 
+import frc.team1836.robot.util.math.MkMath;
+
 /**
  * A drivetrain command consisting of the left, right motor settings and whether the brake mode is enabled.
  */
@@ -36,5 +38,13 @@ public class DriveSignal {
 	@Override
 	public String toString() {
 		return "L: " + mLeftMotor + ", R: " + mRightMotor + (mBrakeMode ? ", BRAKE" : "");
+	}
+
+	public double getLeftNativeVel() {
+		return MkMath.InchesPerSecToUnitsPer100Ms(mLeftMotor);
+	}
+
+	public double getRightNativeVel() {
+		return MkMath.InchesPerSecToUnitsPer100Ms(mRightMotor);
 	}
 }
