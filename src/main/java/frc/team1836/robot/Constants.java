@@ -30,6 +30,17 @@ public final class Constants {
 		public static final double DRIVE_FOLLOWER_V = 0;
 		public static final double DRIVE_FOLLOWER_A = 0;
 		public static final double DRIVE_FOLLOWER_ANG = 0;
+
+		public static final double RPM_MAX = 840.0;
+		public static final double MAX_VEL = (RPM_MAX / 60) * (CIRCUMFERENCE); // Inches per second
+		public static final double DRIVE_P = 1.0 * ((0.1 * 1023.0) / (300.00));
+		public static final double DRIVE_I = DRIVE_P / 100.0;
+		public static final double DRIVE_D = 15 * DRIVE_P;
+		public static final double DRIVE_F = (1023.0 / ((RPM_MAX / 60.0 / 10.0) * 4096.0));
+
+		public static final int kSlotIdx = 0;
+		public static final int kPIDLoopIdx = 0;
+		public static final int kTimeoutMs = 10;
 	}
 
 

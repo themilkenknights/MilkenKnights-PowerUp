@@ -10,6 +10,7 @@ import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.state.DriveSignal;
+import frc.team1836.robot.util.state.TrajectoryStatus;
 import frc.team254.lib.trajectory.Path;
 import frc.team254.lib.trajectory.PathFollower;
 
@@ -21,6 +22,10 @@ public class Drive extends Subsystem {
 	private final MkGyro navX;
 	private DriveControlState mDriveControlState;
 	private PathFollower pathFollower = null;
+	private DriveDebugOutput mDebug = new DriveDebugOutput();
+	private TrajectoryStatus leftStatus;
+	private TrajectoryStatus rightStatus;
+	private DriveSignal currentSetpoint;
 
 	private Drive() {
 		leftDrive = new MkDrive(DRIVE.LEFT_MASTER_ID, DRIVE.LEFT_SLAVE_ID);
@@ -28,28 +33,31 @@ public class Drive extends Subsystem {
 		navX = new MkGyro(new AHRS(SPI.Port.kMXP));
 
 		mDriveControlState = DriveControlState.OPEN_LOOP;
-		mCSVWriter = new ReflectingCSVWriter<DriveDebugOutput>("/home/lvuser/DRIVE-LOGS.csv",
+		mCSVWriter = new ReflectingCSVWriter<>("/home/lvuser/DRIVE-LOGS.csv",
 				DriveDebugOutput.class);
+		leftStatus = TrajectoryStatus.NEUTRAL;
+		rightStatus = TrajectoryStatus.NEUTRAL;
+		currentSetpoint = DriveSignal.NEUTRAL;
 	}
 
 	public static Drive getInstance() {
 		return mInstance;
 	}
 
-	public synchronized void setOpenLoop(DriveSignal signal) {
+	private synchronized void setOpenLoop(DriveSignal signal) {
 		mDriveControlState = DriveControlState.OPEN_LOOP;
 		leftDrive.set(ControlMode.PercentOutput, signal.getLeft());
 		rightDrive.set(ControlMode.PercentOutput, signal.getRight());
 	}
 
-	public synchronized void setVelocitySetpoint(DriveSignal signal) {
+	private synchronized void setVelocitySetpoint(DriveSignal signal) {
 		mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
 		leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVel());
 		rightDrive.set(ControlMode.Velocity, signal.getLeftNativeVel());
 	}
 
 	public synchronized void setWantDrivePath(Path path, double dist_tol, double ang_tol) {
-			mDriveControlState = DriveControlState.PATH_FOLLOWING;
+		mDriveControlState = DriveControlState.PATH_FOLLOWING;
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);
 	}
 
@@ -78,7 +86,7 @@ public class Drive extends Subsystem {
 	public void checkSystem() {
 		leftDrive.testDrive();
 		rightDrive.testDrive();
-		if(!navX.isConnected()){
+		if (!navX.isConnected()) {
 			System.out.println("FAILED - NAVX DISCONNECTED");
 		}
 
@@ -98,7 +106,23 @@ public class Drive extends Subsystem {
 			@Override
 			public void onLoop(double timestamp) {
 				synchronized (Drive.this) {
-
+					updateDebugOutput(timestamp);
+					switch (mDriveControlState) {
+						case OPEN_LOOP:
+							zeroTrajectoryStatus();
+							return;
+						case VELOCITY_SETPOINT:
+							zeroTrajectoryStatus();
+							return;
+						case PATH_FOLLOWING:
+							updatePathFollower();
+							updateTrajectoryStatus();
+							return;
+						default:
+							System.out.println("Unexpected drive control state: " + mDriveControlState);
+							break;
+					}
+					mCSVWriter.add(mDebug);
 				}
 			}
 
@@ -110,13 +134,65 @@ public class Drive extends Subsystem {
 		enabledLooper.register(mLoop);
 	}
 
+	private void updateDebugOutput(double timestamp) {
+		mDebug.timestamp = timestamp;
+		mDebug.controlMode = mDriveControlState.toString();
+		mDebug.leftOutput = leftDrive.getPercentOutput();
+		mDebug.rightOutput = rightDrive.getPercentOutput();
+		mDebug.rightPosition = leftDrive.getPosition();
+		mDebug.leftPosition = rightDrive.getPosition();
+		mDebug.leftVelocity = leftDrive.getSpeed();
+		mDebug.rightVelocity = rightDrive.getSpeed();
+		mDebug.heading = navX.getFullYaw();
+	}
+
+	private void updatePathFollower() {
+		TrajectoryStatus leftUpdate = pathFollower
+				.getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(),
+						Math.toRadians(navX.getFullYaw()));
+		TrajectoryStatus rightUpdate = pathFollower
+				.getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
+						Math.toRadians(navX.getFullYaw()));
+		setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput()));
+	}
+
+	private void zeroTrajectoryStatus() {
+		mDebug.leftDesiredPos = 0;
+		mDebug.leftDesiredVel = 0;
+		mDebug.rightDesiredPos = 0;
+		mDebug.rightDesiredVel = 0;
+		mDebug.desiredHeading = 0;
+		mDebug.headingError = 0;
+		mDebug.leftVelError = 0;
+		mDebug.leftPosError = 0;
+		mDebug.rightVelError = 0;
+		mDebug.rightPosError = 0;
+		mDebug.desiredX = 0;
+		mDebug.desiredY = 0;
+	}
+
+	private void updateTrajectoryStatus() {
+		mDebug.leftDesiredPos = leftStatus.getSeg().pos;
+		mDebug.leftDesiredVel = leftStatus.getSeg().vel;
+		mDebug.rightDesiredPos = rightStatus.getSeg().pos;
+		mDebug.rightDesiredVel = rightStatus.getSeg().vel;
+		mDebug.desiredHeading = leftStatus.getSeg().heading;
+		mDebug.headingError = leftStatus.getAngError();
+		mDebug.leftVelError = leftStatus.getVelError();
+		mDebug.leftPosError = leftStatus.getPosError();
+		mDebug.rightVelError = rightStatus.getVelError();
+		mDebug.rightPosError = rightStatus.getPosError();
+		mDebug.desiredX = (leftStatus.getSeg().x + rightStatus.getSeg().x) / 2;
+		mDebug.desiredY = (leftStatus.getSeg().y + rightStatus.getSeg().y) / 2;
+	}
+
 	public enum DriveControlState {
 		OPEN_LOOP, // open loop voltage control
 		VELOCITY_SETPOINT, // velocity PID control
 		PATH_FOLLOWING, // used for autonomous driving
 	}
 
-	public static class DriveDebugOutput {
+	private static class DriveDebugOutput {
 
 		public double timestamp;
 		public String controlMode;

@@ -5,8 +5,9 @@ import frc.team254.lib.trajectory.Trajectory.Segment;
 public class TrajectoryStatus {
 
 
-	private double output;
+	public static TrajectoryStatus NEUTRAL = new TrajectoryStatus(new Segment(0, 0, 0, 0, 0, 0, 0, 0), 0, 0, 0, 0);
 
+	private double output;
 	private Segment seg;
 	private double posError;
 	private double velError;
@@ -39,4 +40,5 @@ public class TrajectoryStatus {
 	public Segment getSeg() {
 		return seg;
 	}
+
 }

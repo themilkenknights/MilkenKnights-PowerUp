@@ -2,7 +2,6 @@ package frc.team254.lib.trajectory;
 
 import frc.team1836.robot.util.math.MkMath;
 import frc.team1836.robot.util.state.TrajectoryStatus;
-import frc.team254.lib.trajectory.Trajectory.Segment;
 
 /**
  * PID + Feedforward controller for following a Trajectory.
@@ -67,7 +66,7 @@ public class TrajectoryFollower {
 			return new TrajectoryStatus(segment, error, velError,
 					MkMath.normalAbsoluteAngleDegrees(Math.toDegrees(angError)), output);
 		} else {
-			return new TrajectoryStatus(new Segment(0, 0, 0, 0, 0, 0, 0, 0), 0, 0, 0, 0);
+			return TrajectoryStatus.NEUTRAL;
 		}
 	}
 

@@ -1,9 +1,12 @@
 package frc.team1836.robot.util.drivers;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Timer;
 import frc.team1836.robot.Constants;
+import frc.team1836.robot.Constants.DRIVE;
 
 public class MkDrive {
 
@@ -16,40 +19,47 @@ public class MkDrive {
 
 		masterID = master;
 		slaveID = slave;
+
+		resetConfig();
+
+		masterTalon.config_kF(DRIVE.kPIDLoopIdx, DRIVE.DRIVE_F, DRIVE.kTimeoutMs);
+		masterTalon.config_kP(DRIVE.kPIDLoopIdx, DRIVE.DRIVE_P, DRIVE.kTimeoutMs);
+		masterTalon.config_kI(DRIVE.kPIDLoopIdx, DRIVE.DRIVE_I, DRIVE.kTimeoutMs);
+		masterTalon.config_kD(DRIVE.kPIDLoopIdx, DRIVE.DRIVE_D, DRIVE.kTimeoutMs);
+
 	}
 
 	private void resetConfig() {
-		masterTalon.clearMotionProfileHasUnderrun(10);
-		masterTalon.clearMotionProfileTrajectories();
-		masterTalon.clearStickyFaults(10);
-		masterTalon.configPeakOutputForward(100, 10);
-		masterTalon.configPeakOutputReverse(-100, 10);
-		masterTalon.configNominalOutputForward(0, 10);
-		masterTalon.configNominalOutputReverse(-0, 10);
+		masterTalon.selectProfileSlot(DRIVE.kSlotIdx, DRIVE.kPIDLoopIdx);
+		masterTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 5, DRIVE.kTimeoutMs);
+		masterTalon.configNominalOutputForward(0, DRIVE.kTimeoutMs);
+		masterTalon.configNominalOutputReverse(0, DRIVE.kTimeoutMs);
+		masterTalon.configPeakOutputForward(1, DRIVE.kTimeoutMs);
+		masterTalon.configPeakOutputReverse(-1, DRIVE.kTimeoutMs);
+		masterTalon
+				.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, DRIVE.kTimeoutMs);
 
-		slaveTalon.clearMotionProfileHasUnderrun(10);
-		slaveTalon.clearMotionProfileTrajectories();
-		slaveTalon.clearStickyFaults(10);
-		slaveTalon.configPeakOutputForward(100, 10);
-		slaveTalon.configPeakOutputReverse(-100, 10);
-		slaveTalon.configNominalOutputForward(0, 10);
-		slaveTalon.configNominalOutputReverse(-0, 10);
+		slaveTalon.configNominalOutputForward(0, DRIVE.kTimeoutMs);
+		slaveTalon.configNominalOutputReverse(0, DRIVE.kTimeoutMs);
+		slaveTalon.configPeakOutputForward(1, DRIVE.kTimeoutMs);
+		slaveTalon.configPeakOutputReverse(-1, DRIVE.kTimeoutMs);
 
 		slaveTalon.set(ControlMode.Follower, masterID);
 	}
 
 	public double getError() {
-		return nativeUnitsToInches(masterTalon.getErrorDerivative(0));
+		return nativeUnitsToInches(masterTalon.getClosedLoopError(DRIVE.kPIDLoopIdx));
 	}
 
 
 	public double getPosition() {
-		return nativeUnitsToInches(masterTalon.getSelectedSensorPosition(0));
+		return nativeUnitsToInches(masterTalon.getSelectedSensorPosition(DRIVE.kPIDLoopIdx));
 	}
 
 
 	public double getSpeed() {
-		return nativeUnitsPer100MstoInchesPerSec(masterTalon.getSelectedSensorVelocity(10));
+		return nativeUnitsPer100MstoInchesPerSec(
+				masterTalon.getSelectedSensorVelocity(DRIVE.kPIDLoopIdx));
 	}
 
 
@@ -79,7 +89,7 @@ public class MkDrive {
 	}
 
 	public void resetEncoder() {
-		masterTalon.setSelectedSensorPosition(0, 0, 10);
+		masterTalon.setSelectedSensorPosition(0, DRIVE.kPIDLoopIdx, DRIVE.kTimeoutMs);
 	}
 
 	public void testDrive() {
@@ -91,6 +101,10 @@ public class MkDrive {
 			System.out.println("Position" + getPosition() + "Speed" + getSpeed());
 		}
 
+	}
+
+	public double getPercentOutput() {
+		return masterTalon.getMotorOutputPercent();
 	}
 
 }
