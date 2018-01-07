@@ -52,4 +52,6 @@ public class StraightOpenLoopAction implements Action {
 	public void start() {
 		timer.start();
 	}
+
+
 }

@@ -1,5 +1,13 @@
 package frc.team1836.robot;
 
+/**
+ * UNLESS OTHERWISE NOTED BY RAW/NATIVE/RPM,
+ * ALL POSITION UNITS ARE IN INCHES and DEGREES
+ * ALL VELOCITY UNITS ARE IN INCHES PER SECOND and DEGREES PER SECOND
+ * DIST DENOTES POSITION AND ANG DENOTES ANGLE
+ * ID TYPICALLY DENOTES A CAN ID
+ * ALL PID CONSTANTS SENT TO THE TALON ARE IN NATIVE UNITS
+ */
 public final class Constants {
 
 	public static double kLooperDt = 0.005;
@@ -16,9 +24,12 @@ public final class Constants {
 		public static final int RIGHT_MASTER_ID = 3;
 		public static final int RIGHT_SLAVE_ID = 4;
 
+		public static final double WHEELBASE = 26;
+
 		public static final int CODES_PER_REV = 4096;
 		public static final double WHEEL_DIAMETER = 4;
 		public static final double CIRCUMFERENCE = WHEEL_DIAMETER * MATH.PI;
+		public static final double TURN_IN_PLACE_CIRCUMFERENCE = WHEELBASE * MATH.PI;
 
 		public static final double MIN_TEST_POS = 500;
 		public static final double MIN_TEST_VEL = 100;
@@ -41,6 +52,10 @@ public final class Constants {
 		public static final int kSlotIdx = 0;
 		public static final int kPIDLoopIdx = 0;
 		public static final int kTimeoutMs = 10;
+
+		public static final double MAX_ANG_VEL = 0;
+		public static final double MAX_ANG_ACC = 0;
+		public static final double MAX_ANG_JERK = 0;
 	}
 
 

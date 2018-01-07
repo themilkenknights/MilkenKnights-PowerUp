@@ -1,5 +1,7 @@
 package frc.team1836.robot.subsystems;
 
+import frc.team1836.robot.auto.modes.TurnInPlaceMode;
+import frc.team1836.robot.util.auto.AutoModeExecuter;
 import frc.team1836.robot.util.drivers.MkButton;
 import frc.team1836.robot.util.drivers.MkJoystick;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
@@ -10,9 +12,10 @@ public class Input extends Subsystem {
 
 	private static Input mInstance = new Input();
 	private final MkJoystick driverJoystick = new MkJoystick(1);
-	private final MkButton slowButton = driverJoystick.getButton(2, "Slow Button");
+	private final MkButton rotate90Button = driverJoystick.getButton(2, "Rotate 90 Button");
 	private final ReflectingCSVWriter<InputDebugOutput> mCSVWriter;
 	private InputDebugOutput mDebug = new InputDebugOutput();
+	private AutoModeExecuter mAutoModeExecuter = null;
 
 	public static Input getInstance() {
 		return mInstance;
@@ -62,9 +65,8 @@ public class Input extends Subsystem {
 			@Override
 			public void onLoop(double timestamp) {
 				synchronized (Input.this) {
-					mDebug.driverY = driverJoystick.getY();
-					mDebug.driverTwist = driverJoystick.getTwist();
-					mDebug.slowButton = slowButton.isHeld();
+					updateDriveInput();
+					updateDebug();
 					mCSVWriter.add(mDebug);
 				}
 			}
@@ -75,6 +77,28 @@ public class Input extends Subsystem {
 			}
 		};
 		enabledLooper.register(mLoop);
+	}
+
+	public void updateDebug() {
+		mDebug.driverY = driverJoystick.getY();
+		mDebug.driverTwist = driverJoystick.getTwist();
+		mDebug.slowButton = rotate90Button.isHeld();
+	}
+
+	public void updateDriveInput() {
+		if (rotate90Button.isPressed()) {
+			setTurnInPlace(90);
+		}
+	}
+
+	public void setTurnInPlace(double angle) {
+		if (mAutoModeExecuter != null) {
+			mAutoModeExecuter.stop();
+		}
+		mAutoModeExecuter = null;
+		mAutoModeExecuter = new AutoModeExecuter();
+		mAutoModeExecuter.setAutoMode(new TurnInPlaceMode(angle));
+		mAutoModeExecuter.start();
 	}
 
 	private static class InputDebugOutput {

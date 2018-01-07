@@ -80,6 +80,25 @@ public class Drive extends Subsystem {
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);
 	}
 
+	public synchronized void setTurnInPlacePath(Path path, double dist_tol, double ang_tol) {
+		mDriveControlState = DriveControlState.TURN_IN_PLACE;
+		pathFollower = new PathFollower(path, dist_tol, ang_tol);
+	}
+
+
+	public boolean isPathFinished(){
+		return pathFollower.getFinished() && pathFollower.onTarget();
+	}
+
+
+	public synchronized void updateTurnInPlace(){
+		TrajectoryStatus leftUpdate = pathFollower
+				.getLeftVelocity(navX.getFullYaw(), navX.getRate(), 0);
+		TrajectoryStatus rightUpdate = pathFollower
+				.getRightVelocity(navX.getFullYaw(), navX.getRate(), 0);
+		setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput()));
+	}
+
 	@Override
 	public void writeToLog() {
 		mCSVWriter.write();
@@ -135,6 +154,10 @@ public class Drive extends Subsystem {
 							return;
 						case PATH_FOLLOWING:
 							updatePathFollower();
+							updateTrajectoryStatus();
+							return;
+						case TURN_IN_PLACE:
+							updateTurnInPlace();
 							updateTrajectoryStatus();
 							return;
 						default:
@@ -216,6 +239,7 @@ public class Drive extends Subsystem {
 		OPEN_LOOP, // open loop voltage control
 		VELOCITY_SETPOINT, // velocity PID control
 		PATH_FOLLOWING, // used for autonomous driving
+		TURN_IN_PLACE,
 	}
 
 	private static class DriveDebugOutput {

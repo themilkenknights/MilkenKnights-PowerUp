@@ -5,11 +5,11 @@ import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.util.auto.Action;
 import frc.team254.lib.trajectory.Path;
 
-public class DrivePathAction implements Action {
+public class TurnInPlaceAction implements Action {
 
 	private final Path path;
 
-	public DrivePathAction(Path path) {
+	public TurnInPlaceAction(Path path) {
 		this.path = path;
 	}
 

@@ -1,26 +1,14 @@
 package frc.team1836.robot.util.drivers;
 
 import com.kauailabs.navx.frc.AHRS;
-import com.kauailabs.sf2.frc.navXSensor;
-import com.kauailabs.sf2.orientation.OrientationHistory;
 
 public class MkGyro {
 
 	private final AHRS navX;
-	OrientationHistory orientation_history;
 	private double offset;
 
 	public MkGyro(final AHRS navX) {
 		this.navX = navX;
-		navXSensor navx_sensor = new navXSensor(navX, "Drivetrain Orientation");
-		orientation_history = new OrientationHistory(navx_sensor,
-				navX.getRequestedUpdateRate() * 10);
-	}
-
-	public double getYawAtTime(double elapsedTime) {
-		long navx_timestamp = navX.getLastSensorTimestamp();
-		navx_timestamp -= elapsedTime * 100;
-		return orientation_history.getYawDegreesAtTime(navx_timestamp);
 	}
 
 	public void zeroYaw() {
