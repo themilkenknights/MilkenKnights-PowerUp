@@ -44,16 +44,18 @@ public class Drive extends Subsystem {
 		return mInstance;
 	}
 
-	private synchronized void setOpenLoop(DriveSignal signal) {
+	public synchronized void setOpenLoop(DriveSignal signal) {
 		mDriveControlState = DriveControlState.OPEN_LOOP;
 		leftDrive.set(ControlMode.PercentOutput, signal.getLeft());
 		rightDrive.set(ControlMode.PercentOutput, signal.getRight());
+		currentSetpoint = signal;
 	}
 
 	private synchronized void setVelocitySetpoint(DriveSignal signal) {
 		mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
 		leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVel());
 		rightDrive.set(ControlMode.Velocity, signal.getLeftNativeVel());
+		currentSetpoint = signal;
 	}
 
 	public synchronized void setWantDrivePath(Path path, double dist_tol, double ang_tol) {
@@ -154,6 +156,7 @@ public class Drive extends Subsystem {
 				.getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
 						Math.toRadians(navX.getFullYaw()));
 		setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput()));
+
 	}
 
 	private void zeroTrajectoryStatus() {

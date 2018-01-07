@@ -3,6 +3,7 @@ package frc.team1836.robot.subsystems;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
 
@@ -11,9 +12,16 @@ public class Superstructure extends Subsystem {
 	private static Superstructure mInstance = new Superstructure();
 	private SystemState mSystemState = SystemState.IDLE;
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
+	private final ReflectingCSVWriter<DriveDebugOutput> mCSVWriter;
+	private DriveDebugOutput mDebug = new DriveDebugOutput();
 
 	public static Superstructure getInstance() {
 		return mInstance;
+	}
+
+	public Superstructure(){
+		mCSVWriter = new ReflectingCSVWriter<>("/home/lvuser/DRIVE-LOGS.csv",
+				DriveDebugOutput.class);
 	}
 
 	@Override
@@ -24,6 +32,11 @@ public class Superstructure extends Subsystem {
 	@Override
 	public void stop() {
 
+	}
+
+	@Override
+	public void writeToLog() {
+		mCSVWriter.write();
 	}
 
 	@Override
@@ -66,6 +79,11 @@ public class Superstructure extends Subsystem {
 										+ Timer.getFPGATimestamp());
 						mSystemState = newState;
 					}
+					mDebug.SuperstructureState = mSystemState.toString();
+					mDebug.PDPVoltage = pdp.getVoltage();
+					mDebug.PDPTotalPower = pdp.getTotalPower();
+					mDebug.PDPTemp = pdp.getTemperature();
+					mCSVWriter.add(mDebug);
 				}
 			}
 
@@ -81,4 +99,15 @@ public class Superstructure extends Subsystem {
 	public enum SystemState {
 		IDLE
 	}
+
+	private static class DriveDebugOutput {
+
+		public String SuperstructureState;
+		public double PDPVoltage;
+		public double PDPTotalPower;
+		public double PDPTemp;
+
+	}
+
+
 }

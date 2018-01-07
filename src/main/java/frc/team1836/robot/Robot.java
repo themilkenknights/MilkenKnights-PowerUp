@@ -18,8 +18,7 @@ public class Robot extends IterativeRobot {
 
 	private AutoModeExecuter mAutoModeExecuter = null;
 	private SendableChooser<AutoModeBase> chooser = new SendableChooser<>();
-
-	// Create subsystem manager
+	
 	private final SubsystemManager mSubsystemManager = new SubsystemManager(
 			Arrays.asList(Drive.getInstance(), Superstructure.getInstance()));
 	private Looper mEnabledLooper = new Looper();
