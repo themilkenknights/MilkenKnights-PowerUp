@@ -2,6 +2,7 @@ package frc.team1836.robot.util.drivers;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.Timer;
 import frc.team1836.robot.Constants;
 
 public class MkDrive {
@@ -75,6 +76,21 @@ public class MkDrive {
 
 	public void set(ControlMode mode, double value) {
 		masterTalon.set(mode, value);
+	}
+
+	public void resetEncoder() {
+		masterTalon.setSelectedSensorPosition(0, 0, 10);
+	}
+
+	public void testDrive() {
+
+		masterTalon.set(ControlMode.PercentOutput, 1);
+		Timer.delay(2.0);
+		if (getPosition() < Constants.DRIVE.MIN_TEST_POS || getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
+			System.out.println("FAILED - DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
+			System.out.println("Position" + getPosition() + "Speed" + getSpeed());
+		}
+
 	}
 
 }

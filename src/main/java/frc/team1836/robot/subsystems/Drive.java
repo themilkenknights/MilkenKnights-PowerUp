@@ -1,31 +1,39 @@
 package frc.team1836.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 import frc.team1836.robot.Constants.DRIVE;
 import frc.team1836.robot.util.drivers.MkDrive;
+import frc.team1836.robot.util.drivers.MkGyro;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.state.DriveSignal;
+import frc.team254.lib.trajectory.Path;
+import frc.team254.lib.trajectory.PathFollower;
 
 public class Drive extends Subsystem {
 
 	private static Drive mInstance = new Drive();
 	private final ReflectingCSVWriter<DriveDebugOutput> mCSVWriter;
-	private DriveControlState mDriveControlState;
 	private final MkDrive leftDrive, rightDrive;
-
-	public static Drive getInstance() {
-		return mInstance;
-	}
+	private final MkGyro navX;
+	private DriveControlState mDriveControlState;
+	private PathFollower pathFollower = null;
 
 	private Drive() {
 		leftDrive = new MkDrive(DRIVE.LEFT_MASTER_ID, DRIVE.LEFT_SLAVE_ID);
 		rightDrive = new MkDrive(DRIVE.RIGHT_MASTER_ID, DRIVE.RIGHT_SLAVE_ID);
+		navX = new MkGyro(new AHRS(SPI.Port.kMXP));
 
 		mDriveControlState = DriveControlState.OPEN_LOOP;
 		mCSVWriter = new ReflectingCSVWriter<DriveDebugOutput>("/home/lvuser/DRIVE-LOGS.csv",
 				DriveDebugOutput.class);
+	}
+
+	public static Drive getInstance() {
+		return mInstance;
 	}
 
 	public synchronized void setOpenLoop(DriveSignal signal) {
@@ -40,6 +48,15 @@ public class Drive extends Subsystem {
 		rightDrive.set(ControlMode.Velocity, signal.getLeftNativeVel());
 	}
 
+	public synchronized void setWantDrivePath(Path path, double dist_tol, double ang_tol) {
+			mDriveControlState = DriveControlState.PATH_FOLLOWING;
+		pathFollower = new PathFollower(path, dist_tol, ang_tol);
+	}
+
+	@Override
+	public void writeToLog() {
+		mCSVWriter.write();
+	}
 
 	@Override
 	public void outputToSmartDashboard() {
@@ -53,12 +70,18 @@ public class Drive extends Subsystem {
 
 	@Override
 	public void zeroSensors() {
-
+		leftDrive.resetEncoder();
+		rightDrive.resetEncoder();
 	}
 
 	@Override
-	public void writeToLog() {
-		mCSVWriter.write();
+	public void checkSystem() {
+		leftDrive.testDrive();
+		rightDrive.testDrive();
+		if(!navX.isConnected()){
+			System.out.println("FAILED - NAVX DISCONNECTED");
+		}
+
 	}
 
 	@Override

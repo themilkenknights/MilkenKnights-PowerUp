@@ -1,5 +1,6 @@
 package frc.team1836.robot.subsystems;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.util.loops.Loop;
@@ -9,6 +10,7 @@ public class Superstructure extends Subsystem {
 
 	private static Superstructure mInstance = new Superstructure();
 	private SystemState mSystemState = SystemState.IDLE;
+	PowerDistributionPanel pdp = new PowerDistributionPanel();
 
 	public static Superstructure getInstance() {
 		return mInstance;
@@ -30,6 +32,13 @@ public class Superstructure extends Subsystem {
 	}
 
 	@Override
+	public void checkSystem() {
+		if(pdp.getVoltage() < 10){
+			System.out.println("FAILED - PDP VOLTAGE LOW");
+		}
+	}
+
+	@Override
 	public void registerEnabledLoops(Looper enabledLooper) {
 		Loop mLoop = new Loop() {
 
@@ -37,6 +46,7 @@ public class Superstructure extends Subsystem {
 			public void onStart(double timestamp) {
 				synchronized (Superstructure.this) {
 					mSystemState = SystemState.IDLE;
+					pdp.clearStickyFaults();
 				}
 			}
 

@@ -31,6 +31,11 @@ public class Input extends Subsystem {
 	}
 
 	@Override
+	public void checkSystem() {
+
+	}
+
+	@Override
 	public void registerEnabledLoops(Looper enabledLooper) {
 		Loop mLoop = new Loop() {
 

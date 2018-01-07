@@ -20,6 +20,16 @@ public final class Constants {
 		public static final double WHEEL_DIAMETER = 4;
 		public static final double CIRCUMFERENCE = WHEEL_DIAMETER * MATH.PI;
 
+		public static final double MIN_TEST_POS = 500;
+		public static final double MIN_TEST_VEL = 100;
+
+		public static final double PATH_DIST_TOL = 1;
+		public static final double PATH_ANGLE_TOL = 1;
+
+		public static final double DRIVE_FOLLOWER_P = 1.52;
+		public static final double DRIVE_FOLLOWER_V = 0;
+		public static final double DRIVE_FOLLOWER_A = 0;
+		public static final double DRIVE_FOLLOWER_ANG = 0;
 	}
 
 
