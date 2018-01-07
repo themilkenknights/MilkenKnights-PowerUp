@@ -30,6 +30,6 @@ public class TurnInPlaceAction implements Action {
 
 	@Override
 	public void start() {
-		Drive.getInstance().setWantDrivePath(path, DRIVE.PATH_DIST_TOL, DRIVE.PATH_ANGLE_TOL);
+		Drive.getInstance().setDrivePath(path, DRIVE.PATH_DIST_TOL, DRIVE.PATH_ANGLE_TOL);
 	}
 }

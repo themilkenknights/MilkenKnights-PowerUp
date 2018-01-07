@@ -82,7 +82,7 @@ public class Drive extends Subsystem {
      * @param dist_tol Position Tolerance for Path Follower
      * @param ang_tol  Robot Angle Tolerance for Path Follower (Degrees)
      */
-    public synchronized void setWantDrivePath(Path path, double dist_tol, double ang_tol) {
+    public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
         mDriveControlState = DriveControlState.PATH_FOLLOWING;
         pathFollower = new PathFollower(path, dist_tol, ang_tol);
         System.out.println("Path set");
@@ -159,6 +159,8 @@ public class Drive extends Subsystem {
             @Override
             public void onLoop(double timestamp) {
                 synchronized (Drive.this) {
+                    updateDebugOutput(timestamp);
+                    mCSVWriter.add(mDebug);
                     switch (mDriveControlState) {
                         case OPEN_LOOP:
                             zeroTrajectoryStatus();
@@ -178,8 +180,6 @@ public class Drive extends Subsystem {
                             System.out.println("Unexpected drive control state: " + mDriveControlState);
                             break;
                     }
-                    updateDebugOutput(timestamp);
-                    mCSVWriter.add(mDebug);
                 }
             }
 
