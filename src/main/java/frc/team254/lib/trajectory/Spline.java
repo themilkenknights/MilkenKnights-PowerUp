@@ -1,6 +1,7 @@
 package frc.team254.lib.trajectory;
 
-import com.team254.lib.util.ChezyMath;
+
+import frc.team254.lib.util.ChezyMath;
 
 /**
  * Do cubic spline interpolation between points.
