@@ -35,7 +35,7 @@ public class TrajectoryFollower {
 		kv_ = kv;
 		ka_ = ka;
 		_DistTol = distTol;
-		_AngTol = angTol;
+		_AngTol = Math.toRadians(angTol);
 		reset();
 	}
 

@@ -44,12 +44,22 @@ public class Drive extends Subsystem {
 		return mInstance;
 	}
 
+	/*
+		Controls Drivetrain in PercentOutput Mode (without closed loop control)
+	 */
 	public synchronized void setOpenLoop(DriveSignal signal) {
 		mDriveControlState = DriveControlState.OPEN_LOOP;
 		leftDrive.set(ControlMode.PercentOutput, signal.getLeft());
 		rightDrive.set(ControlMode.PercentOutput, signal.getRight());
 		currentSetpoint = signal;
 	}
+
+	/**
+	 * Controls Drivetrain in Closed-loop velocity Mode
+	 * Method sets Talons in Native Units per 100ms
+	 *
+	 * @param signal An object that contains left and right velocities (inches per sec)
+	 */
 
 	private synchronized void setVelocitySetpoint(DriveSignal signal) {
 		mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
@@ -58,6 +68,13 @@ public class Drive extends Subsystem {
 		currentSetpoint = signal;
 	}
 
+
+	/**
+	 *
+	 * @param path Robot Path
+	 * @param dist_tol Position Tolerance for Path Follower
+	 * @param ang_tol Robot Angle Tolerance for Path Follower (Degrees)
+	 */
 	public synchronized void setWantDrivePath(Path path, double dist_tol, double ang_tol) {
 		mDriveControlState = DriveControlState.PATH_FOLLOWING;
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);
@@ -148,6 +165,12 @@ public class Drive extends Subsystem {
 		mDebug.heading = navX.getFullYaw();
 	}
 
+	/**
+	 * Called from Looper during Path Following
+	 * Gets a TrajectoryStatus containing output velocity and Desired Trajectory Information for logging
+	 * Inputs Position, Speed and Angle to Trajectory Follower
+	 * Creates a new Drive Signal that is then set as a velocity setpoint
+	 */
 	private void updatePathFollower() {
 		TrajectoryStatus leftUpdate = pathFollower
 				.getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(),
@@ -196,7 +219,6 @@ public class Drive extends Subsystem {
 	}
 
 	private static class DriveDebugOutput {
-
 		public double timestamp;
 		public String controlMode;
 		public double leftOutput;
