@@ -15,5 +15,4 @@ public class AutoVariations {
 		SCALE
 
 	}
-	public enum
 }
