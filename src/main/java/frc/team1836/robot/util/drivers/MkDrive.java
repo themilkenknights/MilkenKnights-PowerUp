@@ -36,8 +36,7 @@ public class MkDrive {
 		masterTalon.configNominalOutputReverse(0, DRIVE.kTimeoutMs);
 		masterTalon.configPeakOutputForward(1, DRIVE.kTimeoutMs);
 		masterTalon.configPeakOutputReverse(-1, DRIVE.kTimeoutMs);
-		masterTalon
-				.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, DRIVE.kTimeoutMs);
+		masterTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, DRIVE.kTimeoutMs);
 
 		slaveTalon.configNominalOutputForward(0, DRIVE.kTimeoutMs);
 		slaveTalon.configNominalOutputReverse(0, DRIVE.kTimeoutMs);
@@ -103,8 +102,16 @@ public class MkDrive {
 
 	}
 
+	public void invert(boolean direction){
+		masterTalon.setInverted(direction);
+	}
+
 	public double getPercentOutput() {
 		return masterTalon.getMotorOutputPercent();
+	}
+
+	public double getSlavePercentOutput() {
+		return slaveTalon.getMotorOutputPercent();
 	}
 
 }

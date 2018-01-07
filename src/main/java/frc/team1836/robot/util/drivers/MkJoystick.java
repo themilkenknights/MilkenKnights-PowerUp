@@ -1,9 +1,10 @@
 package frc.team1836.robot.util.drivers;
 
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
+
 import java.util.HashMap;
 
-public class MkJoystick extends Joystick {
+public class MkJoystick extends XboxController {
 
 	private final HashMap<Integer, MkButton> buttons;
 

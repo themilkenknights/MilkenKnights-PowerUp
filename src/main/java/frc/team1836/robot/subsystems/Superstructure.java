@@ -12,16 +12,16 @@ public class Superstructure extends Subsystem {
 	private static Superstructure mInstance = new Superstructure();
 	private SystemState mSystemState = SystemState.IDLE;
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
-	private final ReflectingCSVWriter<DriveDebugOutput> mCSVWriter;
-	private DriveDebugOutput mDebug = new DriveDebugOutput();
+	private final ReflectingCSVWriter<SupertructureDebugOutput> mCSVWriter;
+	private SupertructureDebugOutput mDebug = new SupertructureDebugOutput();
 
 	public static Superstructure getInstance() {
 		return mInstance;
 	}
 
 	public Superstructure(){
-		mCSVWriter = new ReflectingCSVWriter<>("/home/lvuser/DRIVE-LOGS.csv",
-				DriveDebugOutput.class);
+		mCSVWriter = new ReflectingCSVWriter<>("/home/lvuser/SUPERSTRUCTURE-LOGS.csv",
+				SupertructureDebugOutput.class);
 	}
 
 	@Override
@@ -83,6 +83,7 @@ public class Superstructure extends Subsystem {
 					mDebug.PDPVoltage = pdp.getVoltage();
 					mDebug.PDPTotalPower = pdp.getTotalPower();
 					mDebug.PDPTemp = pdp.getTemperature();
+					mDebug.timestamp = timestamp;
 					mCSVWriter.add(mDebug);
 				}
 			}
@@ -100,12 +101,13 @@ public class Superstructure extends Subsystem {
 		IDLE
 	}
 
-	private static class DriveDebugOutput {
+	public static class SupertructureDebugOutput {
 
 		public String SuperstructureState;
 		public double PDPVoltage;
 		public double PDPTotalPower;
 		public double PDPTemp;
+		public double timestamp;
 
 	}
 
