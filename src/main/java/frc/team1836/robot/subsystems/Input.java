@@ -1,5 +1,6 @@
 package frc.team1836.robot.subsystems;
 
+import frc.team1836.robot.Constants.LOGGING;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.auto.modes.TurnInPlaceMode;
 import frc.team1836.robot.util.auto.AutoModeExecuter;
@@ -21,7 +22,7 @@ public class Input extends Subsystem {
 	private AutoModeExecuter mAutoModeExecuter = null;
 
 	public Input() {
-		mCSVWriter = new ReflectingCSVWriter<>("/home/lvuser/INPUT-LOGS.csv",
+		mCSVWriter = new ReflectingCSVWriter<>(LOGGING.INPUT_LOG_PATH,
 				InputDebugOutput.class);
 	}
 

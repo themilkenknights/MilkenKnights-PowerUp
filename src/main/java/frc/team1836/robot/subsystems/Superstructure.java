@@ -3,6 +3,7 @@ package frc.team1836.robot.subsystems;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team1836.robot.Constants.LOGGING;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.RobotState.SystemState;
@@ -21,7 +22,7 @@ public class Superstructure extends Subsystem {
 	private MatchState matchState = RobotState.MatchState.IDLE;
 
 	public Superstructure() {
-		mCSVWriter = new ReflectingCSVWriter<>("/home/lvuser/SUPERSTRUCTURE-LOGS.csv",
+		mCSVWriter = new ReflectingCSVWriter<>(LOGGING.SUPERSTRUCTURE_LOG_PATH,
 				SupertructureDebugOutput.class);
 	}
 

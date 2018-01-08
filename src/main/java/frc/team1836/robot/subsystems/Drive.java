@@ -5,6 +5,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants.DRIVE;
+import frc.team1836.robot.Constants.LOGGING;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.util.drivers.MkDrive;
 import frc.team1836.robot.util.drivers.MkGyro;
@@ -37,7 +38,7 @@ public class Drive extends Subsystem {
 
 		leftDrive.invert(true);
 		rightDrive.invert(false);
-		mCSVWriter = new ReflectingCSVWriter<>("/home/lvuser/DRIVE-LOGS.csv",
+		mCSVWriter = new ReflectingCSVWriter<>(LOGGING.DRIVE_LOG_PATH,
 				DriveDebugOutput.class);
 		leftStatus = TrajectoryStatus.NEUTRAL;
 		rightStatus = TrajectoryStatus.NEUTRAL;
