@@ -10,34 +10,6 @@ public class AutoModeExecuter {
 	private AutoModeBase m_auto_mode;
 	private Thread m_thread = null;
 
-	/*public void setDesiredAuto(AutoModeBase.AutoPosition pos, AutoModeBase.AutoAction act) {
-
-		String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if(gameData.charAt(0) == 'L')
-		{
-			//Put left auto code here
-		} else {
-			//Put right auto code here
-		}
-
-		if (act.equals(AutoAction.STANDSTILL)) {
-			m_auto_mode = new StandStillMode();
-		}
-
-		switch (pos) {
-			case LEFT:
-				if(act.equals(AutoAction.SWITCH)){
-					m_auto_mode = new LeftSwitchMode();
-				}
-
-
-
-		}
-
-
-	} */
-
 	public void setAutoMode(AutoModeBase new_auto_mode) {
 		m_auto_mode = new_auto_mode;
 	}

@@ -3,11 +3,9 @@ package frc.team1836.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
 import frc.team1836.robot.RobotState.DriveControlState;
-import frc.team1836.robot.auto.modes.DriveStraightMode;
 import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.subsystems.Input;
 import frc.team1836.robot.subsystems.Superstructure;
-import frc.team1836.robot.util.auto.AutoModeExecuter;
 import frc.team1836.robot.util.logging.CrashTracker;
 import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.other.SubsystemManager;
@@ -18,7 +16,6 @@ public class Robot extends IterativeRobot {
 
 	private final SubsystemManager mSubsystemManager = new SubsystemManager(
 			Arrays.asList(Drive.getInstance(), Superstructure.getInstance(), Input.getInstance()));
-	private AutoModeExecuter mAutoModeExecuter = null;
 	private Looper mEnabledLooper = new Looper();
 
 	public Robot() {
@@ -31,6 +28,7 @@ public class Robot extends IterativeRobot {
 			CrashTracker.logRobotInit();
 			mSubsystemManager.registerEnabledLoops(mEnabledLooper);
 			mSubsystemManager.zeroSensors();
+			AutoChooser.loadChooser();
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
 			throw t;
@@ -42,10 +40,7 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 		try {
 			CrashTracker.logDisabledInit();
-			if (mAutoModeExecuter != null) {
-				mAutoModeExecuter.stop();
-			}
-			mAutoModeExecuter = null;
+			AutoChooser.disableAuto();
 			mEnabledLooper.stop();
 			mSubsystemManager.stop();
 			Drive.getInstance().setOpenLoop(DriveSignal.NEUTRAL);
@@ -59,21 +54,11 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		try {
 			CrashTracker.logAutoInit();
-
 			System.out.println("Auto start timestamp: " + Timer.getFPGATimestamp());
-
-			if (mAutoModeExecuter != null) {
-				mAutoModeExecuter.stop();
-			}
 			Superstructure.getInstance().setMatchState(RobotState.MatchState.AUTO);
 			mSubsystemManager.zeroSensors();
-			mAutoModeExecuter = null;
 			mEnabledLooper.start();
-			mAutoModeExecuter = new AutoModeExecuter();
-			mAutoModeExecuter.setAutoMode(new DriveStraightMode());
-			mAutoModeExecuter.start();
-
-
+			AutoChooser.startAuto();
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
 			throw t;
