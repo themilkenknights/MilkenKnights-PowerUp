@@ -1,6 +1,7 @@
 package frc.team1836.robot.util.math;
 
 import frc.team1836.robot.Constants;
+import frc.team1836.robot.Constants.DRIVE;
 
 public class MkMath {
 
@@ -22,5 +23,9 @@ public class MkMath {
 
 	public static double normalAbsoluteAngleDegrees(double angle) {
 		return (angle %= 360) >= 0 ? angle : (angle + 360);
+	}
+
+	public static double AngleToVel(double angle) {
+		return (angle / 360) * DRIVE.TURN_IN_PLACE_CIRCUMFERENCE;
 	}
 }

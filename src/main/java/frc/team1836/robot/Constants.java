@@ -1,5 +1,7 @@
 package frc.team1836.robot;
 
+import static frc.team1836.robot.Constants.MATH.PI;
+
 /**
  * UNLESS OTHERWISE NOTED BY RAW/NATIVE/RPM,
  * ALL POSITION UNITS ARE IN INCHES and DEGREES
@@ -28,8 +30,8 @@ public final class Constants {
 
 		public static final int CODES_PER_REV = 4096;
 		public static final double WHEEL_DIAMETER = 4;
-		public static final double CIRCUMFERENCE = WHEEL_DIAMETER * MATH.PI;
-		public static final double TURN_IN_PLACE_CIRCUMFERENCE = WHEELBASE * MATH.PI;
+		public static final double CIRCUMFERENCE = WHEEL_DIAMETER * PI;
+		public static final double TURN_IN_PLACE_CIRCUMFERENCE = WHEELBASE * PI;
 
 		public static final double MIN_TEST_POS = 500;
 		public static final double MIN_TEST_VEL = 100;

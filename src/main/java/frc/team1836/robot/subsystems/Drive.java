@@ -11,6 +11,7 @@ import frc.team1836.robot.util.drivers.MkGyro;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
+import frc.team1836.robot.util.math.MkMath;
 import frc.team1836.robot.util.other.Subsystem;
 import frc.team1836.robot.util.state.DriveSignal;
 import frc.team1836.robot.util.state.TrajectoryStatus;
@@ -47,52 +48,6 @@ public class Drive extends Subsystem {
 		return mInstance;
 	}
 
-	@Override
-	public void registerEnabledLoops(Looper enabledLooper) {
-		Loop mLoop = new Loop() {
-
-			@Override
-			public void onStart(double timestamp) {
-				synchronized (Drive.this) {
-
-				}
-			}
-
-			@Override
-			public void onLoop(double timestamp) {
-				synchronized (Drive.this) {
-					updateDebugOutput(timestamp);
-					mCSVWriter.add(mDebug);
-					System.out.println(RobotState.mDriveControlState.toString());
-					switch (RobotState.mDriveControlState) {
-						case OPEN_LOOP:
-							zeroTrajectoryStatus();
-							return;
-						case VELOCITY_SETPOINT:
-							zeroTrajectoryStatus();
-							return;
-						case PATH_FOLLOWING:
-							updatePathFollower();
-							updateTrajectoryStatus();
-							return;
-						case TURN_IN_PLACE:
-							updateTurnInPlace();
-							updateTrajectoryStatus();
-						default:
-							System.out.println("Unexpected drive control state: " + RobotState.mDriveControlState);
-							break;
-					}
-				}
-			}
-
-			@Override
-			public void onStop(double timestamp) {
-				stop();
-			}
-		};
-		enabledLooper.register(mLoop);
-	}
-
 	/*
 		Controls Drivetrain in PercentOutput Mode (without closed loop control)
  */
@@ -115,7 +70,6 @@ public class Drive extends Subsystem {
 		currentSetpoint = signal;
 	}
 
-
 	/**
 	 * @param path     Robot Path
 	 * @param dist_tol Position Tolerance for Path Follower
@@ -134,13 +88,13 @@ public class Drive extends Subsystem {
 
 	}
 
-
-	public synchronized void updateTurnInPlace() {
+	private synchronized void updateTurnInPlace() {
 		TrajectoryStatus leftUpdate = pathFollower
 				.getLeftVelocity(navX.getFullYaw(), navX.getRate(), 0);
 		TrajectoryStatus rightUpdate = pathFollower
 				.getRightVelocity(navX.getFullYaw(), navX.getRate(), 0);
-		setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput()));
+		setVelocitySetpoint(new DriveSignal(MkMath.AngleToVel(leftUpdate.getOutput()),
+				MkMath.AngleToVel(rightUpdate.getOutput())));
 	}
 
 	/**
@@ -157,16 +111,6 @@ public class Drive extends Subsystem {
 				.getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
 						Math.toRadians(navX.getFullYaw()));
 		setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput()));
-	}
-
-	@Override
-	public void checkSystem() {
-		leftDrive.testDrive();
-		rightDrive.testDrive();
-		if (!navX.isConnected()) {
-			System.out.println("FAILED - NAVX DISCONNECTED");
-		}
-
 	}
 
 	@Override
@@ -199,6 +143,62 @@ public class Drive extends Subsystem {
 		rightDrive.resetEncoder();
 	}
 
+	@Override
+	public void checkSystem() {
+		leftDrive.testDrive();
+		rightDrive.testDrive();
+		if (!navX.isConnected()) {
+			System.out.println("FAILED - NAVX DISCONNECTED");
+		}
+
+	}
+
+	@Override
+	public void registerEnabledLoops(Looper enabledLooper) {
+		Loop mLoop = new Loop() {
+
+			@Override
+			public void onStart(double timestamp) {
+				synchronized (Drive.this) {
+
+				}
+			}
+
+			@Override
+			public void onLoop(double timestamp) {
+				synchronized (Drive.this) {
+					updateDebugOutput(timestamp);
+					mCSVWriter.add(mDebug);
+					System.out.println(RobotState.mDriveControlState.toString());
+					switch (RobotState.mDriveControlState) {
+						case OPEN_LOOP:
+							zeroTrajectoryStatus();
+							return;
+						case VELOCITY_SETPOINT:
+							zeroTrajectoryStatus();
+							return;
+						case PATH_FOLLOWING:
+							updatePathFollower();
+							updateTrajectoryStatus();
+							return;
+						case TURN_IN_PLACE:
+							updateTurnInPlace();
+							updateTrajectoryStatus();
+						default:
+							System.out
+									.println("Unexpected drive control state: " + RobotState.mDriveControlState);
+							break;
+					}
+				}
+			}
+
+			@Override
+			public void onStop(double timestamp) {
+				stop();
+			}
+		};
+		enabledLooper.register(mLoop);
+	}
 
 	private void updateDebugOutput(double timestamp) {
 		mDebug.timestamp = timestamp;

@@ -2,6 +2,7 @@ package frc.team1836.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
+import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.auto.modes.DriveStraightMode;
 import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.subsystems.Input;
@@ -15,7 +16,6 @@ import java.util.Arrays;
 
 public class Robot extends IterativeRobot {
 
-	//	private SendableChooser<AutoModeBase> positionChooser = new SendableChooser<>();
 	private final SubsystemManager mSubsystemManager = new SubsystemManager(
 			Arrays.asList(Drive.getInstance(), Superstructure.getInstance(), Input.getInstance()));
 	private AutoModeExecuter mAutoModeExecuter = null;
@@ -31,8 +31,6 @@ public class Robot extends IterativeRobot {
 			CrashTracker.logRobotInit();
 			mSubsystemManager.registerEnabledLoops(mEnabledLooper);
 			mSubsystemManager.zeroSensors();
-			//	positionChooser.addDefault("Drive Straight", new DriveStraightMode());
-			//	positionChooser.addObject("Stand Still", new StandStillMode());
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
 			throw t;
@@ -87,7 +85,7 @@ public class Robot extends IterativeRobot {
 		try {
 			CrashTracker.logTeleopInit();
 			Superstructure.getInstance().setMatchState(RobotState.MatchState.TELEOP);
-			Drive.getInstance().setmDriveControlState(RobotState.DriveControlState.VELOCITY_SETPOINT);
+			RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
 			mEnabledLooper.start();
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
