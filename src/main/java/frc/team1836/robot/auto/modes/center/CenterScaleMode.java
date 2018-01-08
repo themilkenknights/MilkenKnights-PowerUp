@@ -7,11 +7,11 @@ import frc.team1836.robot.auto.paths.StraightPath;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeEndedException;
 
-public class CenterSwitchMode extends AutoModeBase {
+public class CenterScaleMode extends AutoModeBase {
 
 	private GameObjectPosition position;
 
-	public CenterSwitchMode(AutoChooser.GameObjectPosition position) {
+	public CenterScaleMode(AutoChooser.GameObjectPosition position) {
 		this.position = position;
 	}
 

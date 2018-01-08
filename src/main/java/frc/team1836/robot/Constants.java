@@ -61,7 +61,8 @@ public final class Constants {
 		public static final double MAX_ANG_JERK = 0;
 	}
 
-	public static class LOGGING{
+	public static class LOGGING {
+
 		public static final String DRIVE_LOG_PATH = "/home/lvuser/DRIVE-LOGS.csv";
 		public static final String INPUT_LOG_PATH = "/home/lvuser/INPUT-LOGS.csv";
 		public static final String SUPERSTRUCTURE_LOG_PATH = "/home/lvuser/SUPERSTRUCTURE-LOGS.csv";
