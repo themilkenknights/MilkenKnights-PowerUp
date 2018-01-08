@@ -161,6 +161,7 @@ public class Drive extends Subsystem {
                 synchronized (Drive.this) {
                     updateDebugOutput(timestamp);
                     mCSVWriter.add(mDebug);
+                    System.out.println(mDriveControlState.toString());
                     switch (mDriveControlState) {
                         case OPEN_LOOP:
                             zeroTrajectoryStatus();
@@ -257,7 +258,7 @@ public class Drive extends Subsystem {
         TURN_IN_PLACE,
     }
 
-    private static class DriveDebugOutput {
+    public static class DriveDebugOutput {
         public double timestamp;
         public String controlMode;
         public double leftOutput;

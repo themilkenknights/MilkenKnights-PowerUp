@@ -68,13 +68,14 @@ public class Robot extends IterativeRobot {
 			if (mAutoModeExecuter != null) {
 				mAutoModeExecuter.stop();
 			}
-
+			Superstructure.getInstance().setMatchState(Superstructure.MatchState.AUTO);
 			mSubsystemManager.zeroSensors();
 			mAutoModeExecuter = null;
 			mEnabledLooper.start();
 			mAutoModeExecuter = new AutoModeExecuter();
 			mAutoModeExecuter.setAutoMode(new DriveStraightMode());
 			mAutoModeExecuter.start();
+
 
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
@@ -86,7 +87,9 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		try {
 			CrashTracker.logTeleopInit();
+			Superstructure.getInstance().setMatchState(Superstructure.MatchState.TELEOP);
 			mEnabledLooper.start();
+
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
 			throw t;
