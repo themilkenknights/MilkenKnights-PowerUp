@@ -2,6 +2,7 @@ package frc.team1836.robot.auto.actions;
 
 import edu.wpi.first.wpilibj.Timer;
 import frc.team1836.robot.subsystems.Drive;
+import frc.team1836.robot.subsystems.Drive.DriveControlState;
 import frc.team1836.robot.util.auto.Action;
 import frc.team1836.robot.util.state.DriveSignal;
 
@@ -51,6 +52,7 @@ public class StraightOpenLoopAction implements Action {
 	@Override
 	public void start() {
 		timer.start();
+		Drive.getInstance().setmDriveControlState(DriveControlState.OPEN_LOOP);
 	}
 
 

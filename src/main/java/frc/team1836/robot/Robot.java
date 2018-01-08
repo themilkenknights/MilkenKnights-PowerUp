@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
 import frc.team1836.robot.auto.modes.DriveStraightMode;
 import frc.team1836.robot.subsystems.Drive;
+import frc.team1836.robot.subsystems.Drive.DriveControlState;
 import frc.team1836.robot.subsystems.Input;
 import frc.team1836.robot.subsystems.Superstructure;
 import frc.team1836.robot.util.auto.AutoModeExecuter;
@@ -88,7 +89,7 @@ public class Robot extends IterativeRobot {
 			CrashTracker.logTeleopInit();
 			Superstructure.getInstance().setMatchState(Superstructure.MatchState.TELEOP);
 			mEnabledLooper.start();
-
+			Drive.getInstance().setmDriveControlState(DriveControlState.VELOCITY_SETPOINT);
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
 			throw t;

@@ -10,6 +10,7 @@ import frc.team1836.robot.util.drivers.MkGyro;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
+import frc.team1836.robot.util.other.Subsystem;
 import frc.team1836.robot.util.state.DriveSignal;
 import frc.team1836.robot.util.state.TrajectoryStatus;
 import frc.team254.lib.trajectory.Path;
@@ -76,10 +77,6 @@ public class Drive extends Subsystem {
 							updatePathFollower();
 							updateTrajectoryStatus();
 							return;
-						case TURN_IN_PLACE:
-							updateTurnInPlace();
-							updateTrajectoryStatus();
-							return;
 						default:
 							System.out.println("Unexpected drive control state: " + mDriveControlState);
 							break;
@@ -95,11 +92,14 @@ public class Drive extends Subsystem {
 		enabledLooper.register(mLoop);
 	}
 
+	public void setmDriveControlState(DriveControlState mControlState) {
+		mDriveControlState = mControlState;
+	}
+
 	/*
 		Controls Drivetrain in PercentOutput Mode (without closed loop control)
  */
 	public synchronized void setOpenLoop(DriveSignal signal) {
-		mDriveControlState = DriveControlState.OPEN_LOOP;
 		leftDrive.set(ControlMode.PercentOutput, signal.getLeft());
 		rightDrive.set(ControlMode.PercentOutput, signal.getRight());
 		currentSetpoint = signal;
@@ -113,7 +113,6 @@ public class Drive extends Subsystem {
 	 */
 
 	public synchronized void setVelocitySetpoint(DriveSignal signal) {
-		mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
 		leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVel());
 		rightDrive.set(ControlMode.Velocity, signal.getRightNativeVel());
 		currentSetpoint = signal;
@@ -126,18 +125,17 @@ public class Drive extends Subsystem {
 	 * @param ang_tol  Robot Angle Tolerance for Path Follower (Degrees)
 	 */
 	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
-		mDriveControlState = DriveControlState.PATH_FOLLOWING;
+		setmDriveControlState(DriveControlState.PATH_FOLLOWING);
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);
 	}
-
-	public synchronized void setTurnInPlacePath(Path path, double dist_tol, double ang_tol) {
-		mDriveControlState = DriveControlState.TURN_IN_PLACE;
-		pathFollower = new PathFollower(path, dist_tol, ang_tol);
-	}
-
 
 	public boolean isPathFinished() {
-		return pathFollower.getFinished() && pathFollower.onTarget();
+		if (pathFollower.getFinished() && pathFollower.onTarget()) {
+			pathFollower = null;
+			return true;
+		}
+		return false;
+
 	}
 
 
@@ -253,35 +251,35 @@ public class Drive extends Subsystem {
 	public enum DriveControlState {
 		OPEN_LOOP, // open loop voltage control
 		VELOCITY_SETPOINT, // velocity PID control
-		PATH_FOLLOWING, // used for autonomous driving
-		TURN_IN_PLACE,
+		PATH_FOLLOWING, // used for autonomous drivin
+		IDLE,
 	}
 
 	public static class DriveDebugOutput {
 
-		public double timestamp;
-		public String controlMode;
-		public double leftOutput;
-		public double rightOutput;
-		public double leftSetpoint;
-		public double rightSetpoint;
-		public double leftPosition;
-		public double rightPosition;
-		public double leftVelocity;
-		public double rightVelocity;
-		public double heading;
-		public double desiredHeading;
-		public double headingError;
-		public double leftDesiredVel;
-		public double leftDesiredPos;
-		public double leftPosError;
-		public double leftVelError;
-		public double rightDesiredVel;
-		public double rightDesiredPos;
-		public double rightPosError;
-		public double rightVelError;
-		public double desiredX;
-		public double desiredY;
+		double timestamp;
+		String controlMode;
+		double leftOutput;
+		double rightOutput;
+		double leftSetpoint;
+		double rightSetpoint;
+		double leftPosition;
+		double rightPosition;
+		double leftVelocity;
+		double rightVelocity;
+		double heading;
+		double desiredHeading;
+		double headingError;
+		double leftDesiredVel;
+		double leftDesiredPos;
+		double leftPosError;
+		double leftVelError;
+		double rightDesiredVel;
+		double rightDesiredPos;
+		double rightPosError;
+		double rightVelError;
+		double desiredX;
+		double desiredY;
 	}
 
 }
