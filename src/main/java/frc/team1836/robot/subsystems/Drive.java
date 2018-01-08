@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants.DRIVE;
 import frc.team1836.robot.Constants.LOGGING;
 import frc.team1836.robot.RobotState;
+import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.util.drivers.MkDrive;
 import frc.team1836.robot.util.drivers.MkGyro;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
@@ -121,16 +122,35 @@ public class Drive extends Subsystem {
 
 	@Override
 	public void outputToSmartDashboard() {
-		SmartDashboard.putNumber("Left Output", leftDrive.getPercentOutput());
-		SmartDashboard.putNumber("Right Output", rightDrive.getPercentOutput());
-		SmartDashboard.putNumber("Left Slave Output", leftDrive.getSlavePercentOutput());
-		SmartDashboard.putNumber("Right Right Output", rightDrive.getSlavePercentOutput());
-		SmartDashboard.putNumber("Left Vel", leftDrive.getSpeed());
-		SmartDashboard.putNumber("Right Vel", rightDrive.getSpeed());
-		SmartDashboard.putNumber("Master Error",
-				Math.abs(leftDrive.getPercentOutput() - rightDrive.getPercentOutput()));
-		SmartDashboard.putNumber("Slave Error",
-				Math.abs(leftDrive.getSlavePercentOutput() - rightDrive.getSlavePercentOutput()));
+		SmartDashboard.putNumber("Left PercentVBus", leftDrive.getPercentOutput());
+		SmartDashboard.putNumber("Right PercentVBus", rightDrive.getPercentOutput());
+		SmartDashboard.putNumber("Left Encoder Position", leftDrive.getPosition());
+		SmartDashboard.putNumber("Right Encoder Position", rightDrive.getPosition());
+		SmartDashboard.putNumber("NavX Yaw", navX.getFullYaw());
+
+		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
+				|| RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
+			SmartDashboard.putNumber("Left Encoder Velocity", leftDrive.getSpeed());
+			SmartDashboard.putNumber("Right Encoder Velocity", rightDrive.getSpeed());
+			SmartDashboard.putNumber("Left Encoder Talon Error", leftDrive.getError());
+			SmartDashboard.putNumber("Right Encoder Talon Error", rightDrive.getError());
+			SmartDashboard.putNumber("Left Encoder Talon Setpoint", currentSetpoint.getLeft());
+			SmartDashboard.putNumber("Right Encoder Talon Setpoint", currentSetpoint.getRight());
+		}
+		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
+			SmartDashboard.putNumber("Left Desired Velocity",
+					MkMath.normalAbsoluteAngleDegrees(leftStatus.getSeg().heading));
+			SmartDashboard.putNumber("Left Desired Velocity", leftStatus.getSeg().vel);
+			SmartDashboard.putNumber("Left Desired Position", leftStatus.getSeg().pos);
+			SmartDashboard.putNumber("Left Position Error", leftStatus.getPosError());
+			SmartDashboard.putNumber("Left Desired Velocity Error", leftStatus.getVelError());
+			SmartDashboard.putNumber("Heading Error", leftStatus.getAngError());
+
+			SmartDashboard.putNumber("Right Desired Velocity", leftStatus.getSeg().vel);
+			SmartDashboard.putNumber("Right Desired Position", leftStatus.getSeg().pos);
+			SmartDashboard.putNumber("Right Position Error", leftStatus.getPosError());
+			SmartDashboard.putNumber("Right Desired Velocity Error", leftStatus.getVelError());
+		}
 	}
 
 	@Override
@@ -165,12 +185,17 @@ public class Drive extends Subsystem {
 				}
 			}
 
+			/**
+			 * Updated from mEnabledLoop in Robot.java
+			 * Controls drivetrain during Path Following and Turn In Place and logs
+			 * Drivetrain data in all modes
+			 * @param timestamp
+			 */
 			@Override
 			public void onLoop(double timestamp) {
 				synchronized (Drive.this) {
 					updateDebugOutput(timestamp);
 					mCSVWriter.add(mDebug);
-					System.out.println(RobotState.mDriveControlState.toString());
 					switch (RobotState.mDriveControlState) {
 						case OPEN_LOOP:
 							zeroTrajectoryStatus();
