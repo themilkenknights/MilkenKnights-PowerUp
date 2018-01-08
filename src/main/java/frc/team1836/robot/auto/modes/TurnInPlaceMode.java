@@ -13,6 +13,7 @@ public class TurnInPlaceMode extends AutoModeBase {
 
 	private double angle;
 	private Path path;
+
 	public TurnInPlaceMode(double angle) {
 		this.angle = angle;
 	}

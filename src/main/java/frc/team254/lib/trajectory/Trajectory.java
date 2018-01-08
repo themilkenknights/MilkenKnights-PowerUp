@@ -17,6 +17,7 @@ public class Trajectory {
 			segments_[i] = new Segment();
 		}
 	}
+
 	public Trajectory(Segment[] segments) {
 		segments_ = segments;
 	}
@@ -106,15 +107,7 @@ public class Trajectory {
 		return str;
 	}
 
-	public static class Pair {
-
-		public Trajectory left;
-		public Trajectory right;
-		public Pair(Trajectory left, Trajectory right) {
-			this.left = left;
-			this.right = right;
-		}
-	}	public String toString() {
+	public String toString() {
 		String str = "Segment\tPos\tVel\tAcc\tJerk\tHeading\n";
 		for (int i = 0; i < getNumSegments(); ++i) {
 			Trajectory.Segment segment = getSegment(i);
@@ -128,6 +121,17 @@ public class Trajectory {
 		}
 
 		return str;
+	}
+
+	public static class Pair {
+
+		public Trajectory left;
+		public Trajectory right;
+
+		public Pair(Trajectory left, Trajectory right) {
+			this.left = left;
+			this.right = right;
+		}
 	}
 
 	public static class Segment {

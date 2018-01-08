@@ -12,11 +12,12 @@ public class PathGenerator {
 	/**
 	 * Generate a path for autonomous driving.
 	 *
-	 * @param waypoints The waypoints to drive to (FOR THE "GO LEFT" CASE!!!!)
-	 * @param config Trajectory config.
+	 * @param waypoints       The waypoints to drive to (FOR THE "GO LEFT" CASE!!!!)
+	 * @param config          Trajectory config.
 	 * @param wheelbase_width Wheelbase separation; units must be consistent with
-	 * config and waypoints.
-	 * @param name The name of the new path.  THIS MUST BE A VALID JAVA CLASS NAME
+	 *                        config and waypoints.
+	 * @param name            The name of the new path.  THIS MUST BE A VALID JAVA CLASS NAME
+	 *
 	 * @return The path.
 	 */
 	public static Path makePath(WaypointSequence waypoints,
@@ -96,9 +97,10 @@ public class PathGenerator {
 	/**
 	 * Generate left and right wheel trajectories from a reference.
 	 *
-	 * @param input The reference trajectory.
+	 * @param input           The reference trajectory.
 	 * @param wheelbase_width The center-to-center distance between the left and
-	 * right sides.
+	 *                        right sides.
+	 *
 	 * @return [0] is left, [1] is right
 	 */
 	static Trajectory.Pair makeLeftAndRightTrajectories(Trajectory input,

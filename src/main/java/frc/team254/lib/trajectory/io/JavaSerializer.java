@@ -16,6 +16,7 @@ public class JavaSerializer implements IPathSerializer {
 	 * For example output, see the unit test.
 	 *
 	 * @param path The path to serialize.
+	 *
 	 * @return A complete Java file as a string.
 	 */
 	public String serialize(Path path) {

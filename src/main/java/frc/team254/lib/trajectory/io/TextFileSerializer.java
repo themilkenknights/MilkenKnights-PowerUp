@@ -26,6 +26,7 @@ public class TextFileSerializer implements IPathSerializer {
 	 * pos vel acc jerk heading dt x y
 	 *
 	 * @param path The path to serialize.
+	 *
 	 * @return A string representation.
 	 */
 	public String serialize(Path path) {

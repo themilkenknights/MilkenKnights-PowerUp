@@ -14,6 +14,7 @@ public class WaypointSequence {
 
 	Waypoint[] waypoints_;
 	int num_waypoints_;
+
 	public WaypointSequence(int max_size) {
 		waypoints_ = new Waypoint[max_size];
 	}
@@ -55,11 +56,13 @@ public class WaypointSequence {
 		public double x;
 		public double y;
 		public double theta;
+
 		public Waypoint(double x, double y, double theta) {
 			this.x = x;
 			this.y = y;
 			this.theta = theta;
 		}
+
 		public Waypoint(Waypoint tocopy) {
 			this.x = tocopy.x;
 			this.y = tocopy.y;

@@ -31,6 +31,7 @@ public class Spline {
 	double knot_distance_;
 	double theta_offset_;
 	double arc_length_;
+
 	Spline() {
 		// All splines should be made via the static interface
 		arc_length_ = -1;

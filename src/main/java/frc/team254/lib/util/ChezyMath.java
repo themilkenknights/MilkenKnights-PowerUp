@@ -110,7 +110,8 @@ public class ChezyMath {
 	 * Get the difference in angle between two angles.
 	 *
 	 * @param from The first angle
-	 * @param to The second angle
+	 * @param to   The second angle
+	 *
 	 * @return The change in angle from the first argument necessary to line up
 	 * with the second. Always between -Pi and Pi
 	 */
@@ -122,7 +123,8 @@ public class ChezyMath {
 	 * Get the difference in angle between two angles.
 	 *
 	 * @param from The first angle
-	 * @param to The second angle
+	 * @param to   The second angle
+	 *
 	 * @return The change in angle from the first argument necessary to line up
 	 * with the second. Always between -180 and 180
 	 */

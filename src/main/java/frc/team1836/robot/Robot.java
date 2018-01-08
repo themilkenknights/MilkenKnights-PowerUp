@@ -11,15 +11,14 @@ import frc.team1836.robot.util.logging.CrashTracker;
 import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.other.SubsystemManager;
 import frc.team1836.robot.util.state.DriveSignal;
-
 import java.util.Arrays;
 
 public class Robot extends IterativeRobot {
 
-	private AutoModeExecuter mAutoModeExecuter = null;
-//	private SendableChooser<AutoModeBase> positionChooser = new SendableChooser<>();
+	//	private SendableChooser<AutoModeBase> positionChooser = new SendableChooser<>();
 	private final SubsystemManager mSubsystemManager = new SubsystemManager(
 			Arrays.asList(Drive.getInstance(), Superstructure.getInstance(), Input.getInstance()));
+	private AutoModeExecuter mAutoModeExecuter = null;
 	private Looper mEnabledLooper = new Looper();
 
 	public Robot() {
@@ -32,8 +31,8 @@ public class Robot extends IterativeRobot {
 			CrashTracker.logRobotInit();
 			mSubsystemManager.registerEnabledLoops(mEnabledLooper);
 			mSubsystemManager.zeroSensors();
-		//	positionChooser.addDefault("Drive Straight", new DriveStraightMode());
-		//	positionChooser.addObject("Stand Still", new StandStillMode());
+			//	positionChooser.addDefault("Drive Straight", new DriveStraightMode());
+			//	positionChooser.addObject("Stand Still", new StandStillMode());
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
 			throw t;
