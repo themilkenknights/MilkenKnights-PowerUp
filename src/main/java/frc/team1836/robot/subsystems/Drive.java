@@ -5,6 +5,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants.DRIVE;
+import frc.team1836.robot.RobotState;
 import frc.team1836.robot.util.drivers.MkDrive;
 import frc.team1836.robot.util.drivers.MkGyro;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
@@ -22,7 +23,6 @@ public class Drive extends Subsystem {
 	private final ReflectingCSVWriter<DriveDebugOutput> mCSVWriter;
 	private final MkDrive leftDrive, rightDrive;
 	private final MkGyro navX;
-	private DriveControlState mDriveControlState;
 	private PathFollower pathFollower = null;
 	private DriveDebugOutput mDebug = new DriveDebugOutput();
 	private TrajectoryStatus leftStatus;
@@ -36,8 +36,6 @@ public class Drive extends Subsystem {
 
 		leftDrive.invert(true);
 		rightDrive.invert(false);
-
-		mDriveControlState = DriveControlState.OPEN_LOOP;
 		mCSVWriter = new ReflectingCSVWriter<>("/home/lvuser/DRIVE-LOGS.csv",
 				DriveDebugOutput.class);
 		leftStatus = TrajectoryStatus.NEUTRAL;
@@ -65,8 +63,8 @@ public class Drive extends Subsystem {
 				synchronized (Drive.this) {
 					updateDebugOutput(timestamp);
 					mCSVWriter.add(mDebug);
-					System.out.println(mDriveControlState.toString());
-					switch (mDriveControlState) {
+					System.out.println(RobotState.mDriveControlState.toString());
+					switch (RobotState.mDriveControlState) {
 						case OPEN_LOOP:
 							zeroTrajectoryStatus();
 							return;
@@ -77,8 +75,11 @@ public class Drive extends Subsystem {
 							updatePathFollower();
 							updateTrajectoryStatus();
 							return;
+						case TURN_IN_PLACE:
+							updateTurnInPlace();
+							updateTrajectoryStatus();
 						default:
-							System.out.println("Unexpected drive control state: " + mDriveControlState);
+							System.out.println("Unexpected drive control state: " + RobotState.mDriveControlState);
 							break;
 					}
 				}
@@ -90,10 +91,6 @@ public class Drive extends Subsystem {
 			}
 		};
 		enabledLooper.register(mLoop);
-	}
-
-	public void setmDriveControlState(DriveControlState mControlState) {
-		mDriveControlState = mControlState;
 	}
 
 	/*
@@ -125,7 +122,6 @@ public class Drive extends Subsystem {
 	 * @param ang_tol  Robot Angle Tolerance for Path Follower (Degrees)
 	 */
 	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
-		setmDriveControlState(DriveControlState.PATH_FOLLOWING);
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);
 	}
 
@@ -206,7 +202,7 @@ public class Drive extends Subsystem {
 
 	private void updateDebugOutput(double timestamp) {
 		mDebug.timestamp = timestamp;
-		mDebug.controlMode = mDriveControlState.toString();
+		mDebug.controlMode = RobotState.mDriveControlState.toString();
 		mDebug.leftOutput = leftDrive.getPercentOutput();
 		mDebug.rightOutput = rightDrive.getPercentOutput();
 		mDebug.rightPosition = leftDrive.getPosition();
@@ -246,13 +242,6 @@ public class Drive extends Subsystem {
 		mDebug.rightPosError = rightStatus.getPosError();
 		mDebug.desiredX = (leftStatus.getSeg().x + rightStatus.getSeg().x) / 2;
 		mDebug.desiredY = (leftStatus.getSeg().y + rightStatus.getSeg().y) / 2;
-	}
-
-	public enum DriveControlState {
-		OPEN_LOOP, // open loop voltage control
-		VELOCITY_SETPOINT, // velocity PID control
-		PATH_FOLLOWING, // used for autonomous drivin
-		IDLE,
 	}
 
 	public static class DriveDebugOutput {

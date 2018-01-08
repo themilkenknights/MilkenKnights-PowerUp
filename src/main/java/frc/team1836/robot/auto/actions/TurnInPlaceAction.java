@@ -1,6 +1,8 @@
 package frc.team1836.robot.auto.actions;
 
 import frc.team1836.robot.Constants.DRIVE;
+import frc.team1836.robot.RobotState;
+import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.util.auto.Action;
 import frc.team254.lib.trajectory.Path;
@@ -30,6 +32,7 @@ public class TurnInPlaceAction implements Action {
 
 	@Override
 	public void start() {
+		RobotState.mDriveControlState = DriveControlState.TURN_IN_PLACE;
 		Drive.getInstance().setDrivePath(path, DRIVE.PATH_DIST_TOL, DRIVE.PATH_ANGLE_TOL);
 	}
 }

@@ -1,7 +1,7 @@
 package frc.team1836.robot.subsystems;
 
+import frc.team1836.robot.RobotState;
 import frc.team1836.robot.auto.modes.TurnInPlaceMode;
-import frc.team1836.robot.subsystems.Drive.DriveControlState;
 import frc.team1836.robot.util.auto.AutoModeExecuter;
 import frc.team1836.robot.util.drivers.MkButton;
 import frc.team1836.robot.util.drivers.MkJoystick;
@@ -69,7 +69,7 @@ public class Input extends Subsystem {
 			public void onLoop(double timestamp) {
 				synchronized (Input.this) {
 					if (Superstructure.getInstance().getMatchState()
-							.equals(Superstructure.MatchState.TELEOP)) {
+							.equals(RobotState.MatchState.TELEOP)) {
 						updateDriveInput();
 						updateDebug(timestamp);
 						mCSVWriter.add(mDebug);

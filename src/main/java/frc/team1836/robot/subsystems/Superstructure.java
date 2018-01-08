@@ -3,6 +3,9 @@ package frc.team1836.robot.subsystems;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team1836.robot.RobotState;
+import frc.team1836.robot.RobotState.MatchState;
+import frc.team1836.robot.RobotState.SystemState;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
@@ -13,9 +16,9 @@ public class Superstructure extends Subsystem {
 	private static Superstructure mInstance = new Superstructure();
 	private final ReflectingCSVWriter<SupertructureDebugOutput> mCSVWriter;
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
-	private SystemState mSystemState = SystemState.IDLE;
+	private SystemState mSystemState = RobotState.SystemState.IDLE;
 	private SupertructureDebugOutput mDebug = new SupertructureDebugOutput();
-	private MatchState matchState = MatchState.IDLE;
+	private MatchState matchState = RobotState.MatchState.IDLE;
 
 	public Superstructure() {
 		mCSVWriter = new ReflectingCSVWriter<>("/home/lvuser/SUPERSTRUCTURE-LOGS.csv",
@@ -60,7 +63,7 @@ public class Superstructure extends Subsystem {
 			@Override
 			public void onStart(double timestamp) {
 				synchronized (Superstructure.this) {
-					mSystemState = SystemState.IDLE;
+					mSystemState = RobotState.SystemState.IDLE;
 					pdp.clearStickyFaults();
 				}
 			}
@@ -73,7 +76,7 @@ public class Superstructure extends Subsystem {
 						case IDLE:
 							break;
 						default:
-							newState = SystemState.IDLE;
+							newState = RobotState.SystemState.IDLE;
 					}
 					if (newState != mSystemState) {
 						System.out
@@ -104,15 +107,6 @@ public class Superstructure extends Subsystem {
 
 	public void setMatchState(MatchState state) {
 		matchState = state;
-	}
-
-	// Intenal state of the system
-	public enum SystemState {
-		IDLE
-	}
-
-	public enum MatchState {
-		AUTO, TELEOP, IDLE
 	}
 
 	public static class SupertructureDebugOutput {
