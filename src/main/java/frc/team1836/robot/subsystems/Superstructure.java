@@ -14,7 +14,6 @@ import frc.team1836.robot.util.other.Subsystem;
 
 public class Superstructure extends Subsystem {
 
-	private static Superstructure mInstance = new Superstructure();
 	private final ReflectingCSVWriter<SupertructureDebugOutput> mCSVWriter;
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	private SystemState mSystemState = RobotState.SystemState.IDLE;
@@ -27,7 +26,7 @@ public class Superstructure extends Subsystem {
 	}
 
 	public static Superstructure getInstance() {
-		return mInstance;
+		return InstanceHolder.mInstance;
 	}
 
 	@Override
@@ -120,5 +119,8 @@ public class Superstructure extends Subsystem {
 
 	}
 
+	private static class InstanceHolder {
 
+		private static final Superstructure mInstance = new Superstructure();
+	}
 }

@@ -6,7 +6,6 @@ public class RobotState {
 	public static MatchState mMatchState = MatchState.IDLE;
 	public static DriveControlState mDriveControlState = DriveControlState.OPEN_LOOP;
 
-
 	// Intenal state of the system
 	public enum SystemState {
 		IDLE

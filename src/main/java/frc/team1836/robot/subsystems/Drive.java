@@ -21,7 +21,6 @@ import frc.team254.lib.trajectory.PathFollower;
 
 public class Drive extends Subsystem {
 
-	private static Drive mInstance = new Drive();
 	private final ReflectingCSVWriter<DriveDebugOutput> mCSVWriter;
 	private final MkDrive leftDrive, rightDrive;
 	private final MkGyro navX;
@@ -46,7 +45,7 @@ public class Drive extends Subsystem {
 	}
 
 	public static Drive getInstance() {
-		return mInstance;
+		return InstanceHolder.mInstance;
 	}
 
 	/*
@@ -307,6 +306,11 @@ public class Drive extends Subsystem {
 		double rightVelError;
 		double desiredX;
 		double desiredY;
+	}
+
+	private static class InstanceHolder {
+
+		private static final Drive mInstance = new Drive();
 	}
 
 }

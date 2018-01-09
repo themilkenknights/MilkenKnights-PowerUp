@@ -14,7 +14,6 @@ import frc.team1836.robot.util.other.Subsystem;
 
 public class Input extends Subsystem {
 
-	private static Input mInstance = new Input();
 	private final MkJoystick driverJoystick = new MkJoystick(0);
 	private final MkButton rotate90Button = driverJoystick.getButton(2, "Rotate 90 Button");
 	private final ReflectingCSVWriter<InputDebugOutput> mCSVWriter;
@@ -27,7 +26,7 @@ public class Input extends Subsystem {
 	}
 
 	public static Input getInstance() {
-		return mInstance;
+		return InstanceHolder.mInstance;
 	}
 
 	@Override
@@ -121,5 +120,9 @@ public class Input extends Subsystem {
 
 	}
 
+	private static class InstanceHolder {
+
+		private static final Input mInstance = new Input();
+	}
 
 }
