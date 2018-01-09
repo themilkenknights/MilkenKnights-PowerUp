@@ -93,7 +93,6 @@ public class Input extends Subsystem {
 	}
 
 	public void updateDriveInput() {
-		System.out.println("Update inputs");
 		Drive.getInstance().setVelocitySetpoint(DriveHelper
 				.cheesyDrive(-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3),
 						-driverJoystick.getRawAxis(0) / 2, false));

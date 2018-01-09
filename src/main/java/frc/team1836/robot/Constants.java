@@ -45,8 +45,7 @@ public final class Constants {
 		public static final double DRIVE_FOLLOWER_ANG = 0;
 
 		public static final double RPM_MAX = 840.0;
-		public static final double FAKE_RPM_MAX = 420.0;
-		public static final double MAX_VEL = (FAKE_RPM_MAX / 60) * (CIRCUMFERENCE); // Inches per second
+		public static final double MAX_VEL = (RPM_MAX / 60) * (CIRCUMFERENCE); // Inches per second
 		public static final double DRIVE_P = 1.0 * ((0.1 * 1023.0) / (300.00));
 		public static final double DRIVE_I = DRIVE_P / 100.0;
 		public static final double DRIVE_D = 15 * DRIVE_P;

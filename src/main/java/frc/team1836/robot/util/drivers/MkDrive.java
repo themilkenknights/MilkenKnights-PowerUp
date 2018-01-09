@@ -13,6 +13,10 @@ public class MkDrive {
 	private final TalonSRX masterTalon, slaveTalon;
 	private int masterID, slaveID;
 
+	/**
+	 * @param master Talon with Encoder CAN ID
+	 * @param slave Follower Talon CAN ID
+	 */
 	public MkDrive(int master, int slave) {
 		masterTalon = new TalonSRX(master);
 		slaveTalon = new TalonSRX(slave);
@@ -103,16 +107,17 @@ public class MkDrive {
 
 	}
 
-	public void invert(boolean direction) {
-		masterTalon.setInverted(direction);
-	}
-
 	public double getPercentOutput() {
 		return masterTalon.getMotorOutputPercent();
 	}
 
 	public double getSlavePercentOutput() {
 		return slaveTalon.getMotorOutputPercent();
+	}
+
+	public void invert(boolean direction) {
+		masterTalon.setInverted(direction);
+		slaveTalon.setInverted(direction);
 	}
 
 }

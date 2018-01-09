@@ -73,9 +73,9 @@ public class Drive extends Subsystem {
 	}
 
 	/**
-	 * @param path     Robot Path
+	 * @param path Robot Path
 	 * @param dist_tol Position Tolerance for Path Follower
-	 * @param ang_tol  Robot Angle Tolerance for Path Follower (Degrees)
+	 * @param ang_tol Robot Angle Tolerance for Path Follower (Degrees)
 	 */
 	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);
@@ -106,11 +106,15 @@ public class Drive extends Subsystem {
 	 * Creates a new Drive Signal that is then set as a velocity setpoint
 	 */
 	private void updatePathFollower() {
-		TrajectoryStatus leftUpdate = pathFollower
-				.getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(),
-						Math.toRadians(navX.getFullYaw()));
+		double leftPos, rightPos, leftSpeed, rightSpeed;
+		leftPos = leftDrive.getPosition();
+		leftSpeed = leftDrive.getSpeed();
+		rightPos = rightDrive.getPosition();
+		rightSpeed = rightDrive.getSpeed();
+		TrajectoryStatus leftUpdate = pathFollower.getLeftVelocity(leftPos, leftSpeed,
+				Math.toRadians(navX.getFullYaw()));
 		TrajectoryStatus rightUpdate = pathFollower
-				.getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
+				.getRightVelocity(rightPos, rightSpeed,
 						Math.toRadians(navX.getFullYaw()));
 		setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput()));
 	}
