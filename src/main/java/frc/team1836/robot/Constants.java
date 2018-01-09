@@ -39,7 +39,7 @@ public final class Constants {
 		public static final double PATH_DIST_TOL = 1;
 		public static final double PATH_ANGLE_TOL = 1;
 
-		public static final double DRIVE_FOLLOWER_P = 1.52;
+		public static final double DRIVE_FOLLOWER_P = 0;
 		public static final double DRIVE_FOLLOWER_V = 0;
 		public static final double DRIVE_FOLLOWER_A = 0;
 		public static final double DRIVE_FOLLOWER_ANG = 0;

@@ -13,6 +13,7 @@ public class MkGyro {
 
 	public void zeroYaw() {
 		offset = -navX.getYaw();
+		navX.zeroYaw();
 	}
 
 	public boolean isConnected() {
@@ -23,6 +24,9 @@ public class MkGyro {
 		return navX.getYaw() + offset;
 	}
 
+	public double getRawYaw(){
+		return navX.getYaw();
+	}
 	public double getFullYaw() {
 		if (getYaw() <= 0) {
 			return Math.abs(getYaw());

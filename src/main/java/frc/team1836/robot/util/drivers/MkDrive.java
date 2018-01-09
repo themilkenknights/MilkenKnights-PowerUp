@@ -56,12 +56,12 @@ public class MkDrive {
 	}
 
 
-	public double getPosition() {
+	public synchronized double getPosition() {
 		return nativeUnitsToInches(masterTalon.getSelectedSensorPosition(DRIVE.kPIDLoopIdx));
 	}
 
 
-	public double getSpeed() {
+	public synchronized double getSpeed() {
 		return nativeUnitsPer100MstoInchesPerSec(
 				masterTalon.getSelectedSensorVelocity(DRIVE.kPIDLoopIdx));
 	}

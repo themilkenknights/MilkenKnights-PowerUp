@@ -1,13 +1,9 @@
 package frc.team1836.robot.auto.modes;
 
-import frc.team1836.robot.Constants;
-import frc.team1836.robot.Constants.DRIVE;
-import frc.team1836.robot.auto.actions.DrivePathAction;
+import frc.team1836.robot.auto.actions.TurnInPlaceAction;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeEndedException;
 import frc.team254.lib.trajectory.Path;
-import frc.team254.lib.trajectory.Trajectory;
-import frc.team254.lib.trajectory.TrajectoryGenerator;
 
 public class TurnInPlaceMode extends AutoModeBase {
 
@@ -20,7 +16,7 @@ public class TurnInPlaceMode extends AutoModeBase {
 
 	@Override
 	protected void routine() throws AutoModeEndedException {
-		TrajectoryGenerator.Config config = new TrajectoryGenerator.Config();
+	/*	TrajectoryGenerator.Config config = new TrajectoryGenerator.Config();
 
 		config.dt = Constants.kLooperDt;
 		config.max_acc = DRIVE.MAX_ANG_ACC;
@@ -35,7 +31,8 @@ public class TurnInPlaceMode extends AutoModeBase {
 		left.scale(-1);
 		path = new Path("Turn In Place", new Trajectory.Pair(left, right));
 
-		runAction(new DrivePathAction(path));
+		runAction(new DrivePathAction(path));*/
+	runAction(new TurnInPlaceAction());
 	}
 
 

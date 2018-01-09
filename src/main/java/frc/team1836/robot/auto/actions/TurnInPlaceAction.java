@@ -1,28 +1,37 @@
 package frc.team1836.robot.auto.actions;
 
-import frc.team1836.robot.Constants.DRIVE;
-import frc.team1836.robot.RobotState;
-import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.util.auto.Action;
-import frc.team254.lib.trajectory.Path;
+import frc.team1836.robot.util.math.SynchronousPIDF;
+import frc.team1836.robot.util.state.DriveSignal;
 
 public class TurnInPlaceAction implements Action {
 
-	private final Path path;
+//	private final Path path;
+	private SynchronousPIDF pid;
+	double Dt;
 
-	public TurnInPlaceAction(Path path) {
-		this.path = path;
+	public TurnInPlaceAction() {
+	//	this.path = path;
+		pid = new SynchronousPIDF(0.0025, 0, 0.0025 * 50.0);
+		pid.setContinuous(true);
+		pid.setInputRange(-180,180);
+		pid.setOutputRange(-1,1);
+		pid.setSetpoint(90);
+		Dt = System.nanoTime();
 	}
 
 	@Override
 	public boolean isFinished() {
-		return Drive.getInstance().isPathFinished();
+		//	return Drive.getInstance().isPathFinished();
+		return pid.onTarget(1);
 	}
 
 	@Override
 	public void update() {
-
+		double out = pid.calculate(Drive.getInstance().getYaw(), (System.nanoTime() - Dt) * 1e9);
+		Drive.getInstance().setOpenLoop(new DriveSignal(-out, out));
+		Dt = System.nanoTime();
 	}
 
 	@Override
@@ -32,7 +41,8 @@ public class TurnInPlaceAction implements Action {
 
 	@Override
 	public void start() {
-		RobotState.mDriveControlState = DriveControlState.TURN_IN_PLACE;
-		Drive.getInstance().setDrivePath(path, DRIVE.PATH_DIST_TOL, DRIVE.PATH_ANGLE_TOL);
+
+		//	RobotState.mDriveControlState = DriveControlState.TURN_IN_PLACE;
+//		Drive.getInstance().setDrivePath(path, DRIVE.PATH_DIST_TOL, DRIVE.PATH_ANGLE_TOL);
 	}
 }

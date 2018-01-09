@@ -70,6 +70,7 @@ public class Drive extends Subsystem {
 		leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVel());
 		rightDrive.set(ControlMode.Velocity, signal.getRightNativeVel());
 		currentSetpoint = signal;
+		System.out.println(signal.getLeftNativeVel());
 	}
 
 	/**
@@ -116,6 +117,9 @@ public class Drive extends Subsystem {
 		TrajectoryStatus rightUpdate = pathFollower
 				.getRightVelocity(rightPos, rightSpeed,
 						Math.toRadians(navX.getFullYaw()));
+
+		leftStatus = leftUpdate;
+		rightStatus = rightUpdate;
 		setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput()));
 	}
 
@@ -130,7 +134,9 @@ public class Drive extends Subsystem {
 		SmartDashboard.putNumber("Right PercentVBus", rightDrive.getPercentOutput());
 		SmartDashboard.putNumber("Left Encoder Position", leftDrive.getPosition());
 		SmartDashboard.putNumber("Right Encoder Position", rightDrive.getPosition());
-		SmartDashboard.putNumber("NavX Yaw", navX.getFullYaw());
+		SmartDashboard.putNumber("NavX Yaw", navX.getRawYaw());
+		SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
+		SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
 
 		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
 				|| RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
@@ -144,13 +150,11 @@ public class Drive extends Subsystem {
 		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
 			SmartDashboard.putNumber("Left Desired Velocity",
 					MkMath.normalAbsoluteAngleDegrees(leftStatus.getSeg().heading));
-			SmartDashboard.putNumber("Left Desired Velocity", leftStatus.getSeg().vel);
 			SmartDashboard.putNumber("Left Desired Position", leftStatus.getSeg().pos);
 			SmartDashboard.putNumber("Left Position Error", leftStatus.getPosError());
 			SmartDashboard.putNumber("Left Desired Velocity Error", leftStatus.getVelError());
 			SmartDashboard.putNumber("Heading Error", leftStatus.getAngError());
 
-			SmartDashboard.putNumber("Right Desired Velocity", leftStatus.getSeg().vel);
 			SmartDashboard.putNumber("Right Desired Position", leftStatus.getSeg().pos);
 			SmartDashboard.putNumber("Right Position Error", leftStatus.getPosError());
 			SmartDashboard.putNumber("Right Desired Velocity Error", leftStatus.getVelError());
@@ -166,6 +170,7 @@ public class Drive extends Subsystem {
 	public void zeroSensors() {
 		leftDrive.resetEncoder();
 		rightDrive.resetEncoder();
+		navX.zeroYaw();
 	}
 
 	@Override
@@ -230,6 +235,9 @@ public class Drive extends Subsystem {
 		enabledLooper.register(mLoop);
 	}
 
+	public double getYaw(){
+		return navX.getRawYaw();
+	}
 	private void updateDebugOutput(double timestamp) {
 		mDebug.timestamp = timestamp;
 		mDebug.controlMode = RobotState.mDriveControlState.toString();

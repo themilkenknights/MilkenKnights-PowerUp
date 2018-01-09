@@ -62,7 +62,6 @@ public class TrajectoryFollower {
 			last_Ang_error = angError;
 			current_heading = segment.heading;
 			current_segment++;
-
 			return new TrajectoryStatus(segment, error, velError,
 					MkMath.normalAbsoluteAngleDegrees(Math.toDegrees(angError)), output);
 		} else {
