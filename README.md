@@ -50,7 +50,7 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 
 	Contains all paths that the robot drives during autonomous mode. Each path is pregenerated on the Driver Station to save compute time on the RoboRIO.
 
-## Solar System Exploration, 1950s – 1960s
+## TODO
 
 - [x] Get Velocity PID Working
 - [ ] Get 1D Trajectories Tuned
