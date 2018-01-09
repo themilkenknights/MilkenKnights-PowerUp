@@ -7,16 +7,14 @@ import frc.team1836.robot.util.state.DriveSignal;
 
 public class TurnInPlaceAction implements Action {
 
-//	private final Path path;
-	private SynchronousPIDF pid;
 	double Dt;
+	private SynchronousPIDF pid;
 
 	public TurnInPlaceAction() {
-	//	this.path = path;
 		pid = new SynchronousPIDF(0.0025, 0, 0.0025 * 50.0);
 		pid.setContinuous(true);
-		pid.setInputRange(-180,180);
-		pid.setOutputRange(-1,1);
+		pid.setInputRange(-180, 180);
+		pid.setOutputRange(-1, 1);
 		pid.setSetpoint(90);
 		Dt = System.nanoTime();
 	}

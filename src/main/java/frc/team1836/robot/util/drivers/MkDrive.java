@@ -15,7 +15,7 @@ public class MkDrive {
 
 	/**
 	 * @param master Talon with Encoder CAN ID
-	 * @param slave Follower Talon CAN ID
+	 * @param slave  Follower Talon CAN ID
 	 */
 	public MkDrive(int master, int slave) {
 		masterTalon = new TalonSRX(master);

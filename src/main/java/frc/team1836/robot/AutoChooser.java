@@ -3,7 +3,14 @@ package frc.team1836.robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team1836.robot.auto.modes.TurnInPlaceMode;
+import frc.team1836.robot.auto.modes.DriveStraightMode;
+import frc.team1836.robot.auto.modes.StandStillMode;
+import frc.team1836.robot.auto.modes.center.CenterScaleMode;
+import frc.team1836.robot.auto.modes.center.CenterSwitchMode;
+import frc.team1836.robot.auto.modes.left.LeftScaleMode;
+import frc.team1836.robot.auto.modes.left.LeftSwitchMode;
+import frc.team1836.robot.auto.modes.right.RightScaleMode;
+import frc.team1836.robot.auto.modes.right.RightSwitchMode;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeExecuter;
 
@@ -30,8 +37,7 @@ public class AutoChooser {
 	}
 
 	public static AutoModeBase getAutoMode() {
-		return new TurnInPlaceMode(90);
-	/*	switch (actionChooser.getSelected()) {
+		switch (actionChooser.getSelected()) {
 			case STANDSTILL:
 				return new StandStillMode();
 			case DRIVE_STRAIGHT:
@@ -61,7 +67,7 @@ public class AutoChooser {
 								+ positionChooser.getSelected().toString());
 				break;
 		}
-		return null; */
+		return null;
 	}
 
 

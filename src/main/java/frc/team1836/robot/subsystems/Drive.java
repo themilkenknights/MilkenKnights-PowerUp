@@ -1,7 +1,6 @@
 package frc.team1836.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants.DRIVE;
@@ -35,7 +34,7 @@ public class Drive extends Subsystem {
 	private Drive() {
 		leftDrive = new MkDrive(DRIVE.LEFT_MASTER_ID, DRIVE.LEFT_SLAVE_ID);
 		rightDrive = new MkDrive(DRIVE.RIGHT_MASTER_ID, DRIVE.RIGHT_SLAVE_ID);
-		navX = new MkGyro(new AHRS(SPI.Port.kMXP));
+		navX = new MkGyro(SPI.Port.kMXP);
 
 		leftDrive.invert(true);
 		rightDrive.invert(false);
@@ -74,9 +73,9 @@ public class Drive extends Subsystem {
 	}
 
 	/**
-	 * @param path Robot Path
+	 * @param path     Robot Path
 	 * @param dist_tol Position Tolerance for Path Follower
-	 * @param ang_tol Robot Angle Tolerance for Path Follower (Degrees)
+	 * @param ang_tol  Robot Angle Tolerance for Path Follower (Degrees)
 	 */
 	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);
@@ -134,7 +133,7 @@ public class Drive extends Subsystem {
 		SmartDashboard.putNumber("Right PercentVBus", rightDrive.getPercentOutput());
 		SmartDashboard.putNumber("Left Encoder Position", leftDrive.getPosition());
 		SmartDashboard.putNumber("Right Encoder Position", rightDrive.getPosition());
-		SmartDashboard.putNumber("NavX Yaw", navX.getRawYaw());
+		SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
 		SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
 		SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
 
@@ -235,9 +234,10 @@ public class Drive extends Subsystem {
 		enabledLooper.register(mLoop);
 	}
 
-	public double getYaw(){
-		return navX.getRawYaw();
+	public double getYaw() {
+		return navX.getYaw();
 	}
+
 	private void updateDebugOutput(double timestamp) {
 		mDebug.timestamp = timestamp;
 		mDebug.controlMode = RobotState.mDriveControlState.toString();

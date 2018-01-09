@@ -1,4 +1,5 @@
 package frc.team1836.robot.util.math;
+
 import edu.wpi.first.wpilibj.util.BoundaryException;
 
 /**
@@ -7,6 +8,7 @@ import edu.wpi.first.wpilibj.util.BoundaryException;
  * Does all computation synchronously (i.e. the calculate() function must be called by the user from his own thread)
  */
 public class SynchronousPIDF {
+
 	private double m_P; // factor for "proportional" control
 	private double m_I; // factor for "integral" control
 	private double m_D; // factor for "derivative" control
@@ -38,12 +40,9 @@ public class SynchronousPIDF {
 	/**
 	 * Allocate a PID object with the given constants for P, I, D
 	 *
-	 * @param Kp
-	 *            the proportional coefficient
-	 * @param Ki
-	 *            the integral coefficient
-	 * @param Kd
-	 *            the derivative coefficient
+	 * @param Kp the proportional coefficient
+	 * @param Ki the integral coefficient
+	 * @param Kd the derivative coefficient
 	 */
 	public SynchronousPIDF(double Kp, double Ki, double Kd) {
 		m_P = Kp;
@@ -55,14 +54,10 @@ public class SynchronousPIDF {
 	/**
 	 * Allocate a PID object with the given constants for P, I, D
 	 *
-	 * @param Kp
-	 *            the proportional coefficient
-	 * @param Ki
-	 *            the integral coefficient
-	 * @param Kd
-	 *            the derivative coefficient
-	 * @param Kf
-	 *            the feed forward gain coefficient
+	 * @param Kp the proportional coefficient
+	 * @param Ki the integral coefficient
+	 * @param Kd the derivative coefficient
+	 * @param Kf the feed forward gain coefficient
 	 */
 	public SynchronousPIDF(double Kp, double Ki, double Kd, double Kf) {
 		m_P = Kp;
@@ -75,14 +70,13 @@ public class SynchronousPIDF {
 	 * Read the input, calculate the output accordingly, and write to the output. This should be called at a constant
 	 * rate by the user (ex. in a timed thread)
 	 *
-	 * @param input
-	 *            the input
-	 * @param dt
-	 *            time passed since previous call to calculate
+	 * @param input the input
+	 * @param dt    time passed since previous call to calculate
 	 */
 	public double calculate(double input, double dt) {
-		if (dt < 1E-6)
+		if (dt < 1E-6) {
 			dt = 1E-6;
+		}
 		m_last_input = input;
 		m_error = m_setpoint - input;
 		if (m_continuous) {
@@ -119,12 +113,9 @@ public class SynchronousPIDF {
 	/**
 	 * Set the PID controller gain parameters. Set the proportional, integral, and differential coefficients.
 	 *
-	 * @param p
-	 *            Proportional coefficient
-	 * @param i
-	 *            Integral coefficient
-	 * @param d
-	 *            Differential coefficient
+	 * @param p Proportional coefficient
+	 * @param i Integral coefficient
+	 * @param d Differential coefficient
 	 */
 	public void setPID(double p, double i, double d) {
 		m_P = p;
@@ -135,14 +126,10 @@ public class SynchronousPIDF {
 	/**
 	 * Set the PID controller gain parameters. Set the proportional, integral, and differential coefficients.
 	 *
-	 * @param p
-	 *            Proportional coefficient
-	 * @param i
-	 *            Integral coefficient
-	 * @param d
-	 *            Differential coefficient
-	 * @param f
-	 *            Feed forward coefficient
+	 * @param p Proportional coefficient
+	 * @param i Integral coefficient
+	 * @param d Differential coefficient
+	 * @param f Feed forward coefficient
 	 */
 	public void setPID(double p, double i, double d, double f) {
 		m_P = p;
@@ -201,8 +188,7 @@ public class SynchronousPIDF {
 	 * constraints, it considers them to be the same point and automatically calculates the shortest route to the
 	 * setpoint.
 	 *
-	 * @param continuous
-	 *            Set to true turns on continuous, false turns off continuous
+	 * @param continuous Set to true turns on continuous, false turns off continuous
 	 */
 	public void setContinuous(boolean continuous) {
 		m_continuous = continuous;
@@ -224,10 +210,8 @@ public class SynchronousPIDF {
 	/**
 	 * Sets the maximum and minimum values expected from the input.
 	 *
-	 * @param minimumInput
-	 *            the minimum value expected from the input
-	 * @param maximumInput
-	 *            the maximum value expected from the output
+	 * @param minimumInput the minimum value expected from the input
+	 * @param maximumInput the maximum value expected from the output
 	 */
 	public void setInputRange(double minimumInput, double maximumInput) {
 		if (minimumInput > maximumInput) {
@@ -241,10 +225,8 @@ public class SynchronousPIDF {
 	/**
 	 * Sets the minimum and maximum values to write.
 	 *
-	 * @param minimumOutput
-	 *            the minimum value to write to the output
-	 * @param maximumOutput
-	 *            the maximum value to write to the output
+	 * @param minimumOutput the minimum value to write to the output
+	 * @param maximumOutput the maximum value to write to the output
 	 */
 	public void setOutputRange(double minimumOutput, double maximumOutput) {
 		if (minimumOutput > maximumOutput) {
@@ -255,10 +237,18 @@ public class SynchronousPIDF {
 	}
 
 	/**
+	 * Returns the current setpoint of the PID controller
+	 *
+	 * @return the current setpoint
+	 */
+	public double getSetpoint() {
+		return m_setpoint;
+	}
+
+	/**
 	 * Set the setpoint for the PID controller
 	 *
-	 * @param setpoint
-	 *            the desired setpoint
+	 * @param setpoint the desired setpoint
 	 */
 	public void setSetpoint(double setpoint) {
 		if (m_maximumInput > m_minimumInput) {
@@ -272,15 +262,6 @@ public class SynchronousPIDF {
 		} else {
 			m_setpoint = setpoint;
 		}
-	}
-
-	/**
-	 * Returns the current setpoint of the PID controller
-	 *
-	 * @return the current setpoint
-	 */
-	public double getSetpoint() {
-		return m_setpoint;
 	}
 
 	/**
