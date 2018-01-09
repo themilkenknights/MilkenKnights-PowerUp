@@ -58,3 +58,7 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 - [ ] Field-Centric Turn In Place
 - [ ] Limelight Cube Tracking for Auto
 - [ ] Motion Magic for Arm
+- [ ] Get CSV Logging working on usb drives
+- [ ] Add error-checking for CAN Devices
+  - [ ] Ensure Mag Encoders can be unplugged during a match
+  - [ ] Allow for Talons and Other Sensors to be unplugged without code crash
