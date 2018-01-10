@@ -3,7 +3,7 @@ package frc.team1836.robot.auto.paths;
 import frc.team254.lib.trajectory.Path;
 import frc.team254.lib.trajectory.Trajectory;
 
-public class LeftPath extends Path {
+public class StraightPath extends Path {
   private final Trajectory kLeftWheel = new Trajectory( new Trajectory.Segment[] {
     new Trajectory.Segment(3.107211415363688E-6, 0.0012428845661454752, 0.24857691322909503, 49.715382645819005, 5.162537064506978E-15, 0.005, 3.1072113639176013E-6, 10.0),
     new Trajectory.Segment(1.553605584157966E-5, 0.0024857688852431945, 0.24857686381954386, -9.881910234543767E-6, 1.2875811528090253E-13, 0.005, 1.5536055790133576E-5, 10.0),
@@ -1646,8 +1646,8 @@ public class LeftPath extends Path {
     new Trajectory.Segment(102.84881720264026, 0.0, -0.004722131734524737, 25.80211832992063, 0.0, 0.005, 100.0, 10.000000000000004),
   });
 
-  public LeftPath() {
-    this.name_ = "LeftPath";
+  public StraightPath() {
+    this.name_ = "StraightPath";
     this.go_left_pair_ = new Trajectory.Pair(kLeftWheel, kRightWheel);
   }
 
