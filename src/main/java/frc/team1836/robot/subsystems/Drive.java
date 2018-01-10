@@ -2,11 +2,13 @@ package frc.team1836.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants.DRIVE;
 import frc.team1836.robot.Constants.LOGGING;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.DriveControlState;
+import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.util.drivers.MkDrive;
 import frc.team1836.robot.util.drivers.MkGyro;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
@@ -18,6 +20,7 @@ import frc.team1836.robot.util.state.DriveSignal;
 import frc.team1836.robot.util.state.TrajectoryStatus;
 import frc.team254.lib.trajectory.Path;
 import frc.team254.lib.trajectory.PathFollower;
+import java.util.HashMap;
 
 public class Drive extends Subsystem {
 
@@ -29,6 +32,9 @@ public class Drive extends Subsystem {
 	private TrajectoryStatus leftStatus;
 	private TrajectoryStatus rightStatus;
 	private DriveSignal currentSetpoint;
+	HashMap ghostHash = new HashMap();
+	private double startTime;
+	private boolean first = true;
 
 	private Drive() {
 		leftDrive = new MkDrive(DRIVE.LEFT_MASTER_ID, DRIVE.LEFT_SLAVE_ID);
@@ -69,6 +75,33 @@ public class Drive extends Subsystem {
 		rightDrive.set(ControlMode.Velocity, signal.getRightNativeVel());
 		currentSetpoint = signal;
 		System.out.println(signal.getLeftNativeVel());
+		if (RobotState.mMatchState == MatchState.TELEOP) {
+			if (first) {
+				startTime = Timer.getFPGATimestamp();
+			}
+			double dT = customRound(Timer.getFPGATimestamp() - startTime);
+			ghostHash.put(dT, signal);
+		}
+	}
+
+	private double customRound(double num) {
+		return Math.round(num * 200) / 200.0;
+	}
+
+	public synchronized void setGhostMode() {
+		startTime = Timer.getFPGATimestamp();
+	}
+
+	public synchronized void updateGhostMode(){
+		double dT = customRound(Timer.getFPGATimestamp() - startTime);
+		if (!(ghostHash.size() * 0.005 > dT)) {
+			setVelocitySetpoint((DriveSignal) ghostHash.get(dT));
+		}
+	}
+
+	public synchronized boolean isGhostOver(){
+		double dT = customRound(Timer.getFPGATimestamp() - startTime);
+		return ghostHash.size() * 0.005 > dT;
 	}
 
 	/**
