@@ -14,7 +14,12 @@ lpathtrace = go.Scatter(x=lf['X'], y=lf['Y'], mode='lines', name='Left Path')
 rpathtrace = go.Scatter(x=rf['X'], y=rf['Y'], mode='lines', name='Right Path')
 mpathtrace = go.Scatter(x=(lf['X'] + rf['X']) / 2, y=(lf['Y'] + rf['Y']) / 2, mode='lines', name='Robot Center Path')
 
-pathlayout = go.Layout(title='Robot Path', plot_bgcolor='rgb(230, 230,230)')
+pathlayout = go.Layout(title='Robot Path', plot_bgcolor='rgb(230, 230,230)',xaxis=dict(
+	range=[0, 324]
+),
+yaxis=dict(
+	range=[0, 324]
+))
 
 pathfig = go.Figure(data=[lpathtrace,rpathtrace,mpathtrace], layout=pathlayout)
 
