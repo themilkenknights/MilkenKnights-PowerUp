@@ -65,16 +65,21 @@ public class Drive extends Subsystem {
 	 */
 
 	public synchronized void setVelocitySetpoint(DriveSignal signal) {
-		leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVel());
-		rightDrive.set(ControlMode.Velocity, signal.getRightNativeVel());
+		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
+			leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVelTraj());
+			rightDrive.set(ControlMode.Velocity, signal.getRightNativeVelTraj());
+		} else {
+			leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVel());
+			rightDrive.set(ControlMode.Velocity, signal.getRightNativeVel());
+		}
+
 		currentSetpoint = signal;
-		System.out.println(signal.getLeftNativeVel());
 	}
 
 	/**
-	 * @param path     Robot Path
+	 * @param path Robot Path
 	 * @param dist_tol Position Tolerance for Path Follower
-	 * @param ang_tol  Robot Angle Tolerance for Path Follower (Degrees)
+	 * @param ang_tol Robot Angle Tolerance for Path Follower (Degrees)
 	 */
 	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);

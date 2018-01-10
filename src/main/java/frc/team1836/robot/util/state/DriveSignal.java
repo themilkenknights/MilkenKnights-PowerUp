@@ -44,6 +44,13 @@ public class DriveSignal {
 	public double getLeftNativeVel() {
 		return MkMath.InchesPerSecToUnitsPer100Ms(mLeftMotor * Constants.DRIVE.MAX_VEL);
 	}
+	public double getLeftNativeVelTraj() {
+		return MkMath.InchesPerSecToUnitsPer100Ms(mLeftMotor);
+	}
+
+	public double getRightNativeVelTraj() {
+		return MkMath.InchesPerSecToUnitsPer100Ms(mRightMotor);
+	}
 
 	public double getRightNativeVel() {
 		return MkMath.InchesPerSecToUnitsPer100Ms(mRightMotor * Constants.DRIVE.MAX_VEL);
