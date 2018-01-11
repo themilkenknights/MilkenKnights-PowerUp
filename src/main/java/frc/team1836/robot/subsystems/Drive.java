@@ -110,15 +110,10 @@ public class Drive extends Subsystem {
 	 * Creates a new Drive Signal that is then set as a velocity setpoint
 	 */
 	private void updatePathFollower() {
-		double leftPos, rightPos, leftSpeed, rightSpeed;
-		leftPos = leftDrive.getPosition();
-		leftSpeed = leftDrive.getSpeed();
-		rightPos = rightDrive.getPosition();
-		rightSpeed = rightDrive.getSpeed();
-		TrajectoryStatus leftUpdate = pathFollower.getLeftVelocity(leftPos, leftSpeed,
+		TrajectoryStatus leftUpdate = pathFollower.getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(),
 				Math.toRadians(navX.getFullYaw()));
 		TrajectoryStatus rightUpdate = pathFollower
-				.getRightVelocity(rightPos, rightSpeed,
+				.getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
 						Math.toRadians(navX.getFullYaw()));
 
 		leftStatus = leftUpdate;
@@ -140,6 +135,7 @@ public class Drive extends Subsystem {
 		SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
 		SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
 		SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
+		SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
 
 		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
 				|| RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
@@ -173,6 +169,9 @@ public class Drive extends Subsystem {
 	public void zeroSensors() {
 		leftDrive.resetEncoder();
 		rightDrive.resetEncoder();
+	}
+
+	public void zeroGyro(){
 		navX.zeroYaw();
 	}
 
