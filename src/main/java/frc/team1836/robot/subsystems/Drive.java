@@ -8,6 +8,7 @@ import frc.team1836.robot.Constants.LOGGING;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.util.drivers.MkDrive;
+import frc.team1836.robot.util.drivers.MkDrive.DrivetrainSide;
 import frc.team1836.robot.util.drivers.MkGyro;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.loops.Loop;
@@ -31,8 +32,8 @@ public class Drive extends Subsystem {
 	private DriveSignal currentSetpoint;
 
 	private Drive() {
-		leftDrive = new MkDrive(DRIVE.LEFT_MASTER_ID, DRIVE.LEFT_SLAVE_ID);
-		rightDrive = new MkDrive(DRIVE.RIGHT_MASTER_ID, DRIVE.RIGHT_SLAVE_ID);
+		leftDrive = new MkDrive(DRIVE.LEFT_MASTER_ID, DRIVE.LEFT_SLAVE_ID, DrivetrainSide.Left);
+		rightDrive = new MkDrive(DRIVE.RIGHT_MASTER_ID, DRIVE.RIGHT_SLAVE_ID, DrivetrainSide.Right);
 		navX = new MkGyro(SPI.Port.kMXP);
 
 		leftDrive.invert(true);
@@ -79,9 +80,9 @@ public class Drive extends Subsystem {
 	}
 
 	/**
-	 * @param path Robot Path
+	 * @param path     Robot Path
 	 * @param dist_tol Position Tolerance for Path Follower
-	 * @param ang_tol Robot Angle Tolerance for Path Follower (Degrees)
+	 * @param ang_tol  Robot Angle Tolerance for Path Follower (Degrees)
 	 */
 	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);
@@ -93,7 +94,6 @@ public class Drive extends Subsystem {
 			return true;
 		}
 		return false;
-
 	}
 
 	private synchronized void updateTurnInPlace() {
@@ -131,36 +131,26 @@ public class Drive extends Subsystem {
 
 	@Override
 	public void outputToSmartDashboard() {
-		SmartDashboard.putNumber("Left PercentVBus", leftDrive.getPercentOutput());
-		SmartDashboard.putNumber("Right PercentVBus", rightDrive.getPercentOutput());
-		SmartDashboard.putNumber("Left Encoder Position", leftDrive.getPosition());
-		SmartDashboard.putNumber("Right Encoder Position", rightDrive.getPosition());
+		leftDrive.updateSmartDash();
+		rightDrive.updateSmartDash();
 		SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
 		SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
 		SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
 		SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
 
-		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
-				|| RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
-			SmartDashboard.putNumber("Left Encoder Velocity", leftDrive.getSpeed());
-			SmartDashboard.putNumber("Right Encoder Velocity", rightDrive.getSpeed());
-			SmartDashboard.putNumber("Left Encoder Talon Error", leftDrive.getError());
-			SmartDashboard.putNumber("Right Encoder Talon Error", rightDrive.getError());
-			SmartDashboard.putNumber("Left Encoder Talon Setpoint", currentSetpoint.getLeft());
-			SmartDashboard.putNumber("Right Encoder Talon Setpoint", currentSetpoint.getRight());
-		}
 		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
-			SmartDashboard.putNumber("Left Desired Velocity",
-					MkMath.normalAbsoluteAngleDegrees(leftStatus.getSeg().heading));
+			SmartDashboard.putNumber("Desired Heading", leftStatus.getSeg().heading);
+			SmartDashboard.putNumber("Heading Error", leftStatus.getAngError());
+
 			SmartDashboard.putNumber("Left Desired Position", leftStatus.getSeg().pos);
 			SmartDashboard.putNumber("Left Position Error", leftStatus.getPosError());
 			SmartDashboard.putNumber("Left Desired Velocity Error", leftStatus.getVelError());
-			SmartDashboard.putNumber("Heading Error", leftStatus.getAngError());
 
 			SmartDashboard.putNumber("Right Desired Position", leftStatus.getSeg().pos);
 			SmartDashboard.putNumber("Right Position Error", leftStatus.getPosError());
 			SmartDashboard.putNumber("Right Desired Velocity Error", leftStatus.getVelError());
 		}
+
 	}
 
 	@Override
@@ -172,10 +162,6 @@ public class Drive extends Subsystem {
 	public void zeroSensors() {
 		leftDrive.resetEncoder();
 		rightDrive.resetEncoder();
-	}
-
-	public void zeroGyro() {
-		navX.zeroYaw();
 	}
 
 	@Override
@@ -238,6 +224,10 @@ public class Drive extends Subsystem {
 			}
 		};
 		enabledLooper.register(mLoop);
+	}
+
+	public void zeroGyro() {
+		navX.zeroYaw();
 	}
 
 	public double getYaw() {

@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.DRIVE;
 
@@ -12,14 +13,17 @@ public class MkDrive {
 
 	private final TalonSRX masterTalon, slaveTalon;
 	private int masterID, slaveID;
+	private DrivetrainSide side;
 
 	/**
 	 * @param master Talon with Encoder CAN ID
 	 * @param slave  Follower Talon CAN ID
 	 */
-	public MkDrive(int master, int slave) {
+	public MkDrive(int master, int slave, DrivetrainSide side) {
 		masterTalon = new TalonSRX(master);
 		slaveTalon = new TalonSRX(slave);
+
+		this.side = side;
 
 		masterID = master;
 		slaveID = slave;
@@ -107,17 +111,24 @@ public class MkDrive {
 
 	}
 
-	public double getPercentOutput() {
-		return masterTalon.getMotorOutputPercent();
+	public void updateSmartDash() {
+		SmartDashboard.putNumber(side.toString() + " Velocity", getSpeed());
+		SmartDashboard.putNumber(side.toString() + " Error", getError());
+		SmartDashboard.putNumber(side.toString() + " Output", getPercentOutput());
+		SmartDashboard.putNumber(side.toString() + " Position", getPosition());
 	}
 
-	public double getSlavePercentOutput() {
-		return slaveTalon.getMotorOutputPercent();
+	public double getPercentOutput() {
+		return masterTalon.getMotorOutputPercent();
 	}
 
 	public void invert(boolean direction) {
 		masterTalon.setInverted(direction);
 		slaveTalon.setInverted(direction);
+	}
+
+	public enum DrivetrainSide {
+		Left, Right
 	}
 
 }
