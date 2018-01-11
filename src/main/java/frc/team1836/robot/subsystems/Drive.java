@@ -193,7 +193,7 @@ public class Drive extends Subsystem {
 	}
 
 	public void updateAcc() {
-		if (Timer.getFPGATimestamp() - dT > 0.4) {
+		if (Timer.getFPGATimestamp() - dT > 1) {
 
 			double newVel = leftDrive.getSpeed();
 			if ((newVel ) / (Timer.getFPGATimestamp() - dT) > maxAcc) {
