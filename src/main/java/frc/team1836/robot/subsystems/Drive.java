@@ -68,6 +68,8 @@ public class Drive extends Subsystem {
 
 	public synchronized void setVelocitySetpoint(DriveSignal signal) {
 		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
+			leftDrive.updateFeedforward(1023.0 / signal.getLeftNativeVelTraj());
+			rightDrive.updateFeedforward(1023.0 / signal.getRightNativeVelTraj());
 			leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVelTraj());
 			rightDrive.set(ControlMode.Velocity, signal.getRightNativeVelTraj());
 		} else {
@@ -75,7 +77,6 @@ public class Drive extends Subsystem {
 			leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVel());
 			rightDrive.set(ControlMode.Velocity, signal.getRightNativeVel());
 		}
-
 		currentSetpoint = signal;
 	}
 

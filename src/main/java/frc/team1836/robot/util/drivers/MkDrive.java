@@ -55,6 +55,10 @@ public class MkDrive {
 		slaveTalon.set(ControlMode.Follower, masterID);
 	}
 
+	public void updateFeedforward(double feed) {
+		masterTalon.config_kF(DRIVE.kPIDLoopIdx, feed, 0);
+	}
+
 	public double getError() {
 		return nativeUnitsToInches(masterTalon.getClosedLoopError(DRIVE.kPIDLoopIdx));
 	}
