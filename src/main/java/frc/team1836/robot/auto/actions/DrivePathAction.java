@@ -2,6 +2,7 @@ package frc.team1836.robot.auto.actions;
 
 import frc.team1836.robot.Constants.DRIVE;
 import frc.team1836.robot.RobotState;
+import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.util.auto.Action;
 import frc.team254.lib.trajectory.Path;
@@ -26,7 +27,7 @@ public class DrivePathAction implements Action {
 
 	@Override
 	public void done() {
-
+		RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
 	}
 
 	@Override
