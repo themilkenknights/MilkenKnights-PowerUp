@@ -2,7 +2,6 @@ package frc.team1836.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants.DRIVE;
 import frc.team1836.robot.Constants.LOGGING;
@@ -30,9 +29,6 @@ public class Drive extends Subsystem {
 	private TrajectoryStatus leftStatus;
 	private TrajectoryStatus rightStatus;
 	private DriveSignal currentSetpoint;
-	private double dT = Timer.getFPGATimestamp();
-	private double lastVel = 0;
-	private double maxAcc = 0;
 
 	private Drive() {
 		leftDrive = new MkDrive(DRIVE.LEFT_MASTER_ID, DRIVE.LEFT_SLAVE_ID);
@@ -56,6 +52,7 @@ public class Drive extends Subsystem {
 		Controls Drivetrain in PercentOutput Mode (without closed loop control)
  */
 	public synchronized void setOpenLoop(DriveSignal signal) {
+		RobotState.mDriveControlState = DriveControlState.OPEN_LOOP;
 		leftDrive.set(ControlMode.PercentOutput, signal.getLeft());
 		rightDrive.set(ControlMode.PercentOutput, signal.getRight());
 		currentSetpoint = signal;
@@ -73,6 +70,7 @@ public class Drive extends Subsystem {
 			leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVelTraj());
 			rightDrive.set(ControlMode.Velocity, signal.getRightNativeVelTraj());
 		} else {
+			RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
 			leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVel());
 			rightDrive.set(ControlMode.Velocity, signal.getRightNativeVel());
 		}
@@ -142,8 +140,6 @@ public class Drive extends Subsystem {
 		SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
 		SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
 
-		SmartDashboard.putNumber("Acceleration", maxAcc);
-
 		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
 				|| RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
 			SmartDashboard.putNumber("Left Encoder Velocity", leftDrive.getSpeed());
@@ -192,19 +188,6 @@ public class Drive extends Subsystem {
 
 	}
 
-	public void updateAcc() {
-		if (Timer.getFPGATimestamp() - dT > 1) {
-
-			double newVel = leftDrive.getSpeed();
-			if ((newVel ) / (Timer.getFPGATimestamp() - dT) > maxAcc) {
-				maxAcc = (newVel) / (Timer.getFPGATimestamp() - dT);
-			}
-			lastVel = newVel;
-			dT = Timer.getFPGATimestamp();
-		}
-
-	}
-
 	@Override
 	public void registerEnabledLoops(Looper enabledLooper) {
 		Loop mLoop = new Loop() {
@@ -227,7 +210,6 @@ public class Drive extends Subsystem {
 				synchronized (Drive.this) {
 					updateDebugOutput(timestamp);
 					mCSVWriter.add(mDebug);
-					updateAcc();
 					switch (RobotState.mDriveControlState) {
 						case OPEN_LOOP:
 							zeroTrajectoryStatus();
