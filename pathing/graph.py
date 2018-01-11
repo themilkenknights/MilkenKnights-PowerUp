@@ -18,7 +18,7 @@ pathlayout = go.Layout(title='Robot Path', plot_bgcolor='rgb(230, 230,230)',xaxi
 	range=[0, 324]
 ),
 yaxis=dict(
-	range=[0, 324]
+	range=[0, -324]
 ))
 
 pathfig = go.Figure(data=[lpathtrace,rpathtrace,mpathtrace], layout=pathlayout)
