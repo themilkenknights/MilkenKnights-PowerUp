@@ -6,8 +6,8 @@ import trajectory.Path;
 import trajectory.PathGenerator;
 import trajectory.TrajectoryGenerator;
 import trajectory.WaypointSequence;
-import trajectory.io.JavaSerializer;
 import trajectory.io.StringSer;
+import trajectory.io.TextFileSerializer;
 
 /**
  * @author Jared341
@@ -41,61 +41,57 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		String directory = "../";
-		String directory1 = "../../src/main/java/frc/team1836/robot/auto/paths";
+		String directory = "../MilkenKnights-PowerUp/pathing";
+		String directory1 = "../MilkenKnights-PowerUp/src/main/java/frc/team1836/robot/auto/paths";
 		if (args.length >= 1) {
 			directory = args[0];
 		}
-
 		TrajectoryGenerator.Config config = new TrajectoryGenerator.Config();
 		config.dt = .005;
 		config.max_acc = 125;
 		config.max_jerk = 40;
 		config.max_vel = 175;
-
 		final double kWheelbaseWidth = 30;
-
-		// Path name must be a valid Java class name.
-		final String path_name = "LeftPath";
-		final String path_name1 = "RightPath";
-
+		final String left_path_name = "LeftPath";
+		final String right_path_name = "RightPath";
+		final String actual_path_name = "StraightPath";
 		WaypointSequence p = new WaypointSequence(10);
 		p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
-		p.addWaypoint(new WaypointSequence.Waypoint(40, 0, 0));
-		p.addWaypoint(new WaypointSequence.Waypoint(100, 50, 0));
+		p.addWaypoint(new WaypointSequence.Waypoint(60, 30, 0));
+		p.addWaypoint(new WaypointSequence.Waypoint(120, 0, 0));
+		p.addWaypoint(new WaypointSequence.Waypoint(160, 30, 0));
 		Path path = PathGenerator.makePath(p, config,
 				kWheelbaseWidth, "StraightPath");
 		path.goLeft();
+
 		StringSer js = new StringSer();
-		String serialized = js.serialize(path.getLeftWheelTrajectory());
-		String fullpath = joinPath(directory, path_name + ".csv");
-		if (!writeFile(fullpath, serialized)) {
-			System.err.println(fullpath + " could not be written!!!!1");
+
+		String serializedLeft = js.serialize(path.getLeftWheelTrajectory());
+		String leftPath = joinPath(directory, left_path_name + ".csv");
+		if (!writeFile(leftPath, serializedLeft)) {
+			System.err.println(left_path_name + " could not be written!!!!1");
 			System.exit(1);
 		} else {
-			System.out.println("Wrote " + fullpath);
+			System.out.println("Wrote " + left_path_name);
 		}
 
-		String serialized1 = js.serialize(path.getRightWheelTrajectory());
-		//System.out.print(serialized);
-		String fullpath1 = joinPath(directory, path_name1 + ".csv");
-		if (!writeFile(fullpath1, serialized1)) {
-			System.err.println(fullpath + " could not be written!!!!1");
+		String serializedRight = js.serialize(path.getRightWheelTrajectory());
+		String rightPath = joinPath(directory, right_path_name + ".csv");
+		if (!writeFile(rightPath, serializedRight)) {
+			System.err.println(leftPath + " could not be written!!!!1");
 			System.exit(1);
 		} else {
-			System.out.println("Wrote " + fullpath);
+			System.out.println("Wrote " + right_path_name);
 		}
 
-
-		JavaSerializer js2 = new JavaSerializer();
-		String serialized2 = js2.serialize(path);
-		//System.out.print(serialized);
-		String fullpath2 = joinPath(directory1, "StraightPath" + ".java");
-		if (!writeFile(fullpath2, serialized2)) {
+		TextFileSerializer actualSer = new TextFileSerializer();
+		String fullSer = actualSer.serialize(path);
+		String fullpath = joinPath(directory1, "StraightPath" + ".txt");
+		if (!writeFile(fullpath, fullSer)) {
 			System.err.println(fullpath + " could not be written!!!!1");
 			System.exit(1);
 		} else {
-			System.out.println("Wrote " + fullpath);
+			System.out.println("Wrote " + actual_path_name);
 		}
 
 	}
