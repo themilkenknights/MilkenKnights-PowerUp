@@ -2,6 +2,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import trajectory.Path;
+import trajectory.PathGenerator;
+import trajectory.TrajectoryGenerator;
+import trajectory.WaypointSequence;
+import trajectory.io.JavaSerializer;
+import trajectory.io.StringSer;
 
 /**
  * @author Jared341
@@ -35,8 +41,8 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		String directory = "/Users/aswerdlow/MilkenKnights-PowerUp/pathing";
-		String directory1 = "/Users/aswerdlow/MilkenKnights-PowerUp/src/main/java/frc/team1836/robot/auto/paths";
+		String directory = "../";
+		String directory1 = "../../src/main/java/frc/team1836/robot/auto/paths";
 		if (args.length >= 1) {
 			directory = args[0];
 		}
@@ -52,24 +58,16 @@ public class Main {
 		// Path name must be a valid Java class name.
 		final String path_name = "LeftPath";
 		final String path_name1 = "RightPath";
-		//double Dt = System.nanoTime();
-
-		/*Trajectory left = TrajectoryGenerator.generate(config,
-				TrajectoryGenerator.AutomaticStrategy, 0, 0,
-				50, 0.0, 0); */
-
-		//System.out.println(((System.nanoTime() - Dt) * 1e-6) + " MS");
 
 		WaypointSequence p = new WaypointSequence(10);
 		p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
 		p.addWaypoint(new WaypointSequence.Waypoint(40, 0, 0));
+		p.addWaypoint(new WaypointSequence.Waypoint(100, 50, 0));
 		Path path = PathGenerator.makePath(p, config,
 				kWheelbaseWidth, "StraightPath");
 		path.goLeft();
-		// Outputs to the directory supplied as the first argument.
 		StringSer js = new StringSer();
 		String serialized = js.serialize(path.getLeftWheelTrajectory());
-		//System.out.print(serialized);
 		String fullpath = joinPath(directory, path_name + ".csv");
 		if (!writeFile(fullpath, serialized)) {
 			System.err.println(fullpath + " could not be written!!!!1");

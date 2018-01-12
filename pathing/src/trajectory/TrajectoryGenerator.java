@@ -172,8 +172,6 @@ public class TrajectoryGenerator {
               * (traj.segments_[i].pos)
               / traj.segments_[traj.getNumSegments() - 1].pos;
     }
-
-    System.out.println(strategy);
     return traj;
   }
 
