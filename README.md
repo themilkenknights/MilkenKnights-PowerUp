@@ -54,6 +54,7 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 
 - [x] Get Velocity PID Working
 - [X] Get 1D Trajectories Working
+- [ ] Update Feedforward on the fly
 - [ ] Tune 2D Trajectory Follower PID
 - [ ] Field-Centric Turn In Place
 - [ ] Limelight Cube Tracking for Auto
