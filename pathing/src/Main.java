@@ -6,8 +6,8 @@ import trajectory.Path;
 import trajectory.PathGenerator;
 import trajectory.TrajectoryGenerator;
 import trajectory.WaypointSequence;
+import trajectory.io.JavaSerializer;
 import trajectory.io.StringSer;
-import trajectory.io.TextFileSerializer;
 
 /**
  * @author Jared341
@@ -57,9 +57,7 @@ public class Main {
 		final String actual_path_name = "StraightPath";
 		WaypointSequence p = new WaypointSequence(10);
 		p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
-		p.addWaypoint(new WaypointSequence.Waypoint(60, 30, 0));
-		p.addWaypoint(new WaypointSequence.Waypoint(120, 0, 0));
-		p.addWaypoint(new WaypointSequence.Waypoint(160, 30, 0));
+		p.addWaypoint(new WaypointSequence.Waypoint(10, 0, 0));
 		Path path = PathGenerator.makePath(p, config,
 				kWheelbaseWidth, "StraightPath");
 		path.goLeft();
@@ -84,9 +82,9 @@ public class Main {
 			System.out.println("Wrote " + right_path_name);
 		}
 
-		TextFileSerializer actualSer = new TextFileSerializer();
+		JavaSerializer actualSer = new JavaSerializer();
 		String fullSer = actualSer.serialize(path);
-		String fullpath = joinPath(directory1, "StraightPath" + ".txt");
+		String fullpath = joinPath(directory1, "StraightPath" + ".java");
 		if (!writeFile(fullpath, fullSer)) {
 			System.err.println(fullpath + " could not be written!!!!1");
 			System.exit(1);

@@ -21,10 +21,6 @@ public class MkMath {
 		return (Constants.DRIVE.CODES_PER_REV) * (in / Constants.DRIVE.CIRCUMFERENCE);
 	}
 
-	public static double normalAbsoluteAngleDegrees(double angle) {
-		return (angle %= 360) >= 0 ? angle : (angle + 360);
-	}
-
 	public static double AngleToVel(double angle) {
 		return (angle / 360) * DRIVE.TURN_IN_PLACE_CIRCUMFERENCE;
 	}

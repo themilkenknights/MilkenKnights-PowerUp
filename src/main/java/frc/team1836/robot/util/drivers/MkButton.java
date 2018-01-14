@@ -1,6 +1,6 @@
 package frc.team1836.robot.util.drivers;
 
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Joystick;
 
 public class MkButton {
 
@@ -56,7 +56,7 @@ public class MkButton {
 		return rawButton;
 	}
 
-	public XboxController getJoystick() {
+	public Joystick getJoystick() {
 		return joystick;
 	}
 

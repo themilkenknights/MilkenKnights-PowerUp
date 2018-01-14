@@ -31,16 +31,15 @@ public final class Constants {
 		public static final int CODES_PER_REV = 4096;
 		public static final double WHEEL_DIAMETER = 4;
 		public static final double CIRCUMFERENCE = WHEEL_DIAMETER * PI;
-		public static final double TURN_IN_PLACE_CIRCUMFERENCE = WHEELBASE * PI;
+		public static final double TURN_IN_PLACE_CIRCUMFERENCE = 104.1;
 
 		public static final double MIN_TEST_POS = 500;
 		public static final double MIN_TEST_VEL = 100;
 
-		public static final double PATH_DIST_TOL = 1;
-		public static final double PATH_ANGLE_TOL = 1;
+		public static final double PATH_DIST_TOL = 0.25;
+		public static final double PATH_ANGLE_TOL = 0.25;
 
-		public static final double DRIVE_FOLLOWER_P = 0;
-		public static final double DRIVE_FOLLOWER_V = 0;
+		public static final double DRIVE_FOLLOWER_P = 4;
 		public static final double DRIVE_FOLLOWER_A = 0;
 		public static final double DRIVE_FOLLOWER_ANG = 0;
 
@@ -55,9 +54,9 @@ public final class Constants {
 		public static final int kPIDLoopIdx = 0;
 		public static final int kTimeoutMs = 10;
 
-		public static final double MAX_ANG_VEL = 0;
-		public static final double MAX_ANG_ACC = 0;
-		public static final double MAX_ANG_JERK = 0;
+		public static final double MAX_ANG_VEL = 2.5 * 360;
+		public static final double MAX_ANG_ACC = 1.5 * 360;
+		public static final double MAX_ANG_JERK = 0.75 * 360;
 	}
 
 	public static class LOGGING {

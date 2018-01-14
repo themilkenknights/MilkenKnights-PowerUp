@@ -1,6 +1,5 @@
 package frc.team254.lib.trajectory;
 
-import frc.team1836.robot.util.math.MkMath;
 import frc.team1836.robot.util.state.TrajectoryStatus;
 
 /**
@@ -28,11 +27,10 @@ public class TrajectoryFollower {
 		profile_ = profile;
 	}
 
-	public void configure(double kp, double kv, double ka, double kAng, double distTol,
+	public void configure(double kp, double ka, double kAng, double distTol,
 			double angTol) {
 		kp_ = kp;
 		kAng_ = kAng;
-		kv_ = kv;
 		ka_ = ka;
 		_DistTol = distTol;
 		_AngTol = Math.toRadians(angTol);
@@ -56,14 +54,16 @@ public class TrajectoryFollower {
 			double angError = segment.heading - heading;
 			double velError = segment.vel - vel;
 			double desired = (angError * kAng_) + segment.vel;
-			double output = desired + (kp_ * error) + (kv_ * segment.vel) + (ka_ * segment.acc);
+			double output = desired + (kp_ * error) + (ka_ * segment.acc);
 
 			last_error_ = error;
 			last_Ang_error = angError;
 			current_heading = segment.heading;
 			current_segment++;
+			System.out.println(error);
+			//System.out.println("Desired Heading: " + (segment.heading) + "Angle: " + heading + "Error: " + angError);
 			return new TrajectoryStatus(segment, error, velError,
-					MkMath.normalAbsoluteAngleDegrees(Math.toDegrees(angError)), output);
+					Math.toDegrees(angError), output);
 		} else {
 			return TrajectoryStatus.NEUTRAL;
 		}

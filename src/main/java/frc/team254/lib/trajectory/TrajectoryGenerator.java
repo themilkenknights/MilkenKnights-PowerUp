@@ -144,6 +144,7 @@ public class TrajectoryGenerator {
 			int length,
 			IntegrationMethod integration) {
 		if (length <= 0) {
+			System.out.println("ZERO!!");
 			return null;
 		}
 		Trajectory traj = new Trajectory(length);

@@ -12,10 +12,9 @@ import java.util.StringTokenizer;
 public class JavaStringSerializer implements IPathSerializer {
 
 	public String serialize(Path path) {
-		String contents = "package com.team254.frc2014.paths;\n\n";
-		contents += "import com.team254.lib.trajectory.Trajectory;\n";
-		contents += "import com.team254.lib.trajectory.io.TextFileDeserializer;\n";
-		contents += "import com.team254.path.Path;\n\n";
+		String contents = "package frc.team1836.robot.auto.paths;\n\n";
+		contents += "import frc.team254.lib.trajectory.Path;\n";
+		contents += "import frc.team254.lib.trajectory.io.TextFileDeserializer;\n";
 		contents += "public class " + path.getName() + " extends Path {\n";
 
 		TextFileSerializer serializer = new TextFileSerializer();

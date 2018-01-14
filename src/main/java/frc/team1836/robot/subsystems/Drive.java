@@ -30,6 +30,7 @@ public class Drive extends Subsystem {
 	private TrajectoryStatus leftStatus;
 	private TrajectoryStatus rightStatus;
 	private DriveSignal currentSetpoint;
+	private double angSpeed;
 
 	private Drive() {
 		leftDrive = new MkDrive(DRIVE.LEFT_MASTER_ID, DRIVE.LEFT_SLAVE_ID, DrivetrainSide.Left);
@@ -80,9 +81,9 @@ public class Drive extends Subsystem {
 	}
 
 	/**
-	 * @param path     Robot Path
+	 * @param path Robot Path
 	 * @param dist_tol Position Tolerance for Path Follower
-	 * @param ang_tol  Robot Angle Tolerance for Path Follower (Degrees)
+	 * @param ang_tol Robot Angle Tolerance for Path Follower (Degrees)
 	 */
 	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);
@@ -98,11 +99,13 @@ public class Drive extends Subsystem {
 
 	private synchronized void updateTurnInPlace() {
 		TrajectoryStatus leftUpdate = pathFollower
-				.getLeftVelocity(navX.getFullYaw(), navX.getRate(), 0);
+				.getLeftVelocity(navX.getYaw(), navX.getRawGyroZ(), 0);
 		TrajectoryStatus rightUpdate = pathFollower
-				.getRightVelocity(navX.getFullYaw(), navX.getRate(), 0);
+				.getRightVelocity(navX.getYaw(), navX.getRawGyroZ(), 0);
 		setVelocitySetpoint(new DriveSignal(MkMath.AngleToVel(leftUpdate.getOutput()),
 				MkMath.AngleToVel(rightUpdate.getOutput())));
+		leftStatus = leftUpdate;
+		rightStatus = rightUpdate;
 	}
 
 	/**
@@ -131,9 +134,10 @@ public class Drive extends Subsystem {
 
 	@Override
 	public void outputToSmartDashboard() {
+		SmartDashboard.putNumber("Gyro Velocity", navX.getRawGyroZ());
 		leftDrive.updateSmartDash();
 		rightDrive.updateSmartDash();
-		SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
+		SmartDashboard.putNumber("NavX Yaw", navX.getFullYaw());
 		SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
 		SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
 		SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());

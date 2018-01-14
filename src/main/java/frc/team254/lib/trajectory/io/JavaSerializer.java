@@ -20,9 +20,9 @@ public class JavaSerializer implements IPathSerializer {
 	 * @return A complete Java file as a string.
 	 */
 	public String serialize(Path path) {
-		String contents = "package com.team254.frc2014.paths;\n\n";
-		contents += "import com.team254.lib.trajectory.Trajectory;\n";
-		contents += "import com.team254.path.Path;\n\n";
+		String contents = "package frc.team1836.robot.auto.paths;\n\n";
+		contents += "import frc.team254.lib.trajectory.Path;\n";
+		contents += "import frc.team254.lib.trajectory.io.TextFileDeserializer;\n\n";
 		contents += "public class " + path.getName() + " extends Path {\n";
 		path.goLeft();
 		contents += serializeTrajectory("kLeftWheel",

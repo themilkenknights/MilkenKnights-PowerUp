@@ -73,6 +73,7 @@ public class Robot extends IterativeRobot {
 			Superstructure.getInstance().setMatchState(RobotState.MatchState.TELEOP);
 			mSubsystemManager.zeroSensors();
 			RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
+			Drive.getInstance().zeroGyro();
 			mEnabledLooper.start();
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);

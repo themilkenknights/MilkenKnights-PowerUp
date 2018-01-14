@@ -31,7 +31,7 @@ public class TurnInPlaceMode extends AutoModeBase {
 				TrajectoryGenerator.TrapezoidalStrategy, 0.0, 0,
 				angle, 0.0, 0);
 
-		Trajectory left = right;
+		Trajectory left = right.copy();
 		left.scale(-1);
 		path = new Path("Turn In Place", new Trajectory.Pair(left, right));
 

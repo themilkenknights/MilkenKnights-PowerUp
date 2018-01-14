@@ -5,7 +5,7 @@ import frc.team1836.robot.util.state.DriveSignal;
 public class DriveHelper {
 
 	private static final double kThrottleDeadband = 0.085;
-	private static final double kWheelDeadband = 0.085;
+	private static final double kWheelDeadband = 0.01;
 
 	public static DriveSignal cheesyDrive(double throttle, double wheel, boolean isSlow) {
 

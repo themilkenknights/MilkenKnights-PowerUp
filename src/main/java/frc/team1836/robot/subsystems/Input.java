@@ -93,8 +93,8 @@ public class Input extends Subsystem {
 
 	public void updateDriveInput() {
 		Drive.getInstance().setVelocitySetpoint(DriveHelper
-				.cheesyDrive(-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3),
-						-driverJoystick.getRawAxis(0) / 2, false));
+				.cheesyDrive(-driverJoystick.getRawAxis(1),
+						-driverJoystick.getRawAxis(2) / 2, false));
 
 
 	/*if (rotate90Button.isPressed()) {
