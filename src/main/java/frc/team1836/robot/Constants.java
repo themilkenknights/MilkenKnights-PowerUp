@@ -20,7 +20,6 @@ public final class Constants {
 	}
 
 	public static class DRIVE {
-
 		public static final int LEFT_MASTER_ID = 1;
 		public static final int LEFT_SLAVE_ID = 2;
 		public static final int RIGHT_MASTER_ID = 8;
@@ -54,13 +53,13 @@ public final class Constants {
 		public static final int kPIDLoopIdx = 0;
 		public static final int kTimeoutMs = 10;
 
+		//Used for turn in place (Degrees) - Is converted to inches after a trajectory is generated
 		public static final double MAX_ANG_VEL = 2.5 * 360;
 		public static final double MAX_ANG_ACC = 1.5 * 360;
 		public static final double MAX_ANG_JERK = 0.75 * 360;
 	}
 
 	public static class LOGGING {
-
 		public static final String DRIVE_LOG_PATH = "/home/lvuser/DRIVE-LOGS.csv";
 		public static final String INPUT_LOG_PATH = "/home/lvuser/INPUT-LOGS.csv";
 		public static final String SUPERSTRUCTURE_LOG_PATH = "/home/lvuser/SUPERSTRUCTURE-LOGS.csv";

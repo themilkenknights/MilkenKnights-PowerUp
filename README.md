@@ -1,8 +1,6 @@
 # MilkenKnights-PowerUp
 ##### 2018 Competition Season Code
 
-
-
 ## Installation Instructions:
 1. Install Java JDK 8 (macOS or Windows x64)
 2. (ONLY ON WINDOWS) Go to Control Panel -> System and Security -> System -> Advanced System Settings -> Enviorment Variables. Add a new system variable called "JAVA_HOME" -> Click on Browse Directory and go to "C:\Program Files\Java\jdk1.8.0_151" (Java Version Number may differ)
@@ -32,20 +30,20 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 - frc.team1836.auto
 
 	Handles the excecution of autonomous routines.  Also contains the auto actions and auto modes packages.
-	
+
 - frc.team1836.auto.actions
 
-	Contains all actions used during the autonomous period (Also can be used during teleop if desired), which all share a common interface, Action (also in this package). Examples include driving a path, moving an arm, etc. Routines interact with the Subsystems, which interact with the hardware. 
-	
+	Contains all actions used during the autonomous period (Also can be used during teleop if desired), which all share a common interface, Action (also in this package). Examples include driving a path, moving an arm, etc. Routines interact with the Subsystems, which interact with the hardware.
+
 - frc.team1836.auto.modes
-	
+
 	Contains all autonomous modes. Autonomous modes consist of a list of autonomous actions excecuted in a certain order.
-	
+
 - frc.team1836.util.loops
 
 	Loops are routines that run periodically on the robot, generally updating subsystems. All Loops implement the Loop interface and are handled (started, stopped, added) by the Looper class, which runs at 200 Hz.
 	The Robot class has one main Looper, mEnabledLooper, that runs all loops when the robot is enabled.
-	
+
 - frc.team1836.auto.paths
 
 	Contains all paths that the robot drives during autonomous mode. Each path is pregenerated on the Driver Station to save compute time on the RoboRIO.
@@ -54,8 +52,8 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 
 - [x] Get Velocity PID Working
 - [X] Get 1D Trajectories Working
+- [X] Tune 2D Trajectory Follower PID
 - [ ] Update Feedforward on the fly
-- [ ] Tune 2D Trajectory Follower PID
 - [ ] Field-Centric Turn In Place
 - [ ] Limelight Cube Tracking for Auto
 - [ ] Motion Magic for Arm
@@ -63,11 +61,10 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 - [ ] Add error-checking for CAN Devices
   - [ ] Ensure Mag Encoders can be unplugged during a match
   - [ ] Allow for Talons and Other Sensors to be unplugged without code crash
-  
+
 ## General Info
 - UNLESS OTHERWISE NOTED BY RAW/NATIVE/RPM, ALL POSITION UNITS ARE IN INCHES and DEGREES
 - ALL VELOCITY UNITS ARE IN INCHES PER SECOND and DEGREES PER SECOND
 - DIST DENOTES POSITION AND ANG DENOTES ANGLE
 - ID TYPICALLY DENOTES A CAN ID
 - ALL PID CONSTANTS SENT TO THE TALON ARE IN NATIVE UNITS (4096 Per Rotation)
- 
