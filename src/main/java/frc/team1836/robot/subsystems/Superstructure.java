@@ -16,9 +16,7 @@ public class Superstructure extends Subsystem {
 
 	private final ReflectingCSVWriter<SupertructureDebugOutput> mCSVWriter;
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
-	private SystemState mSystemState = RobotState.SystemState.IDLE;
 	private SupertructureDebugOutput mDebug = new SupertructureDebugOutput();
-	private MatchState matchState = RobotState.MatchState.IDLE;
 
 	public Superstructure() {
 		mCSVWriter = new ReflectingCSVWriter<>(LOGGING.SUPERSTRUCTURE_LOG_PATH,
@@ -36,7 +34,7 @@ public class Superstructure extends Subsystem {
 
 	@Override
 	public void outputToSmartDashboard() {
-		SmartDashboard.putString("System State", mSystemState.toString());
+		SmartDashboard.putString("System State", RobotState.mSystemState.toString());
 	}
 
 	@Override
@@ -63,7 +61,6 @@ public class Superstructure extends Subsystem {
 			@Override
 			public void onStart(double timestamp) {
 				synchronized (Superstructure.this) {
-					mSystemState = RobotState.SystemState.IDLE;
 					pdp.clearStickyFaults();
 				}
 			}
@@ -71,20 +68,13 @@ public class Superstructure extends Subsystem {
 			@Override
 			public void onLoop(double timestamp) {
 				synchronized (Superstructure.this) {
-					SystemState newState = mSystemState;
-					switch (mSystemState) {
-						case IDLE:
+					switch (RobotState.mSystemState) {
+						case DISABLED:
 							break;
 						default:
-							newState = RobotState.SystemState.IDLE;
+							break;
 					}
-					if (newState != mSystemState) {
-						System.out
-								.println("Superstructure state " + mSystemState + " to " + newState + " Timestamp: "
-										+ Timer.getFPGATimestamp());
-						mSystemState = newState;
-					}
-					mDebug.SuperstructureState = mSystemState.toString();
+					mDebug.SuperstructureState = RobotState.SystemState.toString();
 					mDebug.PDPVoltage = pdp.getVoltage();
 					mDebug.PDPTotalPower = pdp.getTotalPower();
 					mDebug.PDPTemp = pdp.getTemperature();
@@ -101,22 +91,12 @@ public class Superstructure extends Subsystem {
 		enabledLooper.register(mLoop);
 	}
 
-	public MatchState getMatchState() {
-		return matchState;
-	}
-
-	public void setMatchState(MatchState state) {
-		matchState = state;
-	}
-
 	public static class SupertructureDebugOutput {
-
 		public String SuperstructureState;
 		public double PDPVoltage;
 		public double PDPTotalPower;
 		public double PDPTemp;
 		public double timestamp;
-
 	}
 
 	private static class InstanceHolder {

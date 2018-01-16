@@ -3,7 +3,7 @@ package frc.team1836.robot;
 public class RobotState {
 
 	public static SystemState mSystemState = SystemState.IDLE;
-	public static MatchState mMatchState = MatchState.IDLE;
+	public static MatchState mMatchState = MatchState.DISABLED;
 	public static DriveControlState mDriveControlState = DriveControlState.OPEN_LOOP;
 
 	// Intenal state of the system
@@ -12,7 +12,7 @@ public class RobotState {
 	}
 
 	public enum MatchState {
-		AUTO, TELEOP, IDLE
+		AUTO, TELEOP, DISABLED
 	}
 
 	public enum DriveControlState {

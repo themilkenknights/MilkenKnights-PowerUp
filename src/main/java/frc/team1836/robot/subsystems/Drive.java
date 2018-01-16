@@ -134,27 +134,23 @@ public class Drive extends Subsystem {
 
 	@Override
 	public void outputToSmartDashboard() {
-		SmartDashboard.putNumber("Gyro Velocity", navX.getRawGyroZ());
 		leftDrive.updateSmartDash();
 		rightDrive.updateSmartDash();
+		SmartDashboard.putNumber("NavX Velocity", navX.getRawGyroZ());
 		SmartDashboard.putNumber("NavX Yaw", navX.getFullYaw());
 		SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
 		SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
 		SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
-
 		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
 			SmartDashboard.putNumber("Desired Heading", leftStatus.getSeg().heading);
 			SmartDashboard.putNumber("Heading Error", leftStatus.getAngError());
-
 			SmartDashboard.putNumber("Left Desired Position", leftStatus.getSeg().pos);
 			SmartDashboard.putNumber("Left Position Error", leftStatus.getPosError());
 			SmartDashboard.putNumber("Left Desired Velocity Error", leftStatus.getVelError());
-
 			SmartDashboard.putNumber("Right Desired Position", leftStatus.getSeg().pos);
 			SmartDashboard.putNumber("Right Position Error", leftStatus.getPosError());
 			SmartDashboard.putNumber("Right Desired Velocity Error", leftStatus.getVelError());
 		}
-
 	}
 
 	@Override
@@ -166,6 +162,7 @@ public class Drive extends Subsystem {
 	public void zeroSensors() {
 		leftDrive.resetEncoder();
 		rightDrive.resetEncoder();
+		navX.zeroYaw();
 	}
 
 	@Override

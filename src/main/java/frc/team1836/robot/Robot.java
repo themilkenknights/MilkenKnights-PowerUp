@@ -43,6 +43,7 @@ public class Robot extends IterativeRobot {
 			AutoChooser.disableAuto();
 			mEnabledLooper.stop();
 			mSubsystemManager.stop();
+			RobotState.mMatchState = MatchState.DISABLED;
 			Drive.getInstance().setOpenLoop(DriveSignal.NEUTRAL);
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
@@ -55,9 +56,8 @@ public class Robot extends IterativeRobot {
 		try {
 			CrashTracker.logAutoInit();
 			System.out.println("Auto start timestamp: " + Timer.getFPGATimestamp());
-			Superstructure.getInstance().setMatchState(RobotState.MatchState.AUTO);
 			mSubsystemManager.zeroSensors();
-			Drive.getInstance().zeroGyro();
+			RobotState.mMatchState = MatchState.AUTO;
 			mEnabledLooper.start();
 			AutoChooser.startAuto();
 		} catch (Throwable t) {
@@ -70,10 +70,9 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		try {
 			CrashTracker.logTeleopInit();
-			Superstructure.getInstance().setMatchState(RobotState.MatchState.TELEOP);
 			mSubsystemManager.zeroSensors();
+			RobotState.mMatchState = MatchState.TELEOP;
 			RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
-			Drive.getInstance().zeroGyro();
 			mEnabledLooper.start();
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
