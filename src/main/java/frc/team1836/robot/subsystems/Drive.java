@@ -81,9 +81,9 @@ public class Drive extends Subsystem {
 	}
 
 	/**
-	 * @param path Robot Path
+	 * @param path     Robot Path
 	 * @param dist_tol Position Tolerance for Path Follower
-	 * @param ang_tol Robot Angle Tolerance for Path Follower (Degrees)
+	 * @param ang_tol  Robot Angle Tolerance for Path Follower (Degrees)
 	 */
 	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);

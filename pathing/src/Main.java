@@ -47,17 +47,18 @@ public class Main {
 			directory = args[0];
 		}
 		TrajectoryGenerator.Config config = new TrajectoryGenerator.Config();
-		config.dt = .005;
+		config.dt = 0.005;
 		config.max_acc = 125;
 		config.max_jerk = 40;
 		config.max_vel = 175;
 		final double kWheelbaseWidth = 30;
+
 		final String left_path_name = "LeftPath";
 		final String right_path_name = "RightPath";
 		final String actual_path_name = "StraightPath";
 		WaypointSequence p = new WaypointSequence(10);
 		p.addWaypoint(new WaypointSequence.Waypoint(0, 0, 0));
-		p.addWaypoint(new WaypointSequence.Waypoint(10, 0, 0));
+		p.addWaypoint(new WaypointSequence.Waypoint(100, 0, 0));
 		Path path = PathGenerator.makePath(p, config,
 				kWheelbaseWidth, "StraightPath");
 		path.goLeft();

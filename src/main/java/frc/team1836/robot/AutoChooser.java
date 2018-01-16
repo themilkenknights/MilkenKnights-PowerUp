@@ -12,6 +12,7 @@ import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeExecuter;
 
 public class AutoChooser {
+
 	private static SendableChooser<AutoPosition> positionChooser = new SendableChooser<>();
 	private static SendableChooser<AutoAction> actionChooser = new SendableChooser<>();
 	private static AutoModeExecuter mAutoModeExecuter = null;

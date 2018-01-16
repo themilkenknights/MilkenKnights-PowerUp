@@ -20,6 +20,7 @@ public final class Constants {
 	}
 
 	public static class DRIVE {
+
 		public static final int LEFT_MASTER_ID = 1;
 		public static final int LEFT_SLAVE_ID = 2;
 		public static final int RIGHT_MASTER_ID = 8;
@@ -60,6 +61,7 @@ public final class Constants {
 	}
 
 	public static class LOGGING {
+
 		public static final String DRIVE_LOG_PATH = "/home/lvuser/DRIVE-LOGS.csv";
 		public static final String INPUT_LOG_PATH = "/home/lvuser/INPUT-LOGS.csv";
 		public static final String SUPERSTRUCTURE_LOG_PATH = "/home/lvuser/SUPERSTRUCTURE-LOGS.csv";

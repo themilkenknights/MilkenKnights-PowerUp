@@ -1,12 +1,9 @@
 package frc.team1836.robot.subsystems;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants.LOGGING;
 import frc.team1836.robot.RobotState;
-import frc.team1836.robot.RobotState.MatchState;
-import frc.team1836.robot.RobotState.SystemState;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
@@ -92,6 +89,7 @@ public class Superstructure extends Subsystem {
 	}
 
 	public static class SupertructureDebugOutput {
+
 		public String SuperstructureState;
 		public double PDPVoltage;
 		public double PDPTotalPower;

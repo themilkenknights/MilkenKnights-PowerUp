@@ -2,7 +2,6 @@ package frc.team1836.robot.auto.modes.left;
 
 import frc.team1836.robot.AutoChooser;
 import frc.team1836.robot.AutoChooser.GameObjectPosition;
-import frc.team1836.robot.auto.actions.DrivePathAction;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeEndedException;
 
@@ -27,11 +26,11 @@ public class LeftSwitchMode extends AutoModeBase {
 	}
 
 	private void leftRoutine() throws AutoModeEndedException {
-	//	runAction(new DrivePathAction(new StraightPath()));
+		//	runAction(new DrivePathAction(new StraightPath()));
 	}
 
 	private void rightRoutine() throws AutoModeEndedException {
-	//	runAction(new DrivePathAction(new StraightPath()));
+		//	runAction(new DrivePathAction(new StraightPath()));
 	}
 
 
