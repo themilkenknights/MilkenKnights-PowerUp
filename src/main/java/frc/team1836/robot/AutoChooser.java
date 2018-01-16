@@ -15,8 +15,6 @@ import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeExecuter;
 
 public class AutoChooser {
-
-
 	private static SendableChooser<AutoPosition> positionChooser = new SendableChooser<>();
 	private static SendableChooser<AutoAction> actionChooser = new SendableChooser<>();
 	private static AutoModeExecuter mAutoModeExecuter = null;
@@ -31,7 +29,6 @@ public class AutoChooser {
 		actionChooser.addDefault("Standstill", AutoAction.STANDSTILL);
 		actionChooser.addObject("Drive Straight", AutoAction.DRIVE_STRAIGHT);
 		actionChooser.addObject("Switch", AutoAction.SWITCH);
-		actionChooser.addObject("Scale", AutoAction.SCALE);
 		SmartDashboard.putData("Auto Action Chooser", actionChooser);
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 	}
@@ -45,14 +42,6 @@ public class AutoChooser {
 					return new DriveStraightMode();
 				}
 				return new DriveStraightMode();
-			case SCALE:
-				if (positionChooser.getSelected() == AutoPosition.LEFT) {
-					return new LeftScaleMode(getScalePosition());
-				}
-				if (positionChooser.getSelected() == AutoPosition.RIGHT) {
-					return new RightScaleMode(getScalePosition());
-				}
-				return new CenterScaleMode(getScalePosition());
 			case SWITCH:
 				if (positionChooser.getSelected() == AutoPosition.LEFT) {
 					return new LeftSwitchMode(getScalePosition());
@@ -108,12 +97,9 @@ public class AutoChooser {
 	}
 
 	public enum AutoAction {
-
 		STANDSTILL,
 		DRIVE_STRAIGHT,
 		SWITCH,
-		SCALE
-
 	}
 
 }
