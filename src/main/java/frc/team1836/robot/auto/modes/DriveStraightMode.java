@@ -1,7 +1,6 @@
 package frc.team1836.robot.auto.modes;
 
 import frc.team1836.robot.auto.actions.DrivePathAction;
-import frc.team1836.robot.auto.paths.StraightPath;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeEndedException;
 import frc.team254.lib.trajectory.io.TextFileDeserializer;
@@ -21,8 +20,6 @@ public class DriveStraightMode extends AutoModeBase {
 		} catch (IOException io) {
 			System.out.println(io.toString());
 		}
-		runAction(new DrivePathAction(new StraightPath()));
-
 	}
 
 }
