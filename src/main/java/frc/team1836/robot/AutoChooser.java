@@ -3,11 +3,11 @@ package frc.team1836.robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team1836.robot.auto.modes.CenterSwitchMode;
 import frc.team1836.robot.auto.modes.DriveStraightMode;
+import frc.team1836.robot.auto.modes.LeftSwitchMode;
+import frc.team1836.robot.auto.modes.RightSwitchMode;
 import frc.team1836.robot.auto.modes.StandStillMode;
-import frc.team1836.robot.auto.modes.center.CenterSwitchMode;
-import frc.team1836.robot.auto.modes.left.LeftSwitchMode;
-import frc.team1836.robot.auto.modes.right.RightSwitchMode;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeExecuter;
 

@@ -1,4 +1,4 @@
-package frc.team1836.robot.auto.modes.center;
+package frc.team1836.robot.auto.modes;
 
 import frc.team1836.robot.AutoChooser;
 import frc.team1836.robot.AutoChooser.GameObjectPosition;
