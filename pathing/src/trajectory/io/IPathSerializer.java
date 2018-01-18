@@ -9,5 +9,5 @@ import trajectory.Path;
  */
 public interface IPathSerializer {
 
-  public String serialize(Path path);
+	public String serialize(Path path);
 }

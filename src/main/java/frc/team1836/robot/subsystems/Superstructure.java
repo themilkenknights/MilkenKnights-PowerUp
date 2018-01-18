@@ -66,12 +66,12 @@ public class Superstructure extends Subsystem {
 			public void onLoop(double timestamp) {
 				synchronized (Superstructure.this) {
 					switch (RobotState.mSystemState) {
-						case DISABLED:
+						case IDLE:
 							break;
 						default:
 							break;
 					}
-					mDebug.SuperstructureState = RobotState.SystemState.toString();
+					mDebug.SuperstructureState = RobotState.mSystemState.toString();
 					mDebug.PDPVoltage = pdp.getVoltage();
 					mDebug.PDPTotalPower = pdp.getTotalPower();
 					mDebug.PDPTemp = pdp.getTemperature();

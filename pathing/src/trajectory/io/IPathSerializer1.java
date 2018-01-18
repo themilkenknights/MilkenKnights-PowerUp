@@ -1,7 +1,6 @@
 package trajectory.io;
 
 
-
 import trajectory.Trajectory;
 
 /**
@@ -11,5 +10,5 @@ import trajectory.Trajectory;
  */
 public interface IPathSerializer1 {
 
-  public String serialize(Trajectory traj);
+	public String serialize(Trajectory traj);
 }

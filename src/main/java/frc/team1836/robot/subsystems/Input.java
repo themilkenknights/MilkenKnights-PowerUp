@@ -68,8 +68,7 @@ public class Input extends Subsystem {
 			@Override
 			public void onLoop(double timestamp) {
 				synchronized (Input.this) {
-					if (Superstructure.getInstance().getMatchState()
-							.equals(RobotState.MatchState.TELEOP)) {
+					if (RobotState.mMatchState.equals(RobotState.MatchState.TELEOP)) {
 						updateDriveInput();
 						updateDebug(timestamp);
 						mCSVWriter.add(mDebug);
