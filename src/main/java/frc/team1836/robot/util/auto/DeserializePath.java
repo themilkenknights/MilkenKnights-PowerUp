@@ -9,10 +9,12 @@ import java.nio.file.Paths;
 
 public class DeserializePath {
 
-	public static Path getPathFromFile(String dir) throws IOException {
+
+	public static Path getPathFromFile(String name) throws IOException {
 		TextFileDeserializer textFileDeserializer = new TextFileDeserializer();
 		try {
-			String contents = new String(Files.readAllBytes(Paths.get(dir)));
+			String filePath = "../../auto/paths/" + name + ".txt";
+			String contents = new String(Files.readAllBytes(Paths.get(filePath)));
 			return textFileDeserializer.deserialize(contents);
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
