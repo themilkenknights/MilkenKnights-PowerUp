@@ -2,6 +2,7 @@ package frc.team1836.robot.util.drivers;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Timer;
@@ -58,6 +59,7 @@ public class MkTalon {
 		masterTalon.configPeakOutputReverse(-1, Constants.kTimeoutMs);
 		masterTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0,
 				Constants.kTimeoutMs);
+		masterTalon.setNeutralMode(NeutralMode.Coast);
 
 		slaveTalon
 				.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 5, Constants.kTimeoutMs);
@@ -67,6 +69,7 @@ public class MkTalon {
 		slaveTalon.configPeakOutputReverse(-1, Constants.kTimeoutMs);
 
 		slaveTalon.set(ControlMode.Follower, masterID);
+		slaveTalon.setNeutralMode(NeutralMode.Coast);
 	}
 
 	public double getError() {
@@ -77,6 +80,9 @@ public class MkTalon {
 		return nativeUnitsToInches(masterTalon.getClosedLoopError(Constants.kPIDLoopIdx));
 	}
 
+	public boolean isEncoderConnected() {
+		return masterTalon.getSensorCollection().getPulseWidthRiseToRiseUs() != 0;
+	}
 
 	public synchronized double getPosition() {
 		if (side == TalonPosition.Arm) {
@@ -96,6 +102,13 @@ public class MkTalon {
 				masterTalon.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
 	}
 
+	public void setBrakeMode(){
+		masterTalon.setNeutralMode(NeutralMode.Brake);
+	}
+
+	public void setCoastMode(){
+		masterTalon.setNeutralMode(NeutralMode.Coast);
+	}
 
 	public double getRPM() {
 		return (masterTalon.getSelectedSensorVelocity(10) * 600) / Constants.DRIVE.CODES_PER_REV;

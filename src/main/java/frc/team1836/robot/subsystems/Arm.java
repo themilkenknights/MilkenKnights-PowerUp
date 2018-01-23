@@ -1,6 +1,7 @@
 package frc.team1836.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.RobotState;
@@ -122,14 +123,18 @@ public class Arm extends Subsystem {
 			armTalon.resetEncoder();
 			RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
 		} else {
-			armTalon.set(ControlMode.PercentOutput, ARM.ZEROING_POWER);
+			setOpenLoop(ARM.ZEROING_POWER);
 		}
 
 	}
 
 	private void armSafetyCheck() {
-		if (armTalon.getCurrentOutput() > ARM.SAFE_CURRENT_OUTPUT) {
+		if (armTalon.getCurrentOutput() > ARM.SAFE_CURRENT_OUTPUT
+				|| armTalon.getSpeed() > Constants.ARM.MAX_SAFE_SPEED) {
 			setOpenLoop(0);
+		}
+		if (!armTalon.isEncoderConnected()) {
+			RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
 		}
 	}
 

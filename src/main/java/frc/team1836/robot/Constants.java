@@ -88,6 +88,7 @@ public final class Constants {
 		public static final double ZEROING_POWER = 0.15;
 
 		public static final double SAFE_CURRENT_OUTPUT = 15;
+		public static final double MAX_SAFE_SPEED = RPM_MAX * 1.5;
 
 	}
 
