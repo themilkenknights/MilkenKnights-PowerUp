@@ -37,6 +37,7 @@ public class Drive extends Subsystem {
 		leftDrive.setPIDF();
 		rightDrive.setPIDF();
 		navX = new MkGyro(SPI.Port.kMXP);
+		zeroGyro();
 
 		leftDrive.invert(true);
 		rightDrive.invert(false);
@@ -191,7 +192,7 @@ public class Drive extends Subsystem {
 			 * Updated from mEnabledLoop in Robot.java
 			 * Controls drivetrain during Path Following and Turn In Place and logs
 			 * Drivetrain data in all modes
-			 * @param timestamp
+			 * @param timestamp In Seconds Since Code Start
 			 */
 			@Override
 			public void onLoop(double timestamp) {
@@ -228,7 +229,7 @@ public class Drive extends Subsystem {
 		enabledLooper.register(mLoop);
 	}
 
-	public void zeroGyro() {
+	private void zeroGyro() {
 		navX.zeroYaw();
 	}
 

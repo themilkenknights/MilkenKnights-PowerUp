@@ -83,6 +83,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void testInit() {
+		mSubsystemManager.checkSystem();
 	}
 
 
@@ -103,10 +104,10 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void testPeriodic() {
+
 	}
 
-
-	public void allPeriodic() {
+	private void allPeriodic() {
 		try {
 			mSubsystemManager.outputToSmartDashboard();
 			mSubsystemManager.writeToLog();

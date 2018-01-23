@@ -1,7 +1,6 @@
 package frc.team1836.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.RobotState;
@@ -19,7 +18,7 @@ public class Arm extends Subsystem {
 	private final MkTalon armTalon;
 	private ArmDebugOutput mDebug = new ArmDebugOutput();
 
-	public Arm() {
+	private Arm() {
 		mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH,
 				ArmDebugOutput.class);
 		armTalon = new MkTalon(ARM.ARM_MASTER_TALON_ID, ARM.ARM_SLAVE_TALON_ID, TalonPosition.Arm);
@@ -68,9 +67,7 @@ public class Arm extends Subsystem {
 
 			/**
 			 * Updated from mEnabledLoop in Robot.java
-			 * Controls drivetrain during Path Following and Turn In Place and logs
-			 * Drivetrain data in all modes
-			 * @param timestamp
+			 * @param timestamp Time in seconds since code start
 			 */
 			@Override
 			public void onLoop(double timestamp) {

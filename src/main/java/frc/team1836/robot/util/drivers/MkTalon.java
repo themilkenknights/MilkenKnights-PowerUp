@@ -102,11 +102,11 @@ public class MkTalon {
 				masterTalon.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
 	}
 
-	public void setBrakeMode(){
+	public void setBrakeMode() {
 		masterTalon.setNeutralMode(NeutralMode.Brake);
 	}
 
-	public void setCoastMode(){
+	public void setCoastMode() {
 		masterTalon.setNeutralMode(NeutralMode.Coast);
 	}
 
