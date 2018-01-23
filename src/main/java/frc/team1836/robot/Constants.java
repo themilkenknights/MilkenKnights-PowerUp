@@ -12,6 +12,9 @@ import static frc.team1836.robot.Constants.MATH.PI;
  */
 public final class Constants {
 
+	public static final int kSlotIdx = 0;
+	public static final int kPIDLoopIdx = 0;
+	public static final int kTimeoutMs = 10;
 	public static double kLooperDt = 0.005;
 
 	public static class MATH {
@@ -45,14 +48,10 @@ public final class Constants {
 
 		public static final double RPM_MAX = 840.0;
 		public static final double MAX_VEL = (RPM_MAX / 60) * (CIRCUMFERENCE); // Inches per second
-		public static final double DRIVE_P = 1.0 * ((0.1 * 1023.0) / (300.00));
+		public static final double DRIVE_P = (0.1 * 1023.0) / (300.00);
 		public static final double DRIVE_I = DRIVE_P / 100.0;
 		public static final double DRIVE_D = 15 * DRIVE_P;
 		public static final double DRIVE_F = (1023.0 / ((RPM_MAX / 60.0 / 10.0) * 4096.0));
-
-		public static final int kSlotIdx = 0;
-		public static final int kPIDLoopIdx = 0;
-		public static final int kTimeoutMs = 10;
 
 		//Used for turn in place (Degrees) - Is converted to inches after a trajectory is generated
 		public static final double MAX_ANG_VEL = 2.5 * 360;
@@ -63,8 +62,33 @@ public final class Constants {
 	public static class LOGGING {
 
 		public static final String DRIVE_LOG_PATH = "/home/lvuser/DRIVE-LOGS.csv";
+		public static final String ARM_LOG_PATH = "/home/lvuser/ARM-LOGS.csv";
 		public static final String INPUT_LOG_PATH = "/home/lvuser/INPUT-LOGS.csv";
 		public static final String SUPERSTRUCTURE_LOG_PATH = "/home/lvuser/SUPERSTRUCTURE-LOGS.csv";
+	}
+
+	public static class ARM {
+
+		public static final int ARM_MASTER_TALON_ID = 10;
+		public static final int ARM_SLAVE_TALON_ID = 12;
+
+
+		public static final double RPM_MAX = 30;
+		public static final double MAX_VEL = RPM_MAX * 360.0; // Degrees per second
+		public static final double MAX_RAW_VEL = (RPM_MAX / 60.0 / 10.0) * 4096.0; // Degrees per second
+		public static final double ARM_P = 1.0 * ((0.1 * 1023.0) / (300.00));
+		public static final double ARM_I = ARM_P / 100.0;
+		public static final double ARM_D = 15 * ARM_P;
+		public static final double ARM_F = (1023.0 / MAX_RAW_VEL);
+
+		public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL * 0.75;
+		public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL / 10;
+
+		public static final double CURRENT_HARDSTOP_LIMIT = 8;
+		public static final double ZEROING_POWER = 0.15;
+
+		public static final double SAFE_CURRENT_OUTPUT = 15;
+
 	}
 
 

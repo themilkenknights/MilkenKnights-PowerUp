@@ -5,6 +5,8 @@ public class RobotState {
 	public static SystemState mSystemState = SystemState.IDLE;
 	public static MatchState mMatchState = MatchState.DISABLED;
 	public static DriveControlState mDriveControlState = DriveControlState.OPEN_LOOP;
+	public static ArmControlState mArmControlState = ArmControlState.MOTION_MAGIC;
+	public static ArmState mArmState = ArmState.ZEROED;
 
 	// Intenal state of the system
 	public enum SystemState {
@@ -20,6 +22,27 @@ public class RobotState {
 		VELOCITY_SETPOINT, // velocity PID control
 		PATH_FOLLOWING, // used for autonomous driving
 		TURN_IN_PLACE //Field Centric Turning in place
+	}
+
+	public enum ArmControlState {
+		ZEROING,
+		MOTION_MAGIC,
+		OPEN_LOOP,
+	}
+
+	public enum ArmState {
+		ZEROED(0),
+		INTAKE(10),
+		SWITCH_PLACE(40),
+		SCALE_PLACE(80),
+		OPPOSITE_SWITCH(100),
+		FULL_EXTENSION(150);
+
+		public final double state;
+
+		ArmState(final double state) {
+			this.state = state;
+		}
 	}
 
 }

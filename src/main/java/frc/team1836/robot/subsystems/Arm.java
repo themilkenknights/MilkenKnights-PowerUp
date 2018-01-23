@@ -1,0 +1,155 @@
+package frc.team1836.robot.subsystems;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import frc.team1836.robot.Constants;
+import frc.team1836.robot.Constants.ARM;
+import frc.team1836.robot.RobotState;
+import frc.team1836.robot.RobotState.ArmControlState;
+import frc.team1836.robot.util.drivers.MkTalon;
+import frc.team1836.robot.util.drivers.MkTalon.TalonPosition;
+import frc.team1836.robot.util.logging.ReflectingCSVWriter;
+import frc.team1836.robot.util.loops.Loop;
+import frc.team1836.robot.util.loops.Looper;
+import frc.team1836.robot.util.other.Subsystem;
+
+public class Arm extends Subsystem {
+
+	private final ReflectingCSVWriter<ArmDebugOutput> mCSVWriter;
+	private final MkTalon armTalon;
+	private ArmDebugOutput mDebug = new ArmDebugOutput();
+
+	public Arm() {
+		mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH,
+				ArmDebugOutput.class);
+		armTalon = new MkTalon(ARM.ARM_MASTER_TALON_ID, ARM.ARM_SLAVE_TALON_ID, TalonPosition.Arm);
+		armTalon.configMotionMagic();
+	}
+
+	public static Arm getInstance() {
+		return InstanceHolder.mInstance;
+	}
+
+	@Override
+	public void writeToLog() {
+		mCSVWriter.write();
+	}
+
+	@Override
+	public void outputToSmartDashboard() {
+
+	}
+
+	@Override
+	public void stop() {
+
+	}
+
+	@Override
+	public void zeroSensors() {
+
+	}
+
+	@Override
+	public void checkSystem() {
+
+	}
+
+	@Override
+	public void registerEnabledLoops(Looper enabledLooper) {
+		Loop mLoop = new Loop() {
+
+			@Override
+			public void onStart(double timestamp) {
+				synchronized (Arm.this) {
+
+				}
+			}
+
+			/**
+			 * Updated from mEnabledLoop in Robot.java
+			 * Controls drivetrain during Path Following and Turn In Place and logs
+			 * Drivetrain data in all modes
+			 * @param timestamp
+			 */
+			@Override
+			public void onLoop(double timestamp) {
+				synchronized (Arm.this) {
+					armSafetyCheck();
+					updateDebugOutput(timestamp);
+					mCSVWriter.add(mDebug);
+					switch (RobotState.mArmControlState) {
+						case MOTION_MAGIC:
+							updateArmSetpoint();
+							return;
+						case ZEROING:
+							zeroArm();
+							return;
+						case OPEN_LOOP:
+							return;
+						default:
+							System.out
+									.println("Unexpected arm control state: " + RobotState.mArmControlState);
+							break;
+					}
+				}
+			}
+
+			@Override
+			public void onStop(double timestamp) {
+				stop();
+			}
+		};
+		enabledLooper.register(mLoop);
+	}
+
+	private void updateDebugOutput(double timestamp) {
+		mDebug.controlMode = RobotState.mArmControlState.toString();
+		mDebug.output = armTalon.getPercentOutput();
+		mDebug.position = armTalon.getPosition();
+		mDebug.velocity = armTalon.getSpeed();
+		mDebug.setpoint = RobotState.mArmState.state;
+		mDebug.timestamp = timestamp;
+	}
+
+	private void updateArmSetpoint() {
+		armTalon.set(ControlMode.MotionMagic, RobotState.mArmState.state);
+	}
+
+	private void zeroArm() {
+		if (armTalon.getCurrentOutput() > ARM.CURRENT_HARDSTOP_LIMIT) {
+			setOpenLoop(0);
+			edu.wpi.first.wpilibj.Timer.delay(0.25);
+			armTalon.resetEncoder();
+			RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
+		} else {
+			armTalon.set(ControlMode.PercentOutput, ARM.ZEROING_POWER);
+		}
+
+	}
+
+	private void armSafetyCheck() {
+		if (armTalon.getCurrentOutput() > ARM.SAFE_CURRENT_OUTPUT) {
+			setOpenLoop(0);
+		}
+	}
+
+	public void setOpenLoop(double output) {
+		RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+		armTalon.set(ControlMode.PercentOutput, output);
+	}
+
+	public static class ArmDebugOutput {
+
+		double timestamp;
+		String controlMode;
+		double output;
+		double position;
+		double velocity;
+		double setpoint;
+	}
+
+	private static class InstanceHolder {
+
+		private static final Arm mInstance = new Arm();
+	}
+}
