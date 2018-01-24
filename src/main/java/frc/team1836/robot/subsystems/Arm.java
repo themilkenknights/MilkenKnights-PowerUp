@@ -39,6 +39,7 @@ public class Arm extends Subsystem {
 	@Override
 	public void outputToSmartDashboard() {
 		SmartDashboard.putNumber("Arm Velocity", armTalon.getSpeed());
+		SmartDashboard.putNumber("Arm RPM", armTalon.getRPM());
 		SmartDashboard.putNumber("Arm Current", armTalon.getCurrentOutput());
 		SmartDashboard.putNumber("Arm PercentVBus", armTalon.getPercentOutput());
 		SmartDashboard.putNumber("Arm Position", armTalon.getPosition());
