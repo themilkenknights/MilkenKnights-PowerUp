@@ -1,6 +1,7 @@
 package frc.team1836.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.RobotState;
@@ -17,6 +18,7 @@ public class Arm extends Subsystem {
 	private final ReflectingCSVWriter<ArmDebugOutput> mCSVWriter;
 	private final MkTalon armTalon;
 	private ArmDebugOutput mDebug = new ArmDebugOutput();
+	private double setpoint = 0;
 
 	private Arm() {
 		mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH,
@@ -36,17 +38,21 @@ public class Arm extends Subsystem {
 
 	@Override
 	public void outputToSmartDashboard() {
-
+		SmartDashboard.putNumber("Arm Velocity", armTalon.getSpeed());
+		SmartDashboard.putNumber("Arm Current", armTalon.getCurrentOutput());
+		SmartDashboard.putNumber("Arm PercentVBus", armTalon.getPercentOutput());
+		SmartDashboard.putNumber("Arm Position", armTalon.getPosition());
+		SmartDashboard.putNumber("Arm Setpoint", setpoint);
 	}
 
 	@Override
 	public void stop() {
-
+		setpoint = 0;
 	}
 
 	@Override
 	public void zeroSensors() {
-
+		armTalon.resetEncoder();
 	}
 
 	@Override

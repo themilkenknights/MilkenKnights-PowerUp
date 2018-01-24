@@ -1,15 +1,16 @@
 package frc.team1836.robot.util.drivers;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 
-public class MkButton {
+public class MkXboxControllerButton {
 
-	private final MkJoystick joystick;
+	private final MkXboxController joystick;
 	private final int rawButton;
 	private final String buttonName;
 	private boolean lastState;
 
-	public MkButton(final MkJoystick joystick, final int rawButton, final String buttonName) {
+	public MkXboxControllerButton(final MkXboxController joystick, final int rawButton, final String buttonName) {
 		this.joystick = joystick;
 		this.rawButton = rawButton;
 		this.buttonName = buttonName;
@@ -56,7 +57,7 @@ public class MkButton {
 		return rawButton;
 	}
 
-	public Joystick getJoystick() {
+	public XboxController getJoystick() {
 		return joystick;
 	}
 

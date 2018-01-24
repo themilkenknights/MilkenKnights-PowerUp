@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class MkJoystick extends Joystick {
 
-	private final HashMap<Integer, MkButton> buttons;
+	private final HashMap<Integer, MkJoystickButton> buttons;
 
 	/**
 	 * Create a new MkJoystick.
@@ -13,7 +13,7 @@ public class MkJoystick extends Joystick {
 	public MkJoystick(final int port) {
 		super(port);
 
-		buttons = new HashMap<Integer, MkButton>();
+		buttons = new HashMap<Integer, MkJoystickButton>();
 	}
 
 	/**
@@ -23,9 +23,9 @@ public class MkJoystick extends Joystick {
 	 *
 	 * @return The button
 	 */
-	public MkButton getButton(final int button, final String name) {
+	public MkJoystickButton getButton(final int button, final String name) {
 		if (!buttons.containsKey(button)) {
-			buttons.put(button, new MkButton(this, button, name));
+			buttons.put(button, new MkJoystickButton(this, button, name));
 		}
 		return buttons.get(button);
 	}
