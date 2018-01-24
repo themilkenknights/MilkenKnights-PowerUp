@@ -7,9 +7,9 @@ import frc.team1836.robot.Constants.DRIVE;
 import frc.team1836.robot.Constants.LOGGING;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.DriveControlState;
-import frc.team1836.robot.util.drivers.MkDrive;
-import frc.team1836.robot.util.drivers.MkDrive.DrivetrainSide;
 import frc.team1836.robot.util.drivers.MkGyro;
+import frc.team1836.robot.util.drivers.MkTalon;
+import frc.team1836.robot.util.drivers.MkTalon.TalonPosition;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
@@ -23,19 +23,21 @@ import frc.team254.lib.trajectory.PathFollower;
 public class Drive extends Subsystem {
 
 	private final ReflectingCSVWriter<DriveDebugOutput> mCSVWriter;
-	private final MkDrive leftDrive, rightDrive;
+	private final MkTalon leftDrive, rightDrive;
 	private final MkGyro navX;
 	private PathFollower pathFollower = null;
 	private DriveDebugOutput mDebug = new DriveDebugOutput();
 	private TrajectoryStatus leftStatus;
 	private TrajectoryStatus rightStatus;
 	private DriveSignal currentSetpoint;
-	private double angSpeed;
 
 	private Drive() {
-		leftDrive = new MkDrive(DRIVE.LEFT_MASTER_ID, DRIVE.LEFT_SLAVE_ID, DrivetrainSide.Left);
-		rightDrive = new MkDrive(DRIVE.RIGHT_MASTER_ID, DRIVE.RIGHT_SLAVE_ID, DrivetrainSide.Right);
+		leftDrive = new MkTalon(DRIVE.LEFT_MASTER_ID, DRIVE.LEFT_SLAVE_ID, TalonPosition.Left);
+		rightDrive = new MkTalon(DRIVE.RIGHT_MASTER_ID, DRIVE.RIGHT_SLAVE_ID, TalonPosition.Right);
+		leftDrive.setPIDF();
+		rightDrive.setPIDF();
 		navX = new MkGyro(SPI.Port.kMXP);
+		zeroGyro();
 
 		leftDrive.invert(true);
 		rightDrive.invert(false);
@@ -190,7 +192,7 @@ public class Drive extends Subsystem {
 			 * Updated from mEnabledLoop in Robot.java
 			 * Controls drivetrain during Path Following and Turn In Place and logs
 			 * Drivetrain data in all modes
-			 * @param timestamp
+			 * @param timestamp In Seconds Since Code Start
 			 */
 			@Override
 			public void onLoop(double timestamp) {
@@ -227,7 +229,7 @@ public class Drive extends Subsystem {
 		enabledLooper.register(mLoop);
 	}
 
-	public void zeroGyro() {
+	private void zeroGyro() {
 		navX.zeroYaw();
 	}
 
