@@ -69,26 +69,28 @@ public final class Constants {
 
 	public static class ARM {
 
-		public static final int ARM_MASTER_TALON_ID = 10;
-		public static final int ARM_SLAVE_TALON_ID = 12;
+		public static final int ARM_MASTER_TALON_ID = 4;
+		public static final int ARM_SLAVE_TALON_ID = 5;
 
 
-		public static final double RPM_MAX = 30;
-		public static final double MAX_VEL = RPM_MAX * 360.0; // Degrees per second
-		public static final double MAX_RAW_VEL = (RPM_MAX / 60.0 / 10.0) * 4096.0; // Degrees per second
+		public static final double RPM_MAX = 19.2;
+		public static double GEAR_RATIO = 22.0 / 336.0;
+		public static final double MAX_RAW_VEL = ((RPM_MAX / 60.0 / 10.0) * 4096.0) / GEAR_RATIO; // Degrees per second
 		public static final double ARM_P = 1.0 * ((0.1 * 1023.0) / (300.00));
 		public static final double ARM_I = ARM_P / 100.0;
 		public static final double ARM_D = 15 * ARM_P;
 		public static final double ARM_F = (1023.0 / MAX_RAW_VEL);
 
-		public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL * 0.75;
-		public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL / 10;
+		public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL * 0.95;
+		public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL;
 
 		public static final double CURRENT_HARDSTOP_LIMIT = 8;
 		public static final double ZEROING_POWER = 0.15;
 
-		public static final double SAFE_CURRENT_OUTPUT = 15;
-		public static final double MAX_SAFE_SPEED = RPM_MAX * 1.5;
+		public static final double SAFE_CURRENT_OUTPUT = 16;
+		public static final double MAX_SAFE_SPEED = (RPM_MAX / 60.0) * 360.0 * 1.5;
+
+
 
 	}
 

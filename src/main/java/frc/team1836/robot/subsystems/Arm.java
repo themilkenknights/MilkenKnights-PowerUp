@@ -11,6 +11,7 @@ import frc.team1836.robot.util.drivers.MkTalon.TalonPosition;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
+import frc.team1836.robot.util.math.MkMath;
 import frc.team1836.robot.util.other.Subsystem;
 
 public class Arm extends Subsystem {
@@ -24,6 +25,7 @@ public class Arm extends Subsystem {
 		mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH,
 				ArmDebugOutput.class);
 		armTalon = new MkTalon(ARM.ARM_MASTER_TALON_ID, ARM.ARM_SLAVE_TALON_ID, TalonPosition.Arm);
+		armTalon.setSensorPhase(true);
 		armTalon.configMotionMagic();
 	}
 
@@ -117,7 +119,8 @@ public class Arm extends Subsystem {
 	}
 
 	private void updateArmSetpoint() {
-		armTalon.set(ControlMode.MotionMagic, RobotState.mArmState.state);
+		armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state));
+		setpoint = RobotState.mArmState.state;
 	}
 
 	private void zeroArm() {
@@ -145,6 +148,7 @@ public class Arm extends Subsystem {
 	public void setOpenLoop(double output) {
 		RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
 		armTalon.set(ControlMode.PercentOutput, output);
+		setpoint = output;
 	}
 
 	public static class ArmDebugOutput {

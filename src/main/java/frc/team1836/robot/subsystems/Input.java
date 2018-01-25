@@ -4,32 +4,33 @@ import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.ArmControlState;
 import frc.team1836.robot.RobotState.ArmState;
 import frc.team1836.robot.util.drivers.MkJoystick;
+import frc.team1836.robot.util.drivers.MkJoystickButton;
 import frc.team1836.robot.util.drivers.MkXboxController;
-import frc.team1836.robot.util.drivers.MkXboxControllerButton;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
+import frc.team1836.robot.util.math.MkMath;
 import frc.team1836.robot.util.other.DriveHelper;
 import frc.team1836.robot.util.other.Subsystem;
 
 public class Input extends Subsystem {
 
 
-	private final MkJoystick driverJoystick = new MkJoystick(0);
+	private final MkJoystick operatorJoystick = new MkJoystick(1);
 
 
-	private final MkXboxController operatorJoystick = new MkXboxController(1);
+	private final MkXboxController driverJoystick = new MkXboxController(0);
 
-	private final MkXboxControllerButton armBumperButton = operatorJoystick.getButton(2, "Arm Bumper");
-	private final MkXboxControllerButton armIntakeButton = operatorJoystick.getButton(3, "Arm Intake");
-	private final MkXboxControllerButton armSwitchButton = operatorJoystick.getButton(4, "Arm Switch");
-	private final MkXboxControllerButton armScaleButton = operatorJoystick.getButton(5, "Arm Scale");
-	private final MkXboxControllerButton armSwitchReverseButton = operatorJoystick
+	private final MkJoystickButton armBumperButton = operatorJoystick.getButton(2, "Arm Bumper");
+	private final MkJoystickButton armIntakeButton = operatorJoystick.getButton(3, "Arm Intake");
+	private final MkJoystickButton armSwitchButton = operatorJoystick.getButton(4, "Arm Switch");
+	private final MkJoystickButton armScaleButton = operatorJoystick.getButton(5, "Arm Scale");
+	private final MkJoystickButton armSwitchReverseButton = operatorJoystick
 			.getButton(6, "Arm Switch Reverse");
-	private final MkXboxControllerButton armIntakeReverseButton = operatorJoystick
+	private final MkJoystickButton armIntakeReverseButton = operatorJoystick
 			.getButton(7, "Arm Intake Reverse");
-	private final MkXboxControllerButton armChangeModeButton = operatorJoystick
+	private final MkJoystickButton armChangeModeButton = operatorJoystick
 			.getButton(8, "Arm Change Mode");
-	private final MkXboxControllerButton armZeroButton = operatorJoystick.getButton(9, "Arm Zero");
+	private final MkJoystickButton armZeroButton = operatorJoystick.getButton(9, "Arm Zero");
 
 
 
@@ -111,6 +112,7 @@ public class Input extends Subsystem {
 				} else if (armScaleButton.isPressed()) {
 					RobotState.mArmState = ArmState.SCALE_PLACE;
 				} else if (armSwitchReverseButton.isPressed()) {
+
 					RobotState.mArmState = ArmState.OPPOSITE_SWITCH;
 				} else if (armIntakeReverseButton.isPressed()) {
 					RobotState.mArmState = ArmState.FULL_EXTENSION;
@@ -122,7 +124,7 @@ public class Input extends Subsystem {
 			case ZEROING:
 				return;
 			case OPEN_LOOP:
-				Arm.getInstance().setOpenLoop(operatorJoystick.getRawAxis(1));
+				Arm.getInstance().setOpenLoop(MkMath.handleDeadband(-operatorJoystick.getRawAxis(1), 0.085));
 				if (armChangeModeButton.isPressed()) {
 					RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
 				}

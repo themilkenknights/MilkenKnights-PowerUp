@@ -87,7 +87,7 @@ public class MkTalon {
 	public synchronized double getPosition() {
 		if (side == TalonPosition.Arm) {
 			return nativeUnitsToDegrees(
-					masterTalon.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
+					masterTalon.getSelectedSensorPosition(Constants.kPIDLoopIdx));
 		}
 		return nativeUnitsToInches(masterTalon.getSelectedSensorPosition(Constants.kPIDLoopIdx));
 	}
@@ -111,7 +111,7 @@ public class MkTalon {
 	}
 
 	public double getRPM() {
-		return (masterTalon.getSelectedSensorVelocity(10) * 600) / Constants.DRIVE.CODES_PER_REV;
+		return (masterTalon.getSelectedSensorVelocity(0) * 60.0 * 10.0) / Constants.DRIVE.CODES_PER_REV;
 	}
 
 	public double nativeUnitsPer100MstoDegreesPerSec(double vel) {
@@ -119,7 +119,7 @@ public class MkTalon {
 	}
 
 	public double nativeUnitsToDegrees(double raw) {
-		return (raw / 4096.0) * 360.0;
+		return ((raw / 4096.0) * 360.0) * ARM.GEAR_RATIO;
 	}
 
 	private double nativeUnitsPer100MstoInchesPerSec(double vel) {
@@ -155,6 +155,10 @@ public class MkTalon {
 			System.out.println("Position" + getPosition() + "Speed" + getSpeed());
 		}
 
+	}
+
+	public void setSensorPhase(boolean dir){
+		masterTalon.setSensorPhase(dir);
 	}
 
 	public void updateSmartDash() {
