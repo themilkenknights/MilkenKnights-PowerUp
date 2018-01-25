@@ -74,7 +74,7 @@ public final class Constants {
 
 
 		public static final double RPM_MAX = 19.2;
-		public static double GEAR_RATIO = 22.0 / 336.0;
+		public static final double GEAR_RATIO = 22.0 / 336.0;
 		public static final double MAX_RAW_VEL = ((RPM_MAX / 60.0 / 10.0) * 4096.0) / GEAR_RATIO; // Degrees per second
 		public static final double ARM_P = 1.0 * ((0.1 * 1023.0) / (300.00));
 		public static final double ARM_I = ARM_P / 100.0;

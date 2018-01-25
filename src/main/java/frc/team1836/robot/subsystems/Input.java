@@ -140,11 +140,11 @@ public class Input extends Subsystem {
 				break;
 		}
 
-		if (intakeRollerIn.isHeld()) {
+	/*	if (intakeRollerIn.isHeld()) {
 			Arm.getInstance().setIntakeRollers(ARM.INTAKE_ROLLER_SPEED);
 		} else if (intakeRollerOut.isHeld()) {
 			Arm.getInstance().setIntakeRollers(-ARM.INTAKE_ROLLER_SPEED);
-		}
+		} */
 	}
 
 	private static class InstanceHolder {
