@@ -91,7 +91,8 @@ public final class Constants {
 		public static final double MAX_SAFE_SPEED = (RPM_MAX / 60.0) * 360.0 * 1.5;
 
 
-
+		public static final int INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
+		public static final double INTAKE_ROLLER_SPEED = 0.75; //Intake Roller speed, reverse if it is the wrong direction
 	}
 
 

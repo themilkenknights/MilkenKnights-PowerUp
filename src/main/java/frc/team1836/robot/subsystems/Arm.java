@@ -1,6 +1,7 @@
 package frc.team1836.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
@@ -18,6 +19,7 @@ public class Arm extends Subsystem {
 
 	private final ReflectingCSVWriter<ArmDebugOutput> mCSVWriter;
 	private final MkTalon armTalon;
+	private final TalonSRX intakeRollerTalon;
 	private ArmDebugOutput mDebug = new ArmDebugOutput();
 	private double setpoint = 0;
 
@@ -27,6 +29,7 @@ public class Arm extends Subsystem {
 		armTalon = new MkTalon(ARM.ARM_MASTER_TALON_ID, ARM.ARM_SLAVE_TALON_ID, TalonPosition.Arm);
 		armTalon.setSensorPhase(true);
 		armTalon.configMotionMagic();
+		intakeRollerTalon = new TalonSRX(Constants.ARM.INTAKE_ROLLER_ID);
 	}
 
 	public static Arm getInstance() {
@@ -149,6 +152,10 @@ public class Arm extends Subsystem {
 		RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
 		armTalon.set(ControlMode.PercentOutput, output);
 		setpoint = output;
+	}
+
+	public void setIntakeRollers(double output){
+		intakeRollerTalon.set(ControlMode.PercentOutput, output);
 	}
 
 	public static class ArmDebugOutput {

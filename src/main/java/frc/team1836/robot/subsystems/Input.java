@@ -1,5 +1,6 @@
 package frc.team1836.robot.subsystems;
 
+import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.ArmControlState;
 import frc.team1836.robot.RobotState.ArmState;
@@ -32,7 +33,10 @@ public class Input extends Subsystem {
 			.getButton(8, "Arm Change Mode");
 	private final MkJoystickButton armZeroButton = operatorJoystick.getButton(9, "Arm Zero");
 
-
+	private final MkJoystickButton intakeRollerIn = operatorJoystick
+			.getButton(10, "Intake Roller In"); //Change the #10 to another number to change the button used
+	private final MkJoystickButton intakeRollerOut = operatorJoystick
+			.getButton(11, "Intake Roller Out"); //Change the #11 to another number to change the button used
 
 
 	public Input() {
@@ -124,7 +128,8 @@ public class Input extends Subsystem {
 			case ZEROING:
 				return;
 			case OPEN_LOOP:
-				Arm.getInstance().setOpenLoop(MkMath.handleDeadband(-operatorJoystick.getRawAxis(1), 0.085));
+				Arm.getInstance()
+						.setOpenLoop(MkMath.handleDeadband(-operatorJoystick.getRawAxis(1), 0.085));
 				if (armChangeModeButton.isPressed()) {
 					RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
 				}
@@ -133,6 +138,12 @@ public class Input extends Subsystem {
 				System.out
 						.println("Unexpected arm control state: " + RobotState.mArmControlState);
 				break;
+		}
+
+		if (intakeRollerIn.isHeld()) {
+			Arm.getInstance().setIntakeRollers(ARM.INTAKE_ROLLER_SPEED);
+		} else if (intakeRollerOut.isHeld()) {
+			Arm.getInstance().setIntakeRollers(-ARM.INTAKE_ROLLER_SPEED);
 		}
 	}
 
