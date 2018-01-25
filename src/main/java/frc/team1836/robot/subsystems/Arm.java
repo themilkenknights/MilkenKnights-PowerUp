@@ -19,7 +19,8 @@ public class Arm extends Subsystem {
 
 	private final ReflectingCSVWriter<ArmDebugOutput> mCSVWriter;
 	private final MkTalon armTalon;
-	private final TalonSRX intakeRollerTalon;
+	private final TalonSRX leftIntakeRollerTalon;
+	private final TalonSRX rightIntakeRollerTalon;
 	private ArmDebugOutput mDebug = new ArmDebugOutput();
 	private double setpoint = 0;
 
@@ -29,7 +30,8 @@ public class Arm extends Subsystem {
 		armTalon = new MkTalon(ARM.ARM_MASTER_TALON_ID, ARM.ARM_SLAVE_TALON_ID, TalonPosition.Arm);
 		armTalon.setSensorPhase(true);
 		armTalon.configMotionMagic();
-		intakeRollerTalon = new TalonSRX(Constants.ARM.INTAKE_ROLLER_ID);
+		leftIntakeRollerTalon = new TalonSRX(Constants.ARM.LEFT_INTAKE_ROLLER_ID);
+		rightIntakeRollerTalon = new TalonSRX(Constants.ARM.RIGHT_INTAKE_ROLLER_ID);
 	}
 
 	public static Arm getInstance() {
@@ -155,7 +157,8 @@ public class Arm extends Subsystem {
 	}
 
 	public void setIntakeRollers(double output){
-		intakeRollerTalon.set(ControlMode.PercentOutput, output);
+		leftIntakeRollerTalon.set(ControlMode.PercentOutput, output);
+		rightIntakeRollerTalon.set(ControlMode.PercentOutput, output);
 	}
 
 	public static class ArmDebugOutput {

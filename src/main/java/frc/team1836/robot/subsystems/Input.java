@@ -19,7 +19,7 @@ public class Input extends Subsystem {
 	private final MkJoystick operatorJoystick = new MkJoystick(1);
 
 
-	private final MkXboxController driverJoystick = new MkXboxController(0);
+	private final MkJoystick driverJoystick = new MkJoystick(0);
 
 	private final MkJoystickButton armBumperButton = operatorJoystick.getButton(2, "Arm Bumper");
 	private final MkJoystickButton armIntakeButton = operatorJoystick.getButton(3, "Arm Intake");
