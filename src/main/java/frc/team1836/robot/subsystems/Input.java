@@ -1,12 +1,12 @@
 package frc.team1836.robot.subsystems;
 
+import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.ArmControlState;
 import frc.team1836.robot.RobotState.ArmState;
 import frc.team1836.robot.util.drivers.MkJoystick;
 import frc.team1836.robot.util.drivers.MkJoystickButton;
-import frc.team1836.robot.util.drivers.MkXboxController;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.math.MkMath;
@@ -34,9 +34,11 @@ public class Input extends Subsystem {
 	private final MkJoystickButton armZeroButton = operatorJoystick.getButton(9, "Arm Zero");
 
 	private final MkJoystickButton intakeRollerIn = operatorJoystick
-			.getButton(10, "Intake Roller In"); //Change the #10 to another number to change the button used
+			.getButton(10,
+					"Intake Roller In"); //Change the #10 to another number to change the button used
 	private final MkJoystickButton intakeRollerOut = operatorJoystick
-			.getButton(11, "Intake Roller Out"); //Change the #11 to another number to change the button used
+			.getButton(11,
+					"Intake Roller Out"); //Change the #11 to another number to change the button used
 
 
 	public Input() {
@@ -129,7 +131,8 @@ public class Input extends Subsystem {
 				return;
 			case OPEN_LOOP:
 				Arm.getInstance()
-						.setOpenLoop(MkMath.handleDeadband(-operatorJoystick.getRawAxis(1), 0.085));
+						.setOpenLoop(MkMath
+								.handleDeadband(-operatorJoystick.getRawAxis(1), Constants.INPUT.OPERATOR_DEADBAND));
 				if (armChangeModeButton.isPressed()) {
 					RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
 				}
@@ -140,11 +143,11 @@ public class Input extends Subsystem {
 				break;
 		}
 
-	/*	if (intakeRollerIn.isHeld()) {
+		if (intakeRollerIn.isHeld()) {
 			Arm.getInstance().setIntakeRollers(ARM.INTAKE_ROLLER_SPEED);
 		} else if (intakeRollerOut.isHeld()) {
 			Arm.getInstance().setIntakeRollers(-ARM.INTAKE_ROLLER_SPEED);
-		} */
+		}
 	}
 
 	private static class InstanceHolder {

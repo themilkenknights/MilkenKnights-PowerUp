@@ -22,52 +22,52 @@ public final class Constants {
 		public static final double PI = 3.14159265359;
 	}
 
-	public static class DRIVE {
+		public static class DRIVE {
 
-		public static final int LEFT_MASTER_ID = 1;
-		public static final int LEFT_SLAVE_ID = 2;
-		public static final int RIGHT_MASTER_ID = 8;
-		public static final int RIGHT_SLAVE_ID = 7;
+			public static final int LEFT_MASTER_ID = 1;
+			public static final int LEFT_SLAVE_ID = 2;
+			public static final int RIGHT_MASTER_ID = 8;
+			public static final int RIGHT_SLAVE_ID = 7;
 
-		public static final double WHEELBASE = 26;
+			public static final double WHEELBASE = 26;
 
-		public static final int CODES_PER_REV = 4096;
-		public static final double WHEEL_DIAMETER = 4;
-		public static final double CIRCUMFERENCE = WHEEL_DIAMETER * PI;
-		public static final double TURN_IN_PLACE_CIRCUMFERENCE = 104.1;
+			public static final int CODES_PER_REV = 4096;
+			public static final double WHEEL_DIAMETER = 4;
+			public static final double CIRCUMFERENCE = WHEEL_DIAMETER * PI;
+			public static final double TURN_IN_PLACE_CIRCUMFERENCE = 104.1;
 
-		public static final double MIN_TEST_POS = 500;
-		public static final double MIN_TEST_VEL = 100;
+			public static final double MIN_TEST_POS = 500;
+			public static final double MIN_TEST_VEL = 100;
 
-		public static final double PATH_DIST_TOL = 0.25;
-		public static final double PATH_ANGLE_TOL = 0.25;
+			public static final double PATH_DIST_TOL = 0.25;
+			public static final double PATH_ANGLE_TOL = 0.25;
 
-		public static final double DRIVE_FOLLOWER_P = 4;
-		public static final double DRIVE_FOLLOWER_A = 0;
-		public static final double DRIVE_FOLLOWER_ANG = 0;
+			public static final double DRIVE_FOLLOWER_P = 4;
+			public static final double DRIVE_FOLLOWER_A = 0;
+			public static final double DRIVE_FOLLOWER_ANG = 0;
 
-		public static final double RPM_MAX = 840.0;
-		public static final double MAX_VEL = (RPM_MAX / 60) * (CIRCUMFERENCE); // Inches per second
-		public static final double DRIVE_P = (0.1 * 1023.0) / (300.00);
-		public static final double DRIVE_I = DRIVE_P / 100.0;
-		public static final double DRIVE_D = 15 * DRIVE_P;
-		public static final double DRIVE_F = (1023.0 / ((RPM_MAX / 60.0 / 10.0) * 4096.0));
+			public static final double RPM_MAX = 840.0;
+			public static final double MAX_VEL = (RPM_MAX / 60) * (CIRCUMFERENCE); // Inches per second
+			public static final double DRIVE_P = (0.1 * 1023.0) / (300.00);
+			public static final double DRIVE_I = DRIVE_P / 100.0;
+			public static final double DRIVE_D = 15 * DRIVE_P;
+			public static final double DRIVE_F = (1023.0 / ((RPM_MAX / 60.0 / 10.0) * 4096.0));
 
-		//Used for turn in place (Degrees) - Is converted to inches after a trajectory is generated
-		public static final double MAX_ANG_VEL = 2.5 * 360;
-		public static final double MAX_ANG_ACC = 1.5 * 360;
-		public static final double MAX_ANG_JERK = 0.75 * 360;
-	}
+			//Used for turn in place (Degrees) - Is converted to inches after a trajectory is generated
+			public static final double MAX_ANG_VEL = 2.5 * 360;
+			public static final double MAX_ANG_ACC = 1.5 * 360;
+			public static final double MAX_ANG_JERK = 0.75 * 360;
+		}
 
-	public static class LOGGING {
+		public static class LOGGING {
 
-		public static final String DRIVE_LOG_PATH = "/home/lvuser/DRIVE-LOGS.csv";
-		public static final String ARM_LOG_PATH = "/home/lvuser/ARM-LOGS.csv";
-		public static final String INPUT_LOG_PATH = "/home/lvuser/INPUT-LOGS.csv";
-		public static final String SUPERSTRUCTURE_LOG_PATH = "/home/lvuser/SUPERSTRUCTURE-LOGS.csv";
-	}
+			public static final String DRIVE_LOG_PATH = "/home/lvuser/DRIVE-LOGS.csv";
+			public static final String ARM_LOG_PATH = "/home/lvuser/ARM-LOGS.csv";
+			public static final String INPUT_LOG_PATH = "/home/lvuser/INPUT-LOGS.csv";
+			public static final String SUPERSTRUCTURE_LOG_PATH = "/home/lvuser/SUPERSTRUCTURE-LOGS.csv";
+		}
 
-	public static class ARM {
+		public static class ARM {
 
 		public static final int ARM_MASTER_TALON_ID = 4;
 		public static final int ARM_SLAVE_TALON_ID = 5;
@@ -94,6 +94,14 @@ public final class Constants {
 		public static final int LEFT_INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
 		public static final int RIGHT_INTAKE_ROLLER_ID = 3; //Intake Roller Talon ID
 		public static final double INTAKE_ROLLER_SPEED = 0.75; //Intake Roller speed, reverse if it is the wrong direction
+
+
+	}
+
+	public static class INPUT{
+		public static final double OPERATOR_DEADBAND = 0.085;
+		public static final double kThrottleDeadband = 0.085;
+		public static final double kWheelDeadband = 0.01;
 	}
 
 

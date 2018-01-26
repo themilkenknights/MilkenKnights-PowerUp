@@ -1,11 +1,13 @@
 package frc.team1836.robot.util.other;
 
+import frc.team1836.robot.Constants;
+import frc.team1836.robot.Constants.INPUT;
 import frc.team1836.robot.util.state.DriveSignal;
 
 public class DriveHelper {
 
-	private static final double kThrottleDeadband = 0.085;
-	private static final double kWheelDeadband = 0.01;
+	private static final double kThrottleDeadband = INPUT.kThrottleDeadband;
+	private static final double kWheelDeadband = INPUT.kWheelDeadband;
 
 	public static DriveSignal cheesyDrive(double throttle, double wheel, boolean isSlow) {
 
@@ -40,6 +42,7 @@ public class DriveHelper {
 				rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
 			}
 		}
+
 		return new DriveSignal(leftMotorSpeed, rightMotorSpeed);
 	}
 

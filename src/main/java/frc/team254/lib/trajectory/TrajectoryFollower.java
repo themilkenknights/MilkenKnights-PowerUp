@@ -48,6 +48,9 @@ public class TrajectoryFollower {
 		}
 
 		current_segment = (int) (customRound((System.nanoTime() - Dt) * 1e-9) / 0.005);
+
+
+
 		if (current_segment < profile_.getNumSegments()) {
 			Trajectory.Segment segment = profile_.getSegment(current_segment);
 			double error = segment.pos - dist;
@@ -60,8 +63,6 @@ public class TrajectoryFollower {
 			last_Ang_error = angError;
 			current_heading = segment.heading;
 			current_segment++;
-			System.out.println(error);
-			//System.out.println("Desired Heading: " + (segment.heading) + "Angle: " + heading + "Error: " + angError);
 			return new TrajectoryStatus(segment, error, velError,
 					Math.toDegrees(angError), output);
 		} else {

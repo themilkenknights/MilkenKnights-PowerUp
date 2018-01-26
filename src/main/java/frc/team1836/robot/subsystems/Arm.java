@@ -86,7 +86,6 @@ public class Arm extends Subsystem {
 			@Override
 			public void onLoop(double timestamp) {
 				synchronized (Arm.this) {
-					setIntakeRollers(ARM.INTAKE_ROLLER_SPEED);
 					armSafetyCheck();
 					updateDebugOutput(timestamp);
 					mCSVWriter.add(mDebug);
