@@ -1,6 +1,7 @@
 package frc.team254.lib.trajectory;
 
 import frc.team1836.robot.util.state.TrajectoryStatus;
+import frc.team254.lib.trajectory.Trajectory.Segment;
 
 /**
  * PID + Feedforward controller for following a Trajectory.
@@ -49,8 +50,6 @@ public class TrajectoryFollower {
 
 		current_segment = (int) (customRound((System.nanoTime() - Dt) * 1e-9) / 0.005);
 
-
-
 		if (current_segment < profile_.getNumSegments()) {
 			Trajectory.Segment segment = profile_.getSegment(current_segment);
 			double error = segment.pos - dist;
@@ -89,4 +88,8 @@ public class TrajectoryFollower {
 	public boolean onTarget() {
 		return last_error_ < _DistTol && last_Ang_error < _AngTol;
 	}
+
+	/*private Segment interpolateSegments(Segment firstSeg, Segment lastSeg, double time){
+
+	}*/
 }

@@ -1,6 +1,5 @@
 package frc.team1836.robot.util.other;
 
-import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.INPUT;
 import frc.team1836.robot.util.state.DriveSignal;
 

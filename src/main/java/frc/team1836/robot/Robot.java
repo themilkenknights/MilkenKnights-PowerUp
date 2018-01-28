@@ -18,7 +18,8 @@ import java.util.Arrays;
 public class Robot extends IterativeRobot {
 
 	private final SubsystemManager mSubsystemManager = new SubsystemManager(
-			Arrays.asList(Drive.getInstance(), Arm.getInstance(), Vision.getInstance(), Superstructure.getInstance(), Input.getInstance()));
+			Arrays.asList(Drive.getInstance(), Arm.getInstance(), Vision.getInstance(),
+					Superstructure.getInstance(), Input.getInstance()));
 	private Looper mEnabledLooper = new Looper();
 
 	public Robot() {

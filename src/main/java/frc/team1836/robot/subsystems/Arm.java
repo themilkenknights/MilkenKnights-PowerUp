@@ -156,7 +156,7 @@ public class Arm extends Subsystem {
 		setpoint = output;
 	}
 
-	public void setIntakeRollers(double output){
+	public void setIntakeRollers(double output) {
 		leftIntakeRollerTalon.set(ControlMode.PercentOutput, output);
 		rightIntakeRollerTalon.set(ControlMode.PercentOutput, output);
 	}

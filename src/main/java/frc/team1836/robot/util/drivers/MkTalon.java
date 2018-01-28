@@ -157,7 +157,7 @@ public class MkTalon {
 
 	}
 
-	public void setSensorPhase(boolean dir){
+	public void setSensorPhase(boolean dir) {
 		masterTalon.setSensorPhase(dir);
 	}
 

@@ -10,16 +10,16 @@ public class Vision extends Subsystem {
 
 	double targetOffsetAngle_Horizontal, targetOffsetAngle_Vertical, targetArea, targetSkew = 0;
 
+	public static Vision getInstance() {
+		return InstanceHolder.mInstance;
+	}
+
 	@Override
 	public void outputToSmartDashboard() {
 		SmartDashboard.putNumber("Horizantal Offset", targetOffsetAngle_Horizontal);
 		SmartDashboard.putNumber("Vertical Offset", targetOffsetAngle_Vertical);
 		SmartDashboard.putNumber("Target Area", targetArea);
 		SmartDashboard.putNumber("Target Skew", targetSkew);
-	}
-
-	public static Vision getInstance() {
-		return InstanceHolder.mInstance;
 	}
 
 	@Override

@@ -132,7 +132,8 @@ public class Input extends Subsystem {
 			case OPEN_LOOP:
 				Arm.getInstance()
 						.setOpenLoop(MkMath
-								.handleDeadband(-operatorJoystick.getRawAxis(1), Constants.INPUT.OPERATOR_DEADBAND));
+								.handleDeadband(-operatorJoystick.getRawAxis(1),
+										Constants.INPUT.OPERATOR_DEADBAND));
 				if (armChangeModeButton.isPressed()) {
 					RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
 				}
