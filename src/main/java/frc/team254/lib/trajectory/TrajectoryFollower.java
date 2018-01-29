@@ -89,7 +89,7 @@ public class TrajectoryFollower {
 		return last_error_ < _DistTol && last_Ang_error < _AngTol;
 	}
 
-	private Segment interpolateSegments(Segment firstSeg, Segment lastSeg, double time){
+	/*private Segment interpolateSegments(Segment firstSeg, Segment lastSeg, double time){
 		double[][] kSegmentValues = {
 				{firstSeg.pos, firstSeg.vel, firstSeg.acc, firstSeg.jerk, firstSeg.heading, firstSeg.dt, firstSeg.x, firstSeg.y},
 				{lastSeg.pos, lastSeg.vel, lastSeg.acc, lastSeg.jerk, lastSeg.heading, lastSeg.dt, lastSeg.x, lastSeg.y},
@@ -99,7 +99,7 @@ pos = (((time - 1.075) * (4.491 - 4.439)) / (1.080 - 1.075)) + 4.439;
 
 
 
-	}
+} */
 
 
 }
