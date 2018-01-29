@@ -29,7 +29,13 @@ public final class Constants {
 		public static final int RIGHT_MASTER_ID = 5;
 		public static final int RIGHT_SLAVE_ID = 3;
 
-		public static final double WHEELBASE = 26;
+		public static final boolean LEFT_MASTER_INVERT = false;
+		public static final boolean LEFT_SLAVE_INVERT = false;
+		public static final boolean RIGHT_MASTER_INVERT = true;
+		public static final boolean RIGHT_SLAVE_INVERT = true;
+
+		public static final boolean LEFT_INVERT_SENSOR = true;
+		public static final boolean RIGHT_INVERT_SENSOR = true;
 
 		public static final int CODES_PER_REV = 4096;
 		public static final double WHEEL_DIAMETER = 6.25;
