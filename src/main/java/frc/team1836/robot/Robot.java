@@ -58,9 +58,9 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		try {
 			CrashTracker.logAutoInit();
-			System.out.println("Auto start timestamp: " + Timer.getFPGATimestamp());
-			mSubsystemManager.zeroSensors();
 			RobotState.mMatchState = MatchState.AUTO;
+			RobotState.mDriveControlState = DriveControlState.PATH_FOLLOWING;
+			mSubsystemManager.zeroSensors();
 			mEnabledLooper.start();
 			AutoChooser.startAuto();
 		} catch (Throwable t) {
@@ -73,9 +73,9 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		try {
 			CrashTracker.logTeleopInit();
-			mSubsystemManager.zeroSensors();
 			RobotState.mMatchState = MatchState.TELEOP;
 			RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
+			mSubsystemManager.zeroSensors();
 			mEnabledLooper.start();
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
