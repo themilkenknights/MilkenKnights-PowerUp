@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
@@ -13,7 +14,8 @@ import frc.team1836.robot.Constants.DRIVE;
 
 public class MkTalon {
 
-	private final TalonSRX masterTalon, slaveTalon;
+	private final TalonSRX masterTalon;
+	private final VictorSPX slaveTalon;
 	private int masterID, slaveID;
 	private TalonPosition side;
 
@@ -23,7 +25,7 @@ public class MkTalon {
 	 */
 	public MkTalon(int master, int slave, TalonPosition side) {
 		masterTalon = new TalonSRX(master);
-		slaveTalon = new TalonSRX(slave);
+		slaveTalon = new VictorSPX(slave);
 
 		this.side = side;
 
@@ -61,8 +63,6 @@ public class MkTalon {
 				Constants.kTimeoutMs);
 		masterTalon.setNeutralMode(NeutralMode.Coast);
 
-		slaveTalon
-				.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 5, Constants.kTimeoutMs);
 		slaveTalon.configNominalOutputForward(0, Constants.kTimeoutMs);
 		slaveTalon.configNominalOutputReverse(0, Constants.kTimeoutMs);
 		slaveTalon.configPeakOutputForward(1, Constants.kTimeoutMs);
@@ -144,6 +144,10 @@ public class MkTalon {
 
 	public void resetEncoder() {
 		masterTalon.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+	}
+
+	public void setSlave(ControlMode mode, double value) {
+		slaveTalon.set(mode, value);
 	}
 
 	public void testDrive() {

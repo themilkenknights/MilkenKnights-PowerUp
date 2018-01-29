@@ -39,8 +39,11 @@ public class Drive extends Subsystem {
 		navX = new MkGyro(SPI.Port.kMXP);
 		zeroGyro();
 
-		leftDrive.invert(true);
-		rightDrive.invert(false);
+		leftDrive.invertMaster(false);
+		rightDrive.invertMaster(true);
+		leftDrive.setSensorPhase(true);
+		rightDrive.setSensorPhase(true);
+		rightDrive.invertSlave(true);
 		mCSVWriter = new ReflectingCSVWriter<>(LOGGING.DRIVE_LOG_PATH,
 				DriveDebugOutput.class);
 		leftStatus = TrajectoryStatus.NEUTRAL;

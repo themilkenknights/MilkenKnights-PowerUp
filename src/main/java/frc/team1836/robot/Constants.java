@@ -24,15 +24,15 @@ public final class Constants {
 
 	public static class DRIVE {
 
-		public static final int LEFT_MASTER_ID = 1;
-		public static final int LEFT_SLAVE_ID = 2;
-		public static final int RIGHT_MASTER_ID = 8;
-		public static final int RIGHT_SLAVE_ID = 7;
+		public static final int LEFT_MASTER_ID = 10;
+		public static final int LEFT_SLAVE_ID = 8;
+		public static final int RIGHT_MASTER_ID = 5;
+		public static final int RIGHT_SLAVE_ID = 3;
 
 		public static final double WHEELBASE = 26;
 
 		public static final int CODES_PER_REV = 4096;
-		public static final double WHEEL_DIAMETER = 4;
+		public static final double WHEEL_DIAMETER = 6.25;
 		public static final double CIRCUMFERENCE = WHEEL_DIAMETER * PI;
 		public static final double TURN_IN_PLACE_CIRCUMFERENCE = 104.1;
 
@@ -46,7 +46,7 @@ public final class Constants {
 		public static final double DRIVE_FOLLOWER_A = 0;
 		public static final double DRIVE_FOLLOWER_ANG = 0;
 
-		public static final double RPM_MAX = 840.0;
+		public static final double RPM_MAX = 450.0;
 		public static final double MAX_VEL = (RPM_MAX / 60) * (CIRCUMFERENCE); // Inches per second
 		public static final double DRIVE_P = (0.1 * 1023.0) / (300.00);
 		public static final double DRIVE_I = DRIVE_P / 100.0;
@@ -101,9 +101,9 @@ public final class Constants {
 
 	public static class INPUT {
 
-		public static final double OPERATOR_DEADBAND = 0.085;
-		public static final double kThrottleDeadband = 0.085;
-		public static final double kWheelDeadband = 0.01;
+		public static final double OPERATOR_DEADBAND = 0.15;
+		public static final double kThrottleDeadband = 0.1;
+		public static final double kWheelDeadband = 0.1;
 	}
 
 

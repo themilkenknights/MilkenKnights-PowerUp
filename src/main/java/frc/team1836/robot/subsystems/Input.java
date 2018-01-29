@@ -5,6 +5,7 @@ import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.ArmControlState;
 import frc.team1836.robot.RobotState.ArmState;
+import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.util.drivers.MkJoystick;
 import frc.team1836.robot.util.drivers.MkJoystickButton;
 import frc.team1836.robot.util.loops.Loop;
@@ -85,7 +86,6 @@ public class Input extends Subsystem {
 				synchronized (Input.this) {
 					if (RobotState.mMatchState.equals(RobotState.MatchState.TELEOP)) {
 						updateDriveInput();
-						updateArmInput();
 					}
 				}
 			}
@@ -98,9 +98,17 @@ public class Input extends Subsystem {
 	}
 
 	public void updateDriveInput() {
-		Drive.getInstance().setVelocitySetpoint(DriveHelper
-				.cheesyDrive(-driverJoystick.getRawAxis(1),
-						-driverJoystick.getRawAxis(2) / 2, false));
+		if(RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT){
+			Drive.getInstance().setVelocitySetpoint(DriveHelper
+					.cheesyDrive((-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3))/2,
+							(-driverJoystick.getRawAxis(0))/2, false));
+		}
+		else if(RobotState.mDriveControlState == DriveControlState.OPEN_LOOP){
+			Drive.getInstance().setOpenLoop(DriveHelper
+					.cheesyDrive(-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3),
+							-driverJoystick.getRawAxis(0), false));
+		}
+
 	}
 
 	private void updateArmInput() {
