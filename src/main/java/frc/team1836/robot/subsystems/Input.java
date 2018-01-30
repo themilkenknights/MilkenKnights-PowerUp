@@ -34,7 +34,6 @@ public class Input extends Subsystem {
 	private final MkJoystickButton armChangeModeButton = operatorJoystick
 			.getButton(8, "Arm Change Mode");
 	private final MkJoystickButton armZeroButton = operatorJoystick.getButton(9, "Arm Zero");
-
 	private final MkJoystickButton intakeRollerIn = operatorJoystick
 			.getButton(10,
 					"Intake Roller In"); //Change the #10 to another number to change the button used
@@ -87,6 +86,7 @@ public class Input extends Subsystem {
 				synchronized (Input.this) {
 					if (RobotState.mMatchState.equals(RobotState.MatchState.TELEOP)) {
 						updateDriveInput();
+						updateArmInput();
 					}
 				}
 			}
@@ -132,20 +132,20 @@ public class Input extends Subsystem {
 					RobotState.mArmState = ArmState.FULL_EXTENSION;
 				}
 				if (armChangeModeButton.isPressed()) {
-					RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+//				/	RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
 				}
-				return;
+				break;
 			case ZEROING:
-				return;
+				break;
 			case OPEN_LOOP:
 				Arm.getInstance()
 						.setOpenLoop(MkMath
-								.handleDeadband(-operatorJoystick.getRawAxis(1),
+								.handleDeadband(operatorJoystick.getRawAxis(1),
 										Constants.INPUT.OPERATOR_DEADBAND));
 				if (armChangeModeButton.isPressed()) {
-					RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
+					//	RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
 				}
-				return;
+				break;
 			default:
 				System.out
 						.println("Unexpected arm control state: " + RobotState.mArmControlState);
@@ -153,9 +153,11 @@ public class Input extends Subsystem {
 		}
 
 		if (intakeRollerIn.isHeld()) {
-			Arm.getInstance().setIntakeRollers(ARM.INTAKE_ROLLER_SPEED);
-		} else if (intakeRollerOut.isHeld()) {
 			Arm.getInstance().setIntakeRollers(-ARM.INTAKE_ROLLER_SPEED);
+		} else if (intakeRollerOut.isHeld()) {
+			Arm.getInstance().setIntakeRollers(ARM.INTAKE_ROLLER_SPEED);
+		} else {
+			Arm.getInstance().setIntakeRollers(0);
 		}
 	}
 

@@ -1,7 +1,8 @@
 package frc.team1836.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
@@ -19,8 +20,8 @@ public class Arm extends Subsystem {
 
 	private final ReflectingCSVWriter<ArmDebugOutput> mCSVWriter;
 	private final MkTalon armTalon;
-	private final TalonSRX leftIntakeRollerTalon;
-	private final TalonSRX rightIntakeRollerTalon;
+	private final VictorSPX leftIntakeRollerTalon;
+	private final VictorSPX rightIntakeRollerTalon;
 	private ArmDebugOutput mDebug = new ArmDebugOutput();
 	private double setpoint = 0;
 
@@ -30,8 +31,12 @@ public class Arm extends Subsystem {
 		armTalon = new MkTalon(ARM.ARM_MASTER_TALON_ID, ARM.ARM_SLAVE_TALON_ID, TalonPosition.Arm);
 		armTalon.setSensorPhase(true);
 		armTalon.configMotionMagic();
-		leftIntakeRollerTalon = new TalonSRX(Constants.ARM.LEFT_INTAKE_ROLLER_ID);
-		rightIntakeRollerTalon = new TalonSRX(Constants.ARM.RIGHT_INTAKE_ROLLER_ID);
+		leftIntakeRollerTalon = new VictorSPX(Constants.ARM.LEFT_INTAKE_ROLLER_ID);
+		rightIntakeRollerTalon = new VictorSPX(Constants.ARM.RIGHT_INTAKE_ROLLER_ID);
+		rightIntakeRollerTalon.set(ControlMode.Follower, Constants.ARM.LEFT_INTAKE_ROLLER_ID);
+		leftIntakeRollerTalon.setInverted(true);
+		leftIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
+		rightIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
 	}
 
 	public static Arm getInstance() {
@@ -45,11 +50,8 @@ public class Arm extends Subsystem {
 
 	@Override
 	public void outputToSmartDashboard() {
-		SmartDashboard.putNumber("Arm Velocity", armTalon.getSpeed());
-		SmartDashboard.putNumber("Arm RPM", armTalon.getRPM());
+		armTalon.updateSmartDash();
 		SmartDashboard.putNumber("Arm Current", armTalon.getCurrentOutput());
-		SmartDashboard.putNumber("Arm PercentVBus", armTalon.getPercentOutput());
-		SmartDashboard.putNumber("Arm Position", armTalon.getPosition());
 		SmartDashboard.putNumber("Arm Setpoint", setpoint);
 	}
 
@@ -158,7 +160,6 @@ public class Arm extends Subsystem {
 
 	public void setIntakeRollers(double output) {
 		leftIntakeRollerTalon.set(ControlMode.PercentOutput, output);
-		rightIntakeRollerTalon.set(ControlMode.PercentOutput, output);
 	}
 
 	public static class ArmDebugOutput {

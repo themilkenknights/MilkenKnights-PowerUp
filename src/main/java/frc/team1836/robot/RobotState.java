@@ -4,8 +4,8 @@ public class RobotState {
 
 	public static SystemState mSystemState = SystemState.IDLE;
 	public static MatchState mMatchState = MatchState.DISABLED;
-	public static DriveControlState mDriveControlState = DriveControlState.OPEN_LOOP;
-	public static ArmControlState mArmControlState = ArmControlState.MOTION_MAGIC;
+	public static DriveControlState mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
+	public static ArmControlState mArmControlState = ArmControlState.OPEN_LOOP;
 	public static ArmState mArmState = ArmState.ZEROED;
 
 	// Intenal state of the system
