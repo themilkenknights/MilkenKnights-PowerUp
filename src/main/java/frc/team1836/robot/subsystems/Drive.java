@@ -95,6 +95,7 @@ public class Drive extends Subsystem {
 	 */
 	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);
+		RobotState.mDriveControlState = RobotState.DriveControlState.PATH_FOLLOWING;
 	}
 
 	public boolean isPathFinished() {

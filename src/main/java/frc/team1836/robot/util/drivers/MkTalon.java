@@ -18,6 +18,7 @@ public class MkTalon {
 	private final VictorSPX slaveTalon;
 	private int masterID, slaveID;
 	private TalonPosition side;
+	private double maxRPM = 0;
 
 	/**
 	 * @param master Talon with Encoder CAN ID
@@ -67,9 +68,8 @@ public class MkTalon {
 		slaveTalon.configNominalOutputReverse(0, Constants.kTimeoutMs);
 		slaveTalon.configPeakOutputForward(1, Constants.kTimeoutMs);
 		slaveTalon.configPeakOutputReverse(-1, Constants.kTimeoutMs);
-
-		slaveTalon.set(ControlMode.Follower, masterID);
 		slaveTalon.setNeutralMode(NeutralMode.Coast);
+		slaveTalon.follow(masterTalon);
 	}
 
 	public double getError() {
@@ -169,7 +169,11 @@ public class MkTalon {
 		SmartDashboard.putNumber(side.toString() + " Velocity", getSpeed());
 		SmartDashboard.putNumber(side.toString() + " Error", getError());
 		SmartDashboard.putNumber(side.toString() + " Output", getPercentOutput());
-		SmartDashboard.putNumber(side.toString() + " Position", getPosition());
+		SmartDashboard.putNumber(side.toString() + " Position", masterTalon.getSelectedSensorPosition(0));
+		if(getRPM() > maxRPM){
+			maxRPM = getRPM();
+		}
+		SmartDashboard.putNumber(side.toString() + " RPM", maxRPM);
 	}
 
 	public double getPercentOutput() {

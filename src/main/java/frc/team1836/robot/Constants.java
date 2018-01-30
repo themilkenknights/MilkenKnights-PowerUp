@@ -32,7 +32,7 @@ public final class Constants {
 		public static final boolean RIGHT_INVERT_SENSOR = true;
 
 		public static final int CODES_PER_REV = 4096;
-		public static final double WHEEL_DIAMETER = 6.25;
+		public static final double WHEEL_DIAMETER = 5.98;
 		public static final double CIRCUMFERENCE = WHEEL_DIAMETER * PI;
 		public static final double TURN_IN_PLACE_CIRCUMFERENCE = 104.1;
 
@@ -46,7 +46,8 @@ public final class Constants {
 		public static final double DRIVE_FOLLOWER_A = 0;
 		public static final double DRIVE_FOLLOWER_ANG = 0;
 
-		public static final double RPM_MAX = 450.0; //Observed Max Speed for Drivetrain in RPM
+	//	public static final double RPM_MAX = 455.0; //Observed Max Speed for Drivetrain in RPM
+	public static final double RPM_MAX = 350.0; //Observed Max Speed for Drivetrain in RPM
 		public static final double MAX_VEL = (RPM_MAX / 60) * (CIRCUMFERENCE); // Max Speed in Inches per second
 		public static final double DRIVE_P = (0.1 * 1023.0) / (300.00);
 		public static final double DRIVE_I = DRIVE_P / 100.0;
@@ -101,8 +102,8 @@ public final class Constants {
 
 	public static class INPUT {
 		public static final double OPERATOR_DEADBAND = 0.1;
-		public static final double kThrottleDeadband = 0.1;
-		public static final double kWheelDeadband = 0.1;
+		public static final double kThrottleDeadband = 0.0;
+		public static final double kWheelDeadband = 0.085;
 	}
 
 

@@ -13,7 +13,8 @@ public class DeserializePath {
 	public static Path getPathFromFile(String name) throws IOException {
 		TextFileDeserializer textFileDeserializer = new TextFileDeserializer();
 		try {
-			String filePath = "../../auto/paths/" + name + ".txt";
+			//../../auto/paths/" +
+			String filePath = name + ".txt";
 			String contents = new String(Files.readAllBytes(Paths.get(filePath)));
 			return textFileDeserializer.deserialize(contents);
 		} catch (Throwable t) {

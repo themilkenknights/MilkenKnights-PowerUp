@@ -35,6 +35,5 @@ public class DrivePathAction implements Action {
 	@Override
 	public void start() {
 		Drive.getInstance().setDrivePath(path, DRIVE.PATH_DIST_TOL, DRIVE.PATH_ANGLE_TOL);
-		RobotState.mDriveControlState = RobotState.DriveControlState.PATH_FOLLOWING;
 	}
 }

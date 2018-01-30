@@ -1,7 +1,6 @@
 package frc.team1836.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.subsystems.Drive;
@@ -59,7 +58,6 @@ public class Robot extends IterativeRobot {
 		try {
 			CrashTracker.logAutoInit();
 			RobotState.mMatchState = MatchState.AUTO;
-			RobotState.mDriveControlState = DriveControlState.PATH_FOLLOWING;
 			mSubsystemManager.zeroSensors();
 			mEnabledLooper.start();
 			AutoChooser.startAuto();

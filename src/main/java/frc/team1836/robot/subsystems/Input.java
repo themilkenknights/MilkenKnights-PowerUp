@@ -13,6 +13,7 @@ import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.math.MkMath;
 import frc.team1836.robot.util.other.DriveHelper;
 import frc.team1836.robot.util.other.Subsystem;
+import frc.team1836.robot.util.state.DriveSignal;
 
 public class Input extends Subsystem {
 
@@ -98,15 +99,14 @@ public class Input extends Subsystem {
 	}
 
 	public void updateDriveInput() {
-		if(RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT){
-			Drive.getInstance().setVelocitySetpoint(DriveHelper
-					.cheesyDrive((-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3))/2,
-							(-driverJoystick.getRawAxis(0))/2, false));
-		}
-		else if(RobotState.mDriveControlState == DriveControlState.OPEN_LOOP){
-			Drive.getInstance().setOpenLoop(DriveHelper
-					.cheesyDrive(-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3),
-							-driverJoystick.getRawAxis(0), false));
+		DriveSignal sig = DriveHelper
+				.cheesyDrive((-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3)),
+						(-driverJoystick.getRawAxis(0)), true);
+		if (RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
+			Drive.getInstance().setVelocitySetpoint(sig);
+			//	System.out.println("Rotate: " + -driverJoystick.getRawAxis(0) + "Throttle: " + -driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3));
+		} else if (RobotState.mDriveControlState == DriveControlState.OPEN_LOOP) {
+			Drive.getInstance().setOpenLoop(sig);
 		}
 
 	}

@@ -8,7 +8,7 @@ public class DriveHelper {
 	private static final double kThrottleDeadband = INPUT.kThrottleDeadband;
 	private static final double kWheelDeadband = INPUT.kWheelDeadband;
 
-	public static DriveSignal cheesyDrive(double throttle, double wheel, boolean isSlow) {
+	public static DriveSignal cheesyDrive(double throttle, double wheel, boolean cubeInputs) {
 
 		double leftMotorSpeed;
 		double rightMotorSpeed;
@@ -19,10 +19,11 @@ public class DriveHelper {
 		moveValue = handleDeadband(moveValue, kThrottleDeadband);
 		rotateValue = handleDeadband(rotateValue, kWheelDeadband);
 
-		if (isSlow) {
-			moveValue = moveValue / 2;
-			rotateValue = rotateValue / 2;
+		if (cubeInputs) {
+			rotateValue = rotateValue * rotateValue * rotateValue;
 		}
+		rotateValue = rotateValue /2;
+		moveValue = moveValue / 4;
 
 		if (moveValue > 0.0) {
 			if (rotateValue > 0.0) {
@@ -59,4 +60,5 @@ public class DriveHelper {
 	public static double handleDeadband(double val, double deadband) {
 		return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
 	}
+
 }
