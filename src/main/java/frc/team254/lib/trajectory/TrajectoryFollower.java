@@ -1,7 +1,6 @@
 package frc.team254.lib.trajectory;
 
 import frc.team1836.robot.util.state.TrajectoryStatus;
-import frc.team254.lib.trajectory.Trajectory.Segment;
 
 /**
  * PID + Feedforward controller for following a Trajectory.
