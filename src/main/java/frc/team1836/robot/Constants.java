@@ -46,13 +46,15 @@ public final class Constants {
 		public static final double DRIVE_FOLLOWER_A = 0;
 		public static final double DRIVE_FOLLOWER_ANG = 0;
 
-	//	public static final double RPM_MAX = 455.0; //Observed Max Speed for Drivetrain in RPM
-	public static final double RPM_MAX = 350.0; //Observed Max Speed for Drivetrain in RPM
-		public static final double MAX_VEL = (RPM_MAX / 60) * (CIRCUMFERENCE); // Max Speed in Inches per second
+		//	public static final double RPM_MAX = 455.0; //Observed Max Speed for Drivetrain in RPM
+		public static final double RPM_MAX = 350.0; //Observed Max Speed for Drivetrain in RPM
+		public static final double MAX_VEL =
+				(RPM_MAX / 60) * (CIRCUMFERENCE); // Max Speed in Inches per second
 		public static final double DRIVE_P = (0.1 * 1023.0) / (300.00);
 		public static final double DRIVE_I = DRIVE_P / 100.0;
 		public static final double DRIVE_D = 15 * DRIVE_P;
-		public static final double DRIVE_F = (1023.0 / ((RPM_MAX / 60.0 / 10.0) * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
+		public static final double DRIVE_F = (1023.0 / ((RPM_MAX / 60.0 / 10.0)
+				* 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
 
 		//Used for turn in place (Degrees) - Is converted to inches after a trajectory is generated
 		public static final double MAX_ANG_VEL = 2.5 * 360;
@@ -74,7 +76,8 @@ public final class Constants {
 
 
 		public static final double RPM_MAX = 19.5; //RPM Max of Arm
-		public static final double GEAR_RATIO = 22.0 / 336.0; //Gear Ratio between encoder and arm - Used to calulate arm position in degrees
+		public static final double GEAR_RATIO = 22.0
+				/ 336.0; //Gear Ratio between encoder and arm - Used to calulate arm position in degrees
 		public static final double MAX_RAW_VEL =
 				((RPM_MAX / 60.0 / 10.0) * 4096.0) / GEAR_RATIO; // Degrees per second
 		public static final double ARM_P = 1.0 * ((0.1 * 1023.0) / (300.00));
@@ -100,6 +103,7 @@ public final class Constants {
 	}
 
 	public static class INPUT {
+
 		public static final double OPERATOR_DEADBAND = 0.1;
 		public static final double kThrottleDeadband = 0.0;
 		public static final double kWheelDeadband = 0.085;

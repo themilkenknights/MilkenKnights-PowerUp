@@ -22,7 +22,7 @@ public class MkTalon {
 
 	/**
 	 * @param master Talon with Encoder CAN ID
-	 * @param slave Follower Talon CAN ID
+	 * @param slave  Follower Talon CAN ID
 	 */
 	public MkTalon(int master, int slave, TalonPosition side) {
 		masterTalon = new TalonSRX(master);
