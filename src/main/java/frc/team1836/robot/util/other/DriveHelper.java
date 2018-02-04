@@ -22,8 +22,7 @@ public class DriveHelper {
 		if (cubeInputs) {
 			rotateValue = rotateValue * rotateValue * rotateValue;
 		}
-		rotateValue = rotateValue /2;
-		moveValue = moveValue / 4;
+		rotateValue = rotateValue / 2;
 
 		if (moveValue > 0.0) {
 			if (rotateValue > 0.0) {

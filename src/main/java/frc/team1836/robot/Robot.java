@@ -1,7 +1,6 @@
 package frc.team1836.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.subsystems.Arm;
 import frc.team1836.robot.subsystems.Drive;
@@ -73,7 +72,6 @@ public class Robot extends IterativeRobot {
 		try {
 			CrashTracker.logTeleopInit();
 			RobotState.mMatchState = MatchState.TELEOP;
-			RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
 			mSubsystemManager.zeroSensors();
 			mEnabledLooper.start();
 		} catch (Throwable t) {

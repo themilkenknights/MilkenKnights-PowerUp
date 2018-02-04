@@ -94,8 +94,8 @@ public final class Constants {
 
 		public static final int LEFT_INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
 		public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID
-		public static final double INTAKE_ROLLER_SPEED = 0.75; //Intake Roller speed, reverse if it is the wrong direction
-
+		public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
+		public static final double INTAKE_OUT_ROLLER_SPEED=.40;
 
 	}
 
