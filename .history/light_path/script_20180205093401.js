@@ -661,7 +661,7 @@ public class ${title} extends Path {
     return str;
 }
 
-function getTXTString() {
+function getCSVString() {
     var title = $("#title").val().length > 0 ? $("#title").val() : "UntitledPath";
     var pathInit = "";
     for (var i = 0; i < waypoints.length; i++) {
@@ -681,18 +681,38 @@ function getTXTString() {
     var right_segments = '';
 
     eachTimeSlice(function (left, right, i) {
-        var lsegment = `${left.pos} ${left.vel} ${left.acc} ${left.jerk} ${left.heading} ${left.dt} ${left.x} ${left.y}
-`;
-        var rsegment = `${right.pos} ${right.vel} ${right.acc} ${right.jerk} ${right.heading} ${right.dt} ${right.x} ${right.y}
-`;
+        var lsegment = `new Trajectory.Segment(${left.pos}, ${left.vel}, ${left.acc}, ${left.jerk}, ${left.heading}, ${left.dt}, ${left.x}, ${left.y});
+        `;
+        var rsegment = `new Trajectory.Segment(${right.pos}, ${right.vel}, ${right.acc}, ${right.jerk}, ${right.heading}, ${right.dt}, ${right.x}, ${right.y});
+        `;
         left_segments += lsegment;
         right_segments += rsegment;
     });
 
-    var str = 
-`${title}  
-${num_elements}
-${left_segments}${right_segments}`;
+    var str = `package frc.team1836.robot.auto.paths;
+
+import frc.team254.lib.trajectory.Path;
+import frc.team254.lib.trajectory.Trajectory;
+
+public class ${title} extends Path {
+
+    private final Trajectory kLeftWheel = new Trajectory( new Trajectory.Segment[] {
+        ${left_segments}
+    });
+
+    private final Trajectory kRightWheel = new Trajectory( new Trajectory.Segment[] {
+        ${right_segments}
+    });
+
+    public ${title}() {
+        this.name_ = "${title};
+        this.go_left_pair_ = new Trajectory.Pair(kLeftWheel, kRightWheel);
+      }
+    
+    }
+
+        
+`;
     return str;
 }
 
@@ -707,13 +727,13 @@ function exportData() {
     });
 }
 
-function exportTXT() {
+function exportData() {
     update();
     var title = $("#title").val().length > 0 ? $("#title").val() : "UntitledPath";
-    var blob = new Blob([getTXTString()], {
+    var blob = new Blob([getDataString()], {
         type: "text/plain;charset=utf-8"
     });
-    saveAs(blob, title + ".txt", {
+    saveAs(blob, title + ".java", {
         type: "text/plain;charset=utf-8"
     });
 }

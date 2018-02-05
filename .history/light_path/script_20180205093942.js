@@ -682,17 +682,18 @@ function getTXTString() {
 
     eachTimeSlice(function (left, right, i) {
         var lsegment = `${left.pos} ${left.vel} ${left.acc} ${left.jerk} ${left.heading} ${left.dt} ${left.x} ${left.y}
-`;
+        `;
         var rsegment = `${right.pos} ${right.vel} ${right.acc} ${right.jerk} ${right.heading} ${right.dt} ${right.x} ${right.y}
-`;
+        `;
         left_segments += lsegment;
         right_segments += rsegment;
     });
 
-    var str = 
-`${title}  
-${num_elements}
-${left_segments}${right_segments}`;
+    var str = `${title} 
+        ${num_elements}
+        ${left_segments}
+        ${right_segments}
+`;
     return str;
 }
 

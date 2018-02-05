@@ -622,16 +622,19 @@ function getDataString() {
     var isReversed = $("#isReversed").is(":checked");
     var num_elements = path.getLeftWheelTrajectory().getNumSegments();
 
-    var left_segments = '';
-    var right_segments = '';
+    var set_segments = "";
 
     eachTimeSlice(function (left, right, i) {
-        var lsegment = `new Trajectory.Segment(${left.pos}, ${left.vel}, ${left.acc}, ${left.jerk}, ${left.heading}, ${left.dt}, ${left.x}, ${left.y});
-        `;
-        var rsegment = `new Trajectory.Segment(${right.pos}, ${right.vel}, ${right.acc}, ${right.jerk}, ${right.heading}, ${right.dt}, ${right.x}, ${right.y});
-        `;
-        left_segments += lsegment;
-        right_segments += rsegment;
+        var segment = `
+        segment = new Trajectory.Segment(${left.pos}, ${left.vel}, ${left.acc}, ${left.jerk}, ${left.heading}, 
+        ${left.dt}, ${left.x}, ${left.y});
+        left.setSegment(${i}, segment);
+
+        segment = new Trajectory.Segment(${right.pos}, ${right.vel}, ${right.acc}, ${right.jerk}, ${right.heading}, ${right.dt}, ${right.x}, ${right.y});
+        right.setSegment(${i}, segment);
+
+`;
+        set_segments += segment;
     });
 
     var str = `package frc.team1836.robot.auto.paths;
@@ -642,11 +645,11 @@ import frc.team254.lib.trajectory.Trajectory;
 public class ${title} extends Path {
 
     private final Trajectory kLeftWheel = new Trajectory( new Trajectory.Segment[] {
-        ${left_segments}
+        ${set_segments}
     });
 
     private final Trajectory kRightWheel = new Trajectory( new Trajectory.Segment[] {
-        ${right_segments}
+
     });
 
     public ${title}() {
@@ -661,41 +664,6 @@ public class ${title} extends Path {
     return str;
 }
 
-function getTXTString() {
-    var title = $("#title").val().length > 0 ? $("#title").val() : "UntitledPath";
-    var pathInit = "";
-    for (var i = 0; i < waypoints.length; i++) {
-        pathInit += "        " + waypoints[i].toString() + "\n";
-    }
-    var startPoint =
-        "new Translation2d(" +
-        waypoints[0].position.x +
-        ", " +
-        waypoints[0].position.y +
-        ")";
-    var importStr = "WAYPOINT_DATA: " + JSON.stringify(waypoints);
-    var isReversed = $("#isReversed").is(":checked");
-    var num_elements = path.getLeftWheelTrajectory().getNumSegments();
-
-    var left_segments = '';
-    var right_segments = '';
-
-    eachTimeSlice(function (left, right, i) {
-        var lsegment = `${left.pos} ${left.vel} ${left.acc} ${left.jerk} ${left.heading} ${left.dt} ${left.x} ${left.y}
-`;
-        var rsegment = `${right.pos} ${right.vel} ${right.acc} ${right.jerk} ${right.heading} ${right.dt} ${right.x} ${right.y}
-`;
-        left_segments += lsegment;
-        right_segments += rsegment;
-    });
-
-    var str = 
-`${title}  
-${num_elements}
-${left_segments}${right_segments}`;
-    return str;
-}
-
 function exportData() {
     update();
     var title = $("#title").val().length > 0 ? $("#title").val() : "UntitledPath";
@@ -703,17 +671,6 @@ function exportData() {
         type: "text/plain;charset=utf-8"
     });
     saveAs(blob, title + ".java", {
-        type: "text/plain;charset=utf-8"
-    });
-}
-
-function exportTXT() {
-    update();
-    var title = $("#title").val().length > 0 ? $("#title").val() : "UntitledPath";
-    var blob = new Blob([getTXTString()], {
-        type: "text/plain;charset=utf-8"
-    });
-    saveAs(blob, title + ".txt", {
         type: "text/plain;charset=utf-8"
     });
 }
@@ -768,7 +725,8 @@ function getColorForSpeed(speed) {
 
 function hexToRGB(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? [
+    return result ?
+        [
             parseInt(result[1], 16),
             parseInt(result[2], 16),
             parseInt(result[3], 16)
