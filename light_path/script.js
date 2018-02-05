@@ -565,7 +565,7 @@ function importData() {
             waypoints = [];
             $("tbody#points").empty();
             jd.forEach(wpd => {
-                wpd.theta = Math.round(100*wpd.theta * (180 / Math.PI))/100;
+                wpd.theta = Math.round(100 * wpd.theta * (180 / Math.PI)) / 100;
                 let wp = new Waypoint(
                     new Translation2d(wpd.position.x, wpd.position.y),
                     wpd.theta,
@@ -688,8 +688,8 @@ function getTXTString() {
         right_segments += rsegment;
     });
 
-    var str = 
-`${title}  
+    var str =
+        `${title}  
 ${num_elements}
 ${left_segments}${right_segments}`;
     return str;
