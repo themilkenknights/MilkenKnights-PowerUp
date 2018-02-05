@@ -565,10 +565,10 @@ function importData() {
             waypoints = [];
             $("tbody#points").empty();
             jd.forEach(wpd => {
+                wpd.theta = wpd.theta * (180 / Math.PI);
                 let wp = new Waypoint(
                     new Translation2d(wpd.position.x, wpd.position.y),
-                    wpd.speed,
-                    wpd.radius,
+                    wpd.theta,
                     wpd.comment
                 );
                 // console.log(wp);
@@ -581,10 +581,7 @@ function importData() {
                     wp.position.y +
                     "'></td>" +
                     "<td><input value='" +
-                    wp.radius +
-                    "'></td>" +
-                    "<td><input value='" +
-                    wp.speed +
+                    wp.theta +
                     "'></td>" +
                     "<td class='comments'><input placeholder='Comments' value='" +
                     wp.comment +
@@ -653,7 +650,9 @@ public class ${title} extends Path {
         this.name_ = "${title};
         this.go_left_pair_ = new Trajectory.Pair(kLeftWheel, kRightWheel);
       }
-    
+      // ${importStr}
+      // IS_REVERSED: ${isReversed}
+      // FILE_NAME: ${title}
     }
 
         
