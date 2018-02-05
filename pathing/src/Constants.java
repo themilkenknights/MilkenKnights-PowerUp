@@ -14,11 +14,11 @@ public final class Constants {
 
 	static {
 		centerLeftScale.addWaypoint(new Waypoint(0, 0, 0));
-		centerLeftScale.addWaypoint(new Waypoint(SCALE_X, SCALE_Y, 0));
+		centerLeftScale.addWaypoint(new Waypoint(SCALE_X, -SCALE_Y, 0));
 		paths.add(new Pair<>("CenterLeftScale", centerLeftScale));
 
 		centerRightScale.addWaypoint(new Waypoint(0, 0, 0));
-		centerRightScale.addWaypoint(new Waypoint(SCALE_X, -SCALE_Y, 0));
+		centerRightScale.addWaypoint(new Waypoint(SCALE_X, SCALE_Y, 0));
 		paths.add(new Pair<>("CenterRightScale", centerRightScale));
 	}
 

@@ -12,9 +12,12 @@ public class DeserializePath {
 	public static Path getPathFromFile(String name) throws IOException {
 		TextFileDeserializer textFileDeserializer = new TextFileDeserializer();
 		try {
-			String filePath = name + ".txt";
+			String filePath = "/home/lvuser/paths/" + name + ".txt";
+			System.out.println(filePath);
 			String contents = new String(Files.readAllBytes(Paths.get(filePath)));
-			return textFileDeserializer.deserialize(contents);
+			Path path = textFileDeserializer.deserialize(contents);
+			path.goRight();
+			return path;
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
 			throw t;

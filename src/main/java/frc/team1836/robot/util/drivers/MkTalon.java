@@ -22,7 +22,7 @@ public class MkTalon {
 
 	/**
 	 * @param master Talon with Encoder CAN ID
-	 * @param slave  Follower Talon CAN ID
+	 * @param slave Follower Talon CAN ID
 	 */
 	public MkTalon(int master, int slave, TalonPosition side) {
 		masterTalon = new TalonSRX(master);
@@ -86,7 +86,6 @@ public class MkTalon {
 
 	public synchronized double getPosition() {
 		if (side == TalonPosition.Arm) {
-			//System.out.println(masterTalon.getSelectedSensorPosition(Constants.kPIDLoopIdx));
 			return nativeUnitsToDegrees(
 					masterTalon.getSelectedSensorPosition(Constants.kPIDLoopIdx));
 		}
@@ -174,9 +173,11 @@ public class MkTalon {
 	public void updateSmartDash() {
 		SmartDashboard.putNumber(side.toString() + " Velocity", getSpeed());
 		SmartDashboard.putNumber(side.toString() + " Error", getError());
-		SmartDashboard.putNumber(side.toString() + " Output", getPercentOutput());
 		SmartDashboard
-				.putNumber(side.toString() + " Position", masterTalon.getSelectedSensorPosition(0));
+				.putNumber(side.toString() + " Master Output", masterTalon.getMotorOutputPercent());
+		SmartDashboard.putNumber(side.toString() + " Slave Output", slaveTalon.getMotorOutputPercent());
+		SmartDashboard
+				.putNumber(side.toString() + " Position", getPosition());
 		if (getRPM() > maxRPM) {
 			maxRPM = getRPM();
 		}

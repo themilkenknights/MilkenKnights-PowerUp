@@ -10,11 +10,7 @@ public class MkGyro extends AHRS {
 	}
 
 	public double getFullYaw() {
-		if (getYaw() <= 0) {
-			return Math.abs(getYaw());
-		} else {
-			return 360 - Math.abs(getYaw());
-		}
+		return getYaw() > 0 ? getYaw() - 360 : getYaw();
 	}
 
 }

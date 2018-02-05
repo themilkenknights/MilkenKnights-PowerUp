@@ -31,7 +31,7 @@ public final class Constants {
 		public static final boolean LEFT_INVERT_SENSOR = true;
 		public static final boolean RIGHT_INVERT_SENSOR = true;
 
-		public static final int CODES_PER_REV = 4096;
+		public static final double CODES_PER_REV = 4096.0;
 		public static final double WHEEL_DIAMETER = 5.98;
 		public static final double CIRCUMFERENCE = WHEEL_DIAMETER * PI;
 		public static final double TURN_IN_PLACE_CIRCUMFERENCE = 104.1;
@@ -42,12 +42,11 @@ public final class Constants {
 		public static final double PATH_DIST_TOL = 0.25;
 		public static final double PATH_ANGLE_TOL = 0.25;
 
-		public static final double DRIVE_FOLLOWER_P = 4;
+		public static final double DRIVE_FOLLOWER_P = 0;
 		public static final double DRIVE_FOLLOWER_A = 0;
-		public static final double DRIVE_FOLLOWER_ANG = 0;
+		public static final double DRIVE_FOLLOWER_ANG = 1.1;
 
-		//	public static final double RPM_MAX = 455.0; //Observed Max Speed for Drivetrain in RPM
-		public static final double RPM_MAX = 350.0; //Observed Max Speed for Drivetrain in RPM
+		public static final double RPM_MAX = 475.0; //Observed Max Speed for Drivetrain in RPM
 		public static final double MAX_VEL =
 				(RPM_MAX / 60) * (CIRCUMFERENCE); // Max Speed in Inches per second
 		public static final double DRIVE_P = (0.1 * 1023.0) / (300.00);
@@ -97,8 +96,8 @@ public final class Constants {
 
 		public static final int LEFT_INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
 		public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID
-		public static final double INTAKE_ROLLER_SPEED = 0.75; //Intake Roller speed, reverse if it is the wrong direction
-
+		public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
+		public static final double INTAKE_OUT_ROLLER_SPEED=.40;
 
 	}
 

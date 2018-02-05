@@ -23,7 +23,6 @@ public class DriveHelper {
 			rotateValue = rotateValue * rotateValue * rotateValue;
 		}
 		rotateValue = rotateValue / 2;
-		moveValue = moveValue / 4;
 
 		if (moveValue > 0.0) {
 			if (rotateValue > 0.0) {

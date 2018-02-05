@@ -1,7 +1,7 @@
 package frc.team1836.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants.DRIVE;
 import frc.team1836.robot.Constants.LOGGING;
@@ -36,7 +36,7 @@ public class Drive extends Subsystem {
 		rightDrive = new MkTalon(DRIVE.RIGHT_MASTER_ID, DRIVE.RIGHT_SLAVE_ID, TalonPosition.Right);
 		leftDrive.setPIDF();
 		rightDrive.setPIDF();
-		navX = new MkGyro(SPI.Port.kMXP);
+		navX = new MkGyro(Port.kMXP);
 		zeroGyro();
 
 		leftDrive.invertMaster(DRIVE.LEFT_MASTER_INVERT);
@@ -89,9 +89,9 @@ public class Drive extends Subsystem {
 	}
 
 	/**
-	 * @param path     Robot Path
+	 * @param path Robot Path
 	 * @param dist_tol Position Tolerance for Path Follower
-	 * @param ang_tol  Robot Angle Tolerance for Path Follower (Degrees)
+	 * @param ang_tol Robot Angle Tolerance for Path Follower (Degrees)
 	 */
 	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);
@@ -99,7 +99,9 @@ public class Drive extends Subsystem {
 	}
 
 	public boolean isPathFinished() {
-		if (pathFollower.getFinished() && pathFollower.onTarget()) {
+		if (pathFollower.getFinished()) {
+			setVelocitySetpoint(DriveSignal.NEUTRAL);
+			RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
 			pathFollower = null;
 			return true;
 		}
@@ -126,10 +128,10 @@ public class Drive extends Subsystem {
 	private void updatePathFollower() {
 		TrajectoryStatus leftUpdate = pathFollower
 				.getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(),
-						Math.toRadians(navX.getFullYaw()));
+						navX.getFullYaw());
 		TrajectoryStatus rightUpdate = pathFollower
 				.getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
-						Math.toRadians(navX.getFullYaw()));
+						navX.getFullYaw());
 
 		leftStatus = leftUpdate;
 		rightStatus = rightUpdate;
@@ -145,19 +147,25 @@ public class Drive extends Subsystem {
 	public void outputToSmartDashboard() {
 		leftDrive.updateSmartDash();
 		rightDrive.updateSmartDash();
-		SmartDashboard.putNumber("NavX Velocity", navX.getRawGyroZ());
-		SmartDashboard.putNumber("NavX Yaw", navX.getFullYaw());
 		SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
 		SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
 		SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
+
 		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
+			SmartDashboard.putNumber("NavX Velocity", navX.getRawGyroZ());
+			SmartDashboard.putNumber("NavX Full Yaw", navX.getFullYaw());
+			SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
+			SmartDashboard.putNumber("NavX Angle Yaw", navX.getAngle());
+			SmartDashboard.putNumber("NavX Fused Yaw", navX.getFusedHeading());
 			SmartDashboard.putNumber("Desired Heading", leftStatus.getSeg().heading);
 			SmartDashboard.putNumber("Heading Error", leftStatus.getAngError());
 			SmartDashboard.putNumber("Left Desired Position", leftStatus.getSeg().pos);
+			SmartDashboard.putNumber("Left Theoretical Vel", leftStatus.getSeg().vel);
 			SmartDashboard.putNumber("Left Position Error", leftStatus.getPosError());
 			SmartDashboard.putNumber("Left Desired Velocity Error", leftStatus.getVelError());
 			SmartDashboard.putNumber("Right Desired Position", leftStatus.getSeg().pos);
 			SmartDashboard.putNumber("Right Position Error", leftStatus.getPosError());
+			SmartDashboard.putNumber("Right Theoretical Vel", rightStatus.getSeg().vel);
 			SmartDashboard.putNumber("Right Desired Velocity Error", leftStatus.getVelError());
 		}
 	}
