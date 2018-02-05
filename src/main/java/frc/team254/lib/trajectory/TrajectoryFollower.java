@@ -53,6 +53,11 @@ public class TrajectoryFollower {
 			Trajectory.Segment segment = profile_.getSegment(current_segment);
 			double error = segment.pos - dist;
 			double angError = segment.heading - heading;
+			if (angError > 180) {
+				angError = angError - 360;
+			} else if (angError < -180) {
+				angError = angError + 360;
+			}
 			double velError = segment.vel - vel;
 			double desired = (angError * kAng_) + segment.vel;
 			double output = desired + (kp_ * error) + (ka_ * segment.acc);
@@ -61,8 +66,9 @@ public class TrajectoryFollower {
 			last_Ang_error = angError;
 			current_heading = segment.heading;
 			current_segment++;
+			System.out.println(error);
 			return new TrajectoryStatus(segment, error, velError,
-					Math.toDegrees(angError), output);
+					angError, output);
 		} else {
 			return TrajectoryStatus.NEUTRAL;
 		}

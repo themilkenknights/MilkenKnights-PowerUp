@@ -1,6 +1,5 @@
 package frc.team1836.robot.subsystems;
 
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants.LOGGING;
 import frc.team1836.robot.RobotState;
@@ -12,7 +11,7 @@ import frc.team1836.robot.util.other.Subsystem;
 public class Superstructure extends Subsystem {
 
 	private final ReflectingCSVWriter<SupertructureDebugOutput> mCSVWriter;
-	PowerDistributionPanel pdp = new PowerDistributionPanel();
+	//	PowerDistributionPanel pdp = new PowerDistributionPanel();
 	private SupertructureDebugOutput mDebug = new SupertructureDebugOutput();
 
 	public Superstructure() {
@@ -46,9 +45,9 @@ public class Superstructure extends Subsystem {
 
 	@Override
 	public void checkSystem() {
-		if (pdp.getVoltage() < 10) {
+		/*if (pdp.getVoltage() < 10) {
 			System.out.println("FAILED - PDP VOLTAGE LOW");
-		}
+		}*/
 	}
 
 	@Override
@@ -58,7 +57,7 @@ public class Superstructure extends Subsystem {
 			@Override
 			public void onStart(double timestamp) {
 				synchronized (Superstructure.this) {
-					pdp.clearStickyFaults();
+					//pdp.clearStickyFaults();
 				}
 			}
 
@@ -72,9 +71,9 @@ public class Superstructure extends Subsystem {
 							break;
 					}
 					mDebug.SuperstructureState = RobotState.mSystemState.toString();
-					mDebug.PDPVoltage = pdp.getVoltage();
-					mDebug.PDPTotalPower = pdp.getTotalPower();
-					mDebug.PDPTemp = pdp.getTemperature();
+					mDebug.PDPVoltage = 0;
+					mDebug.PDPTotalPower = 0;
+					mDebug.PDPTemp = 0;
 					mDebug.timestamp = timestamp;
 					mCSVWriter.add(mDebug);
 				}

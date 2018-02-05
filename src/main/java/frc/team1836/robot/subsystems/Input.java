@@ -86,7 +86,7 @@ public class Input extends Subsystem {
 				synchronized (Input.this) {
 					if (RobotState.mMatchState.equals(RobotState.MatchState.TELEOP)) {
 						updateDriveInput();
-						updateArmInput();
+						//updateArmInput();
 					}
 				}
 			}

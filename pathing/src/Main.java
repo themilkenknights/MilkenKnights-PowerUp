@@ -48,10 +48,10 @@ public class Main {
 		}
 		TrajectoryGenerator.Config config = new TrajectoryGenerator.Config();
 		config.dt = 0.005;
-		config.max_acc = 125;
-		config.max_jerk = 40;
-		config.max_vel = 175;
-		final double kWheelbaseWidth = 30;
+		config.max_acc = 80;
+		config.max_jerk = 50;
+		config.max_vel = 140;
+		final double kWheelbaseWidth = 22.375;
 
 		for (Pair way : Constants.paths) {
 			saveTraj((WaypointSequence) way.getValue(), config, kWheelbaseWidth, (String) way.getKey(),

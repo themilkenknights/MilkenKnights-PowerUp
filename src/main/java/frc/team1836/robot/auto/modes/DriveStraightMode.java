@@ -11,7 +11,7 @@ public class DriveStraightMode extends AutoModeBase {
 	@Override
 	protected void routine() throws AutoModeEndedException {
 		try {
-			runAction(new DrivePathAction(DeserializePath.getPathFromFile("StraightPath")));
+			runAction(new DrivePathAction(DeserializePath.getPathFromFile("CenterRightScale")));
 		} catch (IOException e) {
 			System.err.println("Caught IOException: " + e.getMessage());
 		}
