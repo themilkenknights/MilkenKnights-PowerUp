@@ -42,11 +42,11 @@ public final class Constants {
 		public static final double PATH_DIST_TOL = 0.25;
 		public static final double PATH_ANGLE_TOL = 0.25;
 
-		public static final double DRIVE_FOLLOWER_P = 0;
+		public static final double DRIVE_FOLLOWER_P = 5;
 		public static final double DRIVE_FOLLOWER_A = 0;
-		public static final double DRIVE_FOLLOWER_ANG = 1.1;
+		public static final double DRIVE_FOLLOWER_ANG = 0;
 
-		public static final double RPM_MAX = 475.0; //Observed Max Speed for Drivetrain in RPM
+		public static final double RPM_MAX = 473.0; //Observed Max Speed for Drivetrain in RPM
 		public static final double MAX_VEL =
 				(RPM_MAX / 60) * (CIRCUMFERENCE); // Max Speed in Inches per second
 		public static final double DRIVE_P = (0.1 * 1023.0) / (300.00);
@@ -105,7 +105,7 @@ public final class Constants {
 
 		public static final double OPERATOR_DEADBAND = 0.1;
 		public static final double kThrottleDeadband = 0.0;
-		public static final double kWheelDeadband = 0.085;
+		public static final double kWheelDeadband = 0.0;
 	}
 
 

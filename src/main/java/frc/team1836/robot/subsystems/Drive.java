@@ -145,18 +145,15 @@ public class Drive extends Subsystem {
 
 	@Override
 	public void outputToSmartDashboard() {
-		leftDrive.updateSmartDash();
-		rightDrive.updateSmartDash();
-		SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
-		SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
-		SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
 
+		SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
+		SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
 		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
-			SmartDashboard.putNumber("NavX Velocity", navX.getRawGyroZ());
+			leftDrive.updateSmartDash();
+			rightDrive.updateSmartDash();
+			SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
+			SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
 			SmartDashboard.putNumber("NavX Full Yaw", navX.getFullYaw());
-			SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
-			SmartDashboard.putNumber("NavX Angle Yaw", navX.getAngle());
-			SmartDashboard.putNumber("NavX Fused Yaw", navX.getFusedHeading());
 			SmartDashboard.putNumber("Desired Heading", leftStatus.getSeg().heading);
 			SmartDashboard.putNumber("Heading Error", leftStatus.getAngError());
 			SmartDashboard.putNumber("Left Desired Position", leftStatus.getSeg().pos);

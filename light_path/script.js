@@ -7,8 +7,8 @@ var width = 1656; //pixels
 var height = 823; //pixels
 var fieldWidth = 652; // in inches
 var fieldHeight = 324; // in inches
-var robotWidth = 28; //inches
-var robotHeight = 33; //inches
+var robotWidth = 27; //inches
+var robotHeight = 32.25; //inches
 var pointRadius = 5;
 var turnRadius = 30;
 var kEpsilon = 1e-9;
@@ -623,9 +623,9 @@ function getDataString() {
     var right_segments = '';
 
     eachTimeSlice(function (left, right, i) {
-        var lsegment = `new Trajectory.Segment(${left.pos}, ${left.vel}, ${left.acc}, ${left.jerk}, ${left.heading}, ${left.dt}, ${left.x}, ${left.y});
+        var lsegment = `new Trajectory.Segment(${left.pos}, ${left.vel}, ${left.acc}, ${left.jerk}, ${left.heading}, ${left.dt}, ${left.x}, ${left.y}),
         `;
-        var rsegment = `new Trajectory.Segment(${right.pos}, ${right.vel}, ${right.acc}, ${right.jerk}, ${right.heading}, ${right.dt}, ${right.x}, ${right.y});
+        var rsegment = `new Trajectory.Segment(${right.pos}, ${right.vel}, ${right.acc}, ${right.jerk}, ${right.heading}, ${right.dt}, ${right.x}, ${right.y}),
         `;
         left_segments += lsegment;
         right_segments += rsegment;
@@ -647,7 +647,7 @@ public class ${title} extends Path {
     });
 
     public ${title}() {
-        this.name_ = "${title};
+        this.name_ = "${title}";
         this.go_left_pair_ = new Trajectory.Pair(kLeftWheel, kRightWheel);
       }
       // ${importStr}
