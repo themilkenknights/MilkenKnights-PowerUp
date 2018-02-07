@@ -48,22 +48,6 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 
 	Contains all paths that the robot drives during autonomous mode. Each path is pregenerated on the Driver Station to save compute time on the RoboRIO.
 
-## TODO
-
-- [x] Get Velocity PID Working
-- [X] Get 1D Trajectories Working
-- [X] Tune 2D Trajectory Follower PID
-- [X] Motion Magic for Arm
-- [ ] Find effective wheelbase and wheel diameter
-- [ ] Tune cascaded PID for path following
-- [ ] Get CSV Logging working on usb drives
-- [ ] Add error-checking for CAN Devices
-  - [ ] Ensure Mag Encoders can be unplugged during a match and have Drive and Arm switch to Open Loop
-- [ ] Field-Centric Turn In Place
-- [ ] Update Feedforward on the fly (Waiting on CTRE Update)
-- [ ] Limelight Cube Tracking for Auto
-
-
 ## General Info
 - UNLESS OTHERWISE NOTED BY RAW/NATIVE/RPM, ALL POSITION UNITS ARE IN INCHES and DEGREES
 - ALL VELOCITY UNITS ARE IN INCHES PER SECOND and DEGREES PER SECOND
