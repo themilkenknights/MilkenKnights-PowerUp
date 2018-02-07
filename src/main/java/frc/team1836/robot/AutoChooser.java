@@ -64,7 +64,7 @@ public class AutoChooser {
 		}
 		mAutoModeExecuter = null;
 		mAutoModeExecuter = new AutoModeExecuter();
-		mAutoModeExecuter.setAutoMode(new DriveStraightMode());
+		mAutoModeExecuter.setAutoMode(getAutoMode());
 		mAutoModeExecuter.start();
 	}
 
