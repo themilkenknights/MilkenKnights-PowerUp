@@ -145,12 +145,11 @@ public class Drive extends Subsystem {
 
 	@Override
 	public void outputToSmartDashboard() {
-
+		leftDrive.updateSmartDash();
+		rightDrive.updateSmartDash();
 		SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
 		SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
 		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
-			leftDrive.updateSmartDash();
-			rightDrive.updateSmartDash();
 			SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
 			SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
 			SmartDashboard.putNumber("NavX Full Yaw", navX.getFullYaw());

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.Constants.DRIVE;
+import frc.team1836.robot.util.math.MkMath;
 
 public class MkTalon {
 
@@ -41,6 +42,18 @@ public class MkTalon {
 		masterTalon.config_kP(Constants.kPIDLoopIdx, DRIVE.DRIVE_P, Constants.kTimeoutMs);
 		masterTalon.config_kI(Constants.kPIDLoopIdx, DRIVE.DRIVE_I, Constants.kTimeoutMs);
 		masterTalon.config_kD(Constants.kPIDLoopIdx, DRIVE.DRIVE_D, Constants.kTimeoutMs);
+	}
+
+	public void setSoftLimit(double forwardLimit, double reverseLimit) {
+		masterTalon.configForwardSoftLimitThreshold((int) MkMath.angleToNativeUnits(forwardLimit), Constants.kTimeoutMs);
+		masterTalon.configReverseSoftLimitThreshold((int) MkMath.angleToNativeUnits(reverseLimit), Constants.kTimeoutMs);
+		masterTalon.configForwardSoftLimitEnable(true, Constants.kTimeoutMs);
+		masterTalon.configReverseSoftLimitEnable(true, Constants.kTimeoutMs);
+	}
+
+	public void setLimitEnabled(boolean enabled){
+		masterTalon.configForwardSoftLimitEnable(enabled, Constants.kTimeoutMs);
+		masterTalon.configReverseSoftLimitEnable(enabled, Constants.kTimeoutMs);
 	}
 
 	public void configMotionMagic() {
@@ -75,7 +88,7 @@ public class MkTalon {
 	public double getError() {
 		if (side == TalonPosition.Arm) {
 			return nativeUnitsToDegrees(
-					masterTalon.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
+					masterTalon.getClosedLoopError(Constants.kPIDLoopIdx));
 		}
 		return nativeUnitsToInches(masterTalon.getClosedLoopError(Constants.kPIDLoopIdx));
 	}
@@ -126,6 +139,7 @@ public class MkTalon {
 	public double nativeUnitsToDegrees(double raw) {
 		return ((raw / 4096.0) * 360.0) * ARM.GEAR_RATIO;
 	}
+
 
 	private double nativeUnitsPer100MstoInchesPerSec(double vel) {
 		return 10 * nativeUnitsToInches(vel);

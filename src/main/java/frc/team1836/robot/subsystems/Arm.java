@@ -8,6 +8,7 @@ import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.ArmControlState;
+import frc.team1836.robot.RobotState.ArmState;
 import frc.team1836.robot.util.drivers.MkTalon;
 import frc.team1836.robot.util.drivers.MkTalon.TalonPosition;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
@@ -31,6 +32,7 @@ public class Arm extends Subsystem {
 		armTalon = new MkTalon(ARM.ARM_MASTER_TALON_ID, ARM.ARM_SLAVE_TALON_ID, TalonPosition.Arm);
 		armTalon.setSensorPhase(true);
 		armTalon.configMotionMagic();
+		armTalon.setSoftLimit(ARM.ARM_FORWARD_LIMIT, ARM.ARM_REVERSE_LIMIT);
 		leftIntakeRollerTalon = new VictorSPX(Constants.ARM.LEFT_INTAKE_ROLLER_ID);
 		rightIntakeRollerTalon = new VictorSPX(Constants.ARM.RIGHT_INTAKE_ROLLER_ID);
 		rightIntakeRollerTalon.set(ControlMode.Follower, Constants.ARM.LEFT_INTAKE_ROLLER_ID);
@@ -53,6 +55,8 @@ public class Arm extends Subsystem {
 		armTalon.updateSmartDash();
 		SmartDashboard.putNumber("Arm Current", armTalon.getCurrentOutput());
 		SmartDashboard.putNumber("Arm Setpoint", setpoint);
+		SmartDashboard.putString("Arm Pos", RobotState.mArmState.toString());
+		SmartDashboard.putString("Arm Control Mode", RobotState.mArmControlState.toString());
 	}
 
 	@Override
@@ -132,19 +136,24 @@ public class Arm extends Subsystem {
 
 	private void zeroArm() {
 		if (armTalon.getCurrentOutput() > ARM.CURRENT_HARDSTOP_LIMIT) {
+			RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
 			setOpenLoop(0);
 			edu.wpi.first.wpilibj.Timer.delay(0.25);
 			armTalon.resetEncoder();
+			armTalon.setLimitEnabled(true);
+			RobotState.mArmState = ArmState.ZEROED;
 			RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
+			System.out.println(armTalon.getCurrentOutput());
 		} else {
+			armTalon.setLimitEnabled(false);
 			setOpenLoop(ARM.ZEROING_POWER);
 		}
 
 	}
 
 	private void armSafetyCheck() {
-		if (armTalon.getCurrentOutput() > ARM.SAFE_CURRENT_OUTPUT
-				|| armTalon.getSpeed() > Constants.ARM.MAX_SAFE_SPEED) {
+		if (armTalon.getCurrentOutput() > ARM.SAFE_CURRENT_OUTPUT) {
+			RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
 			setOpenLoop(0);
 		}
 		if (!armTalon.isEncoderConnected()) {
@@ -153,7 +162,6 @@ public class Arm extends Subsystem {
 	}
 
 	public void setOpenLoop(double output) {
-		RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
 		armTalon.set(ControlMode.PercentOutput, output);
 		setpoint = output;
 	}

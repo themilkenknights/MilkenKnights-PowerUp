@@ -16,7 +16,7 @@ public class TextFileDeserializer implements IPathDeserializer {
 		System.out.println("Found " + tokenizer.countTokens() + " tokens");
 
 		String name = tokenizer.nextToken();
-		int num_elements = Integer.parseInt(tokenizer.nextToken());
+		int num_elements = Integer.parseInt(tokenizer.nextToken().trim());
 
 		Trajectory left = new Trajectory(num_elements);
 		for (int i = 0; i < num_elements; ++i) {
