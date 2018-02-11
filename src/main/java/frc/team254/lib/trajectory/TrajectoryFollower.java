@@ -17,7 +17,6 @@ public class TrajectoryFollower {
 	private double last_error_;
 	private double current_heading = 0;
 	private int current_segment;
-	private boolean firstRun = false;
 	private Trajectory profile_;
 	private double Dt;
 	private double last_Ang_error;
@@ -35,26 +34,22 @@ public class TrajectoryFollower {
 		kAng_ = kAng;
 		ka_ = ka;
 		_DistTol = distTol;
-		_AngTol = Math.toRadians(angTol);
+		_AngTol = angTol;
 		reset();
 	}
 
 	public void reset() {
 		last_error_ = 0.0;
 		current_segment = 0;
-		firstRun = false;
+		Dt = Timer.getFPGATimestamp();
 	}
 
 	public TrajectoryStatus calculate(double dist, double vel, double heading) {
-		if (firstRun) {
-			firstRun = true;
-			Dt = Timer.getFPGATimestamp();
-		}
 		double currentTime = Timer.getFPGATimestamp();
 		current_segment = (int) (customRound(currentTime - Dt) / 0.005);
 		System.out.println(current_segment);
 		if (current_segment < profile_.getNumSegments()) {
-			Trajectory.Segment segment = profile_.getSegment(current_segment);
+			Trajectory.Segment segment = interpolateSegments(current_segment, currentTime);
 			double error = segment.pos - dist;
 			double angError = segment.heading - heading;
 			if (angError > 180) {
@@ -105,20 +100,24 @@ public class TrajectoryFollower {
 		double pos, vel, acc, jerk, heading, dt, x, y;
 		double firstTime = firstSeg.dt * (currentSeg - 1);
 		double lastTime = lastSeg.dt * (currentSeg);
-		pos = (((time - firstTime) * (lastSeg.pos - firstSeg.pos)) / (lastTime - firstTime))
+		double currentTime = time - Dt;
+		pos = (((currentTime - firstTime) * (lastSeg.pos - firstSeg.pos)) / (lastTime - firstTime))
 				+ firstSeg.pos;
-		vel = (((time - firstTime) * (lastSeg.vel - firstSeg.vel)) / (lastTime - firstTime))
+		vel = (((currentTime - firstTime) * (lastSeg.vel - firstSeg.vel)) / (lastTime - firstTime))
 				+ firstSeg.vel;
-		acc = (((time - firstTime) * (lastSeg.acc - firstSeg.acc)) / (lastTime - firstTime))
+		acc = (((currentTime - firstTime) * (lastSeg.acc - firstSeg.acc)) / (lastTime - firstTime))
 				+ firstSeg.acc;
-		jerk = (((time - firstTime) * (lastSeg.jerk - firstSeg.jerk)) / (lastTime - firstTime))
+		jerk = (((currentTime - firstTime) * (lastSeg.jerk - firstSeg.jerk)) / (lastTime - firstTime))
 				+ firstSeg.jerk;
-		heading = (((time - firstTime) * (lastSeg.heading - firstSeg.heading)) / (lastTime - firstTime))
+		heading = (((currentTime - firstTime) * (lastSeg.heading - firstSeg.heading)) / (lastTime
+				- firstTime))
 				+ firstSeg.heading;
 		dt = firstSeg.dt;
-		x = (((time - firstTime) * (lastSeg.x - firstSeg.x)) / (lastTime - firstTime)) + firstSeg.x;
-		y = (((time - firstTime) * (lastSeg.y - firstSeg.y)) / (lastTime - firstTime)) + firstSeg.y;
-		System.out.println(new Trajectory.Segment(pos, vel, acc, jerk, heading, dt, x, y).toString());
+		x = (((currentTime - firstTime) * (lastSeg.x - firstSeg.x)) / (lastTime - firstTime))
+				+ firstSeg.x;
+		y = (((currentTime - firstTime) * (lastSeg.y - firstSeg.y)) / (lastTime - firstTime))
+				+ firstSeg.y;
+		//System.out.println(new Trajectory.Segment(pos, vel, acc, jerk, heading, dt, x, y).toString());
 		return new Trajectory.Segment(pos, vel, acc, jerk, heading, dt, x, y);
 	}
 

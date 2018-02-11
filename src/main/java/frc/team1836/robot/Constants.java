@@ -74,7 +74,7 @@ public final class Constants {
 		public static final int ARM_SLAVE_TALON_ID = 6;
 
 
-		public static final double RPM_MAX = 19.5; //RPM Max of Arm
+		public static final double RPM_MAX = 35; //RPM Max of Arm
 		public static final double GEAR_RATIO = 22.0
 				/ 336.0; //Gear Ratio between encoder and arm - Used to calulate arm position in degrees
 		public static final double MAX_RAW_VEL =
@@ -89,10 +89,10 @@ public final class Constants {
 		public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL * 0.975;
 		public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 1.2;
 
-		public static final double CURRENT_HARDSTOP_LIMIT = 4;
+		public static final double CURRENT_HARDSTOP_LIMIT = 6;
 		public static final double ZEROING_POWER = -0.25;
 
-		public static final double SAFE_CURRENT_OUTPUT = 30;
+		public static final double SAFE_CURRENT_OUTPUT = 60;
 		//public static final double MAX_SAFE_SPEED = (RPM_MAX / 60.0) * 360.0 * 1.5;
 
 

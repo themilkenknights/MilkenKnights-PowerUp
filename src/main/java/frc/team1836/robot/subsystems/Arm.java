@@ -30,7 +30,7 @@ public class Arm extends Subsystem {
 		mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH,
 				ArmDebugOutput.class);
 		armTalon = new MkTalon(ARM.ARM_MASTER_TALON_ID, ARM.ARM_SLAVE_TALON_ID, TalonPosition.Arm);
-		armTalon.setSensorPhase(true);
+		armTalon.setSensorPhase(false);
 		armTalon.configMotionMagic();
 		armTalon.setSoftLimit(ARM.ARM_FORWARD_LIMIT, ARM.ARM_REVERSE_LIMIT);
 		leftIntakeRollerTalon = new VictorSPX(Constants.ARM.LEFT_INTAKE_ROLLER_ID);

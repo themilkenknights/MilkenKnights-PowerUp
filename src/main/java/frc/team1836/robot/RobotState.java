@@ -32,8 +32,10 @@ public class RobotState {
 
 	public enum ArmState {
 		ZEROED(0),
-		SWITCH_PLACE(40),
-		OPPOSITE_SWITCH(220);
+		INTAKE(15),
+		SECOND_SWITCH_PLACE(39),
+		SWITCH_PLACE(95),
+		OPPOSITE_SWITCH(240);
 
 		public final double state;
 

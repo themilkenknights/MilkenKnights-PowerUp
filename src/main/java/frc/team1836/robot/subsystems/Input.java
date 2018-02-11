@@ -23,13 +23,15 @@ public class Input extends Subsystem {
 
 	private final MkJoystick driverJoystick = new MkJoystick(0);
 
-	private final MkJoystickButton armBumperButton = operatorJoystick.getButton(4, "Arm Bumper");
+	private final MkJoystickButton armIntakeButton = operatorJoystick.getButton(2, "Arm Intake");
 	private final MkJoystickButton armSwitchButton = operatorJoystick.getButton(6, "Arm Switch");
+	private final MkJoystickButton armSecondSwitchButton = operatorJoystick
+			.getButton(1, "Arm Second Switch");
 	private final MkJoystickButton armSwitchReverseButton = operatorJoystick
-			.getButton(1, "Arm Switch Reverse");
+			.getButton(4, "Arm Switch Reverse");
 	private final MkJoystickButton armChangeModeButton = operatorJoystick
 			.getButton(8, "Arm Change Mode");
-	private final MkJoystickButton armZeroButton = operatorJoystick.getButton(9, "Arm Zero");
+	private final MkJoystickButton armZeroButton = operatorJoystick.getButton(7, "Arm Zero");
 	private final MkJoystickButton intakeRollerIn = operatorJoystick
 			.getButton(3,
 					"Intake Roller In");
@@ -113,8 +115,10 @@ public class Input extends Subsystem {
 		}
 		switch (RobotState.mArmControlState) {
 			case MOTION_MAGIC:
-				if (armBumperButton.isPressed()) {
-					RobotState.mArmState = ArmState.ZEROED;
+				if (armIntakeButton.isPressed()) {
+					RobotState.mArmState = ArmState.INTAKE;
+				} else if (armSecondSwitchButton.isPressed()) {
+					RobotState.mArmState = ArmState.SECOND_SWITCH_PLACE;
 				} else if (armSwitchButton.isPressed()) {
 					RobotState.mArmState = ArmState.SWITCH_PLACE;
 				} else if (armSwitchReverseButton.isPressed()) {
@@ -132,7 +136,7 @@ public class Input extends Subsystem {
 								.handleDeadband(operatorJoystick.getRawAxis(1),
 										Constants.INPUT.OPERATOR_DEADBAND));
 				if (armChangeModeButton.isPressed()) {
-						RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
+					RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
 				}
 				break;
 			default:

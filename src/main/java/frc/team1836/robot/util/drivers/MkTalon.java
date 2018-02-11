@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.Constants.DRIVE;
-import frc.team1836.robot.util.math.MkMath;
 
 public class MkTalon {
 
@@ -45,10 +44,10 @@ public class MkTalon {
 	}
 
 	public void setSoftLimit(double forwardLimit, double reverseLimit) {
-		masterTalon.configForwardSoftLimitThreshold((int) MkMath.angleToNativeUnits(forwardLimit), Constants.kTimeoutMs);
-		masterTalon.configReverseSoftLimitThreshold((int) MkMath.angleToNativeUnits(reverseLimit), Constants.kTimeoutMs);
-		masterTalon.configForwardSoftLimitEnable(true, Constants.kTimeoutMs);
-		masterTalon.configReverseSoftLimitEnable(true, Constants.kTimeoutMs);
+	//	masterTalon.configForwardSoftLimitThreshold((int) MkMath.angleToNativeUnits(forwardLimit), Constants.kTimeoutMs);
+	//	masterTalon.configReverseSoftLimitThreshold((int) MkMath.angleToNativeUnits(reverseLimit), Constants.kTimeoutMs);
+		masterTalon.configForwardSoftLimitEnable(false, Constants.kTimeoutMs);
+		masterTalon.configReverseSoftLimitEnable(false, Constants.kTimeoutMs);
 	}
 
 	public void setLimitEnabled(boolean enabled){
