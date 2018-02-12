@@ -400,9 +400,10 @@ function update() {
     config.max_vel = parseFloat($("td.max_vel input").val());
     config.max_acc = parseFloat($("td.max_acc input").val());
     config.max_jerk = parseFloat($("td.max_jerk input").val());
+    wheelbase = parseFloat($("td.wheelbase input").val());
 
     if (points.getNumWaypoints() > 1) {
-        path = PathGenerator.makePath(points, config, 18.0, "Curve");
+        path = PathGenerator.makePath(points, config, wheelbase, "Curve");
         drawPath();
         $("td.time").text(
             "" + path.getLeftWheelTrajectory().getNumSegments() * config.dt
