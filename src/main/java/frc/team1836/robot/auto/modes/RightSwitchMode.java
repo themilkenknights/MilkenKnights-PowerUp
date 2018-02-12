@@ -7,31 +7,31 @@ import frc.team1836.robot.util.auto.AutoModeEndedException;
 
 public class RightSwitchMode extends AutoModeBase {
 
-	private GameObjectPosition position;
+    private GameObjectPosition position;
 
-	public RightSwitchMode(AutoChooser.GameObjectPosition position) {
-		this.position = position;
-	}
+    public RightSwitchMode(AutoChooser.GameObjectPosition position) {
+        this.position = position;
+    }
 
-	@Override
-	protected void routine() throws AutoModeEndedException {
-		switch (position) {
-			case LEFT:
-				leftRoutine();
-				break;
-			case RIGHT:
-				rightRoutine();
-				break;
-		}
-	}
+    @Override
+    protected void routine() throws AutoModeEndedException {
+        switch (position) {
+            case LEFT:
+                leftRoutine();
+                break;
+            case RIGHT:
+                rightRoutine();
+                break;
+        }
+    }
 
-	private void leftRoutine() throws AutoModeEndedException {
-//		runAction(new DrivePathAction(new StraightPath()));
-	}
+    private void leftRoutine() throws AutoModeEndedException {
 
-	private void rightRoutine() throws AutoModeEndedException {
-		//	runAction(new DrivePathAction(new StraightPath()));
-	}
+    }
+
+    private void rightRoutine() throws AutoModeEndedException {
+        
+    }
 
 
 }

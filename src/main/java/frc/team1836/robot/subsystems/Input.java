@@ -18,10 +18,10 @@ import frc.team1836.robot.util.state.DriveSignal;
 public class Input extends Subsystem {
 
 
-	private final MkJoystick operatorJoystick = new MkJoystick(1);
+    private final MkJoystick operatorJoystick = new MkJoystick(1);
 
 
-	private final MkJoystick driverJoystick = new MkJoystick(0);
+    private final MkJoystick driverJoystick = new MkJoystick(0);
 
 	private final MkJoystickButton armIntakeButton = operatorJoystick.getButton(2, "Arm Intake");
 	private final MkJoystickButton armSwitchButton = operatorJoystick.getButton(6, "Arm Switch");
@@ -40,44 +40,44 @@ public class Input extends Subsystem {
 					"Intake Roller Out");
 
 
-	public Input() {
+    public Input() {
 
-	}
+    }
 
-	public static Input getInstance() {
-		return InstanceHolder.mInstance;
-	}
+    public static Input getInstance() {
+        return InstanceHolder.mInstance;
+    }
 
 
-	@Override
-	public void outputToSmartDashboard() {
+    @Override
+    public void outputToSmartDashboard() {
 
-	}
+    }
 
-	@Override
-	public void stop() {
+    @Override
+    public void stop() {
 
-	}
+    }
 
-	public void zeroSensors() {
+    public void zeroSensors() {
 
-	}
+    }
 
-	@Override
-	public void checkSystem() {
+    @Override
+    public void checkSystem() {
 
-	}
+    }
 
-	@Override
-	public void registerEnabledLoops(Looper enabledLooper) {
-		Loop mLoop = new Loop() {
+    @Override
+    public void registerEnabledLoops(Looper enabledLooper) {
+        Loop mLoop = new Loop() {
 
-			@Override
-			public void onStart(double timestamp) {
-				synchronized (Input.this) {
+            @Override
+            public void onStart(double timestamp) {
+                synchronized (Input.this) {
 
-				}
-			}
+                }
+            }
 
 			@Override
 			public void onLoop(double timestamp) {
@@ -89,25 +89,25 @@ public class Input extends Subsystem {
 				}
 			}
 
-			@Override
-			public void onStop(double timestamp) {
-			}
-		};
-		enabledLooper.register(mLoop);
-	}
+            @Override
+            public void onStop(double timestamp) {
+            }
+        };
+        enabledLooper.register(mLoop);
+    }
 
-	public void updateDriveInput() {
-		DriveSignal sig = DriveHelper
-				.cheesyDrive((-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3)),
-						(-driverJoystick.getRawAxis(0)), true);
-		if (RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
-			Drive.getInstance().setVelocitySetpoint(sig);
-			//	System.out.println("Rotate: " + -driverJoystick.getRawAxis(0) + "Throttle: " + -driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3));
-		} else if (RobotState.mDriveControlState == DriveControlState.OPEN_LOOP) {
-			Drive.getInstance().setOpenLoop(sig);
-		}
+    public void updateDriveInput() {
+        DriveSignal sig = DriveHelper
+                .cheesyDrive((-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3)),
+                        (-driverJoystick.getRawAxis(0)), true);
+        if (RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
+            Drive.getInstance().setVelocitySetpoint(sig);
+            //	System.out.println("Rotate: " + -driverJoystick.getRawAxis(0) + "Throttle: " + -driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3));
+        } else if (RobotState.mDriveControlState == DriveControlState.OPEN_LOOP) {
+            Drive.getInstance().setOpenLoop(sig);
+        }
 
-	}
+    }
 
 	private void updateArmInput() {
 		if (armZeroButton.isPressed()) {
@@ -145,18 +145,18 @@ public class Input extends Subsystem {
 				break;
 		}
 
-		if (intakeRollerIn.isHeld()) {
-			Arm.getInstance().setIntakeRollers(-ARM.INTAKE_IN_ROLLER_SPEED);
-		} else if (intakeRollerOut.isHeld()) {
-			Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_ROLLER_SPEED);
-		} else {
-			Arm.getInstance().setIntakeRollers(0);
-		}
-	}
+        if (intakeRollerIn.isHeld()) {
+            Arm.getInstance().setIntakeRollers(-ARM.INTAKE_IN_ROLLER_SPEED);
+        } else if (intakeRollerOut.isHeld()) {
+            Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_ROLLER_SPEED);
+        } else {
+            Arm.getInstance().setIntakeRollers(0);
+        }
+    }
 
-	private static class InstanceHolder {
+    private static class InstanceHolder {
 
-		private static final Input mInstance = new Input();
-	}
+        private static final Input mInstance = new Input();
+    }
 
 }

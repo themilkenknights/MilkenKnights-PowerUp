@@ -10,94 +10,94 @@ import frc.team1836.robot.util.other.Subsystem;
 
 public class Superstructure extends Subsystem {
 
-	private final ReflectingCSVWriter<SupertructureDebugOutput> mCSVWriter;
-	//	PowerDistributionPanel pdp = new PowerDistributionPanel();
-	private SupertructureDebugOutput mDebug = new SupertructureDebugOutput();
+    private final ReflectingCSVWriter<SupertructureDebugOutput> mCSVWriter;
+    //	PowerDistributionPanel pdp = new PowerDistributionPanel();
+    private SupertructureDebugOutput mDebug = new SupertructureDebugOutput();
 
-	public Superstructure() {
-		mCSVWriter = new ReflectingCSVWriter<>(LOGGING.SUPERSTRUCTURE_LOG_PATH,
-				SupertructureDebugOutput.class);
-	}
+    public Superstructure() {
+        mCSVWriter = new ReflectingCSVWriter<>(LOGGING.SUPERSTRUCTURE_LOG_PATH,
+                SupertructureDebugOutput.class);
+    }
 
-	public static Superstructure getInstance() {
-		return InstanceHolder.mInstance;
-	}
+    public static Superstructure getInstance() {
+        return InstanceHolder.mInstance;
+    }
 
-	@Override
-	public void writeToLog() {
-		mCSVWriter.write();
-	}
+    @Override
+    public void writeToLog() {
+        mCSVWriter.write();
+    }
 
-	@Override
-	public void outputToSmartDashboard() {
-		SmartDashboard.putString("System State", RobotState.mSystemState.toString());
-	}
+    @Override
+    public void outputToSmartDashboard() {
+        SmartDashboard.putString("System State", RobotState.mSystemState.toString());
+    }
 
-	@Override
-	public void stop() {
+    @Override
+    public void stop() {
 
-	}
+    }
 
-	@Override
-	public void zeroSensors() {
+    @Override
+    public void zeroSensors() {
 
-	}
+    }
 
-	@Override
-	public void checkSystem() {
+    @Override
+    public void checkSystem() {
 		/*if (pdp.getVoltage() < 10) {
 			System.out.println("FAILED - PDP VOLTAGE LOW");
 		}*/
-	}
+    }
 
-	@Override
-	public void registerEnabledLoops(Looper enabledLooper) {
-		Loop mLoop = new Loop() {
+    @Override
+    public void registerEnabledLoops(Looper enabledLooper) {
+        Loop mLoop = new Loop() {
 
-			@Override
-			public void onStart(double timestamp) {
-				synchronized (Superstructure.this) {
-					//pdp.clearStickyFaults();
-				}
-			}
+            @Override
+            public void onStart(double timestamp) {
+                synchronized (Superstructure.this) {
+                    //pdp.clearStickyFaults();
+                }
+            }
 
-			@Override
-			public void onLoop(double timestamp) {
-				synchronized (Superstructure.this) {
-					switch (RobotState.mSystemState) {
-						case IDLE:
-							break;
-						default:
-							break;
-					}
-					mDebug.SuperstructureState = RobotState.mSystemState.toString();
-					mDebug.PDPVoltage = 0;
-					mDebug.PDPTotalPower = 0;
-					mDebug.PDPTemp = 0;
-					mDebug.timestamp = timestamp;
-					mCSVWriter.add(mDebug);
-				}
-			}
+            @Override
+            public void onLoop(double timestamp) {
+                synchronized (Superstructure.this) {
+                    switch (RobotState.mSystemState) {
+                        case IDLE:
+                            break;
+                        default:
+                            break;
+                    }
+                    mDebug.SuperstructureState = RobotState.mSystemState.toString();
+                    mDebug.PDPVoltage = 0;
+                    mDebug.PDPTotalPower = 0;
+                    mDebug.PDPTemp = 0;
+                    mDebug.timestamp = timestamp;
+                    mCSVWriter.add(mDebug);
+                }
+            }
 
-			@Override
-			public void onStop(double timestamp) {
-				stop();
-			}
-		};
-		enabledLooper.register(mLoop);
-	}
+            @Override
+            public void onStop(double timestamp) {
+                stop();
+            }
+        };
+        enabledLooper.register(mLoop);
+    }
 
-	public static class SupertructureDebugOutput {
+    public static class SupertructureDebugOutput {
 
-		public String SuperstructureState;
-		public double PDPVoltage;
-		public double PDPTotalPower;
-		public double PDPTemp;
-		public double timestamp;
-	}
+        public String SuperstructureState;
+        public double PDPVoltage;
+        public double PDPTotalPower;
+        public double PDPTemp;
+        public double timestamp;
+    }
 
-	private static class InstanceHolder {
+    private static class InstanceHolder {
 
-		private static final Superstructure mInstance = new Superstructure();
-	}
+        private static final Superstructure mInstance = new Superstructure();
+    }
 }

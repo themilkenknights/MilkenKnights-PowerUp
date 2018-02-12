@@ -11,6 +11,7 @@ import frc.team1836.robot.util.logging.CrashTracker;
 import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.other.SubsystemManager;
 import frc.team1836.robot.util.state.DriveSignal;
+
 import java.util.Arrays;
 
 public class Robot extends IterativeRobot {
@@ -20,38 +21,38 @@ public class Robot extends IterativeRobot {
 					Superstructure.getInstance(), Input.getInstance()));
 	private Looper mEnabledLooper = new Looper();
 
-	public Robot() {
-		CrashTracker.logRobotConstruction();
-	}
+    public Robot() {
+        CrashTracker.logRobotConstruction();
+    }
 
-	@Override
-	public void robotInit() {
-		try {
-			CrashTracker.logRobotInit();
-			mSubsystemManager.registerEnabledLoops(mEnabledLooper);
-			mSubsystemManager.zeroSensors();
-			AutoChooser.loadChooser();
-		} catch (Throwable t) {
-			CrashTracker.logThrowableCrash(t);
-			throw t;
-		}
+    @Override
+    public void robotInit() {
+        try {
+            CrashTracker.logRobotInit();
+            mSubsystemManager.registerEnabledLoops(mEnabledLooper);
+            mSubsystemManager.zeroSensors();
+            AutoChooser.loadChooser();
+        } catch (Throwable t) {
+            CrashTracker.logThrowableCrash(t);
+            throw t;
+        }
 
-	}
+    }
 
-	@Override
-	public void disabledInit() {
-		try {
-			CrashTracker.logDisabledInit();
-			AutoChooser.disableAuto();
-			mEnabledLooper.stop();
-			mSubsystemManager.stop();
-			RobotState.mMatchState = MatchState.DISABLED;
-			Drive.getInstance().setOpenLoop(DriveSignal.NEUTRAL);
-		} catch (Throwable t) {
-			CrashTracker.logThrowableCrash(t);
-			throw t;
-		}
-	}
+    @Override
+    public void disabledInit() {
+        try {
+            CrashTracker.logDisabledInit();
+            AutoChooser.disableAuto();
+            mEnabledLooper.stop();
+            mSubsystemManager.stop();
+            RobotState.mMatchState = MatchState.DISABLED;
+            Drive.getInstance().setOpenLoop(DriveSignal.NEUTRAL);
+        } catch (Throwable t) {
+            CrashTracker.logThrowableCrash(t);
+            throw t;
+        }
+    }
 
 	@Override
 	public void autonomousInit() {
@@ -79,40 +80,40 @@ public class Robot extends IterativeRobot {
 		}
 	}
 
-	@Override
-	public void testInit() {
-		mSubsystemManager.checkSystem();
-	}
+    @Override
+    public void testInit() {
+        mSubsystemManager.checkSystem();
+    }
 
 
-	@Override
-	public void disabledPeriodic() {
-		allPeriodic();
-	}
+    @Override
+    public void disabledPeriodic() {
+        allPeriodic();
+    }
 
-	@Override
-	public void autonomousPeriodic() {
-		allPeriodic();
-	}
+    @Override
+    public void autonomousPeriodic() {
+        allPeriodic();
+    }
 
-	@Override
-	public void teleopPeriodic() {
-		allPeriodic();
-	}
+    @Override
+    public void teleopPeriodic() {
+        allPeriodic();
+    }
 
-	@Override
-	public void testPeriodic() {
+    @Override
+    public void testPeriodic() {
 
-	}
+    }
 
-	private void allPeriodic() {
-		try {
-			mSubsystemManager.outputToSmartDashboard();
-			mSubsystemManager.writeToLog();
-			mEnabledLooper.outputToSmartDashboard();
-		} catch (Throwable t) {
-			CrashTracker.logThrowableCrash(t);
-			throw t;
-		}
-	}
+    private void allPeriodic() {
+        try {
+            mSubsystemManager.outputToSmartDashboard();
+            mSubsystemManager.writeToLog();
+            mEnabledLooper.outputToSmartDashboard();
+        } catch (Throwable t) {
+            CrashTracker.logThrowableCrash(t);
+            throw t;
+        }
+    }
 }

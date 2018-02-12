@@ -9,5 +9,5 @@ import frc.team254.lib.trajectory.Path;
  */
 public interface IPathDeserializer {
 
-	public Path deserialize(String serialized);
+    public Path deserialize(String serialized);
 }

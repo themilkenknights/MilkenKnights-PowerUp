@@ -7,29 +7,29 @@ import frc.team254.lib.trajectory.Path;
 
 public class DrivePathAction implements Action {
 
-	private final Path path;
+    private final Path path;
 
-	public DrivePathAction(Path path) {
-		this.path = path;
-	}
+    public DrivePathAction(Path path) {
+        this.path = path;
+    }
 
-	@Override
-	public boolean isFinished() {
-		return Drive.getInstance().isPathFinished();
-	}
+    @Override
+    public boolean isFinished() {
+        return Drive.getInstance().isPathFinished();
+    }
 
-	@Override
-	public void update() {
+    @Override
+    public void update() {
 
-	}
+    }
 
-	@Override
-	public void done() {
+    @Override
+    public void done() {
 
-	}
+    }
 
-	@Override
-	public void start() {
-		Drive.getInstance().setDrivePath(path, DRIVE.PATH_DIST_TOL, DRIVE.PATH_ANGLE_TOL);
-	}
+    @Override
+    public void start() {
+        Drive.getInstance().setDrivePath(path, DRIVE.PATH_DIST_TOL, DRIVE.PATH_ANGLE_TOL);
+    }
 }
