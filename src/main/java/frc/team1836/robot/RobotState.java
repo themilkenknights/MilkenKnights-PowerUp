@@ -21,7 +21,6 @@ public class RobotState {
         OPEN_LOOP, // open loop voltage control
         VELOCITY_SETPOINT, // velocity PID control
         PATH_FOLLOWING, // used for autonomous driving
-        TURN_IN_PLACE //Field Centric Turning in place
     }
 
     public enum ArmControlState {

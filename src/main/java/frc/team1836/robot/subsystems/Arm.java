@@ -54,8 +54,7 @@ public class Arm extends Subsystem {
 	public void outputToSmartDashboard() {
 		armTalon.updateSmartDash();
 		SmartDashboard.putNumber("Arm Current", armTalon.getCurrentOutput());
-		SmartDashboard.putNumber("Arm Setpoint", setpoint);
-		SmartDashboard.putString("Arm Pos", RobotState.mArmState.toString());
+		SmartDashboard.putString("Arm Desired Position", RobotState.mArmState.toString());
 		SmartDashboard.putString("Arm Control Mode", RobotState.mArmControlState.toString());
 	}
 
