@@ -46,11 +46,6 @@ task wrapper(type: Wrapper) {
 }
 
 remotes {
-    localhost {
-        host = 'localhost'
-        user = System.properties['user.name']
-        identity = file("${System.properties['user.home']}/.ssh/id_rsa")
-    }
     webServer {
         host = 'roborio-1836-frc.local'
         user = 'admin'
@@ -61,7 +56,7 @@ task update {
     doLast {
         ssh.run {
             session(remotes.webServer) {
-                put from: 'README.md', into: '/home/lvuser'
+                put from: 'paths', into: '/home/lvuser'
             }
         }
     }

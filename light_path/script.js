@@ -361,12 +361,13 @@ function addPoint() {
     $("tbody#points").append(
         "<tr>" +
         "<td><input value='" +
-        (prev.x + 40) +
+        (prev.x + 80) +
         "'></td>" +
         "<td><input value='" +
-        (prev.y + 40) +
+        (prev.y + 80) +
         "'></td>" +
         "<td><input value='0'></td>" +
+        "<td><input type='checkbox'></td>" +
         "<td class='comments'><input placeholder='Comments'></td>" +
         "<td><button onclick='$(this).parent().parent().remove();update()'>Delete</button></td></tr>"
     );
@@ -617,7 +618,6 @@ function getDataString() {
         waypoints[0].position.y +
         ")";
     var importStr = "WAYPOINT_DATA: " + JSON.stringify(waypoints);
-    var isReversed = $("#isReversed").is(":checked");
     var num_elements = path.getLeftWheelTrajectory().getNumSegments();
 
     var left_segments = '';
@@ -674,7 +674,6 @@ function getTXTString() {
         waypoints[0].position.y +
         ")";
     var importStr = "WAYPOINT_DATA: " + JSON.stringify(waypoints);
-    var isReversed = $("#isReversed").is(":checked");
     var num_elements = path.getLeftWheelTrajectory().getNumSegments();
 
     var left_segments = '';
@@ -684,6 +683,40 @@ function getTXTString() {
         var lsegment = `${left.pos} ${left.vel} ${left.acc} ${left.jerk} ${left.heading} ${left.dt} ${left.x} ${left.y}
 `;
         var rsegment = `${right.pos} ${right.vel} ${right.acc} ${right.jerk} ${right.heading} ${right.dt} ${right.x} ${right.y}
+`;
+        left_segments += lsegment;
+        right_segments += rsegment;
+    });
+
+    var str =
+        `${title}  
+${num_elements}
+${left_segments}${right_segments}`;
+    return str;
+}
+
+function getReversedTXTString() {
+    var title = $("#title").val().length > 0 ? $("#title").val() : "UntitledPath";
+    var pathInit = "";
+    for (var i = 0; i < waypoints.length; i++) {
+        pathInit += "        " + waypoints[i].toString() + "\n";
+    }
+    var startPoint =
+        "new Translation2d(" +
+        waypoints[0].position.x +
+        ", " +
+        waypoints[0].position.y +
+        ")";
+    var importStr = "WAYPOINT_DATA: " + JSON.stringify(waypoints);
+    var num_elements = path.getLeftWheelTrajectory().getNumSegments();
+
+    var left_segments = '';
+    var right_segments = '';
+
+    eachTimeSlice(function (left, right, i) {
+        var lsegment = `${-left.pos} ${-left.vel} ${-left.acc} ${-left.jerk} ${left.heading} ${left.dt} ${left.x} ${left.y}
+`;
+        var rsegment = `${-right.pos} ${-right.vel} ${-right.acc} ${-right.jerk} ${right.heading} ${right.dt} ${right.x} ${right.y}
 `;
         left_segments += lsegment;
         right_segments += rsegment;
@@ -711,6 +744,17 @@ function exportTXT() {
     update();
     var title = $("#title").val().length > 0 ? $("#title").val() : "UntitledPath";
     var blob = new Blob([getTXTString()], {
+        type: "text/plain;charset=utf-8"
+    });
+    saveAs(blob, title + ".txt", {
+        type: "text/plain;charset=utf-8"
+    });
+}
+
+function exportReversedTXT() {
+    update();
+    var title = $("#title").val().length > 0 ? $("#title").val() : "UntitledPath";
+    var blob = new Blob([getReversedTXTString()], {
         type: "text/plain;charset=utf-8"
     });
     saveAs(blob, title + ".txt", {
