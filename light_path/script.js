@@ -367,7 +367,6 @@ function addPoint() {
         (prev.y + 80) +
         "'></td>" +
         "<td><input value='0'></td>" +
-        "<td><input type='checkbox'></td>" +
         "<td class='comments'><input placeholder='Comments'></td>" +
         "<td><button onclick='$(this).parent().parent().remove();update()'>Delete</button></td></tr>"
     );

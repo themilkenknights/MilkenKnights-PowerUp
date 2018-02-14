@@ -46,6 +46,8 @@ public class Drive extends Subsystem {
 		rightDrive.invertSlave(DRIVE.RIGHT_SLAVE_INVERT);
 		rightDrive.setSensorPhase(DRIVE.RIGHT_INVERT_SENSOR);
 
+		//rightDrive.setPeakOutput(0.9725);
+
 		mCSVWriter = new ReflectingCSVWriter<>(LOGGING.DRIVE_LOG_PATH,
 				DriveDebugOutput.class);
 		leftStatus = TrajectoryStatus.NEUTRAL;
@@ -93,6 +95,8 @@ public class Drive extends Subsystem {
 	 * @param ang_tol Robot Angle Tolerance for Path Follower (Degrees)
 	 */
 	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
+		leftDrive.resetEncoder();
+		rightDrive.resetEncoder();
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);
 		RobotState.mDriveControlState = RobotState.DriveControlState.PATH_FOLLOWING;
 	}
@@ -102,6 +106,8 @@ public class Drive extends Subsystem {
 			RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
 			setVelocitySetpoint(DriveSignal.NEUTRAL);
 			pathFollower = null;
+			leftStatus = TrajectoryStatus.NEUTRAL;
+			rightStatus = TrajectoryStatus.NEUTRAL;
 			return true;
 		}
 		return false;
@@ -116,10 +122,10 @@ public class Drive extends Subsystem {
 	private void updatePathFollower() {
 		TrajectoryStatus leftUpdate = pathFollower
 				.getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(),
-						navX.getFullYaw());
+						navX.getFullYaw(), leftDrive.isEncoderConnected());
 		TrajectoryStatus rightUpdate = pathFollower
 				.getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
-						navX.getFullYaw());
+						navX.getFullYaw(), rightDrive.isEncoderConnected());
 
 		leftStatus = leftUpdate;
 		rightStatus = rightUpdate;
@@ -137,12 +143,14 @@ public class Drive extends Subsystem {
 		rightDrive.updateSmartDash();
 		SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
 		SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
+		SmartDashboard.putNumber("Side Velcoity Error", leftDrive.getSpeed() - rightDrive.getSpeed());
+		SmartDashboard.putBoolean("Left Connected", leftDrive.isEncoderConnected());
+		System.out.println(leftDrive.getSpeed() - rightDrive.getSpeed());
 		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
 				|| RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
 			SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
 			SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
-			SmartDashboard
-					.putNumber("Side Velcoity Error", Math.abs(leftDrive.getSpeed() - rightDrive.getSpeed()));
+			SmartDashboard.putNumber("Side Velcoity Error", Math.abs(leftDrive.getSpeed() - rightDrive.getSpeed()));
 		}
 		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
 			SmartDashboard.putNumber("NavX Full Yaw", navX.getFullYaw());
@@ -302,7 +310,6 @@ public class Drive extends Subsystem {
 	}
 
 	private static class InstanceHolder {
-
 		private static final Drive mInstance = new Drive();
 	}
 

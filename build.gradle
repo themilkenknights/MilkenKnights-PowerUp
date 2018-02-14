@@ -52,7 +52,11 @@ remotes {
     }
 }
 
-task update {
+ssh.settings {
+    knownHosts = allowAnyHosts
+}
+
+task deployPaths {
     doLast {
         ssh.run {
             session(remotes.webServer) {

@@ -19,12 +19,12 @@ import frc.team1836.robot.util.other.Subsystem;
 
 public class Arm extends Subsystem {
 
-    private final ReflectingCSVWriter<ArmDebugOutput> mCSVWriter;
-    private final MkTalon armTalon;
-    private final VictorSPX leftIntakeRollerTalon;
-    private final VictorSPX rightIntakeRollerTalon;
-    private ArmDebugOutput mDebug = new ArmDebugOutput();
-    private double setpoint = 0;
+	private final ReflectingCSVWriter<ArmDebugOutput> mCSVWriter;
+	private final MkTalon armTalon;
+	private final VictorSPX leftIntakeRollerTalon;
+	private final VictorSPX rightIntakeRollerTalon;
+	private ArmDebugOutput mDebug = new ArmDebugOutput();
+	private double setpoint = 0;
 
 	private Arm() {
 		mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH,
@@ -41,14 +41,14 @@ public class Arm extends Subsystem {
 		rightIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
 	}
 
-    public static Arm getInstance() {
-        return InstanceHolder.mInstance;
-    }
+	public static Arm getInstance() {
+		return InstanceHolder.mInstance;
+	}
 
-    @Override
-    public void writeToLog() {
-        mCSVWriter.write();
-    }
+	@Override
+	public void writeToLog() {
+		mCSVWriter.write();
+	}
 
 	@Override
 	public void outputToSmartDashboard() {
@@ -58,80 +58,80 @@ public class Arm extends Subsystem {
 		SmartDashboard.putString("Arm Control Mode", RobotState.mArmControlState.toString());
 	}
 
-    @Override
-    public void stop() {
-        setpoint = 0;
-    }
+	@Override
+	public void stop() {
+		setpoint = 0;
+	}
 
-    @Override
-    public void zeroSensors() {
-        armTalon.resetEncoder();
-    }
+	@Override
+	public void zeroSensors() {
+		armTalon.resetEncoder();
+	}
 
-    @Override
-    public void checkSystem() {
+	@Override
+	public void checkSystem() {
 
-    }
+	}
 
-    @Override
-    public void registerEnabledLoops(Looper enabledLooper) {
-        Loop mLoop = new Loop() {
+	@Override
+	public void registerEnabledLoops(Looper enabledLooper) {
+		Loop mLoop = new Loop() {
 
-            @Override
-            public void onStart(double timestamp) {
-                synchronized (Arm.this) {
+			@Override
+			public void onStart(double timestamp) {
+				synchronized (Arm.this) {
 
-                }
-            }
+				}
+			}
 
-            /**
-             * Updated from mEnabledLoop in Robot.java
-             * @param timestamp Time in seconds since code start
-             */
-            @Override
-            public void onLoop(double timestamp) {
-                synchronized (Arm.this) {
-                    armSafetyCheck();
-                    updateDebugOutput(timestamp);
-                    mCSVWriter.add(mDebug);
-                    switch (RobotState.mArmControlState) {
-                        case MOTION_MAGIC:
-                            updateArmSetpoint();
-                            return;
-                        case ZEROING:
-                            zeroArm();
-                            return;
-                        case OPEN_LOOP:
-                            return;
-                        default:
-                            System.out
-                                    .println("Unexpected arm control state: " + RobotState.mArmControlState);
-                            break;
-                    }
-                }
-            }
+			/**
+			 * Updated from mEnabledLoop in Robot.java
+			 * @param timestamp Time in seconds since code start
+			 */
+			@Override
+			public void onLoop(double timestamp) {
+				synchronized (Arm.this) {
+					armSafetyCheck();
+					updateDebugOutput(timestamp);
+					mCSVWriter.add(mDebug);
+					switch (RobotState.mArmControlState) {
+						case MOTION_MAGIC:
+							updateArmSetpoint();
+							return;
+						case ZEROING:
+							zeroArm();
+							return;
+						case OPEN_LOOP:
+							return;
+						default:
+							System.out
+									.println("Unexpected arm control state: " + RobotState.mArmControlState);
+							break;
+					}
+				}
+			}
 
-            @Override
-            public void onStop(double timestamp) {
-                stop();
-            }
-        };
-        enabledLooper.register(mLoop);
-    }
+			@Override
+			public void onStop(double timestamp) {
+				stop();
+			}
+		};
+		enabledLooper.register(mLoop);
+	}
 
-    private void updateDebugOutput(double timestamp) {
-        mDebug.controlMode = RobotState.mArmControlState.toString();
-        mDebug.output = armTalon.getPercentOutput();
-        mDebug.position = armTalon.getPosition();
-        mDebug.velocity = armTalon.getSpeed();
-        mDebug.setpoint = RobotState.mArmState.state;
-        mDebug.timestamp = timestamp;
-    }
+	private void updateDebugOutput(double timestamp) {
+		mDebug.controlMode = RobotState.mArmControlState.toString();
+		mDebug.output = armTalon.getPercentOutput();
+		mDebug.position = armTalon.getPosition();
+		mDebug.velocity = armTalon.getSpeed();
+		mDebug.setpoint = RobotState.mArmState.state;
+		mDebug.timestamp = timestamp;
+	}
 
-    private void updateArmSetpoint() {
-        armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state));
-        setpoint = RobotState.mArmState.state;
-    }
+	private void updateArmSetpoint() {
+		armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state));
+		setpoint = RobotState.mArmState.state;
+	}
 
 	private void zeroArm() {
 		if (armTalon.getCurrentOutput() > ARM.CURRENT_HARDSTOP_LIMIT) {
@@ -148,7 +148,7 @@ public class Arm extends Subsystem {
 			setOpenLoop(ARM.ZEROING_POWER);
 		}
 
-    }
+	}
 
 	private void armSafetyCheck() {
 		if (armTalon.getCurrentOutput() > ARM.SAFE_CURRENT_OUTPUT) {
@@ -165,22 +165,22 @@ public class Arm extends Subsystem {
 		setpoint = output;
 	}
 
-    public void setIntakeRollers(double output) {
-        leftIntakeRollerTalon.set(ControlMode.PercentOutput, output);
-    }
+	public void setIntakeRollers(double output) {
+		leftIntakeRollerTalon.set(ControlMode.PercentOutput, output);
+	}
 
-    public static class ArmDebugOutput {
+	public static class ArmDebugOutput {
 
-        double timestamp;
-        String controlMode;
-        double output;
-        double position;
-        double velocity;
-        double setpoint;
-    }
+		double timestamp;
+		String controlMode;
+		double output;
+		double position;
+		double velocity;
+		double setpoint;
+	}
 
-    private static class InstanceHolder {
+	private static class InstanceHolder {
 
-        private static final Arm mInstance = new Arm();
-    }
+		private static final Arm mInstance = new Arm();
+	}
 }
