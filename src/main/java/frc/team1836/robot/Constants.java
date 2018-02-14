@@ -36,8 +36,7 @@ public final class Constants {
 		public static final double CIRCUMFERENCE = WHEEL_DIAMETER * PI;
 		public static final double TURN_IN_PLACE_CIRCUMFERENCE = 104.1;
 
-		public static final double MIN_TEST_POS = 500;
-		public static final double MIN_TEST_VEL = 100;
+
 
 		public static final double PATH_DIST_TOL = 0.25;
 		public static final double PATH_ANGLE_TOL = 0.25;
@@ -52,10 +51,6 @@ public final class Constants {
 
 		public static final double MAX_VEL =
 				(LEFT_RPM_MAX / 60) * (CIRCUMFERENCE); // Max Speed in Inches per second
-
-
-		public static final double RIGHT_MAX_VEL =
-				(RIGHT_RPM_MAX / 60) * (CIRCUMFERENCE); // Max Speed in Inches per second
 		public static final double DRIVE_P = (0.1 * 1023.0) / (300.00);
 		public static final double DRIVE_I = DRIVE_P / 100.0;
 		public static final double DRIVE_D = 15 * DRIVE_P;
@@ -68,6 +63,9 @@ public final class Constants {
 		public static final double MAX_ANG_VEL = 2.5 * 360;
 		public static final double MAX_ANG_ACC = 1.5 * 360;
 		public static final double MAX_ANG_JERK = 0.75 * 360;
+
+		public static final double MIN_TEST_POS = MAX_VEL * 1.5;
+		public static final double MIN_TEST_VEL = MAX_VEL * 0.9;
 	}
 
 	public static class LOGGING {
