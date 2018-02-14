@@ -92,30 +92,30 @@ public final class Constants {
 		public static final double ARM_D = ARM_P * 15;
 		public static final double ARM_F = (1023.0 / MAX_RAW_VEL);
 
-		public static final double ARM_FORWARD_LIMIT = 250;
-		public static final double ARM_REVERSE_LIMIT = 0;
-		public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL * 0.975;
-		public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 1.2;
+        public static final double ARM_FORWARD_LIMIT = 250;
+        public static final double ARM_REVERSE_LIMIT = 0;
+        public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL * 0.975;
+        public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 1.2;
 
-		public static final double CURRENT_HARDSTOP_LIMIT = 6;
-		public static final double ZEROING_POWER = -0.25;
+        public static final double CURRENT_HARDSTOP_LIMIT = 6;
+        public static final double ZEROING_POWER = -0.25;
 
 		public static final double SAFE_CURRENT_OUTPUT = 60;
 
 
-		public static final int LEFT_INTAKE_ROLLER_ID = 7; //Intake Roller Talon ID
-		public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID
-		public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
-		public static final double INTAKE_OUT_ROLLER_SPEED = 0.40; //0.40
+        public static final int LEFT_INTAKE_ROLLER_ID = 7; //Intake Roller Talon ID
+        public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID
+        public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
+        public static final double INTAKE_OUT_ROLLER_SPEED = 0.40; //0.40
 
 	}
 
 	public static class INPUT {
 
-		public static final double OPERATOR_DEADBAND = 0.1;
-		public static final double kThrottleDeadband = 0.0;
-		public static final double kWheelDeadband = 0.0045;
-	}
+        public static final double OPERATOR_DEADBAND = 0.1;
+        public static final double kThrottleDeadband = 0.0;
+        public static final double kWheelDeadband = 0.0045;
+    }
 
 
 }
