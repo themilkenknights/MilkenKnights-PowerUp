@@ -150,7 +150,7 @@ public class Input extends Subsystem {
         } else if (intakeRollerOut.isHeld()) {
             Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_ROLLER_SPEED);
         } else {
-            Arm.getInstance().setIntakeRollers(0);
+            Arm.getInstance().setIntakeRollers(-ARM.SLOW_INTAKE_HOLD_SPEED);
         }
     }
 

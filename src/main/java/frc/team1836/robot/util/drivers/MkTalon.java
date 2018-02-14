@@ -231,6 +231,10 @@ public class MkTalon {
         return masterTalon.getOutputCurrent();
     }
 
+    public boolean getMotorsConnected() {
+        return !(Math.abs(masterTalon.getOutputCurrent() - slaveTalon.getOutputCurrent()) > 1);
+    }
+
     public enum TalonPosition {
         Left, Right, Arm
     }

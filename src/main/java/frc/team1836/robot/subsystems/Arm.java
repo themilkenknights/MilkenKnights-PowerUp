@@ -26,6 +26,7 @@ public class Arm extends Subsystem {
     private final VictorSPX rightIntakeRollerTalon;
     private ArmDebugOutput mDebug = new ArmDebugOutput();
     private double setpoint = 0;
+    private boolean motorsConnected;
 
     private Arm() {
         mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH,
@@ -40,6 +41,7 @@ public class Arm extends Subsystem {
         leftIntakeRollerTalon.setInverted(true);
         leftIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
         rightIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
+        motorsConnected = true;
     }
 
     public static Arm getInstance() {
@@ -75,6 +77,7 @@ public class Arm extends Subsystem {
         Timer.delay(4.0);
         for (ArmState state : ArmState.values()) {
             RobotState.mArmState = state;
+            setIntakeRollers(0.5);
             Timer.delay(2);
         }
     }
@@ -157,9 +160,20 @@ public class Arm extends Subsystem {
     }
 
     private void armSafetyCheck() {
-        if (armTalon.getCurrentOutput() > ARM.SAFE_CURRENT_OUTPUT) {
+        if (armTalon.getMotorsConnected()) {
             RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
-            setOpenLoop(0);
+            motorsConnected = false;
+        }
+        if (motorsConnected) {
+            if (armTalon.getCurrentOutput() > ARM.SAFE_CURRENT_OUTPUT) {
+                RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+                setOpenLoop(0);
+            }
+        } else {
+            if (armTalon.getCurrentOutput() > ARM.SINGLE_SAFE_CURRENT_OUTPUT) {
+                RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+                setOpenLoop(0);
+            }
         }
         if (!armTalon.isEncoderConnected()) {
             RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
