@@ -1,6 +1,5 @@
 package frc.team1836.robot.subsystems;
 
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants.LOGGING;
 import frc.team1836.robot.RobotState;
@@ -12,7 +11,7 @@ import frc.team1836.robot.util.other.Subsystem;
 public class Superstructure extends Subsystem {
 
     private final ReflectingCSVWriter<SupertructureDebugOutput> mCSVWriter;
-    PowerDistributionPanel pdp = new PowerDistributionPanel();
+   // PowerDistributionPanel pdp = new PowerDistributionPanel();
     private SupertructureDebugOutput mDebug = new SupertructureDebugOutput();
 
     public Superstructure() {
@@ -46,9 +45,9 @@ public class Superstructure extends Subsystem {
 
     @Override
     public void checkSystem() {
-        if (pdp.getVoltage() < 10) {
+     /*   if (pdp.getVoltage() < 10) {
             System.out.println("FAILED - PDP VOLTAGE LOW");
-        }
+        } */
     }
 
     @Override

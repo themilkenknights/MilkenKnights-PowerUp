@@ -41,9 +41,9 @@ public final class Constants {
 		public static final double PATH_DIST_TOL = 0.25;
 		public static final double PATH_ANGLE_TOL = 0.25;
 
-		public static final double DRIVE_FOLLOWER_P = 5;
+		public static final double DRIVE_FOLLOWER_P = 10;
 		public static final double DRIVE_FOLLOWER_A = 0;
-		public static final double DRIVE_FOLLOWER_ANG = 0;
+		public static final double DRIVE_FOLLOWER_ANG = 0.75;
 
 		public static final double LEFT_RPM_MAX = 488.0; //Observed Max Speed for Drivetrain in RPM
 		public static final double RIGHT_RPM_MAX = 502.0; //Observed Max Speed for Drivetrain in RPM
@@ -77,8 +77,8 @@ public final class Constants {
 
 	public static class ARM {
 
-		public static final int ARM_MASTER_TALON_ID = 4;
-		public static final int ARM_SLAVE_TALON_ID = 6;
+		public static final int ARM_MASTER_TALON_ID = 9;
+		public static final int ARM_SLAVE_TALON_ID = 1;
 
 		public static final double RPM_MAX = 35; //RPM Max of Arm
 		public static final double GEAR_RATIO = 22.0

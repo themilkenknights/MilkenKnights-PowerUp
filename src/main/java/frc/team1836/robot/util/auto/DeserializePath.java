@@ -17,7 +17,7 @@ public class DeserializePath {
             System.out.println(filePath);
             String contents = new String(Files.readAllBytes(Paths.get(filePath)));
             Path path = textFileDeserializer.deserialize(contents);
-            path.goRight();
+            path.goLeft();
             return path;
         } catch (Throwable t) {
             CrashTracker.logThrowableCrash(t);

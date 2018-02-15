@@ -62,6 +62,7 @@ public class TrajectoryFollower {
 				error = 0;
 			}
 			double angError = segment.heading - heading;
+			System.out.println(segment.heading);
 			if (angError > 180) {
 				angError = angError - 360;
 			} else if (angError < -180) {
@@ -121,9 +122,7 @@ public class TrajectoryFollower {
 				+ firstSeg.acc;
 		jerk = (((currentTime - firstTime) * (lastSeg.jerk - firstSeg.jerk)) / (lastTime - firstTime))
 				+ firstSeg.jerk;
-		heading = (((currentTime - firstTime) * (lastSeg.heading - firstSeg.heading)) / (lastTime
-				- firstTime))
-				+ firstSeg.heading;
+		heading = lastSeg.heading;
 		dt = firstSeg.dt;
 		x = (((currentTime - firstTime) * (lastSeg.x - firstSeg.x)) / (lastTime - firstTime))
 				+ firstSeg.x;

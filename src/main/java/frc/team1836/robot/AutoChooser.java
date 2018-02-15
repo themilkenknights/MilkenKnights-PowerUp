@@ -46,6 +46,7 @@ public class AutoChooser {
                     return new LeftSwitchMode(getScalePosition());
                 }
                 if (positionChooser.getSelected() == AutoPosition.RIGHT) {
+                    System.out.println("RIGHT SWITCH");
                     return new RightSwitchMode(getScalePosition());
                 }
                 if (positionChooser.getSelected() == AutoPosition.CENTER) {

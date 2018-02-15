@@ -29,7 +29,7 @@ public class TextFileDeserializer implements IPathDeserializer {
             segment.vel = Double.parseDouble(line_tokenizer.nextToken());
             segment.acc = Double.parseDouble(line_tokenizer.nextToken());
             segment.jerk = Double.parseDouble(line_tokenizer.nextToken());
-            segment.heading = -Math.toDegrees(Double.parseDouble(line_tokenizer.nextToken())) + 360;
+            segment.heading = Math.toDegrees(Double.parseDouble(line_tokenizer.nextToken()));
             segment.dt = Double.parseDouble(line_tokenizer.nextToken());
             segment.x = Double.parseDouble(line_tokenizer.nextToken());
             segment.y = Double.parseDouble(line_tokenizer.nextToken());
