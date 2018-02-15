@@ -128,7 +128,6 @@ public class TrajectoryFollower {
 				+ firstSeg.x;
 		y = (((currentTime - firstTime) * (lastSeg.y - firstSeg.y)) / (lastTime - firstTime))
 				+ firstSeg.y;
-		//System.out.println(new Trajectory.Segment(pos, vel, acc, jerk, heading, dt, x, y).toString());
 		return new Trajectory.Segment(pos, vel, acc, jerk, heading, dt, x, y);
 	}
 

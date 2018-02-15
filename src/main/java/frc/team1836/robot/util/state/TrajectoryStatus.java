@@ -43,4 +43,8 @@ public class TrajectoryStatus {
         return seg;
     }
 
+    public String toString(){
+        return seg.toString() + "Output: " + output + " Position Error: " + posError + "Velocity Error: " + velError + "Angle Error: " + angError;
+    }
+
 }
