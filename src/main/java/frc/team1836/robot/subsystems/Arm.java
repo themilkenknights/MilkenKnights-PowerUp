@@ -160,7 +160,7 @@ public class Arm extends Subsystem {
     }
 
     private void armSafetyCheck() {
-        if (armTalon.getMotorsConnected()) {
+        if (!armTalon.getMotorsConnected()) {
             RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
             motorsConnected = false;
         }

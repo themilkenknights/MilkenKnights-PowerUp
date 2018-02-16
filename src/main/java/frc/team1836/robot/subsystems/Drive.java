@@ -46,14 +46,14 @@ public class Drive extends Subsystem {
         rightDrive.invertSlave(DRIVE.RIGHT_SLAVE_INVERT);
         rightDrive.setSensorPhase(DRIVE.RIGHT_INVERT_SENSOR);
 
-		//rightDrive.setPeakOutput(0.9725);
+        //rightDrive.setPeakOutput(0.9725);
 
-		mCSVWriter = new ReflectingCSVWriter<>(LOGGING.DRIVE_LOG_PATH,
-				DriveDebugOutput.class);
-		leftStatus = TrajectoryStatus.NEUTRAL;
-		rightStatus = TrajectoryStatus.NEUTRAL;
-		currentSetpoint = DriveSignal.NEUTRAL;
-	}
+        mCSVWriter = new ReflectingCSVWriter<>(LOGGING.DRIVE_LOG_PATH,
+                DriveDebugOutput.class);
+        leftStatus = TrajectoryStatus.NEUTRAL;
+        rightStatus = TrajectoryStatus.NEUTRAL;
+        currentSetpoint = DriveSignal.NEUTRAL;
+    }
 
     public static Drive getInstance() {
         return InstanceHolder.mInstance;
@@ -89,44 +89,44 @@ public class Drive extends Subsystem {
         currentSetpoint = signal;
     }
 
-	/**
-	 * @param path Robot Path
-	 * @param dist_tol Position Tolerance for Path Follower
-	 * @param ang_tol Robot Angle Tolerance for Path Follower (Degrees)
-	 */
-	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
-		leftDrive.resetEncoder();
-		rightDrive.resetEncoder();
-		navX.zeroYaw();
-		pathFollower = new PathFollower(path, dist_tol, ang_tol);
-		RobotState.mDriveControlState = RobotState.DriveControlState.PATH_FOLLOWING;
-	}
+    /**
+     * @param path     Robot Path
+     * @param dist_tol Position Tolerance for Path Follower
+     * @param ang_tol  Robot Angle Tolerance for Path Follower (Degrees)
+     */
+    public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
+        leftDrive.resetEncoder();
+        rightDrive.resetEncoder();
+        navX.zeroYaw();
+        pathFollower = new PathFollower(path, dist_tol, ang_tol);
+        RobotState.mDriveControlState = RobotState.DriveControlState.PATH_FOLLOWING;
+    }
 
-	public boolean isPathFinished() {
-		if (pathFollower.getFinished()) {
-			RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
-			setVelocitySetpoint(DriveSignal.NEUTRAL);
-			pathFollower = null;
-			leftStatus = TrajectoryStatus.NEUTRAL;
-			rightStatus = TrajectoryStatus.NEUTRAL;
-			return true;
-		}
-		return false;
-	}
+    public boolean isPathFinished() {
+        if (pathFollower.getFinished()) {
+            RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
+            setVelocitySetpoint(DriveSignal.NEUTRAL);
+            pathFollower = null;
+            leftStatus = TrajectoryStatus.NEUTRAL;
+            rightStatus = TrajectoryStatus.NEUTRAL;
+            return true;
+        }
+        return false;
+    }
 
-	/**
-	 * Called from Looper during Path Following
-	 * Gets a TrajectoryStatus containing output velocity and Desired Trajectory Information for logging
-	 * Inputs Position, Speed and Angle to Trajectory Follower
-	 * Creates a new Drive Signal that is then set as a velocity setpoint
-	 */
-	private void updatePathFollower() {
-		TrajectoryStatus leftUpdate = pathFollower
-				.getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(),
-						navX.getFullYaw(), leftDrive.isEncoderConnected());
-		TrajectoryStatus rightUpdate = pathFollower
-				.getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
-						navX.getFullYaw(), rightDrive.isEncoderConnected());
+    /**
+     * Called from Looper during Path Following
+     * Gets a TrajectoryStatus containing output velocity and Desired Trajectory Information for logging
+     * Inputs Position, Speed and Angle to Trajectory Follower
+     * Creates a new Drive Signal that is then set as a velocity setpoint
+     */
+    private void updatePathFollower() {
+        TrajectoryStatus leftUpdate = pathFollower
+                .getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(),
+                        navX.getFullYaw(), leftDrive.isEncoderConnected());
+        TrajectoryStatus rightUpdate = pathFollower
+                .getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
+                        navX.getFullYaw(), rightDrive.isEncoderConnected());
 
         leftStatus = leftUpdate;
         rightStatus = rightUpdate;
@@ -138,32 +138,31 @@ public class Drive extends Subsystem {
         mCSVWriter.write();
     }
 
-	@Override
-	public void outputToSmartDashboard() {
-		leftDrive.updateSmartDash();
-		rightDrive.updateSmartDash();
-		SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
-		SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
-		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
-				|| RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
-			SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
-			SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
-			SmartDashboard.putNumber("NavX Full Yaw", navX.getFullYaw());
-		}
-		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
-
-			SmartDashboard.putNumber("Desired Heading", leftStatus.getSeg().heading);
-			SmartDashboard.putNumber("Heading Error", leftStatus.getAngError());
-			SmartDashboard.putNumber("Left Desired Position", leftStatus.getSeg().pos);
-			SmartDashboard.putNumber("Left Theoretical Vel", leftStatus.getSeg().vel);
-			SmartDashboard.putNumber("Left Position Error", leftStatus.getPosError());
-			SmartDashboard.putNumber("Left Desired Velocity Error", leftStatus.getVelError());
-			SmartDashboard.putNumber("Right Desired Position", leftStatus.getSeg().pos);
-			SmartDashboard.putNumber("Right Position Error", leftStatus.getPosError());
-			SmartDashboard.putNumber("Right Theoretical Vel", rightStatus.getSeg().vel);
-			SmartDashboard.putNumber("Right Desired Velocity Error", leftStatus.getVelError());
-		}
-	}
+    @Override
+    public void outputToSmartDashboard() {
+        leftDrive.updateSmartDash();
+        rightDrive.updateSmartDash();
+        SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
+        SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
+        if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
+                || RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
+            SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
+            SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
+            SmartDashboard.putNumber("NavX Full Yaw", navX.getFullYaw());
+        }
+        if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
+            SmartDashboard.putNumber("Desired Heading", leftStatus.getSeg().heading);
+            SmartDashboard.putNumber("Heading Error", leftStatus.getAngError());
+            SmartDashboard.putNumber("Left Desired Position", leftStatus.getSeg().pos);
+            SmartDashboard.putNumber("Left Theoretical Vel", leftStatus.getSeg().vel);
+            SmartDashboard.putNumber("Left Position Error", leftStatus.getPosError());
+            SmartDashboard.putNumber("Left Desired Velocity Error", leftStatus.getVelError());
+            SmartDashboard.putNumber("Right Desired Position", leftStatus.getSeg().pos);
+            SmartDashboard.putNumber("Right Position Error", leftStatus.getPosError());
+            SmartDashboard.putNumber("Right Theoretical Vel", rightStatus.getSeg().vel);
+            SmartDashboard.putNumber("Right Desired Velocity Error", leftStatus.getVelError());
+        }
+    }
 
     @Override
     public void stop() {
@@ -307,8 +306,8 @@ public class Drive extends Subsystem {
         double desiredY;
     }
 
-	private static class InstanceHolder {
-		private static final Drive mInstance = new Drive();
-	}
+    private static class InstanceHolder {
+        private static final Drive mInstance = new Drive();
+    }
 
 }

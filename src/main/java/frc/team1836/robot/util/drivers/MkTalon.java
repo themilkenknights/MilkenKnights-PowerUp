@@ -184,7 +184,7 @@ public class MkTalon {
     }
 
     public void testDrive() {
-        masterTalon.set(ControlMode.Velocity, 1);
+        masterTalon.set(ControlMode.Velocity, DRIVE.MAX_VEL);
         Timer.delay(2.0);
         if (getPosition() < Constants.DRIVE.MIN_TEST_POS || getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
             System.out.println("FAILED - DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
