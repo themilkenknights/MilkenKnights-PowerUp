@@ -32,21 +32,12 @@ public class AutoChooser {
             case STANDSTILL:
                 return new StandStillMode();
             case DRIVE_STRAIGHT:
-                if (positionChooser.getSelected() == AutoPosition.LEFT) {
-                    return new DriveStraightMode();
-                }
-                if (positionChooser.getSelected() == AutoPosition.RIGHT) {
-                    return new DriveStraightMode();
-                }
-                if (positionChooser.getSelected() == AutoPosition.CENTER) {
-                    return new DriveStraightMode();
-                }
+                return new DriveStraightMode();
             case SWITCH:
                 if (positionChooser.getSelected() == AutoPosition.LEFT) {
                     return new LeftSwitchMode(getScalePosition());
                 }
                 if (positionChooser.getSelected() == AutoPosition.RIGHT) {
-                    System.out.println("RIGHT SWITCH");
                     return new RightSwitchMode(getScalePosition());
                 }
                 if (positionChooser.getSelected() == AutoPosition.CENTER) {

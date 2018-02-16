@@ -1,5 +1,12 @@
 package frc.team1836.robot;
 
+import frc.team1836.robot.util.auto.DeserializePath;
+import frc.team254.lib.trajectory.Path;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * UNLESS OTHERWISE NOTED BY RAW/NATIVE/RPM,
  * ALL POSITION UNITS ARE IN INCHES and DEGREES
@@ -120,5 +127,20 @@ public final class Constants {
         public static final double kWheelDeadband = 0.0045;
     }
 
+    public static class AUTO {
+        public static final Map<String, Path> autoPaths = new HashMap<String, Path>();
+        public static final String[] autoNames = {"CenterSwitchLeft", "CenterSwitchRight"};
+        static {
+            try {
+                for (String pathName : autoNames) {
+
+                    autoPaths.put(pathName, DeserializePath.getPathFromFile(pathName));
+
+                }
+            } catch (IOException e) {
+                System.err.println("Caught IOException: " + e.getMessage());
+            }
+        }
+    }
 
 }
