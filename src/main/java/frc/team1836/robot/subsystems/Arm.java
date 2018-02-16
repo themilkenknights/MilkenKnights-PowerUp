@@ -38,9 +38,12 @@ public class Arm extends Subsystem {
         leftIntakeRollerTalon = new VictorSPX(Constants.ARM.LEFT_INTAKE_ROLLER_ID);
         rightIntakeRollerTalon = new VictorSPX(Constants.ARM.RIGHT_INTAKE_ROLLER_ID);
         rightIntakeRollerTalon.set(ControlMode.Follower, Constants.ARM.LEFT_INTAKE_ROLLER_ID);
-        leftIntakeRollerTalon.setInverted(true);
         leftIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
         rightIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
+        armTalon.invertMaster(ARM.ARM_MASTER_DIRECTION);
+        armTalon.invertSlave(ARM.ARM_SLAVE_DIRECTION);
+        leftIntakeRollerTalon.setInverted(ARM.LEFT_INTAKE_DIRECTION);
+        rightIntakeRollerTalon.setInverted(ARM.RIGHT_INTAKE_DIRECTION);
         motorsConnected = true;
     }
 
@@ -59,6 +62,7 @@ public class Arm extends Subsystem {
         SmartDashboard.putNumber("Arm Current", armTalon.getCurrentOutput());
         SmartDashboard.putString("Arm Desired Position", RobotState.mArmState.toString());
         SmartDashboard.putString("Arm Control Mode", RobotState.mArmControlState.toString());
+        SmartDashboard.putBoolean("Arm Status", armTalon.checkHealth() && checkIntakeStatus());
     }
 
     @Override
@@ -128,6 +132,10 @@ public class Arm extends Subsystem {
         enabledLooper.register(mLoop);
     }
 
+    private boolean checkIntakeStatus() {
+        return Math.abs(leftIntakeRollerTalon.getOutputCurrent() - rightIntakeRollerTalon.getOutputCurrent()) > 0.5;
+    }
+
     private void updateDebugOutput(double timestamp) {
         mDebug.controlMode = RobotState.mArmControlState.toString();
         mDebug.output = armTalon.getPercentOutput();
@@ -156,7 +164,6 @@ public class Arm extends Subsystem {
             armTalon.setLimitEnabled(false);
             setOpenLoop(ARM.ZEROING_POWER);
         }
-
     }
 
     private void armSafetyCheck() {

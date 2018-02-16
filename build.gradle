@@ -56,11 +56,12 @@ ssh.settings {
     knownHosts = allowAnyHosts
 }
 
-task deployPaths {
+task swerdUpdate {
     doLast {
         ssh.run {
             session(remotes.webServer) {
-                put from: 'paths', into: '/home/lvuser'
+                put from: 'paths', into: '/home/lvuser', filter: { it.name =~ /\.txt$/ }
+                get from: '/u', into: 'logs', filter: { it.name =~ /\.csv$/ }
             }
         }
     }

@@ -46,8 +46,6 @@ public class Drive extends Subsystem {
         rightDrive.invertSlave(DRIVE.RIGHT_SLAVE_INVERT);
         rightDrive.setSensorPhase(DRIVE.RIGHT_INVERT_SENSOR);
 
-        //rightDrive.setPeakOutput(0.9725);
-
         mCSVWriter = new ReflectingCSVWriter<>(LOGGING.DRIVE_LOG_PATH,
                 DriveDebugOutput.class);
         leftStatus = TrajectoryStatus.NEUTRAL;
@@ -144,6 +142,7 @@ public class Drive extends Subsystem {
         rightDrive.updateSmartDash();
         SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
         SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
+        SmartDashboard.putBoolean("Drivetrain Status", leftDrive.checkHealth() && rightDrive.checkHealth());
         if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
                 || RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
             SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
@@ -162,6 +161,10 @@ public class Drive extends Subsystem {
             SmartDashboard.putNumber("Right Theoretical Vel", rightStatus.getSeg().vel);
             SmartDashboard.putNumber("Right Desired Velocity Error", leftStatus.getVelError());
         }
+    }
+
+    public boolean systemCheck() {
+        return false;
     }
 
     @Override

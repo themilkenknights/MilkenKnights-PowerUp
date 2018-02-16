@@ -232,7 +232,11 @@ public class MkTalon {
     }
 
     public boolean getMotorsConnected() {
-        return !(Math.abs(masterTalon.getOutputCurrent() - slaveTalon.getOutputCurrent()) > 1);
+        return !(Math.abs(masterTalon.getOutputCurrent() - slaveTalon.getOutputCurrent()) > 0.5);
+    }
+
+    public boolean checkHealth(){
+        return getMotorsConnected() && isEncoderConnected();
     }
 
     public enum TalonPosition {
