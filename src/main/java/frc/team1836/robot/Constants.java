@@ -44,8 +44,8 @@ public final class Constants {
         public static final double TURN_IN_PLACE_CIRCUMFERENCE = 104.1;
 
 
-        public static final double PATH_DIST_TOL = 0.25;
-        public static final double PATH_ANGLE_TOL = 0.25;
+        public static final double PATH_DIST_TOL = 2;
+        public static final double PATH_ANGLE_TOL = 5;
 
         public static final double DRIVE_FOLLOWER_P = 10;
         public static final double DRIVE_FOLLOWER_A = 0;
