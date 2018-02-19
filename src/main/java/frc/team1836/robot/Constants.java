@@ -109,14 +109,16 @@ public final class Constants {
         public static final double CURRENT_HARDSTOP_LIMIT = 5;
         public static final double ZEROING_POWER = -0.25;
         public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
-        public static final double SAFE_CURRENT_OUTPUT = 55;
-        public static final double SINGLE_SAFE_CURRENT_OUTPUT = 150;
+        public static final double INTAKE_LIMIT_CURRENT = 4;
+        public static final double SAFE_CURRENT_OUTPUT = 50;
+        public static final double SINGLE_SAFE_CURRENT_OUTPUT = 120;
 
 
         public static final int LEFT_INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
         public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID
         public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
-        public static final double INTAKE_OUT_ROLLER_SPEED = 0.7; //0.40
+        public static final double INTAKE_OUT_ROLLER_SPEED = 0.40;
+        public static final double INTAKE_OUT_FAST_ROLLER_SPEED = 0.90;
 
     }
 
@@ -130,6 +132,7 @@ public final class Constants {
     public static class AUTO {
         public static final Map<String, Path> autoPaths = new HashMap<String, Path>();
         public static final String[] autoNames = {"CenterSwitchLeft", "CenterSwitchRight"};
+
         static {
             try {
                 for (String pathName : autoNames) {

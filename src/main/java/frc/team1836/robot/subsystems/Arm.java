@@ -25,14 +25,14 @@ public class Arm extends Subsystem {
     private final VictorSPX leftIntakeRollerTalon;
     private final VictorSPX rightIntakeRollerTalon;
     private ArmDebugOutput mDebug = new ArmDebugOutput();
-    private double setpoint = 0;
     private boolean motorsConnected;
+    private double armPosEnable = 0;
 
     private Arm() {
         mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH,
                 ArmDebugOutput.class);
         armTalon = new MkTalon(ARM.ARM_MASTER_TALON_ID, ARM.ARM_SLAVE_TALON_ID, TalonPosition.Arm);
-        armTalon.setSensorPhase(false);
+        armTalon.setSensorPhase(ARM.ARM_SENSOR_PHASE);
         armTalon.configMotionMagic();
         armTalon.setSoftLimit(ARM.ARM_FORWARD_LIMIT, ARM.ARM_REVERSE_LIMIT);
         leftIntakeRollerTalon = new VictorSPX(Constants.ARM.LEFT_INTAKE_ROLLER_ID);
@@ -67,7 +67,7 @@ public class Arm extends Subsystem {
 
     @Override
     public void stop() {
-        setpoint = 0;
+
     }
 
     @Override
@@ -146,8 +146,15 @@ public class Arm extends Subsystem {
     }
 
     private void updateArmSetpoint() {
-        armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state));
-        setpoint = RobotState.mArmState.state;
+        if (RobotState.mArmState.equals(ArmState.ENABLE)) {
+            armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(armPosEnable));
+        } else {
+            armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state));
+        }
+    }
+
+    public void setArmEnable() {
+        armPosEnable = armTalon.getPosition();
     }
 
     private void zeroArm() {
@@ -189,11 +196,18 @@ public class Arm extends Subsystem {
 
     public void setOpenLoop(double output) {
         armTalon.set(ControlMode.PercentOutput, output);
-        setpoint = output;
     }
 
     public void setIntakeRollers(double output) {
         leftIntakeRollerTalon.set(ControlMode.PercentOutput, output);
+    }
+
+    public void invertRightRoller(boolean dir) {
+        rightIntakeRollerTalon.setInverted(dir ? !ARM.RIGHT_INTAKE_DIRECTION : ARM.RIGHT_INTAKE_DIRECTION);
+    }
+
+    public double getIntakeRollerCurrent() {
+        return (leftIntakeRollerTalon.getOutputCurrent() + rightIntakeRollerTalon.getOutputCurrent()) / 2;
     }
 
     public static class ArmDebugOutput {
