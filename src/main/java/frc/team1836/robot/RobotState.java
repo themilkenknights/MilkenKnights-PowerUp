@@ -2,11 +2,11 @@ package frc.team1836.robot;
 
 public class RobotState {
 
-	public static SystemState mSystemState = SystemState.IDLE;
-	public static MatchState mMatchState = MatchState.DISABLED;
-	public static DriveControlState mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
-	public static ArmControlState mArmControlState = ArmControlState.MOTION_MAGIC;
-	public static ArmState mArmState = ArmState.ZEROED;
+    public static SystemState mSystemState = SystemState.IDLE;
+    public static MatchState mMatchState = MatchState.DISABLED;
+    public static DriveControlState mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
+    public static ArmControlState mArmControlState = ArmControlState.MOTION_MAGIC;
+    public static ArmState mArmState = ArmState.ZEROED;
 
     // Intenal state of the system
     public enum SystemState {
@@ -29,12 +29,13 @@ public class RobotState {
         OPEN_LOOP,
     }
 
-	public enum ArmState {
-		ZEROED(0),
-		INTAKE(15),
-		SECOND_SWITCH_PLACE(39),
-		SWITCH_PLACE(95),
-		OPPOSITE_SWITCH(240);
+    public enum ArmState {
+        ENABLE(0),
+        ZEROED(0),
+        INTAKE(15),
+        SECOND_SWITCH_PLACE(39),
+        SWITCH_PLACE(95),
+        OPPOSITE_SWITCH(240);
 
         public final double state;
 

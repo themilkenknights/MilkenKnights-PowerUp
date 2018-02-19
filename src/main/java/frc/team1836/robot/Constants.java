@@ -86,8 +86,8 @@ public final class Constants {
         public static final int ARM_MASTER_TALON_ID = 9;
         public static final int ARM_SLAVE_TALON_ID = 1;
         public static final boolean ARM_SENSOR_PHASE = false;
-        public static final boolean ARM_MASTER_DIRECTION = false;
-        public static final boolean ARM_SLAVE_DIRECTION = false;
+        public static final boolean ARM_MASTER_DIRECTION = true;
+        public static final boolean ARM_SLAVE_DIRECTION = true;
         public static final boolean LEFT_INTAKE_DIRECTION = false;
         public static final boolean RIGHT_INTAKE_DIRECTION = false;
 
