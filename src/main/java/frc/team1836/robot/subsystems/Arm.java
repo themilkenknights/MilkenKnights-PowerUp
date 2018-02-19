@@ -67,7 +67,7 @@ public class Arm extends Subsystem {
 
     @Override
     public void stop() {
-        setpoint = 0;
+
     }
 
     @Override
@@ -200,6 +200,14 @@ public class Arm extends Subsystem {
 
     public void setIntakeRollers(double output) {
         leftIntakeRollerTalon.set(ControlMode.PercentOutput, output);
+    }
+
+    public void invertRightRoller(boolean dir) {
+        rightIntakeRollerTalon.setInverted(dir ? !ARM.RIGHT_INTAKE_DIRECTION : ARM.RIGHT_INTAKE_DIRECTION);
+    }
+
+    public double getIntakeRollerCurrent() {
+        return (leftIntakeRollerTalon.getOutputCurrent() + rightIntakeRollerTalon.getOutputCurrent()) / 2;
     }
 
     public static class ArmDebugOutput {
