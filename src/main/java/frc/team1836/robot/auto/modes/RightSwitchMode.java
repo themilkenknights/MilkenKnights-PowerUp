@@ -10,39 +10,39 @@ import java.io.IOException;
 
 public class RightSwitchMode extends AutoModeBase {
 
-    private GameObjectPosition position;
+	private GameObjectPosition position;
 
-    public RightSwitchMode(AutoChooser.GameObjectPosition position) {
-        this.position = position;
-    }
+	public RightSwitchMode(AutoChooser.GameObjectPosition position) {
+		this.position = position;
+	}
 
-    @Override
-    protected void routine() throws AutoModeEndedException {
-        switch (position) {
-            case LEFT:
-                leftRoutine();
-                break;
-            case RIGHT:
-                rightRoutine();
-                break;
-        }
-    }
+	@Override
+	protected void routine() throws AutoModeEndedException {
+		switch (position) {
+			case LEFT:
+				leftRoutine();
+				break;
+			case RIGHT:
+				rightRoutine();
+				break;
+		}
+	}
 
-    private void leftRoutine() throws AutoModeEndedException {
-        try {
-            runAction(new DrivePathAction(DeserializePath.getPathFromFile("RightLeftSwitchPath")));
-        } catch (IOException e) {
-            System.err.println("Caught IOException: " + e.getMessage());
-        }
-    }
+	private void leftRoutine() throws AutoModeEndedException {
+		try {
+			runAction(new DrivePathAction(DeserializePath.getPathFromFile("RightLeftSwitchPath")));
+		} catch (IOException e) {
+			System.err.println("Caught IOException: " + e.getMessage());
+		}
+	}
 
-    private void rightRoutine() throws AutoModeEndedException {
-        try {
-            runAction(new DrivePathAction(DeserializePath.getPathFromFile("RightRightSwitchPath")));
-        } catch (IOException e) {
-            System.err.println("Caught IOException: " + e.getMessage());
-        }
-    }
+	private void rightRoutine() throws AutoModeEndedException {
+		try {
+			runAction(new DrivePathAction(DeserializePath.getPathFromFile("RightRightSwitchPath")));
+		} catch (IOException e) {
+			System.err.println("Caught IOException: " + e.getMessage());
+		}
+	}
 
 
 }
