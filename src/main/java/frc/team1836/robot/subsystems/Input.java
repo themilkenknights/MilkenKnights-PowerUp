@@ -44,6 +44,9 @@ public class Input extends Subsystem {
     private final MkJoystickButton intakeRollerInOut = operatorJoystick
             .getButton(9,
                     "Intake Roller In-Out");
+    private final MkJoystickButton intakeRollerOutFast = operatorJoystick
+            .getButton(10,
+                    "Intake Roller Out Fast");
 
 
     public Input() {
@@ -165,6 +168,8 @@ public class Input extends Subsystem {
             Arm.getInstance().invertRightRoller(true);
             edu.wpi.first.wpilibj.Timer.delay(0.4);
             Arm.getInstance().invertRightRoller(false);
+        } else if (intakeRollerOutFast.isHeld()) {
+            Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_FAST_ROLLER_SPEED);
         } else {
             Arm.getInstance().setIntakeRollers(ARM.SLOW_INTAKE_HOLD_SPEED);
         }

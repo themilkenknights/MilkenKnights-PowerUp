@@ -117,7 +117,8 @@ public final class Constants {
         public static final int LEFT_INTAKE_ROLLER_ID = 7; //Intake Roller Talon ID
         public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID
         public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
-        public static final double INTAKE_OUT_ROLLER_SPEED = 0.40; //0.40
+        public static final double INTAKE_OUT_ROLLER_SPEED = 0.40;
+        public static final double INTAKE_OUT_FAST_ROLLER_SPEED = 0.90;
 
     }
 
@@ -131,6 +132,7 @@ public final class Constants {
     public static class AUTO {
         public static final Map<String, Path> autoPaths = new HashMap<String, Path>();
         public static final String[] autoNames = {"CenterSwitchLeft", "CenterSwitchRight"};
+
         static {
             try {
                 for (String pathName : autoNames) {
