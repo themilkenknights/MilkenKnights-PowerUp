@@ -83,10 +83,10 @@ public final class Constants {
 
     public static class ARM {
 
-        public static final int ARM_MASTER_TALON_ID = 9;
-        public static final int ARM_SLAVE_TALON_ID = 1;
+        public static final int ARM_MASTER_TALON_ID = 4;
+        public static final int ARM_SLAVE_TALON_ID = 7;
         public static final boolean ARM_SENSOR_PHASE = false;
-        public static final boolean ARM_MASTER_DIRECTION = false;
+        public static final boolean ARM_MASTER_DIRECTION = true;
         public static final boolean ARM_SLAVE_DIRECTION = false;
         public static final boolean LEFT_INTAKE_DIRECTION = false;
         public static final boolean RIGHT_INTAKE_DIRECTION = false;
@@ -106,17 +106,17 @@ public final class Constants {
         public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL * 0.975;
         public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 1.2;
 
-        public static final double CURRENT_HARDSTOP_LIMIT = 6;
+        public static final double CURRENT_HARDSTOP_LIMIT = 5;
         public static final double ZEROING_POWER = -0.25;
         public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
         public static final double SAFE_CURRENT_OUTPUT = 55;
         public static final double SINGLE_SAFE_CURRENT_OUTPUT = 150;
 
 
-        public static final int LEFT_INTAKE_ROLLER_ID = 7; //Intake Roller Talon ID
+        public static final int LEFT_INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
         public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID
         public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
-        public static final double INTAKE_OUT_ROLLER_SPEED = 0.40; //0.40
+        public static final double INTAKE_OUT_ROLLER_SPEED = 0.7; //0.40
 
     }
 
