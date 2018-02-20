@@ -54,3 +54,5 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 - DIST DENOTES POSITION AND ANG DENOTES ANGLE
 - ID TYPICALLY DENOTES A CAN ID
 - ALL PID CONSTANTS SENT TO THE TALON ARE IN NATIVE UNITS (4096 Per Rotation)
+
+Link to Path Generator - https://milken-computer-science.github.io/MilkenKnights-PowerUp/light_path
