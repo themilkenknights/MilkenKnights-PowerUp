@@ -15,16 +15,16 @@ import frc.team1836.robot.util.loops.Looper;
  */
 public abstract class Subsystem {
 
-	public void writeToLog() {
-	}
+    public void writeToLog() {
+    }
 
-	public abstract void outputToSmartDashboard();
+    public abstract void outputToSmartDashboard();
 
-	public abstract void stop();
+    public abstract void stop();
 
-	public abstract void zeroSensors();
+    public abstract void zeroSensors();
 
-	public abstract void checkSystem();
+    public abstract void checkSystem();
 
-	public abstract void registerEnabledLoops(Looper enabledLooper);
+    public abstract void registerEnabledLoops(Looper enabledLooper);
 }

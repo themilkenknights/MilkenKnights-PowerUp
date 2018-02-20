@@ -1,6 +1,7 @@
 package frc.team254.lib.trajectory.io;
 
 import frc.team254.lib.trajectory.Path;
+
 import java.util.StringTokenizer;
 
 /**
@@ -11,37 +12,37 @@ import java.util.StringTokenizer;
  */
 public class JavaStringSerializer implements IPathSerializer {
 
-	public String serialize(Path path) {
-		String contents = "package frc.team1836.robot.auto.paths;\n\n";
-		contents += "import frc.team254.lib.trajectory.Path;\n";
-		contents += "import frc.team254.lib.trajectory.io.TextFileDeserializer;\n";
-		contents += "public class " + path.getName() + " extends Path {\n";
+    public String serialize(Path path) {
+        String contents = "package frc.team1836.robot.auto.paths;\n\n";
+        contents += "import frc.team254.lib.trajectory.Path;\n";
+        contents += "import frc.team254.lib.trajectory.io.TextFileDeserializer;\n";
+        contents += "public class " + path.getName() + " extends Path {\n";
 
-		TextFileSerializer serializer = new TextFileSerializer();
-		String serialized = serializer.serialize(path);
+        TextFileSerializer serializer = new TextFileSerializer();
+        String serialized = serializer.serialize(path);
 
-		// J2ME can't parse multi line string literals.
-		StringTokenizer tokenizer = new StringTokenizer(serialized, "\n");
-		contents += "  private static final String kSerialized = \"" +
-				tokenizer.nextToken() + "\\n\"\n";
-		while (tokenizer.hasMoreTokens()) {
-			contents += "    + \"" + tokenizer.nextToken() + "\\n\"";
-			if (tokenizer.hasMoreTokens()) {
-				contents += "\n";
-			} else {
-				contents += ";\n\n";
-			}
-		}
+        // J2ME can't parse multi line string literals.
+        StringTokenizer tokenizer = new StringTokenizer(serialized, "\n");
+        contents += "  private static final String kSerialized = \"" +
+                tokenizer.nextToken() + "\\n\"\n";
+        while (tokenizer.hasMoreTokens()) {
+            contents += "    + \"" + tokenizer.nextToken() + "\\n\"";
+            if (tokenizer.hasMoreTokens()) {
+                contents += "\n";
+            } else {
+                contents += ";\n\n";
+            }
+        }
 
-		contents += "  public " + path.getName() + "() {\n";
-		contents += "     TextFileDeserializer d = new TextFileDeserializer();\n";
-		contents += "     Path p = d.deserialize(kSerialized);\n";
-		contents += "     this.name_ = p.getName();\n";
-		contents += "     this.go_left_pair_ = p.getPair();\n";
-		contents += "  }\n\n";
+        contents += "  public " + path.getName() + "() {\n";
+        contents += "     TextFileDeserializer d = new TextFileDeserializer();\n";
+        contents += "     Path p = d.deserialize(kSerialized);\n";
+        contents += "     this.name_ = p.getName();\n";
+        contents += "     this.go_left_pair_ = p.getPair();\n";
+        contents += "  }\n\n";
 
-		contents += "}\n";
-		return contents;
-	}
+        contents += "}\n";
+        return contents;
+    }
 
 }

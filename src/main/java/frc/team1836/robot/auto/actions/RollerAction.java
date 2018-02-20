@@ -6,33 +6,33 @@ import frc.team1836.robot.util.auto.Action;
 
 public class RollerAction implements Action {
 
-	private double time;
-	private double speed;
-	private Timer timer;
+    private double time;
+    private double speed;
+    private Timer timer;
 
-	public RollerAction(double time, double speed) {
-		this.speed = speed;
-		this.time = time;
-		timer = new Timer();
-	}
+    public RollerAction(double time, double speed) {
+        this.speed = speed;
+        this.time = time;
+        timer = new Timer();
+    }
 
-	@Override
-	public boolean isFinished() {
-		return timer.get() >= time;
-	}
+    @Override
+    public boolean isFinished() {
+        return timer.get() >= time;
+    }
 
-	@Override
-	public void update() {
-		Arm.getInstance().setIntakeRollers(speed);
-	}
+    @Override
+    public void update() {
+        Arm.getInstance().setIntakeRollers(speed);
+    }
 
-	@Override
-	public void done() {
+    @Override
+    public void done() {
 
-	}
+    }
 
-	@Override
-	public void start() {
-		timer.start();
-	}
+    @Override
+    public void start() {
+        timer.start();
+    }
 }
