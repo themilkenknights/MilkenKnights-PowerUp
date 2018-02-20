@@ -26,7 +26,7 @@ public final class Constants {
 
 		public static final int LEFT_MASTER_ID = 10;
 		public static final int LEFT_SLAVE_ID = 8;
-		public static final int RIGHT_MASTER_ID = 5;
+		public static final int RIGHT_MASTER_ID = 9;//5
 		public static final int RIGHT_SLAVE_ID = 3;
 
 		public static final boolean LEFT_MASTER_INVERT = false;
@@ -64,13 +64,14 @@ public final class Constants {
 		public static final double RIGHT_DRIVE_F = (1023.0 / ((RIGHT_RPM_MAX / 60.0 / 10.0)
 				* 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
 
-		//Used for turn in place (Degrees) - Is converted to inches after a trajectory is generated
+		//Used for turn in place (Degrees) - Is converted
+		// to inches after a trajectory is generated
 		public static final double MAX_ANG_VEL = 2.5 * 360;
 		public static final double MAX_ANG_ACC = 1.5 * 360;
 		public static final double MAX_ANG_JERK = 0.75 * 360;
 
-		public static final double MIN_TEST_POS = MAX_VEL * 1.5;
-		public static final double MIN_TEST_VEL = MAX_VEL * 0.9;
+		public static final double MIN_TEST_POS = MAX_VEL * 1;
+		public static final double MIN_TEST_VEL = MAX_VEL * 0.5;
 	}
 
 	public static class LOGGING {
@@ -90,7 +91,7 @@ public final class Constants {
 		public static final boolean LEFT_INTAKE_DIRECTION = false;
 		public static final boolean RIGHT_INTAKE_DIRECTION = false;
 
-		public static final double RPM_MAX = 35; //RPM Max of Arm
+		public static final double RPM_MAX = 36; //RPM Max of Arm
 		public static final double GEAR_RATIO = 22.0
 				/ 336.0; //Gear Ratio between encoder and arm - Used to calulate arm position in degrees
 		public static final double MAX_RAW_VEL =
@@ -105,18 +106,17 @@ public final class Constants {
 		public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL * 0.975;
 		public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 1.2;
 
-		public static final double CURRENT_HARDSTOP_LIMIT = 2.75;
+		public static final double CURRENT_HARDSTOP_LIMIT = 2.25;
 		public static final double ZEROING_POWER = -0.15;
 		public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
-		public static final double INTAKE_LIMIT_CURRENT = 4;
 		public static final double SAFE_CURRENT_OUTPUT = 40;
-		public static final double SINGLE_SAFE_CURRENT_OUTPUT = 100;
 
 
 		public static final int LEFT_INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
 		public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID
 		public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
 		public static final double INTAKE_OUT_ROLLER_SPEED = 0.40;
+		public static final double INTAKE_IN_OUT_SPEED = 0.6;
 		public static final double INTAKE_OUT_FAST_ROLLER_SPEED = 0.90;
 
 	}

@@ -2,7 +2,9 @@ package frc.team1836.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.SPI.Port;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.DRIVE;
 import frc.team1836.robot.Constants.LOGGING;
 import frc.team1836.robot.RobotState;
@@ -51,6 +53,8 @@ public class Drive extends Subsystem {
 		leftStatus = TrajectoryStatus.NEUTRAL;
 		rightStatus = TrajectoryStatus.NEUTRAL;
 		currentSetpoint = DriveSignal.NEUTRAL;
+		leftDrive.setBrakeMode();
+		rightDrive.setBrakeMode();
 	}
 
 	public static Drive getInstance() {
@@ -178,8 +182,20 @@ public class Drive extends Subsystem {
 
 	@Override
 	public void checkSystem() {
-		leftDrive.testDrive();
-		rightDrive.testDrive();
+		leftDrive.set(ControlMode.PercentOutput, 1);
+		rightDrive.set(ControlMode.PercentOutput, 1);
+		Timer.delay(1.0);
+		leftDrive.set(ControlMode.PercentOutput, 0);
+		rightDrive.set(ControlMode.PercentOutput, 0);
+		if (leftDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || leftDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
+			System.out.println("FAILED - LEFT DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
+			System.out.println("Position: " + leftDrive.getPosition() + "Speed: " + leftDrive.getSpeed());
+		}
+		if (rightDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || rightDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
+			System.out.println("FAILED - RIGHT DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
+			System.out.println("Position: " + rightDrive.getPosition() + "Speed: " + rightDrive.getSpeed());
+		}
+
 		if (!navX.isConnected()) {
 			System.out.println("FAILED - NAVX DISCONNECTED");
 		}
@@ -206,6 +222,7 @@ public class Drive extends Subsystem {
 			@Override
 			public void onLoop(double timestamp) {
 				synchronized (Drive.this) {
+					safetyCheck();
 					updateDebugOutput(timestamp);
 					mCSVWriter.add(mDebug);
 					switch (RobotState.mDriveControlState) {
@@ -235,8 +252,10 @@ public class Drive extends Subsystem {
 		enabledLooper.register(mLoop);
 	}
 
-	public boolean systemCheck() {
-		return false;
+	private void safetyCheck(){
+		if(!leftDrive.isEncoderConnected() || !rightDrive.isEncoderConnected()){
+			RobotState.mDriveControlState = DriveControlState.OPEN_LOOP;
+		}
 	}
 
 	private void updateDebugOutput(double timestamp) {

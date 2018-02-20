@@ -6,11 +6,11 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.Constants.DRIVE;
+import frc.team1836.robot.util.math.MkMath;
 
 public class MkTalon {
 
@@ -52,10 +52,10 @@ public class MkTalon {
 	}
 
 	public void setSoftLimit(double forwardLimit, double reverseLimit) {
-		//	masterTalon.configForwardSoftLimitThreshold((int) MkMath.angleToNativeUnits(forwardLimit), Constants.kTimeoutMs);
-		//	masterTalon.configReverseSoftLimitThreshold((int) MkMath.angleToNativeUnits(reverseLimit), Constants.kTimeoutMs);
-		masterTalon.configForwardSoftLimitEnable(false, Constants.kTimeoutMs);
-		masterTalon.configReverseSoftLimitEnable(false, Constants.kTimeoutMs);
+		masterTalon.configForwardSoftLimitThreshold((int) MkMath.angleToNativeUnits(forwardLimit),
+				Constants.kTimeoutMs);
+		masterTalon.configReverseSoftLimitThreshold((int) MkMath.angleToNativeUnits(reverseLimit),
+				Constants.kTimeoutMs);
 	}
 
 	public void setLimitEnabled(boolean enabled) {
@@ -131,6 +131,7 @@ public class MkTalon {
 
 	public void setBrakeMode() {
 		masterTalon.setNeutralMode(NeutralMode.Brake);
+		slaveTalon.setNeutralMode(NeutralMode.Brake);
 	}
 
 	public void setCoastMode() {
@@ -183,13 +184,9 @@ public class MkTalon {
 		slaveTalon.set(mode, value);
 	}
 
-	public void testDrive() {
-		masterTalon.set(ControlMode.Velocity, DRIVE.MAX_VEL);
-		Timer.delay(2.0);
-		if (getPosition() < Constants.DRIVE.MIN_TEST_POS || getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
-			System.out.println("FAILED - DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
-			System.out.println("Position" + getPosition() + "Speed" + getSpeed());
-		}
+	public void setMaster(ControlMode mode, double value) {
+		slaveTalon.set(ControlMode.PercentOutput, 0);
+		masterTalon.set(mode, value);
 	}
 
 	public void setSensorPhase(boolean dir) {

@@ -1,6 +1,7 @@
 package frc.team1836.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import frc.team1836.robot.RobotState.ArmControlState;
 import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.subsystems.Arm;
@@ -46,6 +47,7 @@ public class Robot extends IterativeRobot {
 			mEnabledLooper.stop();
 			mSubsystemManager.stop();
 			RobotState.mMatchState = MatchState.DISABLED;
+			RobotState.mArmState = RobotState.ArmState.ENABLE;
 			Drive.getInstance().setOpenLoop(DriveSignal.NEUTRAL);
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
@@ -70,10 +72,9 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		try {
 			CrashTracker.logTeleopInit();
-			Arm.getInstance().setArmEnable();
 			RobotState.mMatchState = MatchState.TELEOP;
 			RobotState.mDriveControlState = DriveControlState.OPEN_LOOP;
-			RobotState.mArmState = RobotState.ArmState.ENABLE;
+			RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
 			mEnabledLooper.start();
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);

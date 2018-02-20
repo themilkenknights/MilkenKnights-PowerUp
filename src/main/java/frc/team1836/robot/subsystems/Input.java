@@ -27,6 +27,8 @@ public class Input extends Subsystem {
 					"Change Drive Mode");
 
 	private final MkJoystickButton armIntakeButton = operatorJoystick.getButton(2, "Arm Intake");
+	private final MkJoystickButton armDisableSafety = operatorJoystick
+			.getButton(11, "Arm Disable Current Limit");
 	private final MkJoystickButton armSwitchButton = operatorJoystick.getButton(6, "Arm Switch");
 	private final MkJoystickButton armSecondSwitchButton = operatorJoystick
 			.getButton(1, "Arm Second Switch");
@@ -41,12 +43,12 @@ public class Input extends Subsystem {
 	private final MkJoystickButton intakeRollerOut = operatorJoystick
 			.getButton(5,
 					"Intake Roller Out");
-	private final MkJoystickButton intakeRollerInOut = operatorJoystick
-			.getButton(9,
-					"Intake Roller In-Out");
 	private final MkJoystickButton intakeRollerOutFast = operatorJoystick
-			.getButton(10,
+			.getButton(9,
 					"Intake Roller Out Fast");
+	private final MkJoystickButton armOppositeSwitch = operatorJoystick
+			.getPOV(4,
+					"Arm Opposite Switch");
 
 
 	public Input() {
@@ -123,6 +125,9 @@ public class Input extends Subsystem {
 	}
 
 	private void updateArmInput() {
+		if (armDisableSafety.isPressed()) {
+			Arm.getInstance().changeSafety();
+		}
 		if (armZeroButton.isPressed()) {
 			RobotState.mArmControlState = ArmControlState.ZEROING;
 		}
@@ -135,7 +140,9 @@ public class Input extends Subsystem {
 				} else if (armSwitchButton.isPressed()) {
 					RobotState.mArmState = ArmState.SWITCH_PLACE;
 				} else if (armSwitchReverseButton.isPressed()) {
-					RobotState.mArmState = ArmState.OPPOSITE_SWITCH;
+					RobotState.mArmState = ArmState.OPPOSITE_STOW;
+				} else if (armOppositeSwitch.isPressed()) {
+					RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
 				}
 				if (armChangeModeButton.isPressed()) {
 					RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
@@ -159,24 +166,18 @@ public class Input extends Subsystem {
 		}
 
 		if (intakeRollerIn.isHeld()) {
-			if (Arm.getInstance().getIntakeRollerCurrent() < ARM.INTAKE_LIMIT_CURRENT) {
-				Arm.getInstance().setIntakeRollers(ARM.INTAKE_IN_ROLLER_SPEED);
-			} else {
-				Arm.getInstance().setIntakeRollers(-ARM.SLOW_INTAKE_HOLD_SPEED);
-			}
+			Arm.getInstance().setIntakeRollers(ARM.INTAKE_IN_ROLLER_SPEED);
 		} else if (intakeRollerOut.isHeld()) {
 			Arm.getInstance().setIntakeRollers(-ARM.INTAKE_OUT_ROLLER_SPEED);
-		} else if (intakeRollerInOut.isPressed()) {
-			Arm.getInstance().invertRightRoller(true);
-			edu.wpi.first.wpilibj.Timer.delay(0.4);
-			Arm.getInstance().invertRightRoller(false);
 		} else if (intakeRollerOutFast.isHeld()) {
 			Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_FAST_ROLLER_SPEED);
 		} else {
-			if (!RobotState.mArmControlState.equals(ArmControlState.ZEROING)) {
+			if (!RobotState.mArmControlState.equals(ArmControlState.ZEROING) && !RobotState.mArmState
+					.equals(ArmState.ZEROED) && !RobotState.mArmState.equals(ArmState.ENABLE)) {
 				Arm.getInstance().setIntakeRollers(ARM.SLOW_INTAKE_HOLD_SPEED);
+			} else {
+				Arm.getInstance().setIntakeRollers(0);
 			}
-
 		}
 	}
 
