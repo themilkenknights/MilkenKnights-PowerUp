@@ -1,4 +1,4 @@
-package frc.team1836.robot.util.drivers;
+package frc.team1836.robot.util.math;
 
 public class MovingAverage {
     private int _in;
