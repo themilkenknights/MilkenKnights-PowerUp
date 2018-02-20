@@ -26,7 +26,7 @@ public final class Constants {
 
 		public static final int LEFT_MASTER_ID = 10;
 		public static final int LEFT_SLAVE_ID = 8;
-		public static final int RIGHT_MASTER_ID = 9;//5
+		public static final int RIGHT_MASTER_ID = 5;
 		public static final int RIGHT_SLAVE_ID = 3;
 
 		public static final boolean LEFT_MASTER_INVERT = false;
@@ -43,26 +43,23 @@ public final class Constants {
 		public static final double TURN_IN_PLACE_CIRCUMFERENCE = 104.1;
 
 
-		public static final double PATH_DIST_TOL = 2;
-		public static final double PATH_ANGLE_TOL = 5;
+		public static final double PATH_DIST_TOL = 0.25;
+		public static final double PATH_ANGLE_TOL = 0.25;
 
-		public static final double DRIVE_FOLLOWER_P = 10;
+		public static final double DRIVE_FOLLOWER_P = 0; //10;
 		public static final double DRIVE_FOLLOWER_A = 0;
-		public static final double DRIVE_FOLLOWER_ANG = 0.75;
+		public static final double DRIVE_FOLLOWER_ANG = 0; //0.75;
 
 		public static final double LEFT_RPM_MAX = 488.0; //Observed Max Speed for Drivetrain in RPM
 		public static final double RIGHT_RPM_MAX = 502.0; //Observed Max Speed for Drivetrain in RPM
 
-
 		public static final double MAX_VEL =
 				(LEFT_RPM_MAX / 60) * (CIRCUMFERENCE); // Max Speed in Inches per second
-		public static final double DRIVE_P = (0.1 * 1023.0) / (300.00);
-		public static final double DRIVE_I = DRIVE_P / 100.0;
+		public static final double DRIVE_P = (0.85 * 1023.0) / (175.00); //300
+		public static final double DRIVE_I = 0; //DRIVE_P / 100.0;
 		public static final double DRIVE_D = 15 * DRIVE_P;
-		public static final double LEFT_DRIVE_F = (1023.0 / ((LEFT_RPM_MAX / 60.0 / 10.0)
-				* 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
-		public static final double RIGHT_DRIVE_F = (1023.0 / ((RIGHT_RPM_MAX / 60.0 / 10.0)
-				* 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
+		public static final double LEFT_DRIVE_F = 0; //(1023.0 / ((LEFT_RPM_MAX / 60.0 / 10.0)* 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
+		public static final double RIGHT_DRIVE_F = 0; //(1023.0 / ((RIGHT_RPM_MAX / 60.0 / 10.0) * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
 
 		//Used for turn in place (Degrees) - Is converted
 		// to inches after a trajectory is generated
@@ -115,8 +112,7 @@ public final class Constants {
 		public static final int LEFT_INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
 		public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID
 		public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
-		public static final double INTAKE_OUT_ROLLER_SPEED = 0.40;
-		public static final double INTAKE_IN_OUT_SPEED = 0.6;
+		public static final double INTAKE_OUT_ROLLER_SPEED = -0.40;
 		public static final double INTAKE_OUT_FAST_ROLLER_SPEED = 0.90;
 
 	}
@@ -131,14 +127,12 @@ public final class Constants {
 	public static class AUTO {
 
 		public static final Map<String, Path> autoPaths = new HashMap<String, Path>();
-		public static final String[] autoNames = {"CenterSwitchLeft", "CenterSwitchRight"};
+		public static final String[] autoNames = {"CenterLeftSwitchPath", "CenterRightSwitchPath"};
 
 		static {
 			try {
 				for (String pathName : autoNames) {
-
 					autoPaths.put(pathName, DeserializePath.getPathFromFile(pathName));
-
 				}
 			} catch (IOException e) {
 				System.err.println("Caught IOException: " + e.getMessage());

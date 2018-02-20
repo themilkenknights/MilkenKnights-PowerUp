@@ -46,9 +46,6 @@ public class Input extends Subsystem {
 	private final MkJoystickButton intakeRollerOutFast = operatorJoystick
 			.getButton(9,
 					"Intake Roller Out Fast");
-	private final MkJoystickButton armOppositeSwitch = operatorJoystick
-			.getPOV(4,
-					"Arm Opposite Switch");
 
 
 	public Input() {
@@ -141,7 +138,7 @@ public class Input extends Subsystem {
 					RobotState.mArmState = ArmState.SWITCH_PLACE;
 				} else if (armSwitchReverseButton.isPressed()) {
 					RobotState.mArmState = ArmState.OPPOSITE_STOW;
-				} else if (armOppositeSwitch.isPressed()) {
+				} else if (operatorJoystick.getPOV() != -1) {
 					RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
 				}
 				if (armChangeModeButton.isPressed()) {
@@ -168,7 +165,7 @@ public class Input extends Subsystem {
 		if (intakeRollerIn.isHeld()) {
 			Arm.getInstance().setIntakeRollers(ARM.INTAKE_IN_ROLLER_SPEED);
 		} else if (intakeRollerOut.isHeld()) {
-			Arm.getInstance().setIntakeRollers(-ARM.INTAKE_OUT_ROLLER_SPEED);
+			Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_ROLLER_SPEED);
 		} else if (intakeRollerOutFast.isHeld()) {
 			Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_FAST_ROLLER_SPEED);
 		} else {

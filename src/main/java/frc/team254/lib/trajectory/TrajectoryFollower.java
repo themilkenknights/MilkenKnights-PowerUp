@@ -23,7 +23,6 @@ public class TrajectoryFollower {
 	private double _DistTol;
 	private double _AngTol;
 	private boolean firstRun;
-	private boolean isConnected = true;
 
 	public TrajectoryFollower(Trajectory profile) {
 		profile_ = profile;
@@ -45,8 +44,7 @@ public class TrajectoryFollower {
 		firstRun = true;
 	}
 
-	public TrajectoryStatus calculate(double dist, double vel, double heading, boolean connected) {
-		isConnected = connected;
+	public TrajectoryStatus calculate(double dist, double vel, double heading) {
 		if (firstRun) {
 			Dt = Timer.getFPGATimestamp();
 			firstRun = false;
@@ -55,14 +53,8 @@ public class TrajectoryFollower {
 		current_segment = (int) (customRound(currentTime - Dt) / 0.005);
 		if (current_segment < profile_.getNumSegments()) {
 			Trajectory.Segment segment = interpolateSegments(current_segment, currentTime);
-			double error;
-			if (connected) {
-				error = segment.pos - dist;
-			} else {
-				error = 0;
-			}
+			double error = segment.pos - dist;
 			double angError = segment.heading - heading;
-			System.out.println(segment.heading);
 			if (angError > 180) {
 				angError = angError - 360;
 			} else if (angError < -180) {
@@ -98,9 +90,6 @@ public class TrajectoryFollower {
 	}
 
 	public boolean onTarget() {
-		if (!isConnected) {
-			return last_Ang_error < _AngTol;
-		}
 		return last_error_ < _DistTol && last_Ang_error < _AngTol;
 	}
 

@@ -106,8 +106,8 @@ public class Drive extends Subsystem {
 
 	public boolean isPathFinished() {
 		if (pathFollower.getFinished()) {
-			RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
-			setVelocitySetpoint(DriveSignal.NEUTRAL);
+			RobotState.mDriveControlState = DriveControlState.OPEN_LOOP;
+			setOpenLoop(DriveSignal.NEUTRAL);
 			pathFollower = null;
 			leftStatus = TrajectoryStatus.NEUTRAL;
 			rightStatus = TrajectoryStatus.NEUTRAL;
@@ -125,10 +125,10 @@ public class Drive extends Subsystem {
 	private void updatePathFollower() {
 		TrajectoryStatus leftUpdate = pathFollower
 				.getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(),
-						navX.getFullYaw(), leftDrive.isEncoderConnected());
+						navX.getFullYaw());
 		TrajectoryStatus rightUpdate = pathFollower
 				.getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
-						navX.getFullYaw(), rightDrive.isEncoderConnected());
+						navX.getFullYaw());
 
 		leftStatus = leftUpdate;
 		rightStatus = rightUpdate;
@@ -187,13 +187,16 @@ public class Drive extends Subsystem {
 		Timer.delay(1.0);
 		leftDrive.set(ControlMode.PercentOutput, 0);
 		rightDrive.set(ControlMode.PercentOutput, 0);
-		if (leftDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || leftDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
+		if (leftDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS
+				|| leftDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
 			System.out.println("FAILED - LEFT DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
 			System.out.println("Position: " + leftDrive.getPosition() + "Speed: " + leftDrive.getSpeed());
 		}
-		if (rightDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || rightDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
+		if (rightDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS
+				|| rightDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
 			System.out.println("FAILED - RIGHT DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
-			System.out.println("Position: " + rightDrive.getPosition() + "Speed: " + rightDrive.getSpeed());
+			System.out
+					.println("Position: " + rightDrive.getPosition() + "Speed: " + rightDrive.getSpeed());
 		}
 
 		if (!navX.isConnected()) {
@@ -222,7 +225,6 @@ public class Drive extends Subsystem {
 			@Override
 			public void onLoop(double timestamp) {
 				synchronized (Drive.this) {
-					safetyCheck();
 					updateDebugOutput(timestamp);
 					mCSVWriter.add(mDebug);
 					switch (RobotState.mDriveControlState) {
@@ -250,12 +252,6 @@ public class Drive extends Subsystem {
 			}
 		};
 		enabledLooper.register(mLoop);
-	}
-
-	private void safetyCheck(){
-		if(!leftDrive.isEncoderConnected() || !rightDrive.isEncoderConnected()){
-			RobotState.mDriveControlState = DriveControlState.OPEN_LOOP;
-		}
 	}
 
 	private void updateDebugOutput(double timestamp) {

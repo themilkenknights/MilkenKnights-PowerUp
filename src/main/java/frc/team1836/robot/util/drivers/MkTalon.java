@@ -136,6 +136,7 @@ public class MkTalon {
 
 	public void setCoastMode() {
 		masterTalon.setNeutralMode(NeutralMode.Coast);
+		slaveTalon.setNeutralMode(NeutralMode.Coast);
 	}
 
 	public double getRPM() {

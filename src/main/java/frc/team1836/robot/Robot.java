@@ -1,6 +1,7 @@
 package frc.team1836.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import frc.team1836.robot.Constants.AUTO;
 import frc.team1836.robot.RobotState.ArmControlState;
 import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.RobotState.MatchState;
@@ -32,6 +33,7 @@ public class Robot extends IterativeRobot {
 			mSubsystemManager.registerEnabledLoops(mEnabledLooper);
 			mSubsystemManager.zeroSensors();
 			AutoChooser.loadChooser();
+			int x = AUTO.autoNames.length;
 		} catch (Throwable t) {
 			CrashTracker.logThrowableCrash(t);
 			throw t;

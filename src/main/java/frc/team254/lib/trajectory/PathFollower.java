@@ -20,14 +20,12 @@ public class PathFollower {
 	}
 
 
-	public TrajectoryStatus getLeftVelocity(double dist, double vel, double angle,
-			boolean connected) {
-		return lFollower.calculate(dist, vel, angle, connected);
+	public TrajectoryStatus getLeftVelocity(double dist, double vel, double angle) {
+		return lFollower.calculate(dist, vel, angle);
 	}
 
-	public TrajectoryStatus getRightVelocity(double dist, double vel, double angle,
-			boolean connected) {
-		return rFollower.calculate(dist, vel, angle, connected);
+	public TrajectoryStatus getRightVelocity(double dist, double vel, double angle) {
+		return rFollower.calculate(dist, vel, angle);
 	}
 
 	public boolean getFinished() {
