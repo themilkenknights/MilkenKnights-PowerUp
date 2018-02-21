@@ -2,10 +2,8 @@ package frc.team1836.robot.subsystems;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.LOGGING;
 import frc.team1836.robot.RobotState;
-import frc.team1836.robot.util.drivers.MkLED;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
@@ -14,15 +12,15 @@ import frc.team1836.robot.util.other.Subsystem;
 public class Superstructure extends Subsystem {
 
 	private final ReflectingCSVWriter<SupertructureDebugOutput> mCSVWriter;
-	PowerDistributionPanel pdp = new PowerDistributionPanel();
+	PowerDistributionPanel pdp = new PowerDistributionPanel(0);
 	private SupertructureDebugOutput mDebug = new SupertructureDebugOutput();
 	private float _hue;
-	private MkLED mkLED;
+	//private MkLED mkLED;
 
 	public Superstructure() {
 		mCSVWriter = new ReflectingCSVWriter<>(LOGGING.SUPERSTRUCTURE_LOG_PATH,
 				SupertructureDebugOutput.class);
-		mkLED = new MkLED(Constants.CANIFIER_ID);
+	//	mkLED = new MkLED(Constants.CANIFIER_ID);
 	}
 
 	public static Superstructure getInstance() {
@@ -98,19 +96,20 @@ public class Superstructure extends Subsystem {
 	private void updateLEDStrip() {
 		switch (RobotState.mMatchState) {
 			case AUTO:
-				mkLED.set_rgb(0, 66, 255);
+	//			mkLED.rgbSet(0, 66, 255);
 			case TELEOP:
-				float[] pulse1 = {4,255,0};
+				/*float[] pulse1 = {4,255,0};
 				float[] pulse2 = {0,251,255};
-				mkLED.setPulse(pulse1, pulse2);
+				mkLED.setPulse(pulse1, pulse2); */
+		//		mkLED.rgbSet(4, 255, 0);
 			case DISABLED:
-				mkLED.set_rgb(255, 0, 0);
+			//	mkLED.rgbSet(255, 0, 0);
 		}
 
 	}
 
 	public void setLED(float[] color) {
-		mkLED.set_rgb(color[0], color[1], color[2]);
+		//mkLED.set_rgb(color[0], color[1], color[2]);
 	}
 
 

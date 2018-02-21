@@ -95,9 +95,9 @@ public final class Constants {
                 / 336.0; //Gear Ratio between encoder and arm - Used to calulate arm position in degrees
         public static final double MAX_RAW_VEL =
                 ((RPM_MAX / 60.0 / 10.0) * 4096.0) / GEAR_RATIO; // Degrees per second
-        public static final double ARM_P = 15 * ((0.1 * 1023.0) / (1400)); //7.5 deg or 1390 units
+        public static final double ARM_P = 2 * ((0.1 * 1023.0) / (1600)); //7.5 deg or 1390 units
         public static final double ARM_I = 0;
-        public static final double ARM_D = ARM_P * 15;
+        public static final double ARM_D = ARM_P * 100;
         public static final double ARM_F = (1023.0 / MAX_RAW_VEL);
 
         public static final double ARM_FORWARD_LIMIT = 250;
@@ -105,7 +105,7 @@ public final class Constants {
         public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL * 0.975;
         public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 1.2;
 
-        public static final double CURRENT_HARDSTOP_LIMIT = 2.25;
+        public static final double CURRENT_HARDSTOP_LIMIT = 1.3;
         public static final double ZEROING_POWER = -0.15;
         public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
         public static final double SAFE_CURRENT_OUTPUT = 40;
@@ -115,7 +115,7 @@ public final class Constants {
         public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID
         public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
         public static final double INTAKE_OUT_ROLLER_SPEED = -0.40;
-        public static final double INTAKE_OUT_FAST_ROLLER_SPEED = 0.90;
+        public static final double INTAKE_OUT_FAST_ROLLER_SPEED = -0.90;
 
     }
 

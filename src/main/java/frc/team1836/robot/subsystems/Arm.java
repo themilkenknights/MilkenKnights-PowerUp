@@ -162,6 +162,7 @@ public class Arm extends Subsystem {
             edu.wpi.first.wpilibj.Timer.delay(0.25);
             armTalon.resetEncoder();
             armTalon.setLimitEnabled(true);
+            armSafety = true;
             System.out.println("Zeroed");
             RobotState.mArmState = ArmState.ZEROED;
             RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
