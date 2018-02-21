@@ -22,7 +22,7 @@ public final class Constants {
     public static final int kTimeoutMs = 10;
     public static final double kLooperDt = 0.005;
     public static final double PI = 3.14159265359;
-    public static final int CANIFIER_ID = 13;
+    public static final int CANIFIER_ID = 11;
 
     public static class DRIVE {
 
