@@ -68,7 +68,7 @@ public final class Constants {
 
     public static class LOGGING {
 
-        public static final String DRIVE_LOG_PATH = "/u/DRIVE-LOGS.csv";
+        public static final String DRIVE_LOG_PATH = "/lvuser/home/DRIVE-LOGS.csv";
         public static final String ARM_LOG_PATH = "/u/ARM-LOGS.csv";
         public static final String SUPERSTRUCTURE_LOG_PATH = "/u/SUPERSTRUCTURE-LOGS.csv";
     }
