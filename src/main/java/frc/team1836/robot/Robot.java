@@ -34,7 +34,6 @@ public class Robot extends IterativeRobot {
             mSubsystemManager.registerEnabledLoops(mEnabledLooper);
             mSubsystemManager.zeroSensors();
             AutoChooser.loadAutos();
-            int x = AUTO.autoNames.length;
         } catch (Throwable t) {
             CrashTracker.logThrowableCrash(t);
             throw t;

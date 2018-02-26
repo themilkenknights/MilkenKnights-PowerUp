@@ -53,13 +53,13 @@ public class AutoChooser {
                 return new DriveStraightMode();
             case SWITCH:
                 if (positionChooser.getSelected() == AutoPosition.LEFT) {
-                    return new LeftSwitchMode(getScalePosition());
+                    return new LeftSwitchMode(getSwitchPosition());
                 }
                 if (positionChooser.getSelected() == AutoPosition.RIGHT) {
-                    return new RightSwitchMode(getScalePosition());
+                    return new RightSwitchMode(getSwitchPosition());
                 }
                 if (positionChooser.getSelected() == AutoPosition.CENTER) {
-                    return new CenterSwitchMode(getScalePosition());
+                    return new CenterSwitchMode(getSwitchPosition());
                 }
             default:
                 System.out
@@ -90,10 +90,6 @@ public class AutoChooser {
 
     public static GameObjectPosition getSwitchPosition() {
         return gameData.charAt(0) == 'L' ? GameObjectPosition.LEFT : GameObjectPosition.RIGHT;
-    }
-
-    public static GameObjectPosition getScalePosition() {
-        return gameData.charAt(1) == 'L' ? GameObjectPosition.LEFT : GameObjectPosition.RIGHT;
     }
 
     public enum AutoPosition {

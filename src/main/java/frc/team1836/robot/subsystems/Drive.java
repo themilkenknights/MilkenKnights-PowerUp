@@ -148,13 +148,10 @@ public class Drive extends Subsystem {
         SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
         SmartDashboard.putBoolean("Drivetrain Status",
                 leftDrive.isEncoderConnected() && rightDrive.isEncoderConnected());
-        if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
-                || RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
+        if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
             SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
             SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
             SmartDashboard.putNumber("NavX Full Yaw", navX.getFullYaw());
-        }
-        if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
             SmartDashboard.putNumber("Desired Heading", leftStatus.getSeg().heading);
             SmartDashboard.putNumber("Heading Error", leftStatus.getAngError());
             SmartDashboard.putNumber("Left Desired Position", leftStatus.getSeg().pos);
@@ -182,9 +179,9 @@ public class Drive extends Subsystem {
 
     @Override
     public void checkSystem() {
-        leftDrive.set(ControlMode.PercentOutput, 1);
-        rightDrive.set(ControlMode.PercentOutput, 1);
-        Timer.delay(1.0);
+        leftDrive.set(ControlMode.PercentOutput, 0.5);
+        rightDrive.set(ControlMode.PercentOutput, 0.5);
+        Timer.delay(2.0);
         leftDrive.set(ControlMode.PercentOutput, 0);
         rightDrive.set(ControlMode.PercentOutput, 0);
         if (leftDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS
