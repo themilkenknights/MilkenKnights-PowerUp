@@ -50,18 +50,18 @@ public final class Constants {
 
         public static final double DRIVE_FOLLOWER_P = 0; //10;
         public static final double DRIVE_FOLLOWER_A = 0;
-        public static final double DRIVE_FOLLOWER_ANG = 0; //0.75;
+        public static final double DRIVE_FOLLOWER_ANG = -0.065; //0.75;
 
         public static final double LEFT_RPM_MAX = 488.0; //Observed Max Speed for Drivetrain in RPM
         public static final double RIGHT_RPM_MAX = 502.0; //Observed Max Speed for Drivetrain in RPM
 
         public static final double MAX_VEL =
                 (LEFT_RPM_MAX / 60) * (CIRCUMFERENCE); // Max Speed in Inches per second
-        public static final double DRIVE_P = (0.85 * 1023.0) / (175.00); //300
+        public static final double DRIVE_P = 32 * (0.1 * 1023.0) / (700); //300
         public static final double DRIVE_I = 0; //DRIVE_P / 100.0;
-        public static final double DRIVE_D = 15 * DRIVE_P;
-        public static final double LEFT_DRIVE_F = 0; //(1023.0 / ((LEFT_RPM_MAX / 60.0 / 10.0)* 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
-        public static final double RIGHT_DRIVE_F = 0; //(1023.0 / ((RIGHT_RPM_MAX / 60.0 / 10.0) * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
+        public static final double DRIVE_D = 10 * DRIVE_P;
+        public static final double LEFT_DRIVE_F = (1023.0 / ((LEFT_RPM_MAX / 60.0 / 10.0)* 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
+        public static final double RIGHT_DRIVE_F = (1023.0 / ((RIGHT_RPM_MAX / 60.0 / 10.0) * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
 
         //Used for turn in place (Degrees) - Is converted
         // to inches after a trajectory is generated

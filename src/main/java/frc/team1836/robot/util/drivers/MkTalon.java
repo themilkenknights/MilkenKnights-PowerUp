@@ -104,7 +104,7 @@ public class MkTalon {
             return nativeUnitsToDegrees(
                     masterTalon.getClosedLoopError(Constants.kPIDLoopIdx));
         }
-        return nativeUnitsToInches(masterTalon.getClosedLoopError(Constants.kPIDLoopIdx));
+        return nativeUnitsPer100MstoInchesPerSec(masterTalon.getClosedLoopError(Constants.kPIDLoopIdx));
     }
 
     public boolean isEncoderConnected() {
