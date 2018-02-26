@@ -1,6 +1,5 @@
 package frc.team1836.robot.subsystems;
 
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.LOGGING;
@@ -12,16 +11,10 @@ import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.other.Subsystem;
 
 public class Superstructure extends Subsystem {
-
-    private final ReflectingCSVWriter<SupertructureDebugOutput> mCSVWriter;
-    PowerDistributionPanel pdp = new PowerDistributionPanel(0);
-    private SupertructureDebugOutput mDebug = new SupertructureDebugOutput();
     private float _hue;
     private MkLED mkLED;
 
     public Superstructure() {
-        mCSVWriter = new ReflectingCSVWriter<>(LOGGING.SUPERSTRUCTURE_LOG_PATH,
-                SupertructureDebugOutput.class);
         mkLED = new MkLED(Constants.CANIFIER_ID);
     }
 
@@ -31,7 +24,7 @@ public class Superstructure extends Subsystem {
 
     @Override
     public void writeToLog() {
-        mCSVWriter.write();
+
     }
 
     @Override
@@ -52,9 +45,6 @@ public class Superstructure extends Subsystem {
 
     @Override
     public void checkSystem() {
-        if (pdp.getVoltage() < 10) {
-            System.out.println("FAILED - PDP VOLTAGE LOW");
-        }
     }
 
     @Override
@@ -64,7 +54,6 @@ public class Superstructure extends Subsystem {
             @Override
             public void onStart(double timestamp) {
                 synchronized (Superstructure.this) {
-                    pdp.clearStickyFaults();
                 }
             }
 
@@ -78,12 +67,6 @@ public class Superstructure extends Subsystem {
                         default:
                             break;
                     }
-                    mDebug.SuperstructureState = RobotState.mSystemState.toString();
-                    mDebug.PDPVoltage = 0;
-                    mDebug.PDPTotalPower = 0;
-                    mDebug.PDPTemp = 0;
-                    mDebug.timestamp = timestamp;
-                    mCSVWriter.add(mDebug);
                 }
             }
 
@@ -117,15 +100,6 @@ public class Superstructure extends Subsystem {
         //mkLED.set_rgb(color[0], color[1], color[2]);
     }
 
-
-    public static class SupertructureDebugOutput {
-
-        public String SuperstructureState;
-        public double PDPVoltage;
-        public double PDPTotalPower;
-        public double PDPTemp;
-        public double timestamp;
-    }
 
     private static class InstanceHolder {
 

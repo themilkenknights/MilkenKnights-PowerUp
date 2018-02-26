@@ -31,13 +31,13 @@ public class CenterSwitchMode extends AutoModeBase {
     }
 
     private void leftRoutine() throws AutoModeEndedException {
-        runAction(new DrivePathAction(Constants.AUTO.autoPaths.get("CenterLeftSwitchPath")));
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("CenterLeftSwitchPath")));
         //runAction(new MoveArmAction(RobotState.ArmState.SWITCH_PLACE));
         //runAction(new RollerAction(2, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
     }
 
     private void rightRoutine() throws AutoModeEndedException {
-        runAction(new DrivePathAction(Constants.AUTO.autoPaths.get("CenterRightSwitchPath")));
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("CenterRightSwitchPath")));
         runAction(new MoveArmAction(RobotState.ArmState.SWITCH_PLACE));
         runAction(new RollerAction(2, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
     }
