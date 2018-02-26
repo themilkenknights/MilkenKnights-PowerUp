@@ -20,17 +20,13 @@ import frc.team1836.robot.util.other.Subsystem;
 
 public class Arm extends Subsystem {
 
-    private final ReflectingCSVWriter<ArmDebugOutput> mCSVWriter;
     private final MkTalon armTalon;
     private final VictorSPX leftIntakeRollerTalon;
     private final VictorSPX rightIntakeRollerTalon;
-    private ArmDebugOutput mDebug = new ArmDebugOutput();
     private boolean armSafety = true;
     private double armPosEnable = 0;
 
     private Arm() {
-        mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH,
-                ArmDebugOutput.class);
         armTalon = new MkTalon(ARM.ARM_MASTER_TALON_ID, ARM.ARM_SLAVE_TALON_ID, TalonPosition.Arm);
         armTalon.setSensorPhase(ARM.ARM_SENSOR_PHASE);
         armTalon.configMotionMagic();
@@ -53,7 +49,7 @@ public class Arm extends Subsystem {
 
     @Override
     public void writeToLog() {
-        mCSVWriter.write();
+
     }
 
     @Override
@@ -106,8 +102,6 @@ public class Arm extends Subsystem {
             public void onLoop(double timestamp) {
                 synchronized (Arm.this) {
                     armSafetyCheck();
-                    updateDebugOutput(timestamp);
-                    mCSVWriter.add(mDebug);
                     switch (RobotState.mArmControlState) {
                         case MOTION_MAGIC:
                             updateArmSetpoint();
@@ -136,15 +130,6 @@ public class Arm extends Subsystem {
     public void changeSafety() {
         armSafety = !armSafety;
         armTalon.setLimitEnabled(armSafety);
-    }
-
-    private void updateDebugOutput(double timestamp) {
-        mDebug.controlMode = RobotState.mArmControlState.toString();
-        mDebug.output = armTalon.getPercentOutput();
-        mDebug.position = armTalon.getPosition();
-        mDebug.velocity = armTalon.getSpeed();
-        mDebug.setpoint = RobotState.mArmState.state;
-        mDebug.timestamp = timestamp;
     }
 
     private void updateArmSetpoint() {
@@ -195,16 +180,6 @@ public class Arm extends Subsystem {
     public void invertRightRoller(boolean dir) {
         rightIntakeRollerTalon
                 .setInverted(dir ? !ARM.RIGHT_INTAKE_DIRECTION : ARM.RIGHT_INTAKE_DIRECTION);
-    }
-
-    public static class ArmDebugOutput {
-
-        double timestamp;
-        String controlMode;
-        double output;
-        double position;
-        double velocity;
-        double setpoint;
     }
 
     private static class InstanceHolder {

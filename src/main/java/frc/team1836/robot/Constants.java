@@ -1,12 +1,5 @@
 package frc.team1836.robot;
 
-import frc.team1836.robot.util.auto.DeserializePath;
-import frc.team254.lib.trajectory.Path;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * UNLESS OTHERWISE NOTED BY RAW/NATIVE/RPM,
  * ALL POSITION UNITS ARE IN INCHES and DEGREES
@@ -75,7 +68,7 @@ public final class Constants {
 
     public static class LOGGING {
 
-        public static final String DRIVE_LOG_PATH = "/u/DRIVE-LOGS.csv";
+        public static final String DRIVE_LOG_PATH = "/lvuser/home/DRIVE-LOGS.csv";
         public static final String ARM_LOG_PATH = "/u/ARM-LOGS.csv";
         public static final String SUPERSTRUCTURE_LOG_PATH = "/u/SUPERSTRUCTURE-LOGS.csv";
     }
@@ -127,19 +120,7 @@ public final class Constants {
     }
 
     public static class AUTO {
-
-        public static final Map<String, Path> autoPaths = new HashMap<String, Path>();
         public static final String[] autoNames = {"CenterLeftSwitchPath", "CenterRightSwitchPath"};
-
-        static {
-            try {
-                for (String pathName : autoNames) {
-                    autoPaths.put(pathName, DeserializePath.getPathFromFile(pathName));
-                }
-            } catch (IOException e) {
-                System.err.println("Caught IOException: " + e.getMessage());
-            }
-        }
     }
 
 }

@@ -6,6 +6,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.auto.modes.*;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeExecuter;
+import frc.team1836.robot.util.auto.DeserializePath;
+import frc.team254.lib.trajectory.Path;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import static frc.team1836.robot.Constants.AUTO.autoNames;
 
 public class AutoChooser {
 
@@ -13,8 +21,9 @@ public class AutoChooser {
     private static SendableChooser<AutoAction> actionChooser = new SendableChooser<>();
     private static AutoModeExecuter mAutoModeExecuter = null;
     private static String gameData;
+    public static final Map<String, Path> autoPaths = new HashMap<String, Path>();
 
-    public static void loadChooser() {
+    public static void loadAutos() {
         positionChooser.addDefault("Center", AutoPosition.CENTER);
         positionChooser.addObject("Left", AutoPosition.LEFT);
         positionChooser.addObject("Right", AutoPosition.RIGHT);
@@ -25,6 +34,15 @@ public class AutoChooser {
         actionChooser.addObject("Switch", AutoAction.SWITCH);
         SmartDashboard.putData("Auto Action Chooser", actionChooser);
         gameData = DriverStation.getInstance().getGameSpecificMessage();
+
+
+        try {
+            for (String pathName : autoNames) {
+                autoPaths.put(pathName, DeserializePath.getPathFromFile(pathName));
+            }
+        } catch (IOException e) {
+            System.err.println("Caught IOException: " + e.getMessage());
+        }
     }
 
     public static AutoModeBase getAutoMode() {
@@ -35,13 +53,13 @@ public class AutoChooser {
                 return new DriveStraightMode();
             case SWITCH:
                 if (positionChooser.getSelected() == AutoPosition.LEFT) {
-                    return new LeftSwitchMode(getScalePosition());
+                    return new LeftSwitchMode(getSwitchPosition());
                 }
                 if (positionChooser.getSelected() == AutoPosition.RIGHT) {
-                    return new RightSwitchMode(getScalePosition());
+                    return new RightSwitchMode(getSwitchPosition());
                 }
                 if (positionChooser.getSelected() == AutoPosition.CENTER) {
-                    return new CenterSwitchMode(getScalePosition());
+                    return new CenterSwitchMode(getSwitchPosition());
                 }
             default:
                 System.out
@@ -72,10 +90,6 @@ public class AutoChooser {
 
     public static GameObjectPosition getSwitchPosition() {
         return gameData.charAt(0) == 'L' ? GameObjectPosition.LEFT : GameObjectPosition.RIGHT;
-    }
-
-    public static GameObjectPosition getScalePosition() {
-        return gameData.charAt(1) == 'L' ? GameObjectPosition.LEFT : GameObjectPosition.RIGHT;
     }
 
     public enum AutoPosition {
