@@ -61,8 +61,8 @@ task swerdUpdate {
         ssh.run {
             session(remotes.webServer) {
                 put from: 'paths', into: '/home/lvuser'
-                //get from: '/u', into: 'logs', filter: { it.name =~ /\.csv$/ }
+               // get from: '/U/', into: 'logs'
+            }
             }
         }
     }
-}

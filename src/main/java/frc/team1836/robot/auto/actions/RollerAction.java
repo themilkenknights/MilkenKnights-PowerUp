@@ -28,7 +28,7 @@ public class RollerAction implements Action {
 
     @Override
     public void done() {
-
+        Arm.getInstance().setIntakeRollers(0);
     }
 
     @Override

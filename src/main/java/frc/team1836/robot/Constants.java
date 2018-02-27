@@ -41,9 +41,9 @@ public final class Constants {
         public static final double PATH_DIST_TOL = 0.25;
         public static final double PATH_ANGLE_TOL = 0.25;
 
-        public static final double DRIVE_FOLLOWER_P = 0; //10;
+        public static final double DRIVE_FOLLOWER_P = 5;
         public static final double DRIVE_FOLLOWER_A = 0;
-        public static final double DRIVE_FOLLOWER_ANG = -0.065; //0.75;
+        public static final double DRIVE_FOLLOWER_ANG = 0;//0.025;
 
         public static final double LEFT_RPM_MAX = 488.0; //Observed Max Speed for Drivetrain in RPM
         public static final double RIGHT_RPM_MAX = 502.0; //Observed Max Speed for Drivetrain in RPM
@@ -68,9 +68,8 @@ public final class Constants {
 
     public static class LOGGING {
 
-        public static final String DRIVE_LOG_PATH = "/lvuser/home/DRIVE-LOGS.csv";
+        public static final String DRIVE_LOG_PATH = "/u/DRIVE-LOGS.csv";
         public static final String ARM_LOG_PATH = "/u/ARM-LOGS.csv";
-        public static final String SUPERSTRUCTURE_LOG_PATH = "/u/SUPERSTRUCTURE-LOGS.csv";
     }
 
     public static class ARM {
@@ -120,7 +119,7 @@ public final class Constants {
     }
 
     public static class AUTO {
-        public static final String[] autoNames = {"CenterLeftSwitchPath", "CenterRightSwitchPath"};
+        public static final String[] autoNames = {"CenterLeftSwitchPath", "CenterRightSwitchPath", "MarcusPath", "SwerdPath", "YoelPath"};
     }
 
 }

@@ -61,7 +61,7 @@ public class TrajectoryFollower {
                 angError = angError + 360;
             }
             double velError = segment.vel - vel;
-            double desired = (angError * kAng_) + segment.vel;
+            double desired = (angError * -kAng_) + segment.vel;
             double output = desired + (kp_ * error) + (ka_ * segment.acc);
             last_error_ = error;
             last_Ang_error = angError;

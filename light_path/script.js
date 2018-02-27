@@ -724,7 +724,7 @@ function getReversedTXTString() {
     var str =
         `${title}  
 ${num_elements}
-${left_segments}${right_segments}`;
+${right_segments}${left_segments}`;
     return str;
 }
 

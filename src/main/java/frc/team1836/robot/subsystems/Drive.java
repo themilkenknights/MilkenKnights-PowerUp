@@ -23,11 +23,12 @@ import frc.team254.lib.trajectory.PathFollower;
 
 public class Drive extends Subsystem {
 
+    private DriveDebugOutput mDebug = new DriveDebugOutput();
     private final ReflectingCSVWriter<DriveDebugOutput> mCSVWriter;
     private final MkTalon leftDrive, rightDrive;
     private final MkGyro navX;
     private PathFollower pathFollower = null;
-    private DriveDebugOutput mDebug = new DriveDebugOutput();
+
     private TrajectoryStatus leftStatus;
     private TrajectoryStatus rightStatus;
     private DriveSignal currentSetpoint;
@@ -48,7 +49,7 @@ public class Drive extends Subsystem {
         rightDrive.invertSlave(DRIVE.RIGHT_SLAVE_INVERT);
         rightDrive.setSensorPhase(DRIVE.RIGHT_INVERT_SENSOR);
 
-        mCSVWriter = new ReflectingCSVWriter<>(LOGGING.DRIVE_LOG_PATH,
+        mCSVWriter = new ReflectingCSVWriter<DriveDebugOutput>(LOGGING.DRIVE_LOG_PATH,
                 DriveDebugOutput.class);
         leftStatus = TrajectoryStatus.NEUTRAL;
         rightStatus = TrajectoryStatus.NEUTRAL;
@@ -168,6 +169,7 @@ public class Drive extends Subsystem {
     @Override
     public void stop() {
         setOpenLoop(DriveSignal.NEUTRAL);
+        mCSVWriter.flush();
     }
 
     @Override
