@@ -12,13 +12,9 @@ public class MkLED extends CANifier {
 	private MovingAverage _averageR = new MovingAverage(10);
 	private MovingAverage _averageG = new MovingAverage(10);
 	private MovingAverage _averageB = new MovingAverage(10);
-//	private Timer timer;
-	//private boolean timerRunning;
 
 	public MkLED(int id) {
 		super(id);
-	//	timer = new Timer();
-		//timerRunning = false;
 	}
 
 	public void setHSV(float Hue, float Saturation, float Value) {
@@ -54,8 +50,6 @@ public class MkLED extends CANifier {
 
 
 	public void rgbSet(float r, float g, float b) {
-	//	timer.cancel();
-		//timerRunning = false;
 		set_rgb(r, g, b);
 	}
 
@@ -80,31 +74,8 @@ public class MkLED extends CANifier {
 	}
 
 	public void setPulse(float[] color1, float[] color2) {
-	/*	if (!timerRunning) {
-			timer.schedule(new PulseLED(color1, color2), 0, 2000);
-			timerRunning = true;
-		} */
-	}
-}
 
-class PulseLED extends TimerTask {
 
-	private float[] color1, color2;
-	private boolean col;
 
-	public PulseLED(float[] color1, float[] color2) {
-		this.color1 = color1;
-		this.color2 = color2;
-		col = true;
-	}
-
-	public void run() {
-		if (col) {
-			Superstructure.getInstance().setLED(color1);
-			col = false;
-		} else {
-			Superstructure.getInstance().setLED(color2);
-			col = true;
-		}
 	}
 }

@@ -1,17 +1,19 @@
 package frc.team1836.robot.subsystems;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team1836.robot.Constants;
 import frc.team1836.robot.RobotState;
+import frc.team1836.robot.util.drivers.MkLED;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.other.Subsystem;
 
 public class Superstructure extends Subsystem {
     private float _hue;
-    //private MkLED mkLED;
+    private MkLED mkLED;
 
     public Superstructure() {
-      //  mkLED = new MkLED(Constants.CANIFIER_ID);
+      mkLED = new MkLED(Constants.CANIFIER_ID);
     }
 
     public static Superstructure getInstance() {
@@ -78,16 +80,13 @@ public class Superstructure extends Subsystem {
 
         switch (RobotState.mMatchState) {
             case AUTO:
-                //			mkLED.rgbSet(0, 66, 255);
+                			mkLED.rgbSet(0, 66, 255);
             case TELEOP:
-             //   mkLED.rgbSet(0, 66, 255);
-				/*float[] pulse1 = {4,255,0};
+				float[] pulse1 = {4,255,0};
 				float[] pulse2 = {0,251,255};
-				mkLED.setPulse(pulse1, pulse2); */
-                //		mkLED.rgbSet(4, 255, 0);
+				mkLED.setPulse(pulse1, pulse2);
             case DISABLED:
-               // mkLED.rgbSet(52, 52, 92);
-                //	mkLED.rgbSet(255, 0, 0);
+               mkLED.rgbSet(52, 52, 92);
         }
 
     }

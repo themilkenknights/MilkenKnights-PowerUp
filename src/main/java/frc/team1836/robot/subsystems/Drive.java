@@ -225,6 +225,7 @@ public class Drive extends Subsystem {
             public void onLoop(double timestamp) {
                 synchronized (Drive.this) {
                     updateDebugOutput(timestamp);
+                    safetyCheck();
                     mCSVWriter.add(mDebug);
                     switch (RobotState.mDriveControlState) {
                         case OPEN_LOOP:
@@ -252,6 +253,13 @@ public class Drive extends Subsystem {
         };
         enabledLooper.register(mLoop);
     }
+
+    private void safetyCheck() {
+        if (navX.isConnected() && Math.abs(navX.getPitch()) > DRIVE.MAX_PITCH) {
+            setOpenLoop(DriveSignal.NEUTRAL);
+        }
+    }
+
 
     private void updateDebugOutput(double timestamp) {
         mDebug.timestamp = timestamp;

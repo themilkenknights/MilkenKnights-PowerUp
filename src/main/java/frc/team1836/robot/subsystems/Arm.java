@@ -106,6 +106,7 @@ public class Arm extends Subsystem {
 			public void onLoop(double timestamp) {
 				synchronized (Arm.this) {
 					armSafetyCheck();
+					updateFeedForward();
 					updateDebugOutput(timestamp);
 					mCSVWriter.add(mDebug);
 					switch (RobotState.mArmControlState) {
@@ -136,6 +137,11 @@ public class Arm extends Subsystem {
 	public void changeSafety() {
 		armSafety = !armSafety;
 		armTalon.setLimitEnabled(armSafety);
+	}
+
+	private void updateFeedForward(){
+		double realArmPos = armTalon.getPosition() + ARM.ANGLE_OFFSET;
+		armTalon.setF(1023.0 / (ARM.MAX_REG + (Math.sin(Math.toRadians(realArmPos))) * ARM.STEADY_PERCENT_V_BUS));
 	}
 
 	private void updateDebugOutput(double timestamp) {

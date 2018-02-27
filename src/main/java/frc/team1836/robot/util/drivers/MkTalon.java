@@ -217,6 +217,10 @@ public class MkTalon {
         slaveTalon.setInverted(direction);
     }
 
+    public void setF(double feed){
+        masterTalon.config_kF(Constants.kPIDLoopIdx, feed, Constants.kTimeoutMs);
+    }
+
     public void invertMaster(boolean direction) {
         masterTalon.setInverted(direction);
     }
