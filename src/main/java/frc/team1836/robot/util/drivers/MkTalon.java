@@ -181,15 +181,6 @@ public class MkTalon {
         masterTalon.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     }
 
-    public void setSlave(ControlMode mode, double value) {
-        slaveTalon.set(mode, value);
-    }
-
-    public void setMaster(ControlMode mode, double value) {
-        slaveTalon.set(ControlMode.PercentOutput, 0);
-        masterTalon.set(mode, value);
-    }
-
     public void setSensorPhase(boolean dir) {
         masterTalon.setSensorPhase(dir);
     }
@@ -197,12 +188,10 @@ public class MkTalon {
     public void updateSmartDash() {
         SmartDashboard.putNumber(side.toString() + " Velocity", getSpeed());
         SmartDashboard.putNumber(side.toString() + " Error", getError());
-        SmartDashboard
-                .putNumber(side.toString() + " Master Output", masterTalon.getMotorOutputPercent());
+        SmartDashboard.putNumber(side.toString() + " Master Output", masterTalon.getMotorOutputPercent());
         SmartDashboard.putNumber(side.toString() + " Slave Output", slaveTalon.getMotorOutputPercent());
-        SmartDashboard
-                .putNumber(side.toString() + " Position", getPosition());
-        if (getRPM() > maxRPM) {
+        SmartDashboard.putNumber(side.toString() + " Position", getPosition());
+        if (Math.abs(getRPM()) > maxRPM) {
             maxRPM = getRPM();
         }
         SmartDashboard.putNumber(side.toString() + " RPM", maxRPM);
@@ -215,6 +204,10 @@ public class MkTalon {
     public void invert(boolean direction) {
         masterTalon.setInverted(direction);
         slaveTalon.setInverted(direction);
+    }
+
+    public void setF(double feed) {
+        masterTalon.config_kF(Constants.kPIDLoopIdx, feed, Constants.kTimeoutMs);
     }
 
     public void invertMaster(boolean direction) {

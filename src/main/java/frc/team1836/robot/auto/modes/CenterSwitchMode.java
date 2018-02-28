@@ -10,51 +10,52 @@ import frc.team1836.robot.auto.actions.RollerAction;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeEndedException;
 import frc.team1836.robot.util.auto.ParallelAction;
+
 import java.util.Arrays;
 
 public class CenterSwitchMode extends AutoModeBase {
 
-	private GameObjectPosition position;
+    private GameObjectPosition position;
 
-	public CenterSwitchMode(AutoChooser.GameObjectPosition position) {
-		this.position = position;
-	}
+    public CenterSwitchMode(AutoChooser.GameObjectPosition position) {
+        this.position = position;
+    }
 
-	@Override
-	protected void routine() throws AutoModeEndedException {
-		switch (position) {
-			case LEFT:
-				leftRoutine();
-				break;
-			case RIGHT:
-				rightRoutine();
-				break;
-		}
-	}
+    @Override
+    protected void routine() throws AutoModeEndedException {
+        switch (position) {
+            case LEFT:
+                leftRoutine();
+                break;
+            case RIGHT:
+                rightRoutine();
+                break;
+        }
+    }
 
-	private void leftRoutine() throws AutoModeEndedException {
-		runAction(new DrivePathAction(AutoChooser.autoPaths.get("CenterLeftSwitchPath")));
-		//runAction(new MoveArmAction(RobotState.ArmState.SWITCH_PLACE));
-		//runAction(new RollerAction(2, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
-	}
+    private void leftRoutine() throws AutoModeEndedException {
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("CenterLeftSwitchPath")));
+        //runAction(new MoveArmAction(RobotState.ArmState.SWITCH_PLACE));
+        //runAction(new RollerAction(2, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
+    }
 
-	private void rightRoutine() throws AutoModeEndedException {
-		RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
-		runAction(new DrivePathAction(AutoChooser.autoPaths.get("CenterRightSwitchPath")));
-		runAction(new RollerAction(0.15, ARM.INTAKE_OUT_ROLLER_SPEED));
-		RobotState.mArmState = ArmState.INTAKE;
-		runAction(new ParallelAction(Arrays
-				.asList(
-						new DrivePathAction(AutoChooser.autoPaths.get("MarcusPath")),
-						new RollerAction(2, 0.5)
-				)));
-		RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
-		runAction(new DrivePathAction(AutoChooser.autoPaths.get("SwerdPath")));
-		runAction(new RollerAction(0.15, ARM.INTAKE_OUT_ROLLER_SPEED));
-		runAction(new DrivePathAction(AutoChooser.autoPaths.get("YoelPath")));
-		//    runAction(new MoveArmAction(RobotState.ArmState.SWITCH_PLACE));
-		//  runAction(new RollerAction(2, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
-	}
+    private void rightRoutine() throws AutoModeEndedException {
+        RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("CenterRightSwitchPath")));
+        runAction(new RollerAction(0.15, ARM.INTAKE_OUT_ROLLER_SPEED));
+        RobotState.mArmState = ArmState.INTAKE;
+        runAction(new ParallelAction(Arrays
+                .asList(
+                        new DrivePathAction(AutoChooser.autoPaths.get("MarcusPath")),
+                        new RollerAction(2, 0.5)
+                )));
+        RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("SwerdPath")));
+        runAction(new RollerAction(0.15, ARM.INTAKE_OUT_ROLLER_SPEED));
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("YoelPath")));
+        //    runAction(new MoveArmAction(RobotState.ArmState.SWITCH_PLACE));
+        //  runAction(new RollerAction(2, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
+    }
 
 
 }

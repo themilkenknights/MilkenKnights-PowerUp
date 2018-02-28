@@ -1,7 +1,6 @@
 package frc.team1836.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import frc.team1836.robot.Constants.AUTO;
 import frc.team1836.robot.RobotState.ArmControlState;
 import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.RobotState.MatchState;

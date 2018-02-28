@@ -87,10 +87,14 @@ public class MovingAverage {
 
     public int getCount() {
         return _cnt;
-    };
+    }
+
+    ;
 
     public float getMinimum() {
         return _min;
-    };
+    }
+
+    ;
 
 }

@@ -43,7 +43,7 @@ public final class Constants {
 
         public static final double DRIVE_FOLLOWER_P = 5;
         public static final double DRIVE_FOLLOWER_A = 0;
-        public static final double DRIVE_FOLLOWER_ANG = 0;//0.025;
+        public static final double DRIVE_FOLLOWER_ANG = 0.005;
 
         public static final double LEFT_RPM_MAX = 488.0; //Observed Max Speed for Drivetrain in RPM
         public static final double RIGHT_RPM_MAX = 502.0; //Observed Max Speed for Drivetrain in RPM
@@ -53,7 +53,7 @@ public final class Constants {
         public static final double DRIVE_P = 32 * (0.1 * 1023.0) / (700); //300
         public static final double DRIVE_I = 0; //DRIVE_P / 100.0;
         public static final double DRIVE_D = 10 * DRIVE_P;
-        public static final double LEFT_DRIVE_F = (1023.0 / ((LEFT_RPM_MAX / 60.0 / 10.0)* 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
+        public static final double LEFT_DRIVE_F = (1023.0 / ((LEFT_RPM_MAX / 60.0 / 10.0) * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
         public static final double RIGHT_DRIVE_F = (1023.0 / ((RIGHT_RPM_MAX / 60.0 / 10.0) * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
 
         //Used for turn in place (Degrees) - Is converted
@@ -64,6 +64,8 @@ public final class Constants {
 
         public static final double MIN_TEST_POS = MAX_VEL * 1;
         public static final double MIN_TEST_VEL = MAX_VEL * 0.5;
+
+        public static final double MAX_PITCH = 30;
     }
 
     public static class LOGGING {
@@ -109,6 +111,10 @@ public final class Constants {
         public static final double INTAKE_OUT_ROLLER_SPEED = -0.40;
         public static final double INTAKE_OUT_FAST_ROLLER_SPEED = -0.90;
 
+        public static final double STEADY_PERCENT_V_BUS = 0.25;
+        public static final double MAX_REG = (1.0 - STEADY_PERCENT_V_BUS) * MAX_RAW_VEL;
+        public static final double ANGLE_OFFSET = -120;
+
     }
 
     public static class INPUT {
@@ -119,7 +125,7 @@ public final class Constants {
     }
 
     public static class AUTO {
-        public static final String[] autoNames = {"CenterLeftSwitchPath", "CenterRightSwitchPath", "MarcusPath", "SwerdPath", "YoelPath"};
+        public static final String pathPath = "/home/lvuser/paths/";
     }
 
 }

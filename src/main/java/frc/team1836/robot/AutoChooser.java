@@ -4,24 +4,24 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.auto.modes.*;
+import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeExecuter;
 import frc.team1836.robot.util.auto.DeserializePath;
 import frc.team254.lib.trajectory.Path;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static frc.team1836.robot.Constants.AUTO.autoNames;
-
 public class AutoChooser {
 
+    public static final Map<String, Path> autoPaths = new HashMap<>();
     private static SendableChooser<AutoPosition> positionChooser = new SendableChooser<>();
     private static SendableChooser<AutoAction> actionChooser = new SendableChooser<>();
     private static AutoModeExecuter mAutoModeExecuter = null;
     private static String gameData;
-    public static final Map<String, Path> autoPaths = new HashMap<String, Path>();
 
     public static void loadAutos() {
         positionChooser.addDefault("Center", AutoPosition.CENTER);
@@ -34,11 +34,13 @@ public class AutoChooser {
         actionChooser.addObject("Switch", AutoAction.SWITCH);
         SmartDashboard.putData("Auto Action Chooser", actionChooser);
         gameData = DriverStation.getInstance().getGameSpecificMessage();
-
-
         try {
-            for (String pathName : autoNames) {
-                autoPaths.put(pathName, DeserializePath.getPathFromFile(pathName));
+            File[] files = new File(Constants.AUTO.pathPath).listFiles();
+            for (File file : files) {
+                if (file.isFile()) {
+                    String pathName = file.getName();
+                    autoPaths.put(pathName, DeserializePath.getPathFromFile(pathName));
+                }
             }
         } catch (IOException e) {
             System.err.println("Caught IOException: " + e.getMessage());
@@ -50,17 +52,9 @@ public class AutoChooser {
             case STANDSTILL:
                 return new StandStillMode();
             case DRIVE_STRAIGHT:
-                return new DriveStraightMode();
+                getStraightMode();
             case SWITCH:
-                if (positionChooser.getSelected() == AutoPosition.LEFT) {
-                    return new LeftSwitchMode(getSwitchPosition());
-                }
-                if (positionChooser.getSelected() == AutoPosition.RIGHT) {
-                    return new RightSwitchMode(getSwitchPosition());
-                }
-                if (positionChooser.getSelected() == AutoPosition.CENTER) {
-                    return new CenterSwitchMode(getSwitchPosition());
-                }
+                getSwitchMode();
             default:
                 System.out
                         .println("Unexpected Auto Mode: " + actionChooser.getSelected().toString() + " + "
@@ -68,6 +62,30 @@ public class AutoChooser {
                 break;
         }
         return null;
+    }
+
+
+    private static AutoModeBase getStraightMode() {
+        if (Drive.getInstance().isEncodersConnected()) {
+            return new DriveStraightMode();
+        } else {
+            return new DriveStraightOpenLoopMode();
+        }
+    }
+
+    private static AutoModeBase getSwitchMode() {
+        if (Drive.getInstance().isEncodersConnected()) {
+            if (positionChooser.getSelected() == AutoPosition.LEFT) {
+                return new LeftSwitchMode(getSwitchPosition());
+            }
+            if (positionChooser.getSelected() == AutoPosition.RIGHT) {
+                return new RightSwitchMode(getSwitchPosition());
+            }
+            if (positionChooser.getSelected() == AutoPosition.CENTER) {
+                return new CenterSwitchMode(getSwitchPosition());
+            }
+        }
+        return new DriveStraightOpenLoopMode();
     }
 
 
