@@ -9,11 +9,10 @@ import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.other.Subsystem;
 
 public class Superstructure extends Subsystem {
-    private float _hue;
     private MkLED mkLED;
 
     public Superstructure() {
-      mkLED = new MkLED(Constants.CANIFIER_ID);
+        mkLED = new MkLED(Constants.CANIFIER_ID);
     }
 
     public static Superstructure getInstance() {
@@ -43,6 +42,7 @@ public class Superstructure extends Subsystem {
 
     @Override
     public void checkSystem() {
+
     }
 
     @Override
@@ -80,13 +80,11 @@ public class Superstructure extends Subsystem {
 
         switch (RobotState.mMatchState) {
             case AUTO:
-                			mkLED.rgbSet(0, 66, 255);
+                mkLED.set_rgb(MkLED.LEDColors.BLUE);
             case TELEOP:
-				float[] pulse1 = {4,255,0};
-				float[] pulse2 = {0,251,255};
-				mkLED.setPulse(pulse1, pulse2);
+                mkLED.setPulse(MkLED.LEDColors.GREEN, MkLED.LEDColors.RED, 0.5);
             case DISABLED:
-               mkLED.rgbSet(52, 52, 92);
+                mkLED.set_rgb(MkLED.LEDColors.RED);
         }
 
     }
