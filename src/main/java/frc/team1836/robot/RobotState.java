@@ -36,7 +36,7 @@ public class RobotState {
         SECOND_SWITCH_PLACE(39),
         SWITCH_PLACE(95),
         OPPOSITE_SWITCH_PLACE(180),
-        OPPOSITE_STOW(240);
+        OPPOSITE_STOW(230);
 
         public final double state;
 
