@@ -80,17 +80,13 @@ public class Superstructure extends Subsystem {
 
         switch (RobotState.mMatchState) {
             case AUTO:
-                mkLED.set_rgb(MkLED.LEDColors.BLUE);
+                mkLED.setPulse(MkLED.LEDColors.BLUE, MkLED.LEDColors.OFF, 0.5);
             case TELEOP:
                 mkLED.setPulse(MkLED.LEDColors.GREEN, MkLED.LEDColors.RED, 0.5);
             case DISABLED:
                 mkLED.set_rgb(MkLED.LEDColors.RED);
         }
 
-    }
-
-    public void setLED(float[] color) {
-        //mkLED.set_rgb(color[0], color[1], color[2]);
     }
 
 

@@ -53,7 +53,7 @@ public final class Constants {
         public static final double DRIVE_P = 32 * (0.1 * 1023.0) / (700); //300
         public static final double DRIVE_I = 0; //DRIVE_P / 100.0;
         public static final double DRIVE_D = 10 * DRIVE_P;
-        public static final double LEFT_DRIVE_F = (1023.0 / ((LEFT_RPM_MAX / 60.0 / 10.0)* 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
+        public static final double LEFT_DRIVE_F = (1023.0 / ((LEFT_RPM_MAX / 60.0 / 10.0) * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
         public static final double RIGHT_DRIVE_F = (1023.0 / ((RIGHT_RPM_MAX / 60.0 / 10.0) * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
 
         //Used for turn in place (Degrees) - Is converted
@@ -125,7 +125,7 @@ public final class Constants {
     }
 
     public static class AUTO {
-        public static final String[] autoNames = {"CenterLeftSwitchPath", "CenterRightSwitchPath", "MarcusPath", "SwerdPath", "YoelPath"};
+        public static final String pathPath = "/home/lvuser/paths/";
     }
 
 }

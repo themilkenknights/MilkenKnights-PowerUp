@@ -1,5 +1,6 @@
 package frc.team1836.robot.util.auto;
 
+import frc.team1836.robot.Constants;
 import frc.team1836.robot.util.logging.CrashTracker;
 import frc.team254.lib.trajectory.Path;
 import frc.team254.lib.trajectory.io.TextFileDeserializer;
@@ -13,7 +14,7 @@ public class DeserializePath {
     public static Path getPathFromFile(String name) throws IOException {
         TextFileDeserializer textFileDeserializer = new TextFileDeserializer();
         try {
-            String filePath = "/home/lvuser/paths/" + name + ".txt";
+            String filePath = Constants.AUTO.pathPath + name;
             System.out.println(filePath);
             String contents = new String(Files.readAllBytes(Paths.get(filePath)));
             Path path = textFileDeserializer.deserialize(contents);

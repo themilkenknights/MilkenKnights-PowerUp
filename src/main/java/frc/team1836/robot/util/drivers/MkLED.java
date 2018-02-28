@@ -82,12 +82,12 @@ public class MkLED extends CANifier {
         } else {
             set_rgb(color2);
         }
-
     }
 
     public enum LEDColors {
         BLUE(new double[]{0, 2, 3}),
         RED(new double[]{0, 2, 3}),
+        OFF(new double[]{0, 0, 0}),
         GREEN(new double[]{0, 2, 3});
 
         public final double[] value;

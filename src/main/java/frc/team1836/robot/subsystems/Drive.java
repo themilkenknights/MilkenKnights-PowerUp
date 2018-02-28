@@ -23,10 +23,10 @@ import frc.team254.lib.trajectory.PathFollower;
 
 public class Drive extends Subsystem {
 
-    private DriveDebugOutput mDebug = new DriveDebugOutput();
     private final ReflectingCSVWriter<DriveDebugOutput> mCSVWriter;
     private final MkTalon leftDrive, rightDrive;
     private final MkGyro navX;
+    private DriveDebugOutput mDebug = new DriveDebugOutput();
     private PathFollower pathFollower = null;
 
     private TrajectoryStatus leftStatus;
@@ -260,6 +260,13 @@ public class Drive extends Subsystem {
         }
     }
 
+    public boolean gyroConnected() {
+        return navX.isConnected();
+    }
+
+    public boolean isEncodersConnected() {
+        return leftDrive.isEncoderConnected() && rightDrive.isEncoderConnected();
+    }
 
     private void updateDebugOutput(double timestamp) {
         mDebug.timestamp = timestamp;
