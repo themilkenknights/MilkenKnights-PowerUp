@@ -6,7 +6,7 @@ public class RobotState {
     public static MatchState mMatchState = MatchState.DISABLED;
     public static DriveControlState mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
     public static ArmControlState mArmControlState = ArmControlState.MOTION_MAGIC;
-    public static ArmState mArmState = ArmState.ZEROED;
+    public static ArmState mArmState = ArmState.ENABLE;
 
     // Intenal state of the system
     public enum SystemState {
@@ -31,12 +31,11 @@ public class RobotState {
 
     public enum ArmState {
         ENABLE(0),
-        ZEROED(0),
-        INTAKE(15),
-        SECOND_SWITCH_PLACE(39),
-        SWITCH_PLACE(95),
-        OPPOSITE_SWITCH_PLACE(180),
-        OPPOSITE_STOW(230);
+        INTAKE(243.5),
+        SECOND_SWITCH_PLACE(219.5),
+        SWITCH_PLACE(163.5),
+        OPPOSITE_SWITCH_PLACE(78.5),
+        OPPOSITE_STOW(28.5);
 
         public final double state;
 

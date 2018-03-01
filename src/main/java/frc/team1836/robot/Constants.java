@@ -41,9 +41,9 @@ public final class Constants {
         public static final double PATH_DIST_TOL = 0.25;
         public static final double PATH_ANGLE_TOL = 0.25;
 
-        public static final double DRIVE_FOLLOWER_P = 5;
+        public static final double DRIVE_FOLLOWER_P = 0.75;
         public static final double DRIVE_FOLLOWER_A = 0;
-        public static final double DRIVE_FOLLOWER_ANG = 0.005;
+        public static final double DRIVE_FOLLOWER_ANG = 0.0025; //0.005;
 
         public static final double LEFT_RPM_MAX = 488.0; //Observed Max Speed for Drivetrain in RPM
         public static final double RIGHT_RPM_MAX = 502.0; //Observed Max Speed for Drivetrain in RPM
@@ -62,8 +62,8 @@ public final class Constants {
         public static final double MAX_ANG_ACC = 1.5 * 360;
         public static final double MAX_ANG_JERK = 0.75 * 360;
 
-        public static final double MIN_TEST_POS = MAX_VEL * 1;
-        public static final double MIN_TEST_VEL = MAX_VEL * 0.5;
+        public static final double MIN_TEST_POS = MAX_VEL * 4.5;
+        public static final double MIN_TEST_VEL = MAX_VEL * 0.95;
 
         public static final double MAX_PITCH = 30;
     }
@@ -79,8 +79,8 @@ public final class Constants {
         public static final int ARM_MASTER_TALON_ID = 4;
         public static final int ARM_SLAVE_TALON_ID = 7;
         public static final boolean ARM_SENSOR_PHASE = false;
-        public static final boolean ARM_MASTER_DIRECTION = true;
-        public static final boolean ARM_SLAVE_DIRECTION = false;
+        public static final boolean ARM_MASTER_DIRECTION = false;
+        public static final boolean ARM_SLAVE_DIRECTION = true;
         public static final boolean LEFT_INTAKE_DIRECTION = false;
         public static final boolean RIGHT_INTAKE_DIRECTION = false;
 
@@ -99,7 +99,7 @@ public final class Constants {
         public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL * 0.975;
         public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 1.2;
 
-        public static final double CURRENT_HARDSTOP_LIMIT = 1.3;
+        public static final double CURRENT_HARDSTOP_LIMIT = 2;
         public static final double ZEROING_POWER = -0.15;
         public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
         public static final double SAFE_CURRENT_OUTPUT = 40;
@@ -126,6 +126,7 @@ public final class Constants {
 
     public static class AUTO {
         public static final String pathPath = "/home/lvuser/paths/";
+        public static final String[] autoNames = {"CenterLeftSwitch.txt", "CenterRightSwitch.txt", "DriveStraight.txt"};
     }
 
 }

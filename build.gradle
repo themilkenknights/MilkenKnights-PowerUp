@@ -30,7 +30,6 @@ dependencies {
     compile wpilib()
     compile ctre()
     compile navx()
-    compile openrio.powerup.matchData()
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
@@ -58,11 +57,12 @@ ssh.settings {
 
 task swerdUpdate {
     doLast {
+        FileTree myFileTree = fileTree(dir: 'paths')
         ssh.run {
             session(remotes.webServer) {
-                put from: 'paths', into: '/home/lvuser'
-               // get from: '/U/', into: 'logs'
-            }
+                put from: myFileTree.getFiles(), into: '/home/lvuser/paths'
+                get from: '/u', into: 'logs'
             }
         }
     }
+}

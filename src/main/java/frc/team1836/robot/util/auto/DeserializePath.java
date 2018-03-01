@@ -15,7 +15,7 @@ public class DeserializePath {
         TextFileDeserializer textFileDeserializer = new TextFileDeserializer();
         try {
             String filePath = Constants.AUTO.pathPath + name;
-            System.out.println(filePath);
+           // System.out.println(name);
             String contents = new String(Files.readAllBytes(Paths.get(filePath)));
             Path path = textFileDeserializer.deserialize(contents);
             path.goLeft();

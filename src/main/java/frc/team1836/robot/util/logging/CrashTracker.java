@@ -28,6 +28,9 @@ public class CrashTracker {
     public static void logTeleopInit() {
         logMarker("teleop init");
     }
+    public static void logTestInit() {
+        logMarker("test init");
+    }
 
     public static void logAutoInit() {
         logMarker("auto init");
