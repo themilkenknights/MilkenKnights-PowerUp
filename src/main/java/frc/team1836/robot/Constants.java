@@ -15,7 +15,6 @@ public final class Constants {
     public static final int kTimeoutMs = 10;
     public static final double kLooperDt = 0.005;
     public static final double PI = 3.14159265359;
-    public static final int CANIFIER_ID = 11;
 
     public static class DRIVE {
 
@@ -118,7 +117,6 @@ public final class Constants {
     }
 
     public static class INPUT {
-
         public static final double OPERATOR_DEADBAND = 0.1;
         public static final double kThrottleDeadband = 0.0;
         public static final double kWheelDeadband = 0.0045;
@@ -127,6 +125,10 @@ public final class Constants {
     public static class AUTO {
         public static final String pathPath = "/home/lvuser/paths/";
         public static final String[] autoNames = {"CenterLeftSwitch.txt", "CenterRightSwitch.txt", "DriveStraight.txt"};
+    }
+
+    public static class SUPERSTRUCTURE {
+        public static final int CANIFIER_ID = 11;
     }
 
 }

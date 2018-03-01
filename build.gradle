@@ -58,11 +58,21 @@ ssh.settings {
 task swerdUpdate {
     doLast {
         FileTree myFileTree = fileTree(dir: 'paths')
+        def date = new Date()
+        def formattedDate = 'logs/' + date.format('yyyy-MM-dd') + '/' + date.format('HH-mm')
         ssh.run {
             session(remotes.webServer) {
                 put from: myFileTree.getFiles(), into: '/home/lvuser/paths'
-                get from: '/u', into: 'logs'
+                get from: '/u', into: formattedDate
             }
         }
+
+
     }
+}
+
+task deployAll {
+    dependsOn 'swerdUpdate'
+    dependsOn 'deploy'
+    tasks.findByName('deploy').mustRunAfter 'swerdUpdate'
 }

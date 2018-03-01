@@ -30,6 +30,10 @@ public class MkMath {
         return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
     }
 
+    public static double RPMToInchesPerSec(double vel){
+        return (vel / 60.0) * DRIVE.CIRCUMFERENCE;
+    }
+
     public static double angleToNativeUnits(double ang) {
         return ((ang / 360.0) / ARM.GEAR_RATIO) * 4096.0;
     }

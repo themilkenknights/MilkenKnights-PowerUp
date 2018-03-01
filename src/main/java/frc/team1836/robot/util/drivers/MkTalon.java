@@ -51,6 +51,10 @@ public class MkTalon {
         masterTalon.config_kD(Constants.kPIDLoopIdx, DRIVE.DRIVE_D, Constants.kTimeoutMs);
     }
 
+    public void setF(double feed){
+        masterTalon.config_kF(Constants.kPIDLoopIdx, feed, Constants.kTimeoutMs);
+    }
+
     public void setSoftLimit(double forwardLimit, double reverseLimit) {
         masterTalon.configForwardSoftLimitThreshold((int) MkMath.angleToNativeUnits(forwardLimit),
                 Constants.kTimeoutMs);
@@ -204,10 +208,6 @@ public class MkTalon {
     public void invert(boolean direction) {
         masterTalon.setInverted(direction);
         slaveTalon.setInverted(direction);
-    }
-
-    public void setF(double feed) {
-        masterTalon.config_kF(Constants.kPIDLoopIdx, feed, Constants.kTimeoutMs);
     }
 
     public void invertMaster(boolean direction) {

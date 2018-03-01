@@ -1,6 +1,7 @@
 package frc.team254.lib.trajectory;
 
 import frc.team1836.robot.Constants;
+import frc.team1836.robot.util.math.MkMath;
 import frc.team1836.robot.util.state.TrajectoryStatus;
 
 public class PathFollower {
@@ -13,10 +14,10 @@ public class PathFollower {
         this.mPath = mPath;
         lFollower = new TrajectoryFollower(mPath.getLeftWheelTrajectory());
         lFollower.configure(Constants.DRIVE.DRIVE_FOLLOWER_P,
-                Constants.DRIVE.DRIVE_FOLLOWER_A, Constants.DRIVE.DRIVE_FOLLOWER_ANG, distTol, angTol);
+                Constants.DRIVE.DRIVE_FOLLOWER_A, Constants.DRIVE.DRIVE_FOLLOWER_ANG, distTol, angTol, MkMath.RPMToInchesPerSec(Constants.DRIVE.LEFT_RPM_MAX));
         rFollower = new TrajectoryFollower(mPath.getRightWheelTrajectory());
         rFollower.configure(Constants.DRIVE.DRIVE_FOLLOWER_P,
-                Constants.DRIVE.DRIVE_FOLLOWER_A, -Constants.DRIVE.DRIVE_FOLLOWER_ANG, distTol, angTol);
+                Constants.DRIVE.DRIVE_FOLLOWER_A, -Constants.DRIVE.DRIVE_FOLLOWER_ANG, distTol, angTol, MkMath.RPMToInchesPerSec(Constants.DRIVE.LEFT_RPM_MAX));
     }
 
 

@@ -12,7 +12,7 @@ public class Superstructure extends Subsystem {
     private MkLED mkLED;
 
     public Superstructure() {
-        mkLED = new MkLED(Constants.CANIFIER_ID);
+        mkLED = new MkLED(Constants.SUPERSTRUCTURE.CANIFIER_ID);
     }
 
     public static Superstructure getInstance() {

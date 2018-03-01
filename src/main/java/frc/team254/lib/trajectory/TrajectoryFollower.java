@@ -23,18 +23,20 @@ public class TrajectoryFollower {
     private double _DistTol;
     private double _AngTol;
     private boolean firstRun;
+    private double maxVel;
 
     public TrajectoryFollower(Trajectory profile) {
         profile_ = profile;
     }
 
     public void configure(double kp, double ka, double kAng, double distTol,
-                          double angTol) {
+                          double angTol, double maxVel) {
         kp_ = kp;
         kAng_ = kAng;
         ka_ = ka;
         _DistTol = distTol;
         _AngTol = angTol;
+        this.maxVel = maxVel;
         reset();
     }
 
@@ -61,13 +63,14 @@ public class TrajectoryFollower {
                 angError = angError + 360;
             }
             double velError = segment.vel - vel;
-            double desired = (angError * -kAng_) + segment.vel;
-            double output = desired + (kp_ * error) + (ka_ * segment.acc);
+            double desired = (angError * kAng_) + segment.vel;
+            double output = desired + (kp_ * error);
+            double feedVel = maxVel - (ka_ * segment.acc);
             last_error_ = error;
             last_Ang_error = angError;
             current_heading = segment.heading;
             return new TrajectoryStatus(segment, error, velError,
-                    angError, output);
+                    angError, feedVel, output);
         } else {
             return TrajectoryStatus.NEUTRAL;
         }
