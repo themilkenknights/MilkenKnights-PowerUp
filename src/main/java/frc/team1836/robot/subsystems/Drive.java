@@ -131,7 +131,6 @@ public class Drive extends Subsystem {
 
         leftStatus = leftUpdate;
         rightStatus = rightUpdate;
-        updateFeedForward(leftUpdate.getFeedforward(), rightUpdate.getFeedforward());
         if (isEncodersConnected()) {
             setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput()));
         } else {
@@ -140,10 +139,6 @@ public class Drive extends Subsystem {
         }
     }
 
-    private void updateFeedForward(double leftVel, double rightVel) {
-        leftDrive.setF(1023.0 / (MkMath.InchesPerSecToUnitsPer100Ms(leftVel)));
-        rightDrive.setF(1023.0 / (MkMath.InchesPerSecToUnitsPer100Ms(rightVel)));
-    }
 
     @Override
     public void writeToLog() {
@@ -185,6 +180,14 @@ public class Drive extends Subsystem {
         leftDrive.resetEncoder();
         rightDrive.resetEncoder();
         navX.zeroYaw();
+    }
+
+    public void resetGyro() {
+        navX.zeroYaw();
+    }
+
+    public double getGyroAngle() {
+        return navX.getYaw();
     }
 
     @Override

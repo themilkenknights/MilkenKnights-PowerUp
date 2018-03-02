@@ -1,8 +1,10 @@
 package frc.team1836.robot.auto.actions;
 
 import edu.wpi.first.wpilibj.Timer;
+import frc.team1836.robot.Constants;
 import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.util.auto.Action;
+import frc.team1836.robot.util.state.DriveSignal;
 
 public class OpenLoopFollowHeading implements Action {
 
@@ -11,14 +13,15 @@ public class OpenLoopFollowHeading implements Action {
     double m_start_power = 0;
     double m_end_power = 0;
     private Timer timer;
+    private double endAngle;
 
-    public OpenLoopFollowHeading(double start_power, double time_full_on, double end_power, double time_to_decel) {
+    public OpenLoopFollowHeading(double start_power, double time_full_on, double end_power, double time_to_decel, double endAngle) {
         m_t1 = time_full_on;
         m_t2 = m_t1 + time_to_decel;
         m_start_power = start_power;
         m_end_power = end_power;
+        this.endAngle = endAngle;
         timer = new Timer();
-
     }
 
     /**
@@ -38,20 +41,21 @@ public class OpenLoopFollowHeading implements Action {
      */
     @Override
     public void update() {
-
-
-        if (cur <= m_t1) {
-            return Drive.getInstance().s
-        } else if (cur > m_t1 && cur <= m_t2) {
+        double power;
+        if (timer.get() <= m_t1) {
+            power = m_start_power;
+        } else if (timer.get() > m_t1 && timer.get() <= m_t2) {
             // decel
-            double rel_t = cur - m_t1;
+            double rel_t = timer.get() - m_t1;
             double slope = (m_end_power - m_start_power) / (m_t2 - m_t1);
-            return (m_start_power + (slope * rel_t));
+            power = (m_start_power + (slope * rel_t));
         } else {
-            return m_end_power;
+            power = m_end_power;
         }
-
-
+        double Angslope = (endAngle) / (m_t2);
+        double angleSetpoint = Angslope * timer.get();
+        double angPower = (angleSetpoint - Drive.getInstance().getGyroAngle()) * Constants.DRIVE.mPangFollower;
+        Drive.getInstance().setOpenLoop(new DriveSignal(power - angPower, power + angPower));
     }
 
     /**
@@ -67,6 +71,8 @@ public class OpenLoopFollowHeading implements Action {
      */
     @Override
     public void start() {
-
+        Drive.getInstance().resetGyro();
+        timer.reset();
+        timer.start();
     }
 }

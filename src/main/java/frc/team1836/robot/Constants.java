@@ -12,7 +12,7 @@ public final class Constants {
 
     public static final int kSlotIdx = 0;
     public static final int kPIDLoopIdx = 0;
-    public static final int kTimeoutMs = 10;
+    public static final int kTimeoutMs = 0;
     public static final double kLooperDt = 0.005;
     public static final double PI = 3.14159265359;
 
@@ -65,6 +65,8 @@ public final class Constants {
         public static final double MIN_TEST_VEL = MAX_VEL * 0.95;
 
         public static final double MAX_PITCH = 30;
+
+        public static final double mPangFollower = 0.1;
     }
 
     public static class LOGGING {

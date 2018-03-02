@@ -1,6 +1,7 @@
 package frc.team254.lib.trajectory;
 
 import edu.wpi.first.wpilibj.Timer;
+import frc.team1836.robot.Constants;
 import frc.team1836.robot.util.state.TrajectoryStatus;
 
 /**
@@ -23,20 +24,18 @@ public class TrajectoryFollower {
     private double _DistTol;
     private double _AngTol;
     private boolean firstRun;
-    private double maxVel;
 
     public TrajectoryFollower(Trajectory profile) {
         profile_ = profile;
     }
 
     public void configure(double kp, double ka, double kAng, double distTol,
-                          double angTol, double maxVel) {
+                          double angTol) {
         kp_ = kp;
         kAng_ = kAng;
         ka_ = ka;
         _DistTol = distTol;
         _AngTol = angTol;
-        this.maxVel = maxVel;
         reset();
     }
 
@@ -52,7 +51,7 @@ public class TrajectoryFollower {
             firstRun = false;
         }
         double currentTime = Timer.getFPGATimestamp();
-        current_segment = (int) (customRound(currentTime - Dt) / 0.005);
+        current_segment = (int) (customRound(currentTime - Dt) / Constants.kLooperDt);
         if (current_segment < profile_.getNumSegments()) {
             Trajectory.Segment segment = interpolateSegments(current_segment, currentTime);
             double error = segment.pos - dist;
@@ -64,13 +63,12 @@ public class TrajectoryFollower {
             }
             double velError = segment.vel - vel;
             double desired = (angError * kAng_) + segment.vel;
-            double output = desired + (kp_ * error);
-            double feedVel = maxVel - (ka_ * segment.acc);
+            double output = desired + (kp_ * error) + (ka_ * segment.acc);
             last_error_ = error;
             last_Ang_error = angError;
             current_heading = segment.heading;
             return new TrajectoryStatus(segment, error, velError,
-                    angError, feedVel, output);
+                    angError, output);
         } else {
             return TrajectoryStatus.NEUTRAL;
         }

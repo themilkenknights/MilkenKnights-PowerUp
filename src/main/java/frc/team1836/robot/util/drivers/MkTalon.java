@@ -1,9 +1,6 @@
 package frc.team1836.robot.util.drivers;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
+import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -51,7 +48,7 @@ public class MkTalon {
         masterTalon.config_kD(Constants.kPIDLoopIdx, DRIVE.DRIVE_D, Constants.kTimeoutMs);
     }
 
-    public void setF(double feed){
+    public void setF(double feed) {
         masterTalon.config_kF(Constants.kPIDLoopIdx, feed, Constants.kTimeoutMs);
     }
 
@@ -78,8 +75,19 @@ public class MkTalon {
 
     private void resetConfig() {
         masterTalon.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
+        masterTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 5, Constants.kTimeoutMs);
         masterTalon
                 .setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 5, Constants.kTimeoutMs);
+        masterTalon
+                .setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 5, Constants.kTimeoutMs);
+        masterTalon
+                .setStatusFramePeriod(StatusFrameEnhanced.Status_8_PulseWidth, 5, Constants.kTimeoutMs);
+        masterTalon
+                .setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 5, Constants.kTimeoutMs);
+        masterTalon
+                .setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 5, Constants.kTimeoutMs);
+
+        masterTalon.setControlFramePeriod(ControlFrame.Control_3_General, 5);
         masterTalon.configNominalOutputForward(0, Constants.kTimeoutMs);
         masterTalon.configNominalOutputReverse(0, Constants.kTimeoutMs);
         masterTalon.configPeakOutputForward(1, Constants.kTimeoutMs);
