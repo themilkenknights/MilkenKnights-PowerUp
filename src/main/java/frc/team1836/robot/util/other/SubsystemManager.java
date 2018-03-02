@@ -20,6 +20,10 @@ public class SubsystemManager {
         mAllSubsystems.forEach((s) -> s.outputToSmartDashboard());
     }
 
+    public void updateLogger() {
+        mAllSubsystems.forEach((s) -> s.updateLogger());
+    }
+
     public void writeToLog() {
         mAllSubsystems.forEach((s) -> s.writeToLog());
     }

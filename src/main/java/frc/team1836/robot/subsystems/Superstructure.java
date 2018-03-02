@@ -41,6 +41,11 @@ public class Superstructure extends Subsystem {
     }
 
     @Override
+    public void updateLogger() {
+
+    }
+
+    @Override
     public void checkSystem() {
 
     }
