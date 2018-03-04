@@ -10,7 +10,6 @@ import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.ArmControlState;
 import frc.team1836.robot.RobotState.ArmState;
-import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.util.drivers.MkTalon;
 import frc.team1836.robot.util.drivers.MkTalon.TalonPosition;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
@@ -28,8 +27,6 @@ public class Arm extends Subsystem {
     private ArmDebugOutput mDebug = new ArmDebugOutput();
     private boolean armSafety = true;
     private double armPosEnable = 0;
-    private boolean firstRun;
-    private boolean zeroInput = false;
 
     private Arm() {
         mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH,
@@ -48,7 +45,6 @@ public class Arm extends Subsystem {
         armTalon.invertSlave(ARM.ARM_SLAVE_DIRECTION);
         leftIntakeRollerTalon.setInverted(ARM.LEFT_INTAKE_DIRECTION);
         rightIntakeRollerTalon.setInverted(ARM.RIGHT_INTAKE_DIRECTION);
-        firstRun = true;
     }
 
     public static Arm getInstance() {
@@ -69,7 +65,6 @@ public class Arm extends Subsystem {
         SmartDashboard.putBoolean("Arm Status", armTalon.isEncoderConnected());
         SmartDashboard.putNumber("Roller Output", leftIntakeRollerTalon.getMotorOutputPercent());
         SmartDashboard.putNumber("Arm Absolute Position", armTalon.getAbsolutePosition());
-
     }
 
     @Override
@@ -79,7 +74,7 @@ public class Arm extends Subsystem {
 
     @Override
     public void zeroSensors() {
-        armTalon.resetEncoder();
+        zeroArm();
     }
 
     @Override
@@ -123,12 +118,6 @@ public class Arm extends Subsystem {
                 synchronized (Arm.this) {
                     armPosEnable = armTalon.getPosition();
                     RobotState.mArmState = ArmState.ENABLE;
-                    if (firstRun) {
-                        if (RobotState.mMatchState != MatchState.AUTO) {
-                            RobotState.mArmControlState = ArmControlState.ZEROING;
-                        }
-                        firstRun = false;
-                    }
                 }
             }
 
@@ -143,9 +132,6 @@ public class Arm extends Subsystem {
                     switch (RobotState.mArmControlState) {
                         case MOTION_MAGIC:
                             updateArmSetpoint();
-                            return;
-                        case ZEROING:
-                            zeroArm();
                             return;
                         case OPEN_LOOP:
                             return;
@@ -170,10 +156,6 @@ public class Arm extends Subsystem {
         armTalon.setLimitEnabled(armSafety);
     }
 
-    public void overrideZero(boolean over) {
-        zeroInput = over;
-    }
-
     private void updateDebugOutput(double timestamp) {
         mDebug.controlMode = RobotState.mArmControlState.toString();
         mDebug.output = armTalon.getPercentOutput();
@@ -183,33 +165,16 @@ public class Arm extends Subsystem {
         mDebug.timestamp = timestamp;
     }
 
+    public void zeroArm() {
+        armTalon.zeroAbsolute();
+    }
+
     private void updateArmSetpoint() {
         if (RobotState.mArmState.equals(ArmState.ENABLE)) {
             armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(armPosEnable));
         } else {
             armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state));
         }
-    }
-
-    private void zeroArm() {
-        if (!zeroInput) {
-            if (armTalon.getCurrentOutput() > ARM.CURRENT_HARDSTOP_LIMIT) {
-                RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
-                setOpenLoop(0);
-                edu.wpi.first.wpilibj.Timer.delay(0.25);
-                armTalon.resetEncoder();
-                armPosEnable = armTalon.getPosition();
-                armTalon.setLimitEnabled(true);
-                armSafety = true;
-                System.out.println("Zeroed");
-                RobotState.mArmState = ArmState.ENABLE;
-                RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
-            } else {
-                armTalon.setLimitEnabled(false);
-                setOpenLoop(ARM.ZEROING_POWER);
-            }
-        }
-
     }
 
     private void armSafetyCheck() {

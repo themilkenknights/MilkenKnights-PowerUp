@@ -67,7 +67,7 @@ public class MkTalon {
         masterTalon.config_kD(Constants.kPIDLoopIdx, ARM.ARM_D, Constants.kTimeoutMs);
         masterTalon.configMotionCruiseVelocity((int) ARM.MOTION_MAGIC_CRUISE_VEL, Constants.kTimeoutMs);
         masterTalon.configMotionAcceleration((int) ARM.MOTION_MAGIC_ACCEL, Constants.kTimeoutMs);
-        masterTalon.setSelectedSensorPosition((int) (getAbsolutePosition() + ARM.ANGLE_OFFSET), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+        zeroAbsolute();
     }
 
     private void resetConfig() {
@@ -212,6 +212,10 @@ public class MkTalon {
 
     public double getAbsolutePosition() {
         return masterTalon.getSensorCollection().getPulseWidthPosition();
+    }
+
+    public void zeroAbsolute() {
+        masterTalon.setSelectedSensorPosition((int) (getAbsolutePosition() + ARM.ANGLE_OFFSET), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     }
 
     public double getPercentOutput() {

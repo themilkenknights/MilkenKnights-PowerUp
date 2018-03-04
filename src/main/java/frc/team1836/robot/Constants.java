@@ -15,7 +15,6 @@ public final class Constants {
     public static final int kTimeoutMs = 0;
     public static final double kLooperDt = 0.005;
     public static final double PI = 3.14159265359;
-    public static final double
 
     public static class DRIVE {
 
@@ -105,9 +104,6 @@ public final class Constants {
         public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
         public static final double INTAKE_OUT_ROLLER_SPEED = -0.40;
         public static final double INTAKE_OUT_FAST_ROLLER_SPEED = -0.90;
-
-        public static final double STEADY_PERCENT_V_BUS = 0.25;
-        public static final double MAX_REG = (1.0 - STEADY_PERCENT_V_BUS) * MAX_RAW_VEL;
         public static final double ANGLE_OFFSET = 0;
     }
 

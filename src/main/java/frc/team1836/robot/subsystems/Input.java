@@ -1,6 +1,5 @@
 package frc.team1836.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Timer;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.RobotState;
@@ -132,18 +131,7 @@ public class Input extends Subsystem {
             Arm.getInstance().changeSafety();
         }
         if (armZeroButton.isPressed()) {
-            RobotState.mArmControlState = ArmControlState.ZEROING;
-            lastState = true;
-        } else if (armZeroButton.isHeld()) {
-            Arm.getInstance().overrideZero(true);
-            Arm.getInstance().setOpenLoop(-0.6);
-            lastState = true;
-        } else if (lastState != armZeroButton.isHeld()) {
-            lastState = false;
-            System.out.println("Released");
-            Arm.getInstance().setOpenLoop(0);
-            Timer.delay(0.35);
-            Arm.getInstance().overrideZero(false);
+            Arm.getInstance().zeroArm();
         }
         switch (RobotState.mArmControlState) {
             case MOTION_MAGIC:
