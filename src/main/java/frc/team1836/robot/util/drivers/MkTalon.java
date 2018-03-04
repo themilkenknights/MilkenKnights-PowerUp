@@ -189,6 +189,10 @@ public class MkTalon {
         masterTalon.set(mode, value);
     }
 
+    public void set(ControlMode mode, double value, double arbFeed) {
+        masterTalon.set(mode, value, arbFeed);
+    }
+
     public void resetEncoder() {
         masterTalon.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     }

@@ -77,16 +77,15 @@ public class Drive extends Subsystem {
      * @param signal An object that contains left and right velocities (inches per sec)
      */
 
-    public synchronized void setVelocitySetpoint(DriveSignal signal) {
+    public synchronized void setVelocitySetpoint(DriveSignal signal, double leftFeed, double rightFeed) {
         if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
-            leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVelTraj());
-            rightDrive.set(ControlMode.Velocity, signal.getRightNativeVelTraj());
+            leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVelTraj(), leftFeed);
+            rightDrive.set(ControlMode.Velocity, signal.getRightNativeVelTraj(), rightFeed);
         } else {
             RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
             leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVel());
             rightDrive.set(ControlMode.Velocity, signal.getRightNativeVel());
         }
-
         currentSetpoint = signal;
     }
 
@@ -132,10 +131,10 @@ public class Drive extends Subsystem {
         leftStatus = leftUpdate;
         rightStatus = rightUpdate;
         if (isEncodersConnected()) {
-            setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput()));
+            setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput()), leftUpdate.getArbFeed(), rightUpdate.getArbFeed());
         } else {
-            leftDrive.set(ControlMode.PercentOutput, (1.0 / MkMath.RPMToInchesPerSec(DRIVE.RIGHT_RPM_MAX)) * leftUpdate.getOutput());
-            rightDrive.set(ControlMode.PercentOutput, (1.0 / MkMath.RPMToInchesPerSec(DRIVE.LEFT_RPM_MAX)) * rightUpdate.getOutput());
+            leftDrive.set(ControlMode.PercentOutput, ((1.0 / MkMath.RPMToInchesPerSec(DRIVE.RIGHT_RPM_MAX)) * leftUpdate.getOutput()) + leftUpdate.getArbFeed());
+            rightDrive.set(ControlMode.PercentOutput, ((1.0 / MkMath.RPMToInchesPerSec(DRIVE.LEFT_RPM_MAX)) * rightUpdate.getOutput()) + rightUpdate.getArbFeed());
         }
     }
 

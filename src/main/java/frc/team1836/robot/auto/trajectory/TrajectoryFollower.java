@@ -64,12 +64,13 @@ public class TrajectoryFollower {
             }
             double velError = segment.velocity - vel;
             double desired = (angError * kAng_) + segment.velocity;
-            double output = desired + (kp_ * error) + (ka_ * segment.acceleration);
+            double output = desired + (kp_ * error);
+            double arbFeed =  (ka_ * segment.acceleration);
             last_error_ = error;
             last_Ang_error = angError;
             current_heading = segment.heading;
             return new TrajectoryStatus(segment, error, velError,
-                    angError, output);
+                    angError, arbFeed, output);
         } else {
             return TrajectoryStatus.NEUTRAL;
         }
