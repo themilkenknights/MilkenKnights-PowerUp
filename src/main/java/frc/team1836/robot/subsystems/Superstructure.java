@@ -1,5 +1,4 @@
 package frc.team1836.robot.subsystems;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.RobotState;
@@ -90,6 +89,8 @@ public class Superstructure extends Subsystem {
                 mkLED.setPulse(MkLED.LEDColors.GREEN, MkLED.LEDColors.RED, 0.5);
             case DISABLED:
                 mkLED.set_rgb(MkLED.LEDColors.RED);
+            case TEST:
+                mkLED.setPulse(MkLED.LEDColors.ORANGE, MkLED.LEDColors.RED, 0.5);
         }
 
     }

@@ -7,7 +7,6 @@ public class MkLED extends CANifier {
 
     private static float _rgb[] = new float[3];
     private double startTime = 0;
-    private boolean isPulsing;
     private LEDColors[] currentColors = new LEDColors[]{LEDColors.OFF, LEDColors.OFF};
 
     public MkLED(int id) {
@@ -79,10 +78,11 @@ public class MkLED extends CANifier {
     }
 
     public enum LEDColors {
-        BLUE(new double[]{0, 2, 3}),
-        RED(new double[]{0, 2, 3}),
+        BLUE(new double[]{0, 58, 239}),
+        RED(new double[]{255, 0, 0}),
         OFF(new double[]{0, 0, 0}),
-        GREEN(new double[]{0, 2, 3});
+        ORANGE(new double[]{255, 151, 0}),
+        GREEN(new double[]{15, 255, 0});
 
         public final double[] value;
 
