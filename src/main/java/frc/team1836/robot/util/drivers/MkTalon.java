@@ -94,7 +94,7 @@ public class MkTalon {
         masterTalon.configPeakOutputReverse(-1, Constants.kTimeoutMs);
         masterTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0,
                 Constants.kTimeoutMs);
-        masterTalon.setNeutralMode(NeutralMode.Coast);
+        masterTalon.setNeutralMode(NeutralMode.Brake);
 
         slaveTalon.configNominalOutputForward(0, Constants.kTimeoutMs);
         slaveTalon.configNominalOutputReverse(0, Constants.kTimeoutMs);
@@ -102,6 +102,14 @@ public class MkTalon {
         slaveTalon.configPeakOutputReverse(-1, Constants.kTimeoutMs);
         slaveTalon.setNeutralMode(NeutralMode.Coast);
         slaveTalon.follow(masterTalon);
+
+        masterTalon.configVoltageCompSaturation(12.0, Constants.kTimeoutMs);
+        masterTalon.enableVoltageCompensation(true);
+        masterTalon.configVoltageMeasurementFilter(32, Constants.kTimeoutMs);
+
+        slaveTalon.configVoltageCompSaturation(12.0, Constants.kTimeoutMs);
+        slaveTalon.enableVoltageCompensation(true);
+        slaveTalon.configVoltageMeasurementFilter(32, Constants.kTimeoutMs);
     }
 
     public void setPeakOutput(double percent) {

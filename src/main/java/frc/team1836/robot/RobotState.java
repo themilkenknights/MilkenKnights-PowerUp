@@ -4,7 +4,7 @@ public class RobotState {
 
     public static SystemState mSystemState = SystemState.IDLE;
     public static MatchState mMatchState = MatchState.DISABLED;
-    public static DriveControlState mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
+    public static DriveControlState mDriveControlState = DriveControlState.OPEN_LOOP;
     public static ArmControlState mArmControlState = ArmControlState.MOTION_MAGIC;
     public static ArmState mArmState = ArmState.ENABLE;
 
@@ -14,7 +14,7 @@ public class RobotState {
     }
 
     public enum MatchState {
-        AUTO, TELEOP, DISABLED
+        AUTO, TELEOP, DISABLED, TEST
     }
 
     public enum DriveControlState {

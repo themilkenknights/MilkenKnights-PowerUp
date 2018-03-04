@@ -9,6 +9,8 @@ import frc.team1836.robot.Constants.DRIVE;
 import frc.team1836.robot.Constants.LOGGING;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.DriveControlState;
+import frc.team1836.robot.auto.trajectory.Path;
+import frc.team1836.robot.auto.trajectory.PathFollower;
 import frc.team1836.robot.util.drivers.MkGyro;
 import frc.team1836.robot.util.drivers.MkTalon;
 import frc.team1836.robot.util.drivers.MkTalon.TalonPosition;
@@ -19,8 +21,6 @@ import frc.team1836.robot.util.math.MkMath;
 import frc.team1836.robot.util.other.Subsystem;
 import frc.team1836.robot.util.state.DriveSignal;
 import frc.team1836.robot.util.state.TrajectoryStatus;
-import frc.team254.lib.trajectory.Path;
-import frc.team254.lib.trajectory.PathFollower;
 
 public class Drive extends Subsystem {
 
@@ -158,13 +158,13 @@ public class Drive extends Subsystem {
             SmartDashboard.putNumber("NavX Full Yaw", navX.getFullYaw());
             SmartDashboard.putNumber("Desired Heading", leftStatus.getSeg().heading);
             SmartDashboard.putNumber("Heading Error", leftStatus.getAngError());
-            SmartDashboard.putNumber("Left Desired Position", leftStatus.getSeg().pos);
-            SmartDashboard.putNumber("Left Theoretical Vel", leftStatus.getSeg().vel);
+            SmartDashboard.putNumber("Left Desired Position", leftStatus.getSeg().position);
+            SmartDashboard.putNumber("Left Theoretical Vel", leftStatus.getSeg().velocity);
             SmartDashboard.putNumber("Left Position Error", leftStatus.getPosError());
             SmartDashboard.putNumber("Left Desired Velocity Error", leftStatus.getVelError());
-            SmartDashboard.putNumber("Right Desired Position", leftStatus.getSeg().pos);
+            SmartDashboard.putNumber("Right Desired Position", leftStatus.getSeg().position);
             SmartDashboard.putNumber("Right Position Error", leftStatus.getPosError());
-            SmartDashboard.putNumber("Right Theoretical Vel", rightStatus.getSeg().vel);
+            SmartDashboard.putNumber("Right Theoretical Vel", rightStatus.getSeg().velocity);
             SmartDashboard.putNumber("Right Desired Velocity Error", leftStatus.getVelError());
         }
     }
@@ -308,10 +308,10 @@ public class Drive extends Subsystem {
 
     private void updateStatus() {
         if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
-            mDebug.leftDesiredPos = leftStatus.getSeg().pos;
-            mDebug.leftDesiredVel = leftStatus.getSeg().vel;
-            mDebug.rightDesiredPos = rightStatus.getSeg().pos;
-            mDebug.rightDesiredVel = rightStatus.getSeg().vel;
+            mDebug.leftDesiredPos = leftStatus.getSeg().position;
+            mDebug.leftDesiredVel = leftStatus.getSeg().velocity;
+            mDebug.rightDesiredPos = rightStatus.getSeg().position;
+            mDebug.rightDesiredVel = rightStatus.getSeg().velocity;
             mDebug.desiredHeading = leftStatus.getSeg().heading;
             mDebug.headingError = leftStatus.getAngError();
             mDebug.leftVelError = leftStatus.getVelError();

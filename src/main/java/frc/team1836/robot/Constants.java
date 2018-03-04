@@ -35,7 +35,7 @@ public final class Constants {
         public static final double WHEEL_DIAMETER = 5.98;
         public static final double CIRCUMFERENCE = WHEEL_DIAMETER * PI;
         public static final double TURN_IN_PLACE_CIRCUMFERENCE = 104.1;
-
+        public static final double PATH_WHEELBASE = 33.75;
 
         public static final double PATH_DIST_TOL = 0.25;
         public static final double PATH_ANGLE_TOL = 0.25;
@@ -54,13 +54,6 @@ public final class Constants {
         public static final double DRIVE_D = 10 * DRIVE_P;
         public static final double LEFT_DRIVE_F = (1023.0 / ((LEFT_RPM_MAX / 60.0 / 10.0) * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
         public static final double RIGHT_DRIVE_F = (1023.0 / ((RIGHT_RPM_MAX / 60.0 / 10.0) * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
-
-        //Used for turn in place (Degrees) - Is converted
-        // to inches after a trajectory is generated
-        public static final double MAX_ANG_VEL = 2.5 * 360;
-        public static final double MAX_ANG_ACC = 1.5 * 360;
-        public static final double MAX_ANG_JERK = 0.75 * 360;
-
         public static final double MIN_TEST_POS = MAX_VEL * 4.5;
         public static final double MIN_TEST_VEL = MAX_VEL * 0.95;
 
@@ -126,7 +119,7 @@ public final class Constants {
 
     public static class AUTO {
         public static final String pathPath = "/home/lvuser/paths/";
-        public static final String[] autoNames = {"CenterLeftSwitch.txt", "CenterRightSwitch.txt", "DriveStraight.txt"};
+        public static final String[] autoNames = {"CenterLeftSwitch.csv", "CenterRightSwitch.csv", "DriveStraight.csv"};
     }
 
     public static class SUPERSTRUCTURE {

@@ -8,7 +8,10 @@ plugins {
 
 def TEAM = 1836
 def ROBOT_CLASS = "frc.team1836.robot.Robot"
-
+wpi {
+    wpilibVersion = '2018.3.3'
+    ctreVersion = '5.3.1.0'
+}
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project EmbeddedTools.
 deploy {
@@ -40,6 +43,8 @@ jar {
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     manifest jaci.openrio.gradle.GradleRIOPlugin.javaManifest(ROBOT_CLASS)
 }
+
+
 
 task wrapper(type: Wrapper) {
     gradleVersion = '4.4'

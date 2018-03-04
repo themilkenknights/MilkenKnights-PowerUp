@@ -1,8 +1,9 @@
-package frc.team254.lib.trajectory;
+package frc.team1836.robot.auto.trajectory;
 
 import edu.wpi.first.wpilibj.Timer;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.util.state.TrajectoryStatus;
+import jaci.pathfinder.Trajectory;
 
 /**
  * PID + Feedforward controller for following a Trajectory.
@@ -52,18 +53,18 @@ public class TrajectoryFollower {
         }
         double currentTime = Timer.getFPGATimestamp();
         current_segment = (int) (customRound(currentTime - Dt) / Constants.kLooperDt);
-        if (current_segment < profile_.getNumSegments()) {
+        if (current_segment < profile_.length()) {
             Trajectory.Segment segment = interpolateSegments(current_segment, currentTime);
-            double error = segment.pos - dist;
+            double error = segment.position - dist;
             double angError = segment.heading - heading;
             if (angError > 180) {
                 angError = angError - 360;
             } else if (angError < -180) {
                 angError = angError + 360;
             }
-            double velError = segment.vel - vel;
-            double desired = (angError * kAng_) + segment.vel;
-            double output = desired + (kp_ * error) + (ka_ * segment.acc);
+            double velError = segment.velocity - vel;
+            double desired = (angError * kAng_) + segment.velocity;
+            double output = desired + (kp_ * error) + (ka_ * segment.acceleration);
             last_error_ = error;
             last_Ang_error = angError;
             current_heading = segment.heading;
@@ -79,7 +80,7 @@ public class TrajectoryFollower {
     }
 
     public boolean isFinishedTrajectory() {
-        return current_segment >= profile_.getNumSegments();
+        return current_segment >= profile_.length();
     }
 
     private double customRound(double num) {
@@ -96,20 +97,20 @@ public class TrajectoryFollower {
 
     private Trajectory.Segment interpolateSegments(int currentSeg, double time) {
         if (currentSeg == 0) {
-            return profile_.getSegment(currentSeg);
+            return profile_.get(currentSeg);
         }
-        Trajectory.Segment firstSeg = profile_.getSegment(currentSeg - 1);
-        Trajectory.Segment lastSeg = profile_.getSegment(currentSeg);
+        Trajectory.Segment firstSeg = profile_.get(currentSeg - 1);
+        Trajectory.Segment lastSeg = profile_.get(currentSeg);
         double pos, vel, acc, jerk, heading, dt, x, y;
         double firstTime = firstSeg.dt * (currentSeg - 1);
         double lastTime = lastSeg.dt * (currentSeg);
         double currentTime = time - Dt;
-        pos = (((currentTime - firstTime) * (lastSeg.pos - firstSeg.pos)) / (lastTime - firstTime))
-                + firstSeg.pos;
-        vel = (((currentTime - firstTime) * (lastSeg.vel - firstSeg.vel)) / (lastTime - firstTime))
-                + firstSeg.vel;
-        acc = (((currentTime - firstTime) * (lastSeg.acc - firstSeg.acc)) / (lastTime - firstTime))
-                + firstSeg.acc;
+        pos = (((currentTime - firstTime) * (lastSeg.position - firstSeg.position)) / (lastTime - firstTime))
+                + firstSeg.position;
+        vel = (((currentTime - firstTime) * (lastSeg.velocity - firstSeg.velocity)) / (lastTime - firstTime))
+                + firstSeg.velocity;
+        acc = (((currentTime - firstTime) * (lastSeg.acceleration - firstSeg.acceleration)) / (lastTime - firstTime))
+                + firstSeg.acceleration;
         jerk = (((currentTime - firstTime) * (lastSeg.jerk - firstSeg.jerk)) / (lastTime - firstTime))
                 + firstSeg.jerk;
         heading = lastSeg.heading;

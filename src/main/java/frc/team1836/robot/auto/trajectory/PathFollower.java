@@ -1,7 +1,6 @@
-package frc.team254.lib.trajectory;
+package frc.team1836.robot.auto.trajectory;
 
 import frc.team1836.robot.Constants;
-import frc.team1836.robot.util.math.MkMath;
 import frc.team1836.robot.util.state.TrajectoryStatus;
 
 public class PathFollower {
@@ -32,10 +31,4 @@ public class PathFollower {
     public boolean getFinished() {
         return lFollower.isFinishedTrajectory() && rFollower.isFinishedTrajectory();
     }
-
-    public boolean onTarget() {
-        return lFollower.onTarget() && rFollower.onTarget();
-    }
-
-
 }
