@@ -99,11 +99,11 @@ public class MkTalon {
         slaveTalon.setNeutralMode(NeutralMode.Coast);
         slaveTalon.follow(masterTalon);
 
-        masterTalon.configVoltageCompSaturation(12.0, Constants.kTimeoutMs);
+        masterTalon.configVoltageCompSaturation(12.5, Constants.kTimeoutMs);
         masterTalon.enableVoltageCompensation(true);
         masterTalon.configVoltageMeasurementFilter(32, Constants.kTimeoutMs);
 
-        slaveTalon.configVoltageCompSaturation(12.0, Constants.kTimeoutMs);
+        slaveTalon.configVoltageCompSaturation(12.5, Constants.kTimeoutMs);
         slaveTalon.enableVoltageCompensation(true);
         slaveTalon.configVoltageMeasurementFilter(32, Constants.kTimeoutMs);
 

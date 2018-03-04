@@ -92,9 +92,6 @@ public final class Constants {
         public static final double ARM_REVERSE_LIMIT = 0;
         public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL * 0.975;
         public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 1.2;
-
-        public static final double CURRENT_HARDSTOP_LIMIT = 2;
-        public static final double ZEROING_POWER = -0.15;
         public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
         public static final double SAFE_CURRENT_OUTPUT = 40;
 
