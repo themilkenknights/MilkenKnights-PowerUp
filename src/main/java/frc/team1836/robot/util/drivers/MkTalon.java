@@ -48,10 +48,6 @@ public class MkTalon {
         masterTalon.config_kD(Constants.kPIDLoopIdx, DRIVE.DRIVE_D, Constants.kTimeoutMs);
     }
 
-    public void setF(double feed) {
-        masterTalon.config_kF(Constants.kPIDLoopIdx, feed, Constants.kTimeoutMs);
-    }
-
     public void setSoftLimit(double forwardLimit, double reverseLimit) {
         masterTalon.configForwardSoftLimitThreshold((int) MkMath.angleToNativeUnits(forwardLimit),
                 Constants.kTimeoutMs);
@@ -71,23 +67,23 @@ public class MkTalon {
         masterTalon.config_kD(Constants.kPIDLoopIdx, ARM.ARM_D, Constants.kTimeoutMs);
         masterTalon.configMotionCruiseVelocity((int) ARM.MOTION_MAGIC_CRUISE_VEL, Constants.kTimeoutMs);
         masterTalon.configMotionAcceleration((int) ARM.MOTION_MAGIC_ACCEL, Constants.kTimeoutMs);
+        masterTalon.setSelectedSensorPosition((int) (getAbsolutePosition() + ARM.ANGLE_OFFSET), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     }
 
     private void resetConfig() {
         masterTalon.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
-        masterTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 5, Constants.kTimeoutMs);
+        masterTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 10, Constants.kTimeoutMs);
         masterTalon
                 .setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 5, Constants.kTimeoutMs);
+        masterTalon.setControlFramePeriod(ControlFrame.Control_3_General, 5);
         masterTalon
                 .setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 5, Constants.kTimeoutMs);
         masterTalon
                 .setStatusFramePeriod(StatusFrameEnhanced.Status_8_PulseWidth, 5, Constants.kTimeoutMs);
         masterTalon
-                .setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 5, Constants.kTimeoutMs);
+                .setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, Constants.kTimeoutMs);
         masterTalon
-                .setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 5, Constants.kTimeoutMs);
-
-        masterTalon.setControlFramePeriod(ControlFrame.Control_3_General, 5);
+                .setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, Constants.kTimeoutMs);
         masterTalon.configNominalOutputForward(0, Constants.kTimeoutMs);
         masterTalon.configNominalOutputReverse(0, Constants.kTimeoutMs);
         masterTalon.configPeakOutputForward(1, Constants.kTimeoutMs);
@@ -110,13 +106,9 @@ public class MkTalon {
         slaveTalon.configVoltageCompSaturation(12.0, Constants.kTimeoutMs);
         slaveTalon.enableVoltageCompensation(true);
         slaveTalon.configVoltageMeasurementFilter(32, Constants.kTimeoutMs);
-    }
 
-    public void setPeakOutput(double percent) {
-        masterTalon.configPeakOutputForward(percent, Constants.kTimeoutMs);
-        masterTalon.configPeakOutputReverse(-percent, Constants.kTimeoutMs);
-        slaveTalon.configPeakOutputForward(percent, Constants.kTimeoutMs);
-        slaveTalon.configPeakOutputReverse(-percent, Constants.kTimeoutMs);
+        masterTalon.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_1Ms, Constants.kTimeoutMs);
+        masterTalon.configVelocityMeasurementWindow(1, Constants.kTimeoutMs);
     }
 
     public double getError() {
@@ -212,9 +204,14 @@ public class MkTalon {
         SmartDashboard.putNumber(side.toString() + " Slave Output", slaveTalon.getMotorOutputPercent());
         SmartDashboard.putNumber(side.toString() + " Position", getPosition());
         if (Math.abs(getRPM()) > maxRPM) {
-            maxRPM = getRPM();
+            maxRPM = Math.abs(getRPM());
         }
         SmartDashboard.putNumber(side.toString() + " RPM", maxRPM);
+        SmartDashboard.putNumber(side.toString() + " Voltage", masterTalon.getBusVoltage());
+    }
+
+    public double getAbsolutePosition() {
+        return masterTalon.getSensorCollection().getPulseWidthPosition();
     }
 
     public double getPercentOutput() {
