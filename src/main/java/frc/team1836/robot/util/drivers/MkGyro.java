@@ -9,8 +9,4 @@ public class MkGyro extends AHRS {
         super(spi_port_id);
     }
 
-    public double getFullYaw() {
-        return getYaw() > 0 ? -(getYaw() - 360) : -getYaw();
-    }
-
 }

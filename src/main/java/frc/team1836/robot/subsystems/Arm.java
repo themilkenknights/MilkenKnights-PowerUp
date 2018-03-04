@@ -138,7 +138,6 @@ public class Arm extends Subsystem {
             public void onLoop(double timestamp) {
                 synchronized (Arm.this) {
                     armSafetyCheck();
-                    updateFeedForward();
                     switch (RobotState.mArmControlState) {
                         case MOTION_MAGIC:
                             updateArmSetpoint();
@@ -171,12 +170,6 @@ public class Arm extends Subsystem {
 
     public void overrideZero(boolean over) {
         zeroInput = over;
-    }
-
-    private void updateFeedForward() {
-        double realArmPos = armTalon.getPosition() + ARM.ANGLE_OFFSET;
-        armTalon.setF(
-                1023.0 / (ARM.MAX_REG + (Math.sin(Math.toRadians(realArmPos))) * ARM.STEADY_PERCENT_V_BUS));
     }
 
     private void updateDebugOutput(double timestamp) {

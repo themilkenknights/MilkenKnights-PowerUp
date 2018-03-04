@@ -9,6 +9,7 @@ import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeExecuter;
 import frc.team1836.robot.util.auto.DeserializePath;
+import frc.team1836.robot.util.logging.CrashTracker;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,7 +56,6 @@ public class AutoChooser {
 
 
     private static AutoModeBase getStraightMode() {
-
         if (Drive.getInstance().isEncodersConnected()) {
             return new DriveStraightMode();
         } else {
@@ -84,10 +84,11 @@ public class AutoChooser {
                 return new SwitchOpenLoop();
             }
             if (positionChooser.getSelected() == AutoPosition.CENTER) {
-                return new DriveStraightOpenLoopMode();
+                return new CenterSwitchOpenLoopGyro();
             }
         }
-        return new DriveStraightOpenLoopMode();
+        CrashTracker.logMarker("Couldn't Get Switch Mode");
+        return null;
     }
 
 

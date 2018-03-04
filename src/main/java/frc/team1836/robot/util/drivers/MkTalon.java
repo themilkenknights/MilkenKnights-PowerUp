@@ -128,7 +128,7 @@ public class MkTalon {
     }
 
     public boolean isEncoderConnected() {
-        return masterTalon.getSensorCollection().getPulseWidthRiseToRiseUs() != 0;
+        return masterTalon.getSensorCollection().getPulseWidthRiseToRiseUs() > 100;
     }
 
     public synchronized double getPosition() {

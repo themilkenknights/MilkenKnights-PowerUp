@@ -1,5 +1,6 @@
 package frc.team1836.robot.auto.trajectory;
 
+import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 
 /**
@@ -20,6 +21,7 @@ public class Path {
             segment.velocity = -segment.velocity;
             segment.acceleration = -segment.acceleration;
             segment.jerk = -segment.jerk;
+            segment.heading = Pathfinder.boundHalfDegrees(Pathfinder.r2d(segment.heading));
         }
 
         for (Trajectory.Segment segment : pair_.right.segments) {
@@ -27,6 +29,7 @@ public class Path {
             segment.velocity = -segment.velocity;
             segment.acceleration = -segment.acceleration;
             segment.jerk = -segment.jerk;
+            segment.heading = Pathfinder.boundHalfDegrees(Pathfinder.r2d(segment.heading));
         }
     }
 

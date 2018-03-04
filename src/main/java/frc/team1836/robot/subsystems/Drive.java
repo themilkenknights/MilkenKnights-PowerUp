@@ -124,10 +124,10 @@ public class Drive extends Subsystem {
     private void updatePathFollower() {
         TrajectoryStatus leftUpdate = pathFollower
                 .getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(),
-                        navX.getFullYaw());
+                        navX.getYaw());
         TrajectoryStatus rightUpdate = pathFollower
                 .getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
-                        navX.getFullYaw());
+                        navX.getYaw());
 
         leftStatus = leftUpdate;
         rightStatus = rightUpdate;
@@ -150,12 +150,11 @@ public class Drive extends Subsystem {
         leftDrive.updateSmartDash();
         rightDrive.updateSmartDash();
         SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
-        SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
         SmartDashboard.putBoolean("Drivetrain Status", leftDrive.isEncoderConnected() && rightDrive.isEncoderConnected());
         if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
+            SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
             SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
             SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
-            SmartDashboard.putNumber("NavX Full Yaw", navX.getFullYaw());
             SmartDashboard.putNumber("Desired Heading", leftStatus.getSeg().heading);
             SmartDashboard.putNumber("Heading Error", leftStatus.getAngError());
             SmartDashboard.putNumber("Left Desired Position", leftStatus.getSeg().position);
@@ -301,7 +300,7 @@ public class Drive extends Subsystem {
         mDebug.leftPosition = rightDrive.getPosition();
         mDebug.leftVelocity = leftDrive.getSpeed();
         mDebug.rightVelocity = rightDrive.getSpeed();
-        mDebug.heading = navX.getFullYaw();
+        mDebug.heading = navX.getYaw();
         mDebug.leftSetpoint = currentSetpoint.getLeft();
         mDebug.rightSetpoint = currentSetpoint.getRight();
     }

@@ -45,7 +45,6 @@ public class OpenLoopFollowHeading implements Action {
         if (timer.get() <= m_t1) {
             power = m_start_power;
         } else if (timer.get() > m_t1 && timer.get() <= m_t2) {
-            // decel
             double rel_t = timer.get() - m_t1;
             double slope = (m_end_power - m_start_power) / (m_t2 - m_t1);
             power = (m_start_power + (slope * rel_t));

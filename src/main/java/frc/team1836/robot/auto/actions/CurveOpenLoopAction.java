@@ -38,7 +38,7 @@ public class CurveOpenLoopAction implements Action {
      */
     @Override
     public void update() {
-        double power = (timer.get() / time);
+        double power = (timer.get() / time) * speed;
         power = power * power;
 
         power = 1 - power;

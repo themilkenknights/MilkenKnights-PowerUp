@@ -32,12 +32,12 @@ public class LeftSwitchMode extends AutoModeBase {
 
     private void leftRoutine() throws AutoModeEndedException {
         RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
-        runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight.txt")));
-        runAction(new RollerAction(0.15, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight")));
+        runAction(new RollerAction(0.5, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
     }
 
     private void rightRoutine() throws AutoModeEndedException {
-        runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight.txt")));
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight")));
     }
 
 
