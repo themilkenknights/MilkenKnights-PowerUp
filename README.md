@@ -56,3 +56,10 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 - ALL PID CONSTANTS SENT TO THE TALON ARE IN NATIVE UNITS (4096 Per Rotation)
 
 Link to Path Generator - https://milken-computer-science.github.io/MilkenKnights-PowerUp/light_path
+
+## Useful Links
+- http://www.ctr-electronics.com/control-system/motor-control/talon-srx.html#product_tabs_technical_resources
+- https://github.com/CrossTheRoadElec/Phoenix-Documentation/raw/master/Talon%20SRX%20Victor%20SPX%20-%20Software%20Reference%20Manual.pdf
+- http://www.ctr-electronics.com/control-system/hro.html#product_tabs_technical_resources
+- https://github.com/Open-RIO/GradleRIO
+- https://github.com/CrossTheRoadElec/Phoenix-Documentation
