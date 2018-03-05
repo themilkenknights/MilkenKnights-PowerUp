@@ -1,6 +1,5 @@
 package frc.team1836.robot.auto.trajectory;
 
-import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 
 /**
@@ -15,22 +14,7 @@ public class Path {
 
     public Path(String name, Pair pair_) {
         name_ = name;
-        this.pair_ = new Pair(pair_.right, pair_.left);
-        for (Trajectory.Segment segment : pair_.left.segments) {
-            segment.position = -segment.position;
-            segment.velocity = -segment.velocity;
-            segment.acceleration = -segment.acceleration;
-            segment.jerk = -segment.jerk;
-            segment.heading = Pathfinder.boundHalfDegrees(Pathfinder.r2d(segment.heading));
-        }
-
-        for (Trajectory.Segment segment : pair_.right.segments) {
-            segment.position = -segment.position;
-            segment.velocity = -segment.velocity;
-            segment.acceleration = -segment.acceleration;
-            segment.jerk = -segment.jerk;
-            segment.heading = Pathfinder.boundHalfDegrees(Pathfinder.r2d(segment.heading));
-        }
+        this.pair_ = pair_;
     }
 
     public Path() {
@@ -43,11 +27,11 @@ public class Path {
 
 
     public Trajectory getLeftWheelTrajectory() {
-        return pair_.left;
+        return pair_.right;
     }
 
     public Trajectory getRightWheelTrajectory() {
-        return pair_.right;
+        return pair_.left;
     }
 
     public Pair getPair() {

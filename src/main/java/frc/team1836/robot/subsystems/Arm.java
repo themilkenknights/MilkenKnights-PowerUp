@@ -178,11 +178,6 @@ public class Arm extends Subsystem {
     }
 
     private void armSafetyCheck() {
-        if (armTalon.getCurrentOutput() > ARM.SAFE_CURRENT_OUTPUT && armSafety) {
-            System.out.println("Unsafe Output");
-            RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
-            setOpenLoop(0);
-        }
         if (!armTalon.isEncoderConnected()) {
             System.out.println("Encoder Not Connected");
             RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
@@ -195,11 +190,17 @@ public class Arm extends Subsystem {
 
     public void setIntakeRollers(double output) {
         leftIntakeRollerTalon.set(ControlMode.PercentOutput, output);
+        rightIntakeRollerTalon.set(ControlMode.PercentOutput, output);
+    }
+
+    public void outTakeFast(){
+        rightIntakeRollerTalon.set(ControlMode.PercentOutput, 0);
+        leftIntakeRollerTalon.set(ControlMode.PercentOutput, -1);
+
     }
 
     public void invertRightRoller(boolean dir) {
-        rightIntakeRollerTalon
-                .setInverted(dir ? !ARM.RIGHT_INTAKE_DIRECTION : ARM.RIGHT_INTAKE_DIRECTION);
+        rightIntakeRollerTalon.setInverted(dir ? !ARM.RIGHT_INTAKE_DIRECTION : ARM.RIGHT_INTAKE_DIRECTION);
     }
 
     public static class ArmDebugOutput {

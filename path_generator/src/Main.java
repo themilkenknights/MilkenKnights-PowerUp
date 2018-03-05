@@ -12,13 +12,13 @@ public class Main {
     static {
         robotPaths.put("CenterSwitchRight", new Waypoint[]{
                 new Waypoint(23, 156, 0),
-                new Waypoint(125, 106, Pathfinder.d2r(0)),
-                new Waypoint(105, 132, Pathfinder.d2r(90)),
+                new Waypoint(125, 106, Pathfinder.d2r(0))
+              /*  new Waypoint(105, 132, Pathfinder.d2r(90)),
                 new Waypoint(125, 106, Pathfinder.d2r(0)),
                 new Waypoint(105, 137, Pathfinder.d2r(45)),
                 new Waypoint(85, 115, Pathfinder.d2r(0)),
                 new Waypoint(65, 140, Pathfinder.d2r(90)),
-                new Waypoint(33, 192, Pathfinder.d2r(0))
+                new Waypoint(33, 192, Pathfinder.d2r(0)) */
         });
 
         robotPaths.put("CenterSwitchLeft", new Waypoint[]{

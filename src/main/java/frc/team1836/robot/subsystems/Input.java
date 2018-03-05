@@ -119,7 +119,7 @@ public class Input extends Subsystem {
                 .cheesyDrive((-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3)),
                         (-driverJoystick.getRawAxis(0)), true);
         if (RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
-            Drive.getInstance().setVelocitySetpoint(sig);
+            Drive.getInstance().setVelocitySetpoint(sig, 0, 0);
         } else if (RobotState.mDriveControlState == DriveControlState.OPEN_LOOP) {
             Drive.getInstance().setOpenLoop(sig);
         }
@@ -172,7 +172,8 @@ public class Input extends Subsystem {
         } else if (intakeRollerOut.isHeld()) {
             Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_ROLLER_SPEED);
         } else if (intakeRollerOutFast.isHeld()) {
-            Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_FAST_ROLLER_SPEED);
+            Arm.getInstance().outTakeFast();
+           // Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_FAST_ROLLER_SPEED);
         } else {
             if (!RobotState.mArmControlState.equals(ArmControlState.ZEROING) && !RobotState.mArmState
                     .equals(ArmState.ENABLE)) {

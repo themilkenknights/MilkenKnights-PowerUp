@@ -32,7 +32,7 @@ public class CenterSwitchMode extends AutoModeBase {
 
     private void leftRoutine() throws AutoModeEndedException {
         RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
-        runAction(new DrivePathAction(AutoChooser.autoPaths.get("CenterLeftSwitch")));
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("CenterSwitchLeft")));
         runAction(new RollerAction(0.35, ARM.INTAKE_OUT_ROLLER_SPEED));
         //runAction(new MoveArmAction(RobotState.ArmState.SWITCH_PLACE));
         //runAction(new RollerAction(2, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
@@ -40,7 +40,7 @@ public class CenterSwitchMode extends AutoModeBase {
 
     private void rightRoutine() throws AutoModeEndedException {
         RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
-        runAction(new DrivePathAction(AutoChooser.autoPaths.get("CenterRightSwitch")));
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("CenterSwitchRight")));
         runAction(new RollerAction(0.35, ARM.INTAKE_OUT_ROLLER_SPEED));
         /*RobotState.mArmState = ArmState.INTAKE;
         runAction(new ParallelAction(Arrays

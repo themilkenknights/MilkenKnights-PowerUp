@@ -1,17 +1,15 @@
 package frc.team1836.robot.subsystems;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team1836.robot.Constants;
 import frc.team1836.robot.RobotState;
-import frc.team1836.robot.util.drivers.MkLED;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.other.Subsystem;
 
 public class Superstructure extends Subsystem {
-    private MkLED mkLED;
+    //private MkLED mkLED;
 
     public Superstructure() {
-        mkLED = new MkLED(Constants.SUPERSTRUCTURE.CANIFIER_ID);
+        //mkLED = new MkLED(Constants.SUPERSTRUCTURE.CANIFIER_ID);
     }
 
     public static Superstructure getInstance() {
@@ -26,7 +24,7 @@ public class Superstructure extends Subsystem {
     @Override
     public void outputToSmartDashboard() {
         SmartDashboard.putString("System State", RobotState.mSystemState.toString());
-        updateLEDStrip();
+      //  updateLEDStrip();
     }
 
     @Override
@@ -84,13 +82,13 @@ public class Superstructure extends Subsystem {
 
         switch (RobotState.mMatchState) {
             case AUTO:
-                mkLED.setPulse(MkLED.LEDColors.BLUE, MkLED.LEDColors.OFF, 0.5);
+           //     mkLED.setPulse(MkLED.LEDColors.BLUE, MkLED.LEDColors.OFF, 0.5);
             case TELEOP:
-                mkLED.setPulse(MkLED.LEDColors.GREEN, MkLED.LEDColors.RED, 0.5);
+             //   mkLED.setPulse(MkLED.LEDColors.GREEN, MkLED.LEDColors.RED, 0.5);
             case DISABLED:
-                mkLED.set_rgb(MkLED.LEDColors.RED);
+               // mkLED.set_rgb(MkLED.LEDColors.RED);
             case TEST:
-                mkLED.setPulse(MkLED.LEDColors.ORANGE, MkLED.LEDColors.RED, 0.5);
+                //mkLED.setPulse(MkLED.LEDColors.ORANGE, MkLED.LEDColors.RED, 0.5);
         }
 
     }

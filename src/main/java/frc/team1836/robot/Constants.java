@@ -40,18 +40,18 @@ public final class Constants {
         public static final double PATH_DIST_TOL = 0.25;
         public static final double PATH_ANGLE_TOL = 0.25;
 
-        public static final double DRIVE_FOLLOWER_P = 0.75;
+        public static final double DRIVE_FOLLOWER_P = 0.1;
         public static final double DRIVE_FOLLOWER_A = 0;
-        public static final double DRIVE_FOLLOWER_ANG = 0.0025; //0.005;
+        public static final double DRIVE_FOLLOWER_ANG = 0;
 
         public static final double LEFT_RPM_MAX = 488.0; //Observed Max Speed for Drivetrain in RPM
         public static final double RIGHT_RPM_MAX = 502.0; //Observed Max Speed for Drivetrain in RPM
 
         public static final double MAX_VEL =
                 (LEFT_RPM_MAX / 60) * (CIRCUMFERENCE); // Max Speed in Inches per second
-        public static final double DRIVE_P = 32 * (0.1 * 1023.0) / (700); //300
+        public static final double DRIVE_P = 7 * (0.1 * 1023.0) / (700); //300
         public static final double DRIVE_I = 0; //DRIVE_P / 100.0;
-        public static final double DRIVE_D = 10 * DRIVE_P;
+        public static final double DRIVE_D = 3 * DRIVE_P;
         public static final double LEFT_DRIVE_F = (1023.0 / ((LEFT_RPM_MAX / 60.0 / 10.0) * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
         public static final double RIGHT_DRIVE_F = (1023.0 / ((RIGHT_RPM_MAX / 60.0 / 10.0) * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
         public static final double MIN_TEST_POS = MAX_VEL * 4.5;
@@ -85,15 +85,14 @@ public final class Constants {
                 ((RPM_MAX / 60.0 / 10.0) * 4096.0) / GEAR_RATIO; // Degrees per second
         public static final double ARM_P = 2 * ((0.1 * 1023.0) / (1600)); //7.5 deg or 1390 units
         public static final double ARM_I = 0;
-        public static final double ARM_D = ARM_P * 100;
+        public static final double ARM_D = ARM_P * 50;
         public static final double ARM_F = (1023.0 / MAX_RAW_VEL);
 
         public static final double ARM_FORWARD_LIMIT = 250;
         public static final double ARM_REVERSE_LIMIT = 0;
-        public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL * 0.975;
-        public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 1.2;
+        public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL;
+        public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 10;
         public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
-        public static final double SAFE_CURRENT_OUTPUT = 40;
 
 
         public static final int LEFT_INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
@@ -101,7 +100,7 @@ public final class Constants {
         public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
         public static final double INTAKE_OUT_ROLLER_SPEED = -0.40;
         public static final double INTAKE_OUT_FAST_ROLLER_SPEED = -0.90;
-        public static final double ANGLE_OFFSET = 0;
+        public static final double ANGLE_OFFSET = 36224;
     }
 
     public static class INPUT {
@@ -112,7 +111,7 @@ public final class Constants {
 
     public static class AUTO {
         public static final String pathPath = "/home/lvuser/paths/";
-        public static final String[] autoNames = {"CenterLeftSwitch.csv", "CenterRightSwitch.csv", "DriveStraight.csv"};
+        public static final String[] autoNames = {"CenterSwitchLeft", "CenterSwitchRight", "DriveStraight"};
     }
 
     public static class SUPERSTRUCTURE {

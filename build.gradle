@@ -69,7 +69,7 @@ task swerdUpdate {
         ssh.run {
             session(remotes.webServer) {
                 put from: myFileTree.getFiles(), into: '/home/lvuser/paths'
-                get from: '/u', into: formattedDate
+               // get from: 'u/', into: formattedDate
             }
         }
 
