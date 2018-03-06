@@ -45,7 +45,6 @@ public class Input extends Subsystem {
     private final MkJoystickButton intakeRollerOutFast = operatorJoystick
             .getButton(9,
                     "Intake Roller Out Fast");
-    private boolean lastState = false;
 
 
     public Input() {
@@ -150,8 +149,6 @@ public class Input extends Subsystem {
                     RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
                 }
                 break;
-            case ZEROING:
-                break;
             case OPEN_LOOP:
                 Arm.getInstance()
                         .setOpenLoop(MkMath
@@ -172,10 +169,9 @@ public class Input extends Subsystem {
         } else if (intakeRollerOut.isHeld()) {
             Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_ROLLER_SPEED);
         } else if (intakeRollerOutFast.isHeld()) {
-            Arm.getInstance().outTakeFast();
-           // Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_FAST_ROLLER_SPEED);
+            Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_FAST_ROLLER_SPEED);
         } else {
-            if (!RobotState.mArmControlState.equals(ArmControlState.ZEROING) && !RobotState.mArmState
+            if (!RobotState.mArmState
                     .equals(ArmState.ENABLE)) {
                 Arm.getInstance().setIntakeRollers(ARM.SLOW_INTAKE_HOLD_SPEED);
             } else {

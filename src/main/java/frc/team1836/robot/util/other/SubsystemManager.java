@@ -24,10 +24,6 @@ public class SubsystemManager {
         mAllSubsystems.forEach((s) -> s.updateLogger());
     }
 
-    public void writeToLog() {
-        mAllSubsystems.forEach((s) -> s.writeToLog());
-    }
-
     public void stop() {
         mAllSubsystems.forEach((s) -> s.stop());
     }

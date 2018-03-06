@@ -38,7 +38,6 @@ public class Arm extends Subsystem {
         armTalon.setLimitEnabled(true);
         leftIntakeRollerTalon = new VictorSPX(Constants.ARM.LEFT_INTAKE_ROLLER_ID);
         rightIntakeRollerTalon = new VictorSPX(Constants.ARM.RIGHT_INTAKE_ROLLER_ID);
-        rightIntakeRollerTalon.set(ControlMode.Follower, Constants.ARM.LEFT_INTAKE_ROLLER_ID);
         leftIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
         rightIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
         armTalon.invertMaster(ARM.ARM_MASTER_DIRECTION);
@@ -69,6 +68,7 @@ public class Arm extends Subsystem {
 
     @Override
     public void stop() {
+        mCSVWriter.write();
         mCSVWriter.flush();
     }
 
@@ -97,15 +97,7 @@ public class Arm extends Subsystem {
                 }
             }
         } else {
-            while (RobotState.mArmControlState != ArmControlState.MOTION_MAGIC) {
-            }
-            for (ArmState state : ArmState.values()) {
-                if (state != ArmState.ENABLE) {
-                    RobotState.mArmState = state;
-                    setIntakeRollers(-0.25);
-                    Timer.delay(2);
-                }
-            }
+            System.out.println("FAILED!!!");
         }
     }
 
@@ -191,16 +183,6 @@ public class Arm extends Subsystem {
     public void setIntakeRollers(double output) {
         leftIntakeRollerTalon.set(ControlMode.PercentOutput, output);
         rightIntakeRollerTalon.set(ControlMode.PercentOutput, output);
-    }
-
-    public void outTakeFast(){
-        rightIntakeRollerTalon.set(ControlMode.PercentOutput, 0);
-        leftIntakeRollerTalon.set(ControlMode.PercentOutput, -1);
-
-    }
-
-    public void invertRightRoller(boolean dir) {
-        rightIntakeRollerTalon.setInverted(dir ? !ARM.RIGHT_INTAKE_DIRECTION : ARM.RIGHT_INTAKE_DIRECTION);
     }
 
     public static class ArmDebugOutput {

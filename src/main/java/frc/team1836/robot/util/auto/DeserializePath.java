@@ -6,38 +6,39 @@ import frc.team1836.robot.util.logging.CrashTracker;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.modifiers.TankModifier;
+
 import java.io.File;
 
 public class DeserializePath {
 
-	public static Path getPathFromFile(String name) {
-		try {
-			String filePath = Constants.AUTO.pathPath + name + ".csv";
-			Trajectory traj = Pathfinder.readFromCSV(new File(filePath));
-			TankModifier modifier = new TankModifier(traj).modify(Constants.DRIVE.PATH_WHEELBASE);
-			Trajectory left = modifier.getLeftTrajectory();
-			Trajectory right = modifier.getRightTrajectory();
+    public static Path getPathFromFile(String name) {
+        try {
+            String filePath = Constants.AUTO.pathPath + name + ".csv";
+            Trajectory traj = Pathfinder.readFromCSV(new File(filePath));
+            TankModifier modifier = new TankModifier(traj).modify(Constants.DRIVE.PATH_WHEELBASE);
+            Trajectory left = modifier.getLeftTrajectory();
+            Trajectory right = modifier.getRightTrajectory();
 
-			for (Trajectory.Segment segment : left.segments) {
-				segment.position = -segment.position;
-				segment.velocity = -segment.velocity;
-				segment.acceleration = -segment.acceleration;
-				segment.jerk = -segment.jerk;
-				segment.heading = Pathfinder.boundHalfDegrees(Pathfinder.r2d(segment.heading));
-			}
+            for (Trajectory.Segment segment : left.segments) {
+                segment.position = -segment.position;
+                segment.velocity = -segment.velocity;
+                segment.acceleration = -segment.acceleration;
+                segment.jerk = -segment.jerk;
+                segment.heading = Pathfinder.boundHalfDegrees(Pathfinder.r2d(segment.heading));
+            }
 
-			for (Trajectory.Segment segment : right.segments) {
-				segment.position = -segment.position;
-				segment.velocity = -segment.velocity;
-				segment.acceleration = -segment.acceleration;
-				segment.jerk = -segment.jerk;
-				segment.heading = Pathfinder.boundHalfDegrees(Pathfinder.r2d(segment.heading));
-			}
+            for (Trajectory.Segment segment : right.segments) {
+                segment.position = -segment.position;
+                segment.velocity = -segment.velocity;
+                segment.acceleration = -segment.acceleration;
+                segment.jerk = -segment.jerk;
+                segment.heading = Pathfinder.boundHalfDegrees(Pathfinder.r2d(segment.heading));
+            }
 
-			return new Path(name, new Path.Pair(left, right));
-		} catch (Throwable t) {
-			CrashTracker.logThrowableCrash(t);
-			throw t;
-		}
-	}
+            return new Path(name, new Path.Pair(left, right));
+        } catch (Throwable t) {
+            CrashTracker.logThrowableCrash(t);
+            throw t;
+        }
+    }
 }

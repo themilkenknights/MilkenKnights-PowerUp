@@ -9,6 +9,7 @@ import frc.team1836.robot.auto.actions.DrivePathAction;
 import frc.team1836.robot.auto.actions.RollerAction;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeEndedException;
+import frc.team1836.robot.util.logging.CrashTracker;
 
 public class LeftSwitchMode extends AutoModeBase {
 
@@ -31,12 +32,14 @@ public class LeftSwitchMode extends AutoModeBase {
     }
 
     private void leftRoutine() throws AutoModeEndedException {
+        CrashTracker.logMarker("Starting Left Switch Mode (Left Side)");
         RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
         runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight")));
         runAction(new RollerAction(0.5, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
     }
 
     private void rightRoutine() throws AutoModeEndedException {
+        CrashTracker.logMarker("Starting Left Switch Mode (Right Side)");
         runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight")));
     }
 
