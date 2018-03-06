@@ -34,13 +34,13 @@ public class LeftSwitchMode extends AutoModeBase {
     private void leftRoutine() throws AutoModeEndedException {
         CrashTracker.logMarker("Starting Left Switch Mode (Left Side)");
         RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
-        runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight")));
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight"), false, false));
         runAction(new RollerAction(0.5, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
     }
 
     private void rightRoutine() throws AutoModeEndedException {
         CrashTracker.logMarker("Starting Left Switch Mode (Right Side)");
-        runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight")));
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight"), false, false));
     }
 
 

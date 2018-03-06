@@ -75,7 +75,7 @@ public class Looper {
                 running_ = false;
                 timestamp_ = Timer.getFPGATimestamp();
                 for (Loop loop : loops_) {
-                    System.out.println("Stopping " + loop);
+                    System.out.println("Stopping " + loop.toString());
                     loop.onStop(timestamp_);
                 }
             }

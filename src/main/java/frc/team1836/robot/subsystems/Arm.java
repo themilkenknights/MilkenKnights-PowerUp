@@ -58,12 +58,12 @@ public class Arm extends Subsystem {
     @Override
     public void outputToSmartDashboard() {
         armTalon.updateSmartDash();
-        SmartDashboard.putNumber("Arm Current", armTalon.getCurrentOutput());
-        SmartDashboard.putString("Arm Desired Position", RobotState.mArmState.toString());
+        //SmartDashboard.putNumber("Arm Current", armTalon.getCurrentOutput());
+        //SmartDashboard.putString("Arm Desired Position", RobotState.mArmState.toString());
         SmartDashboard.putString("Arm Control Mode", RobotState.mArmControlState.toString());
-        SmartDashboard.putBoolean("Arm Status", armTalon.isEncoderConnected());
-        SmartDashboard.putNumber("Roller Output", leftIntakeRollerTalon.getMotorOutputPercent());
-        SmartDashboard.putNumber("Arm Absolute Position", armTalon.getAbsolutePosition());
+        //SmartDashboard.putBoolean("Arm Status", armTalon.isEncoderConnected());
+       // SmartDashboard.putNumber("Roller Output", leftIntakeRollerTalon.getMotorOutputPercent());
+      SmartDashboard.putNumber("Arm Absolute Position", armTalon.getAbsolutePosition());
     }
 
     @Override
@@ -173,6 +173,11 @@ public class Arm extends Subsystem {
         if (!armTalon.isEncoderConnected()) {
             System.out.println("Encoder Not Connected");
             RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+        }
+        if(armTalon.getCurrentOutput() > Constants.ARM.SAFE_CURRENT){
+	        RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+	        setOpenLoop(0);
+	        System.out.println("Unsafe Output");
         }
     }
 
