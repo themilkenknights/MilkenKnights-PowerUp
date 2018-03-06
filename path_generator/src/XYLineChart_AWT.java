@@ -1,74 +1,100 @@
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Waypoint;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 public class XYLineChart_AWT {
+    public static final HashMap<String, Path> robotPaths = new HashMap<String, Path>();
+    public static final Trajectory.Config defaultConfig = new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 145, 75, 200);
+    public static final Trajectory.Config slowConfig = new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 80, 30, 100);
+    public static final double SWITCH_X = 130;
 
-	public static final HashMap<String, Waypoint[]> robotPaths = new HashMap<String, Waypoint[]>();
-	public static final double SWITCH_X = 130;
+    static {
+        robotPaths.put("CSR-1", new Path(new Waypoint[]{
+                new Waypoint(23, 156, Pathfinder.d2r(0)),
+                new Waypoint(SWITCH_X, 106, Pathfinder.d2r(0))
+        }, defaultConfig));
 
-	static {
-		robotPaths.put("CSR-1", new Waypoint[]{
-				new Waypoint(23, 156, 0),
-				new Waypoint(SWITCH_X, 106, Pathfinder.d2r(0))
-		});
+        robotPaths.put("CSR-2", new Path(new Waypoint[]{
+                new Waypoint(SWITCH_X, 106, Pathfinder.d2r(0)),
+                new Waypoint(105, 132, Pathfinder.d2r(90)),
+        }, slowConfig));
 
-		robotPaths.put("CSR-2", new Waypoint[]{
-				new Waypoint(SWITCH_X, 106, Pathfinder.d2r(0)),
-				new Waypoint(105, 132, Pathfinder.d2r(90)),
-		});
-		robotPaths.put("CSR-3", new Waypoint[]{
-				new Waypoint(105, 132, Pathfinder.d2r(90)),
-				new Waypoint(SWITCH_X, 106, Pathfinder.d2r(0)),
-		});
+        robotPaths.put("CSR-3", new Path(new Waypoint[]{
+                new Waypoint(105, 132, Pathfinder.d2r(90)),
+                new Waypoint(SWITCH_X, 106, Pathfinder.d2r(0)),
+        }, slowConfig));
 
-		robotPaths.put("CSR-4", new Waypoint[]{
-				new Waypoint(SWITCH_X, 106, Pathfinder.d2r(0)),
-				new Waypoint(100,146, Pathfinder.d2r(-120)),
-		});
-		robotPaths.put("CSR-5", new Waypoint[]{
-				new Waypoint(100,146, Pathfinder.d2r(-120)),
-				new Waypoint(35, 190, Pathfinder.d2r(0)),
-		});
+        robotPaths.put("CSR-4", new Path(new Waypoint[]{
+                new Waypoint(SWITCH_X, 106, Pathfinder.d2r(0)),
+                new Waypoint(100, 146, Pathfinder.d2r(-120)),
+        }, slowConfig));
 
-		robotPaths.put("CSL-1", new Waypoint[]{
-				new Waypoint(23, 156, 0),
-				new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
-		});
 
-		robotPaths.put("CSL-2", new Waypoint[]{
-				new Waypoint(107, 188, Pathfinder.d2r(90)),
-				new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
-		});
+        robotPaths.put("CSR-5", new Path(new Waypoint[]{
+                new Waypoint(100, 146, Pathfinder.d2r(-120)),
+                new Waypoint(35, 190, Pathfinder.d2r(0)),
+        }, slowConfig));
 
-		robotPaths.put("CSL-3", new Waypoint[]{
-				new Waypoint(105, 186, Pathfinder.d2r(-45)),
-				new Waypoint(33, 192, Pathfinder.d2r(0))
-		});
 
-		robotPaths.put("DriveStraight", new Waypoint[]{
-				new Waypoint(23, 156, 0),
-				new Waypoint(SWITCH_X, 156, 0)
-		});
-	}
+        robotPaths.put("CSL-1", new Path(new Waypoint[]{
+                new Waypoint(23, 156, Pathfinder.d2r(0)),
+                new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
+        }, defaultConfig));
 
-	public static void main(String[] args) {
-		double dt = System.nanoTime() * 1e-9;
-		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC,
-				Trajectory.Config.SAMPLES_HIGH, 0.005, 150, 75, 200);
-		HashMap<String, Trajectory> swerdPaths = new HashMap<>();
-		for (Map.Entry<String, Waypoint[]> path : robotPaths.entrySet()) {
-			Trajectory trajectory = Pathfinder.generate(path.getValue(), config);
-			File pathFile = new File("paths/" + path.getKey() + ".csv").getAbsoluteFile();
-			Pathfinder.writeToCSV(pathFile, trajectory);
-			System.out
-					.println("Path: " + path.getKey() + " Time: " + trajectory.length() * 0.005 + " Sec");
-			System.out.println((System.nanoTime() * 1e-9) - dt);
-			swerdPaths.put(path.getKey(), trajectory);
-		}
+        robotPaths.put("CSL-2", new Path(new Waypoint[]{
+                new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
+                new Waypoint(107, 208, Pathfinder.d2r(50)),
+                new Waypoint(98, 183, Pathfinder.d2r(110)),
+        }, slowConfig));
+
+        robotPaths.put("CSL-3", new Path(new Waypoint[]{
+                new Waypoint(98, 183, Pathfinder.d2r(110)),
+                new Waypoint(107, 208, Pathfinder.d2r(50)),
+                new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
+        }, slowConfig));
+
+        robotPaths.put("CSL-4", new Path(new Waypoint[]{
+                new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
+                new Waypoint(108, 210, Pathfinder.d2r(50)),
+                new Waypoint(100, 192, Pathfinder.d2r(90)),
+                new Waypoint(108, 174, Pathfinder.d2r(140)),
+        }, slowConfig));
+
+
+        robotPaths.put("CSL-5", new Path(new Waypoint[]{
+                new Waypoint(108, 174, Pathfinder.d2r(140)),
+                new Waypoint(100, 192, Pathfinder.d2r(90)),
+                new Waypoint(108, 210, Pathfinder.d2r(50)),
+                new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
+        }, slowConfig));
+
+
+        robotPaths.put("DriveStraight", new Path(new Waypoint[]{
+                new Waypoint(23, 156, 0),
+                new Waypoint(SWITCH_X, 156, 0)
+        }, defaultConfig));
+    }
+
+    public static void main(String[] args) {
+        double dt = System.nanoTime() * 1e-9;
+
+        HashMap<String, Trajectory> swerdPaths = new HashMap<>();
+        for (Map.Entry<String, Path> path : robotPaths.entrySet()) {
+            Trajectory trajectory = Pathfinder.generate(path.getValue().getPoints(), path.getValue().config);
+            File pathFile = new File("paths/" + path.getKey() + ".csv").getAbsoluteFile();
+            Pathfinder.writeToCSV(pathFile, trajectory);
+            System.out
+                    .println("Path: " + path.getKey() + " Time: " + trajectory.length() * 0.005 + " Sec");
+            System.out.println((System.nanoTime() * 1e-9) - dt);
+            swerdPaths.put(path.getKey(), trajectory);
+        }
+
+
+
 
      /*   XYLineChart_AWT chart = new XYLineChart_AWT("FRC 1836 Robot Auto Path",
                 "Robot Path", swerdPaths);
@@ -76,7 +102,7 @@ public class XYLineChart_AWT {
         RefineryUtilities.centerFrameOnScreen(chart);
         chart.setVisible(true); */
 
-	}
+    }
 
 	/*public XYLineChart_AWT(String applicationTitle, String chartTitle,
 			HashMap<String, Trajectory> rPaths) {
@@ -135,7 +161,29 @@ public class XYLineChart_AWT {
 		plot.setRenderer(renderer);
 		setContentPane(chartPanel);
 	} */
+
+    static class Path {
+
+        Waypoint[] points;
+        Trajectory.Config config;
+
+        public Path(Waypoint[] points, Trajectory.Config config) {
+            this.points = points;
+            this.config = config;
+        }
+
+        public Waypoint[] getPoints() {
+            return points;
+        }
+
+        public Trajectory.Config getConfig() {
+            return config;
+        }
+
+    }
 }
+
+
 
 
 

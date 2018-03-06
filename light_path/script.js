@@ -631,30 +631,10 @@ function getDataString() {
         right_segments += rsegment;
     });
 
-    var str = `package frc.team1836.robot.auto.paths;
-
-import frc.team254.lib.trajectory.Path;
-import frc.team254.lib.trajectory.Trajectory;
-
-public class ${title} extends Path {
-
-    private final Trajectory kLeftWheel = new Trajectory( new Trajectory.Segment[] {
-        ${left_segments}
-    });
-
-    private final Trajectory kRightWheel = new Trajectory( new Trajectory.Segment[] {
-        ${right_segments}
-    });
-
-    public ${title}() {
-        this.name_ = "${title}";
-        this.go_left_pair_ = new Trajectory.Pair(kLeftWheel, kRightWheel);
-      }
-      // ${importStr}
-      // IS_REVERSED: ${isReversed}
-      // FILE_NAME: ${title}
-    }
-
+    var str = `  robotPaths.put("${title}", new Path(new Waypoint[]{
+                new Waypoint(23, 156, Pathfinder.d2r(0)),
+                new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
+        }, defaultConfig));
         
 `;
     return str;
