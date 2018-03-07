@@ -174,11 +174,6 @@ public class Arm extends Subsystem {
             System.out.println("Encoder Not Connected");
             RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
         }
-        if(armTalon.getCurrentOutput() > Constants.ARM.SAFE_CURRENT){
-	        RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
-	        setOpenLoop(0);
-	        System.out.println("Unsafe Output");
-        }
     }
 
     public void setOpenLoop(double output) {

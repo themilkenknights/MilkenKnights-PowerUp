@@ -21,6 +21,7 @@ import frc.team1836.robot.util.math.MkMath;
 import frc.team1836.robot.util.other.Subsystem;
 import frc.team1836.robot.util.state.DriveSignal;
 import frc.team1836.robot.util.state.TrajectoryStatus;
+import jaci.pathfinder.Trajectory;
 
 public class Drive extends Subsystem {
 
@@ -32,7 +33,7 @@ public class Drive extends Subsystem {
 	private TrajectoryStatus leftStatus;
 	private TrajectoryStatus rightStatus;
 	private DriveSignal currentSetpoint;
-	private TrajectoryStatus[] endStatus;
+	private Trajectory.Segment lastHeading;
 
 	private Drive() {
 		leftDrive = new MkTalon(DRIVE.LEFT_MASTER_ID, DRIVE.LEFT_SLAVE_ID, TalonPosition.Left);
@@ -54,9 +55,7 @@ public class Drive extends Subsystem {
 				DriveDebugOutput.class);
 		leftStatus = TrajectoryStatus.NEUTRAL;
 		rightStatus = TrajectoryStatus.NEUTRAL;
-		endStatus = new TrajectoryStatus[2];
-		endStatus[0] = TrajectoryStatus.NEUTRAL;
-		endStatus[1] = TrajectoryStatus.NEUTRAL;
+		lastHeading = new Trajectory.Segment(0, 0, 0, 0, 0, 0, 0, 0);
 		currentSetpoint = DriveSignal.NEUTRAL;
 		leftDrive.setBrakeMode();
 		rightDrive.setBrakeMode();
@@ -102,15 +101,13 @@ public class Drive extends Subsystem {
 	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
 		leftDrive.resetEncoder();
 		rightDrive.resetEncoder();
-		navX.setOffset(path.getLeftWheelTrajectory().get(0).heading - endStatus[0].getSeg().heading);
+		navX.zeroYaw();
 		pathFollower = new PathFollower(path, dist_tol, ang_tol);
 		RobotState.mDriveControlState = RobotState.DriveControlState.PATH_FOLLOWING;
 	}
 
 	public boolean isPathFinished() {
 		if (pathFollower.getFinished()) {
-			endStatus[0] = leftStatus;
-			endStatus[1] = rightStatus;
 			RobotState.mDriveControlState = DriveControlState.OPEN_LOOP;
 			setOpenLoop(DriveSignal.NEUTRAL);
 			pathFollower = null;
@@ -131,10 +128,11 @@ public class Drive extends Subsystem {
 	private void updatePathFollower() {
 		TrajectoryStatus leftUpdate = pathFollower
 				.getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(),
-						navX.getGyroAngle());
+						-navX.getYaw());
 		TrajectoryStatus rightUpdate = pathFollower
 				.getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
-						navX.getGyroAngle());
+						-navX.getYaw());
+		lastHeading = leftUpdate.getSeg().copy();
 
 		leftStatus = leftUpdate;
 		rightStatus = rightUpdate;
@@ -158,8 +156,9 @@ public class Drive extends Subsystem {
 		//SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
 		//SmartDashboard.putBoolean("Drivetrain Status",
 		//leftDrive.isEncoderConnected() && rightDrive.isEncoderConnected());
-		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING && leftStatus != TrajectoryStatus.NEUTRAL) {
-			SmartDashboard.putNumber("NavX Yaw", navX.getGyroAngle());
+		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
+				&& leftStatus != TrajectoryStatus.NEUTRAL) {
+			SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
 			//SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
 			//SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
 			SmartDashboard.putNumber("Desired Heading", leftStatus.getSeg().heading);
@@ -175,6 +174,10 @@ public class Drive extends Subsystem {
 			//SmartDashboard.putNumber("Left Arb Feed", leftStatus.getArbFeed());
 			//SmartDashboard.putNumber("Right Arb Feed", rightStatus.getArbFeed());
 		}
+	}
+
+	public double getYaw(){
+		return navX.getYaw();
 	}
 
 	@Override
@@ -199,10 +202,6 @@ public class Drive extends Subsystem {
 
 	public void resetGyro() {
 		navX.zeroYaw();
-	}
-
-	public double getGyroAngle() {
-		return navX.getYaw();
 	}
 
 	@Override
@@ -251,7 +250,6 @@ public class Drive extends Subsystem {
 			@Override
 			public void onStart(double timestamp) {
 				synchronized (Drive.this) {
-					resetGyro();
 				}
 			}
 

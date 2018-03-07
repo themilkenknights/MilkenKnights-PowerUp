@@ -40,9 +40,9 @@ public final class Constants {
 		public static final double PATH_DIST_TOL = 0.25;
 		public static final double PATH_ANGLE_TOL = 0.25;
 
-		public static final double DRIVE_FOLLOWER_P = 2;
+		public static final double DRIVE_FOLLOWER_P = 1.5;
 		public static final double DRIVE_FOLLOWER_A = 0;
-		public static final double DRIVE_FOLLOWER_ANG = 0;//0.1;
+		public static final double DRIVE_FOLLOWER_ANG = -2.25;
 
 		public static final double LEFT_RPM_MAX = 488.0; //Observed Max Speed for Drivetrain in RPM
 		public static final double RIGHT_RPM_MAX = 502.0; //Observed Max Speed for Drivetrain in RPM
@@ -93,16 +93,15 @@ public final class Constants {
 		public static final double ARM_FORWARD_LIMIT = 250;
 		public static final double ARM_REVERSE_LIMIT = 0;
 		public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL;
-		public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL;
+		public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 10;
 		public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
-		public static final double SAFE_CURRENT = 40;
 
 		public static final int LEFT_INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
 		public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID
 		public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
 		public static final double INTAKE_OUT_ROLLER_SPEED = -0.40;
 		public static final double INTAKE_OUT_FAST_ROLLER_SPEED = -0.90;
-		public static final double ANGLE_OFFSET = 43000;
+		public static final double ANGLE_OFFSET =-1323;
 	}
 
 	public static class INPUT {

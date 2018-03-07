@@ -54,7 +54,7 @@ public class OpenLoopFollowHeading implements Action {
 			Angslope = (endAngle) / (m_t2);
 			angleSetpoint = Angslope * timer.get();
 			angPower =
-					(angleSetpoint - Drive.getInstance().getGyroAngle()) * Constants.DRIVE.mPangFollower;
+					(angleSetpoint - Drive.getInstance().getYaw()) * Constants.DRIVE.mPangFollower;
 		} else if (timer.get() > m_t1 && timer.get() <= m_t2) {
 			double rel_t = timer.get() - m_t1;
 			double slope = (m_end_power - m_start_power) / (m_t2 - m_t1);
@@ -62,7 +62,7 @@ public class OpenLoopFollowHeading implements Action {
 			Angslope = (otherAngle) / (m_t2);
 			angleSetpoint = Angslope * timer.get();
 			angPower =
-					(angleSetpoint - Drive.getInstance().getGyroAngle()) * Constants.DRIVE.mPangFollower;
+					(angleSetpoint - Drive.getInstance().getYaw()) * Constants.DRIVE.mPangFollower;
 		} else {
 			power = 0;
 			angPower = 0;
