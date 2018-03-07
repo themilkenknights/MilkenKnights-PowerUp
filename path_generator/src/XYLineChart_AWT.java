@@ -13,7 +13,7 @@ public class XYLineChart_AWT {
             Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 145, 75, 200);
     public static final Trajectory.Config slowConfig = new Trajectory.Config(
             Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 120, 70, 200);
-    public static final double SWITCH_X = 130;
+    public static final double SWITCH_X = 135;
 
     static {
         robotPaths.put("CSR-1", new Path(new Waypoint[]{
@@ -52,33 +52,33 @@ public class XYLineChart_AWT {
 
         robotPaths.put("CSL-1", new Path(new Waypoint[]{
                 new Waypoint(23, 156, Pathfinder.d2r(0)),
-                new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
+                new Waypoint(SWITCH_X, 218-12, Pathfinder.d2r(0)),
         }, defaultConfig));
 
         robotPaths.put("CSL-2", new Path(new Waypoint[]{
-                new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
-                new Waypoint(107, 208, Pathfinder.d2r(50)),
-                new Waypoint(98, 183, Pathfinder.d2r(110)),
+                new Waypoint(SWITCH_X, 218-12, Pathfinder.d2r(0)),
+                new Waypoint(107, 208-12, Pathfinder.d2r(50)),
+                new Waypoint(98, 183-12, Pathfinder.d2r(110)),
         }, slowConfig));
 
         robotPaths.put("CSL-3", new Path(new Waypoint[]{
-                new Waypoint(98, 183, Pathfinder.d2r(110)),
-                new Waypoint(107, 208, Pathfinder.d2r(50)),
-                new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
+                new Waypoint(98, 183-12, Pathfinder.d2r(110)),
+                new Waypoint(107, 208-12, Pathfinder.d2r(50)),
+                new Waypoint(SWITCH_X, 218-12, Pathfinder.d2r(0)),
         }, slowConfig));
 
         robotPaths.put("CSL-4", new Path(new Waypoint[]{
-                new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
-                new Waypoint(108, 210, Pathfinder.d2r(50)),
-                new Waypoint(100, 192, Pathfinder.d2r(90)),
-                new Waypoint(108, 174, Pathfinder.d2r(140)),
+                new Waypoint(SWITCH_X, 218-12, Pathfinder.d2r(0)),
+                new Waypoint(108, 210-12, Pathfinder.d2r(50)),
+                new Waypoint(100, 192-12, Pathfinder.d2r(90)),
+                new Waypoint(108, 174-12, Pathfinder.d2r(140)),
         }, slowConfig));
 
         robotPaths.put("CSL-5", new Path(new Waypoint[]{
-                new Waypoint(108, 174, Pathfinder.d2r(140)),
-                new Waypoint(100, 192, Pathfinder.d2r(90)),
-                new Waypoint(108, 210, Pathfinder.d2r(50)),
-                new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
+                new Waypoint(108, 174-12, Pathfinder.d2r(140)),
+                new Waypoint(100, 192-12, Pathfinder.d2r(90)),
+                new Waypoint(108, 210-12, Pathfinder.d2r(50)),
+                new Waypoint(SWITCH_X, 218-12, Pathfinder.d2r(0)),
         }, slowConfig));
 
         robotPaths.put("DriveStraight", new Path(new Waypoint[]{

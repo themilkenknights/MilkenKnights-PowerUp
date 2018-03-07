@@ -40,7 +40,7 @@ public final class Constants {
 		public static final double PATH_DIST_TOL = 0.25;
 		public static final double PATH_ANGLE_TOL = 0.25;
 
-		public static final double DRIVE_FOLLOWER_P = 1.5;
+		public static final double DRIVE_FOLLOWER_P = 2;
 		public static final double DRIVE_FOLLOWER_A = 0;
 		public static final double DRIVE_FOLLOWER_ANG = 0;//0.1;
 
@@ -61,7 +61,7 @@ public final class Constants {
 
 		public static final double MAX_PITCH = 30;
 
-		public static final double mPangFollower = 0.1;
+		public static final double mPangFollower = -0.075;
 	}
 
 	public static class LOGGING {
@@ -102,7 +102,7 @@ public final class Constants {
 		public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
 		public static final double INTAKE_OUT_ROLLER_SPEED = -0.40;
 		public static final double INTAKE_OUT_FAST_ROLLER_SPEED = -0.90;
-		public static final double ANGLE_OFFSET = -1732;
+		public static final double ANGLE_OFFSET = 43000;
 	}
 
 	public static class INPUT {

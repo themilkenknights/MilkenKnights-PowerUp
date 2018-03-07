@@ -3,14 +3,15 @@ package frc.team1836.robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team1836.robot.auto.modes.*;
+import frc.team1836.robot.auto.modes.CenterSwitchOpenLoopGyro;
+import frc.team1836.robot.auto.modes.DriveStraightMode;
+import frc.team1836.robot.auto.modes.DriveStraightOpenLoopMode;
+import frc.team1836.robot.auto.modes.StandStillMode;
 import frc.team1836.robot.auto.trajectory.Path;
 import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeExecuter;
 import frc.team1836.robot.util.auto.DeserializePath;
-import frc.team1836.robot.util.logging.CrashTracker;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,7 +65,8 @@ public class AutoChooser {
     }
 
     private static AutoModeBase getSwitchMode() {
-        if (Drive.getInstance().isEncodersConnected()) {
+        return new CenterSwitchOpenLoopGyro(getSwitchPosition());
+       /* if (Drive.getInstance().isEncodersConnected()) {
             if (positionChooser.getSelected() == AutoPosition.LEFT) {
                 return new LeftSwitchMode(getSwitchPosition());
             }
@@ -88,7 +90,7 @@ public class AutoChooser {
             }
         }
         CrashTracker.logMarker("Couldn't Get Switch Mode");
-        return null;
+        return null; */
     }
 
 

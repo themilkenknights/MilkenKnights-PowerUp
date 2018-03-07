@@ -207,6 +207,7 @@ public class MkTalon {
        // SmartDashboard.putNumber(side.toString() + " Error", getError());
         //SmartDashboard.putNumber(side.toString() + " Master Output", masterTalon.getMotorOutputPercent());
         //SmartDashboard.putNumber(side.toString() + " Slave Output", slaveTalon.getMotorOutputPercent());
+        SmartDashboard.putNumber(side.toString() + " Current", masterTalon.getOutputCurrent());
         //SmartDashboard.putNumber(side.toString() + " Position", getPosition());
         if (Math.abs(getRPM()) > maxRPM) {
             maxRPM = Math.abs(getRPM());

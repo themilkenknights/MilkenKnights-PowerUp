@@ -4,30 +4,24 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 
 public class MkGyro extends AHRS {
-    public double value_offset;
 
-    public MkGyro(SPI.Port spi_port_id) {
-        super(spi_port_id);
-        value_offset = 0;
-    }
+	public double value_offset;
 
-    public double getOffset() {
-        return value_offset;
-    }
+	public MkGyro(SPI.Port spi_port_id) {
+		super(spi_port_id);
+		value_offset = 0;
+	}
 
-    public double applyOffset(double value) {
-        float offseted_value = (float) (value - value_offset);
-        if (offseted_value < -180) {
-            offseted_value += 360;
-        }
-        if (offseted_value > 180) {
-            offseted_value -= 360;
-        }
-        return offseted_value;
-    }
+	public double getOffset() {
+		return value_offset;
+	}
 
-    public double getGyroAngle() {
-        return getYaw() + value_offset;
-    }
+	public void setOffset(double val) {
+		value_offset = val;
+	}
+
+	public double getGyroAngle() {
+		return - (getYaw() + value_offset);
+	}
 
 }

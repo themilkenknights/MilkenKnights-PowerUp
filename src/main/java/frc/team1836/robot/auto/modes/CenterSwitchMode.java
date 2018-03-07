@@ -49,18 +49,18 @@ public class CenterSwitchMode extends AutoModeBase {
 				)));
 		RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
 		runAction(new DrivePathAction(AutoChooser.autoPaths.get("CSL-3"), false, false));
+		runAction(new OpenLoopAction(0.35, -0.25, true));
 		runAction(new RollerAction(0.45, ARM.INTAKE_OUT_ROLLER_SPEED));
-		runAction(new OpenLoopAction(0.2, 0.5, false));
-		RobotState.mArmState = ArmState.INTAKE;
+		RobotState.mArmState = ArmState.SECOND_SWITCH_PLACE;
 		runAction(new ParallelAction(Arrays
 				.asList(
 						new DrivePathAction(AutoChooser.autoPaths.get("CSL-4"), true, false),
 						new RollerAction(AutoChooser.autoPaths.get("CSL-4").getTime() + 0.3, 0.5)
 				)));
-		runAction(new MoveArmAction(RobotState.ArmState.SWITCH_PLACE));
-		runAction(new DrivePathAction(AutoChooser.autoPaths.get("CSL-5"), true, false));
+		runAction(new MoveArmAction(ArmState.OPPOSITE_SWITCH_PLACE));
+		runAction(new DrivePathAction(AutoChooser.autoPaths.get("CSL-5"), false, false));
+		runAction(new OpenLoopAction(0.35, -0.25, true));
 		runAction(new RollerAction(2, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
-		runAction(new OpenLoopAction(0.2, 0.5, false));
 	}
 
 	private void rightRoutine() throws AutoModeEndedException {
@@ -78,7 +78,7 @@ public class CenterSwitchMode extends AutoModeBase {
 		runAction(new DrivePathAction(AutoChooser.autoPaths.get("CSR-3"), false, false));
 		runAction(new OpenLoopAction(0.2, 0.5, false));
 		runAction(new RollerAction(0.45, ARM.INTAKE_OUT_ROLLER_SPEED));
-		RobotState.mArmState = ArmState.INTAKE;
+		RobotState.mArmState = ArmState.SECOND_SWITCH_PLACE;
 		runAction(new ParallelAction(Arrays
 				.asList(
 						new DrivePathAction(AutoChooser.autoPaths.get("CSR-4"), true, false),
