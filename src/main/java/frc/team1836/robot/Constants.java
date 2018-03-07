@@ -102,7 +102,7 @@ public final class Constants {
 		public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
 		public static final double INTAKE_OUT_ROLLER_SPEED = -0.40;
 		public static final double INTAKE_OUT_FAST_ROLLER_SPEED = -0.90;
-		public static final double ANGLE_OFFSET = 43178;
+		public static final double ANGLE_OFFSET = -1732;
 	}
 
 	public static class INPUT {
@@ -115,7 +115,8 @@ public final class Constants {
 	public static class AUTO {
 
 		public static final String pathPath = "/home/lvuser/paths/";
-		public static final String[] autoNames = {"CenterSwitchLeft", "CSR-1", "CSR-2", "CSR-3",
+		public static final String[] autoNames = {"CSL-1", "CSL-2", "CSL-3",
+				"CSL-4", "CSL-5", "CSR-1", "CSR-2", "CSR-3",
 				"CSR-4", "CSR-5", "DriveStraight"};
 	}
 

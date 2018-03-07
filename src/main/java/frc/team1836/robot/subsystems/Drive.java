@@ -54,6 +54,7 @@ public class Drive extends Subsystem {
                 DriveDebugOutput.class);
         leftStatus = TrajectoryStatus.NEUTRAL;
         rightStatus = TrajectoryStatus.NEUTRAL;
+        endStatus = new TrajectoryStatus[2];
         endStatus[0] = TrajectoryStatus.NEUTRAL;
         endStatus[1] = TrajectoryStatus.NEUTRAL;
         currentSetpoint = DriveSignal.NEUTRAL;

@@ -106,13 +106,13 @@ class Waypoint {
     toString() {
         var comment = this.comment.length > 0 ? " //" + this.comment : "";
         return (
-            "sWaypoints.add(new WaypointSequence.Waypoint(" +
+            " new Waypoint(" +
             this.position.x +
-            "," +
+            " ," +
             this.position.y +
-            ",Math.toRadians(" +
-            this.theta +
-            ")));" +
+            " ,Pathfinder.d2r(" +
+            Math.round(this.theta * (180 / Math.PI)) +
+            "))," +
             comment
         );
     }
@@ -605,39 +605,17 @@ function importData() {
 }
 
 function getDataString() {
-    var title = $("#title").val().length > 0 ? $("#title").val() : "UntitledPath";
-    var pathInit = "";
-    for (var i = 0; i < waypoints.length; i++) {
-        pathInit += "        " + waypoints[i].toString() + "\n";
-    }
-    var startPoint =
-        "new Translation2d(" +
-        waypoints[0].position.x +
-        ", " +
-        waypoints[0].position.y +
-        ")";
-    var importStr = "WAYPOINT_DATA: " + JSON.stringify(waypoints);
-    var num_elements = path.getLeftWheelTrajectory().getNumSegments();
-
-    var left_segments = '';
-    var right_segments = '';
-
-    eachTimeSlice(function (left, right, i) {
-        var lsegment = `new Trajectory.Segment(${left.pos}, ${left.vel}, ${left.acc}, ${left.jerk}, ${left.heading}, ${left.dt}, ${left.x}, ${left.y}),
-        `;
-        var rsegment = `new Trajectory.Segment(${right.pos}, ${right.vel}, ${right.acc}, ${right.jerk}, ${right.heading}, ${right.dt}, ${right.x}, ${right.y}),
-        `;
-        left_segments += lsegment;
-        right_segments += rsegment;
-    });
-
-    var str = `  robotPaths.put("${title}", new Path(new Waypoint[]{
-                new Waypoint(23, 156, Pathfinder.d2r(0)),
-                new Waypoint(SWITCH_X, 218, Pathfinder.d2r(0)),
-        }, defaultConfig));
-        
-`;
-    return str;
+  var title = $("#title").val().length > 0 ? $("#title").val() : "UntitledPath";
+  var pathInit = "robotPaths.put(\"" + title + "\", new Path(new Waypoint[]{\n";
+  for (var i = 0; i < waypoints.length; i++) {
+    pathInit += waypoints[i].toString() + "\n";
+  }
+  pathInit += " }, \n"
+      + "new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, " +
+      parseFloat($("td.dt input").val()) + ", " +  parseFloat($("td.max_vel input").val()) + ", " +
+      parseFloat($("td.max_acc input").val()) + ", " +   parseFloat($("td.max_jerk input").val()) + ") \n"
+      + "));";
+  return pathInit;
 }
 
 function getTXTString() {
