@@ -82,6 +82,8 @@ public class MkLED extends CANifier {
         RED(new double[]{255, 0, 0}),
         OFF(new double[]{0, 0, 0}),
         ORANGE(new double[]{255, 151, 0}),
+        PURPLE(new double[]{255, 151, 0}), //as
+        WHITE(new double[]{15, 255, 0}), //as
         GREEN(new double[]{15, 255, 0});
 
         public final double[] value;

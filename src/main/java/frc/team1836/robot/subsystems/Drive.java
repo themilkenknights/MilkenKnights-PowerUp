@@ -14,6 +14,7 @@ import frc.team1836.robot.auto.trajectory.PathFollower;
 import frc.team1836.robot.util.drivers.MkGyro;
 import frc.team1836.robot.util.drivers.MkTalon;
 import frc.team1836.robot.util.drivers.MkTalon.TalonPosition;
+import frc.team1836.robot.util.logging.CrashTracker;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
@@ -21,7 +22,6 @@ import frc.team1836.robot.util.math.MkMath;
 import frc.team1836.robot.util.other.Subsystem;
 import frc.team1836.robot.util.state.DriveSignal;
 import frc.team1836.robot.util.state.TrajectoryStatus;
-import jaci.pathfinder.Trajectory;
 
 public class Drive extends Subsystem {
 
@@ -33,7 +33,6 @@ public class Drive extends Subsystem {
     private TrajectoryStatus leftStatus;
     private TrajectoryStatus rightStatus;
     private DriveSignal currentSetpoint;
-    private Trajectory.Segment lastHeading;
 
     private Drive() {
         leftDrive = new MkTalon(DRIVE.LEFT_MASTER_ID, DRIVE.LEFT_SLAVE_ID, TalonPosition.Left);
@@ -55,10 +54,7 @@ public class Drive extends Subsystem {
                 DriveDebugOutput.class);
         leftStatus = TrajectoryStatus.NEUTRAL;
         rightStatus = TrajectoryStatus.NEUTRAL;
-        lastHeading = new Trajectory.Segment(0, 0, 0, 0, 0, 0, 0, 0);
         currentSetpoint = DriveSignal.NEUTRAL;
-        leftDrive.setBrakeMode();
-        rightDrive.setBrakeMode();
     }
 
     public static Drive getInstance() {
@@ -68,8 +64,8 @@ public class Drive extends Subsystem {
     /* Controls Drivetrain in PercentOutput Mode (without closed loop control) */
     public synchronized void setOpenLoop(DriveSignal signal) {
         RobotState.mDriveControlState = DriveControlState.OPEN_LOOP;
-        leftDrive.set(ControlMode.PercentOutput, signal.getLeft());
-        rightDrive.set(ControlMode.PercentOutput, signal.getRight());
+        leftDrive.set(ControlMode.PercentOutput, signal.getLeft(), signal.getBrakeMode());
+        rightDrive.set(ControlMode.PercentOutput, signal.getRight(), signal.getBrakeMode());
         currentSetpoint = signal;
     }
 
@@ -83,12 +79,12 @@ public class Drive extends Subsystem {
     public synchronized void setVelocitySetpoint(DriveSignal signal, double leftFeed,
                                                  double rightFeed) {
         if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
-            leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVelTraj(), leftFeed);
-            rightDrive.set(ControlMode.Velocity, signal.getRightNativeVelTraj(), rightFeed);
+            leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVelTraj(), signal.getBrakeMode(), leftFeed);
+            rightDrive.set(ControlMode.Velocity, signal.getRightNativeVelTraj(), signal.getBrakeMode(), rightFeed);
         } else {
             RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
-            leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVel());
-            rightDrive.set(ControlMode.Velocity, signal.getRightNativeVel());
+            leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVel(), signal.getBrakeMode());
+            rightDrive.set(ControlMode.Velocity, signal.getRightNativeVel(), signal.getBrakeMode());
         }
         currentSetpoint = signal;
     }
@@ -98,11 +94,12 @@ public class Drive extends Subsystem {
      * @param dist_tol Position Tolerance for Path Follower
      * @param ang_tol  Robot Angle Tolerance for Path Follower (Degrees)
      */
-    public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol) {
+    public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol, boolean brakeMode) {
+        CrashTracker.logMarker("Began Path: " + path.getName());
         leftDrive.resetEncoder();
         rightDrive.resetEncoder();
         navX.zeroYaw();
-        pathFollower = new PathFollower(path, dist_tol, ang_tol);
+        pathFollower = new PathFollower(path, dist_tol, ang_tol, brakeMode);
         RobotState.mDriveControlState = RobotState.DriveControlState.PATH_FOLLOWING;
     }
 
@@ -113,7 +110,6 @@ public class Drive extends Subsystem {
             pathFollower = null;
             leftStatus = TrajectoryStatus.NEUTRAL;
             rightStatus = TrajectoryStatus.NEUTRAL;
-            System.out.println("Path Finished");
             return true;
         }
         return false;
@@ -132,20 +128,17 @@ public class Drive extends Subsystem {
         TrajectoryStatus rightUpdate = pathFollower
                 .getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
                         -navX.getYaw());
-        lastHeading = leftUpdate.getSeg().copy();
 
         leftStatus = leftUpdate;
         rightStatus = rightUpdate;
         if (isEncodersConnected()) {
-            setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput()),
+            setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput(), pathFollower.getBrakeMode()),
                     leftUpdate.getArbFeed(), rightUpdate.getArbFeed());
         } else {
             leftDrive.set(ControlMode.PercentOutput,
-                    ((1.0 / MkMath.RPMToInchesPerSec(DRIVE.RIGHT_RPM_MAX)) * leftUpdate.getOutput())
-                            + leftUpdate.getArbFeed());
+                    ((1.0 / MkMath.RPMToInchesPerSec(DRIVE.RIGHT_RPM_MAX)) * leftUpdate.getOutput()), false, leftUpdate.getArbFeed());
             rightDrive.set(ControlMode.PercentOutput,
-                    ((1.0 / MkMath.RPMToInchesPerSec(DRIVE.LEFT_RPM_MAX)) * rightUpdate.getOutput())
-                            + rightUpdate.getArbFeed());
+                    ((1.0 / MkMath.RPMToInchesPerSec(DRIVE.LEFT_RPM_MAX)) * rightUpdate.getOutput()), false, rightUpdate.getArbFeed());
         }
     }
 
@@ -181,21 +174,7 @@ public class Drive extends Subsystem {
     }
 
     @Override
-    public void stop() {
-        setOpenLoop(DriveSignal.NEUTRAL);
-        mCSVWriter.write();
-        mCSVWriter.flush();
-    }
-
-    @Override
-    public void zeroSensors() {
-        leftDrive.resetEncoder();
-        rightDrive.resetEncoder();
-        navX.zeroYaw();
-    }
-
-    @Override
-    public void updateLogger() {
+    public void slowUpdate() {
         updateDebugOutput(Timer.getMatchTime());
         mCSVWriter.add(mDebug);
         mCSVWriter.write();
@@ -207,11 +186,11 @@ public class Drive extends Subsystem {
 
     @Override
     public void checkSystem() {
-        leftDrive.set(ControlMode.PercentOutput, 1);
-        rightDrive.set(ControlMode.PercentOutput, 1);
+        leftDrive.set(ControlMode.PercentOutput, 1, true);
+        rightDrive.set(ControlMode.PercentOutput, 1, true);
         Timer.delay(5.0);
-        leftDrive.set(ControlMode.PercentOutput, 0);
-        rightDrive.set(ControlMode.PercentOutput, 0);
+        leftDrive.set(ControlMode.PercentOutput, 0, true);
+        rightDrive.set(ControlMode.PercentOutput, 0, true);
         boolean check = true;
         if (leftDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS
                 || leftDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
@@ -219,6 +198,7 @@ public class Drive extends Subsystem {
             System.out
                     .println("Position: " + leftDrive.getPosition() + " Speed: " + leftDrive.getSpeed());
             check = false;
+            CrashTracker.logMarker("Left Drive Test Failed - Vel: " + leftDrive.getSpeed() + " Pos: " + leftDrive.getPosition());
         } else {
             System.out
                     .println("Position: " + leftDrive.getPosition() + " Speed: " + leftDrive.getSpeed());
@@ -229,6 +209,7 @@ public class Drive extends Subsystem {
             System.out
                     .println("Position: " + rightDrive.getPosition() + "Speed: " + rightDrive.getSpeed());
             check = false;
+            CrashTracker.logMarker("Right Drive Test Failed - Vel: " + rightDrive.getSpeed() + " Pos: " + rightDrive.getPosition());
         } else {
             System.out
                     .println("Position: " + rightDrive.getPosition() + " Speed: " + rightDrive.getSpeed());
@@ -242,6 +223,9 @@ public class Drive extends Subsystem {
         if (check) {
             System.out.println("Drive Test Success");
         }
+
+        leftDrive.resetConfig();
+        rightDrive.resetConfig();
     }
 
     @Override
@@ -251,6 +235,9 @@ public class Drive extends Subsystem {
             @Override
             public void onStart(double timestamp) {
                 synchronized (Drive.this) {
+                    leftDrive.resetEncoder();
+                    rightDrive.resetEncoder();
+                    navX.zeroYaw();
                 }
             }
 
@@ -281,7 +268,8 @@ public class Drive extends Subsystem {
 
             @Override
             public void onStop(double timestamp) {
-                stop();
+                setOpenLoop(DriveSignal.NEUTRAL);
+                mCSVWriter.flush();
             }
         };
         enabledLooper.register(mLoop);

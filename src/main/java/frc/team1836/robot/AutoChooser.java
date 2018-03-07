@@ -3,20 +3,14 @@ package frc.team1836.robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team1836.robot.auto.modes.CenterSwitchMode;
-import frc.team1836.robot.auto.modes.CenterSwitchOpenLoopGyro;
-import frc.team1836.robot.auto.modes.DriveStraightMode;
-import frc.team1836.robot.auto.modes.DriveStraightOpenLoopMode;
-import frc.team1836.robot.auto.modes.LeftSwitchMode;
-import frc.team1836.robot.auto.modes.RightSwitchMode;
-import frc.team1836.robot.auto.modes.StandStillMode;
-import frc.team1836.robot.auto.modes.SwitchOpenLoop;
+import frc.team1836.robot.auto.modes.*;
 import frc.team1836.robot.auto.trajectory.Path;
 import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeExecuter;
 import frc.team1836.robot.util.auto.DeserializePath;
 import frc.team1836.robot.util.logging.CrashTracker;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,9 +28,9 @@ public class AutoChooser {
         positionChooser.addObject("Left", AutoPosition.LEFT);
         positionChooser.addObject("Right", AutoPosition.RIGHT);
         SmartDashboard.putData("Auto Position Chooser", positionChooser);
-        actionChooser.addDefault("Standstill", AutoAction.STANDSTILL);
+        actionChooser.addDefault("Switch", AutoAction.SWITCH);
+        actionChooser.addObject("Standstill", AutoAction.STANDSTILL);
         actionChooser.addObject("Drive Straight", AutoAction.DRIVE_STRAIGHT);
-        actionChooser.addObject("Switch", AutoAction.SWITCH);
         SmartDashboard.putData("Auto Action Chooser", actionChooser);
         for (String pathName : Constants.AUTO.autoNames) {
             autoPaths.put(pathName, DeserializePath.getPathFromFile(pathName));
@@ -52,9 +46,8 @@ public class AutoChooser {
             case SWITCH:
                 return getSwitchMode();
             default:
-                System.out
-                        .println("Unexpected Auto Mode: " + actionChooser.getSelected().toString() + " + "
-                                + positionChooser.getSelected().toString());
+                CrashTracker.logMarker("Unexpected Auto Mode: " + actionChooser.getSelected().toString() + " + "
+                        + positionChooser.getSelected().toString());
                 break;
         }
         return null;
@@ -70,6 +63,9 @@ public class AutoChooser {
     }
 
     private static AutoModeBase getSwitchMode() {
+        if (switchPosition == GameObjectPosition.INVALID) {
+            return getStraightMode();
+        }
         if (Drive.getInstance().isEncodersConnected()) {
             if (positionChooser.getSelected() == AutoPosition.LEFT) {
                 return new LeftSwitchMode(switchPosition);
@@ -115,10 +111,10 @@ public class AutoChooser {
         mAutoModeExecuter = null;
     }
 
-    public static void updateGameData(){
+    public static void updateGameData() {
         String gameData = DriverStation.getInstance().getGameSpecificMessage();
-        switchPosition = gameData.charAt(0) =='L' ? GameObjectPosition.LEFT : GameObjectPosition.RIGHT;
-        scalePosition =  gameData.charAt(0) == 'L' ? GameObjectPosition.LEFT : GameObjectPosition.RIGHT;
+        switchPosition = gameData.charAt(0) == 'L' ? GameObjectPosition.LEFT : GameObjectPosition.RIGHT;
+        scalePosition = gameData.charAt(0) == 'L' ? GameObjectPosition.LEFT : GameObjectPosition.RIGHT;
     }
 
     public enum AutoPosition {
@@ -130,6 +126,7 @@ public class AutoChooser {
     public enum GameObjectPosition {
         LEFT,
         RIGHT,
+        INVALID
     }
 
     public enum AutoAction {

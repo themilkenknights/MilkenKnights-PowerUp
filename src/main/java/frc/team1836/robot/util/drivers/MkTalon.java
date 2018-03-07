@@ -70,25 +70,28 @@ public class MkTalon {
         zeroAbsolute();
     }
 
-    private void resetConfig() {
-        masterTalon.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
-        masterTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 10, Constants.kTimeoutMs);
-        masterTalon
-            .setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 3, Constants.kTimeoutMs);
-        masterTalon.setControlFramePeriod(ControlFrame.Control_3_General, 5);
-        masterTalon
-            .setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 3, Constants.kTimeoutMs);
-        masterTalon
-            .setStatusFramePeriod(StatusFrameEnhanced.Status_8_PulseWidth, 3, Constants.kTimeoutMs);
-        masterTalon
-            .setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, Constants.kTimeoutMs);
-        masterTalon
-            .setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, Constants.kTimeoutMs);
+    public void resetConfig() {
+        if (side != TalonPosition.Arm) {
+
+
+            masterTalon.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
+            masterTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 20, Constants.kTimeoutMs);
+            masterTalon
+                    .setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 3, Constants.kTimeoutMs);
+            masterTalon.setControlFramePeriod(ControlFrame.Control_3_General, 20);
+            masterTalon
+                    .setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 3, Constants.kTimeoutMs);
+            masterTalon
+                    .setStatusFramePeriod(StatusFrameEnhanced.Status_8_PulseWidth, 3, Constants.kTimeoutMs);
+            masterTalon
+                    .setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 20, Constants.kTimeoutMs);
+
+        }
         masterTalon.configNominalOutputForward(0, Constants.kTimeoutMs);
         masterTalon.configNominalOutputReverse(0, Constants.kTimeoutMs);
         masterTalon.configPeakOutputForward(1, Constants.kTimeoutMs);
         masterTalon.configPeakOutputReverse(-1, Constants.kTimeoutMs);
-        masterTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0,
+        masterTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.kPIDLoopIdx,
                 Constants.kTimeoutMs);
         masterTalon.setNeutralMode(NeutralMode.Brake);
 
@@ -120,8 +123,15 @@ public class MkTalon {
     }
 
     public boolean isEncoderConnected() {
-        return true;
-    //    return masterTalon.getSensorCollection().getPulseWidthRiseToRiseUs() > 100;
+        return masterTalon.getSensorCollection().getPulseWidthRiseToRiseUs() > 100;
+    }
+
+    public void setMasterTalon(ControlMode mode, double out) {
+        masterTalon.set(mode, out);
+    }
+
+    public void setSlaveTalon(ControlMode mode, double out) {
+        slaveTalon.set(mode, out);
     }
 
     public synchronized double getPosition() {
@@ -140,16 +150,6 @@ public class MkTalon {
         }
         return nativeUnitsPer100MstoInchesPerSec(
                 masterTalon.getSelectedSensorVelocity(Constants.kPIDLoopIdx));
-    }
-
-    public void setBrakeMode() {
-        masterTalon.setNeutralMode(NeutralMode.Brake);
-        slaveTalon.setNeutralMode(NeutralMode.Brake);
-    }
-
-    public void setCoastMode() {
-        masterTalon.setNeutralMode(NeutralMode.Coast);
-        slaveTalon.setNeutralMode(NeutralMode.Coast);
     }
 
     public double getRPM() {
@@ -186,12 +186,16 @@ public class MkTalon {
         return (Constants.DRIVE.CODES_PER_REV) * (in / Constants.DRIVE.CIRCUMFERENCE);
     }
 
-    public void set(ControlMode mode, double value) {
+    public void set(ControlMode mode, double value, boolean nMode) {
         masterTalon.set(mode, value);
+        masterTalon.setNeutralMode(nMode ? NeutralMode.Brake : NeutralMode.Coast);
+        slaveTalon.setNeutralMode(nMode ? NeutralMode.Brake : NeutralMode.Coast);
     }
 
-    public void set(ControlMode mode, double value, double arbFeed) {
+    public void set(ControlMode mode, double value, boolean nMode, double arbFeed) {
         masterTalon.set(mode, value, arbFeed);
+        masterTalon.setNeutralMode(nMode ? NeutralMode.Brake : NeutralMode.Coast);
+        slaveTalon.setNeutralMode(nMode ? NeutralMode.Brake : NeutralMode.Coast);
     }
 
     public void resetEncoder() {
@@ -204,7 +208,7 @@ public class MkTalon {
 
     public void updateSmartDash() {
         SmartDashboard.putNumber(side.toString() + " Velocity", getSpeed());
-       // SmartDashboard.putNumber(side.toString() + " Error", getError());
+        // SmartDashboard.putNumber(side.toString() + " Error", getError());
         //SmartDashboard.putNumber(side.toString() + " Master Output", masterTalon.getMotorOutputPercent());
         //SmartDashboard.putNumber(side.toString() + " Slave Output", slaveTalon.getMotorOutputPercent());
         SmartDashboard.putNumber(side.toString() + " Current", masterTalon.getOutputCurrent());

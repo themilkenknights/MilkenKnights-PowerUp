@@ -51,34 +51,18 @@ public class Arm extends Subsystem {
     }
 
     @Override
-    public void writeToLog() {
-        mCSVWriter.write();
-    }
-
-    @Override
     public void outputToSmartDashboard() {
         armTalon.updateSmartDash();
         //SmartDashboard.putNumber("Arm Current", armTalon.getCurrentOutput());
         //SmartDashboard.putString("Arm Desired Position", RobotState.mArmState.toString());
         SmartDashboard.putString("Arm Control Mode", RobotState.mArmControlState.toString());
-        //SmartDashboard.putBoolean("Arm Status", armTalon.isEncoderConnected());
-       // SmartDashboard.putNumber("Roller Output", leftIntakeRollerTalon.getMotorOutputPercent());
-      SmartDashboard.putNumber("Arm Absolute Position", armTalon.getAbsolutePosition());
+        SmartDashboard.putBoolean("Arm Status", armTalon.isEncoderConnected());
+        // SmartDashboard.putNumber("Roller Output", leftIntakeRollerTalon.getMotorOutputPercent());
+        SmartDashboard.putNumber("Arm Absolute Position", armTalon.getAbsolutePosition());
     }
 
     @Override
-    public void stop() {
-        mCSVWriter.write();
-        mCSVWriter.flush();
-    }
-
-    @Override
-    public void zeroSensors() {
-        zeroArm();
-    }
-
-    @Override
-    public void updateLogger() {
+    public void slowUpdate() {
         updateDebugOutput(Timer.getMatchTime());
         mCSVWriter.add(mDebug);
         mCSVWriter.write();
@@ -97,6 +81,13 @@ public class Arm extends Subsystem {
                     Timer.delay(2);
                 }
             }
+            armTalon.setSlaveTalon(ControlMode.PercentOutput, 0);
+            armTalon.setMasterTalon(ControlMode.PercentOutput, -0.2);
+            Timer.delay(3);
+            armTalon.setSlaveTalon(ControlMode.PercentOutput, 0.2);
+            armTalon.setMasterTalon(ControlMode.PercentOutput, 0);
+            Timer.delay(3);
+            armTalon.resetConfig();
         } else {
             System.out.println("FAILED!!!");
         }
@@ -111,6 +102,7 @@ public class Arm extends Subsystem {
                 synchronized (Arm.this) {
                     armPosEnable = armTalon.getPosition();
                     RobotState.mArmState = ArmState.ENABLE;
+                    armTalon.zeroAbsolute();
                 }
             }
 
@@ -138,7 +130,8 @@ public class Arm extends Subsystem {
 
             @Override
             public void onStop(double timestamp) {
-                stop();
+                setIntakeRollers(0);
+                mCSVWriter.flush();
             }
         };
         enabledLooper.register(mLoop);
@@ -164,9 +157,9 @@ public class Arm extends Subsystem {
 
     private void updateArmSetpoint() {
         if (RobotState.mArmState.equals(ArmState.ENABLE)) {
-            armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(armPosEnable));
+            armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(armPosEnable), true);
         } else {
-            armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state));
+            armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state), true);
         }
     }
 
@@ -178,7 +171,7 @@ public class Arm extends Subsystem {
     }
 
     public void setOpenLoop(double output) {
-        armTalon.set(ControlMode.PercentOutput, output);
+        armTalon.set(ControlMode.PercentOutput, output, true);
     }
 
     public void setIntakeRollers(double output) {

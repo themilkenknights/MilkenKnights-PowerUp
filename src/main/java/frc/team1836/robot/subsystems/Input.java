@@ -24,6 +24,9 @@ public class Input extends Subsystem {
     private final MkJoystickButton changeDriveMode = driverJoystick
             .getButton(1,
                     "Change Drive Mode");
+    private final MkJoystickButton toggleLEDSignal = driverJoystick
+            .getButton(2,
+                    "Toggle HP Signal");
 
     private final MkJoystickButton armIntakeButton = operatorJoystick.getButton(2, "Arm Intake");
     private final MkJoystickButton armDisableSafety = operatorJoystick
@@ -62,16 +65,7 @@ public class Input extends Subsystem {
     }
 
     @Override
-    public void stop() {
-
-    }
-
-    public void zeroSensors() {
-
-    }
-
-    @Override
-    public void updateLogger() {
+    public void slowUpdate() {
 
     }
 
@@ -121,6 +115,10 @@ public class Input extends Subsystem {
             Drive.getInstance().setVelocitySetpoint(sig, 0, 0);
         } else if (RobotState.mDriveControlState == DriveControlState.OPEN_LOOP) {
             Drive.getInstance().setOpenLoop(sig);
+        }
+
+        if (toggleLEDSignal.isPressed()) {
+            Superstructure.getInstance().toggleSignal();
         }
 
     }

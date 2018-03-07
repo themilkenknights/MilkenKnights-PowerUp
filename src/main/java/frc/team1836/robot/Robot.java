@@ -11,7 +11,6 @@ import frc.team1836.robot.subsystems.Superstructure;
 import frc.team1836.robot.util.logging.CrashTracker;
 import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.other.SubsystemManager;
-import frc.team1836.robot.util.state.DriveSignal;
 
 import java.util.Arrays;
 
@@ -30,7 +29,6 @@ public class Robot extends IterativeRobot {
         try {
             CrashTracker.logRobotInit();
             mSubsystemManager.registerEnabledLoops(mEnabledLooper);
-            mSubsystemManager.zeroSensors();
             AutoChooser.loadAutos();
         } catch (Throwable t) {
             CrashTracker.logThrowableCrash(t);
@@ -45,10 +43,8 @@ public class Robot extends IterativeRobot {
             CrashTracker.logDisabledInit();
             AutoChooser.disableAuto();
             mEnabledLooper.stop();
-            mSubsystemManager.stop();
             RobotState.mMatchState = MatchState.DISABLED;
             RobotState.mArmState = RobotState.ArmState.ENABLE;
-            Drive.getInstance().setOpenLoop(DriveSignal.NEUTRAL);
         } catch (Throwable t) {
             CrashTracker.logThrowableCrash(t);
             throw t;
@@ -58,10 +54,12 @@ public class Robot extends IterativeRobot {
     @Override
     public void autonomousInit() {
         try {
+            double dt = edu.wpi.first.wpilibj.Timer.getFPGATimestamp();
             CrashTracker.logAutoInit();
             RobotState.mMatchState = MatchState.AUTO;
             mEnabledLooper.start();
             AutoChooser.startAuto();
+            System.out.println("Auto Init Took: " + (edu.wpi.first.wpilibj.Timer.getFPGATimestamp() - dt));
         } catch (Throwable t) {
             CrashTracker.logThrowableCrash(t);
             throw t;
@@ -119,7 +117,7 @@ public class Robot extends IterativeRobot {
     private void allPeriodic() {
         try {
             mSubsystemManager.outputToSmartDashboard();
-            mSubsystemManager.updateLogger();
+            mSubsystemManager.slowUpdate();
             mEnabledLooper.outputToSmartDashboard();
         } catch (Throwable t) {
             CrashTracker.logThrowableCrash(t);

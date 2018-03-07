@@ -10,7 +10,7 @@ public class DriveStraightMode extends AutoModeBase {
     @Override
     protected void routine() throws AutoModeEndedException {
 
-        runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight"), false, false));
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight"), false, false, false));
 
     }
 }

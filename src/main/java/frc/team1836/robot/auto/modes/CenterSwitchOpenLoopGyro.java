@@ -11,33 +11,33 @@ import frc.team1836.robot.util.auto.AutoModeEndedException;
 
 public class CenterSwitchOpenLoopGyro extends AutoModeBase {
 
-	private GameObjectPosition position;
+    private GameObjectPosition position;
 
-	public CenterSwitchOpenLoopGyro(AutoChooser.GameObjectPosition position) {
-		this.position = position;
-	}
+    public CenterSwitchOpenLoopGyro(AutoChooser.GameObjectPosition position) {
+        this.position = position;
+    }
 
-	@Override
-	protected void routine() throws AutoModeEndedException {
-		RobotState.mArmState = RobotState.ArmState.OPPOSITE_SWITCH_PLACE;
-		switch (position) {
-			case LEFT:
-				leftRoutine();
-				break;
-			case RIGHT:
-				rightRoutine();
-				break;
-		}
-	}
+    @Override
+    protected void routine() throws AutoModeEndedException {
+        RobotState.mArmState = RobotState.ArmState.OPPOSITE_SWITCH_PLACE;
+        switch (position) {
+            case LEFT:
+                leftRoutine();
+                break;
+            case RIGHT:
+                rightRoutine();
+                break;
+        }
+    }
 
 
-	protected void leftRoutine() throws AutoModeEndedException {
-		runAction(new OpenLoopFollowHeading(-0.5, 1.75, -0.75, 1, -70, 0));
-		runAction(new RollerAction(0.45, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
-	}
+    protected void leftRoutine() throws AutoModeEndedException {
+        runAction(new OpenLoopFollowHeading(-0.5, 1.75, -0.75, 1, -70, 0));
+        runAction(new RollerAction(0.45, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
+    }
 
-	protected void rightRoutine() throws AutoModeEndedException {
-		runAction(new OpenLoopFollowHeading(-0.5, 1.75, -0.75, 1, 70, 0));
-		runAction(new RollerAction(0.45, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
-	}
+    protected void rightRoutine() throws AutoModeEndedException {
+        runAction(new OpenLoopFollowHeading(-0.5, 1.75, -0.75, 1, 70, 0));
+        runAction(new RollerAction(0.45, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
+    }
 }

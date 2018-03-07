@@ -14,17 +14,12 @@ import frc.team1836.robot.util.loops.Looper;
  * instantializing all member components at the start of the match.
  */
 public abstract class Subsystem {
-
-    public void writeToLog() {
-    }
-
     public abstract void outputToSmartDashboard();
 
-    public abstract void stop();
+    public void slowUpdate() {
+    }
 
-    public abstract void zeroSensors();
-
-    public abstract void updateLogger();
+    ;
 
     public abstract void checkSystem();
 
