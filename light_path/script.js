@@ -352,30 +352,24 @@ function create() {
 
 function addPoint() {
     var prev;
-    if (waypoints.length > 0) {
+    if(waypoints.length > 0)
         prev = waypoints[waypoints.length - 1].position;
-    } else {
+    else
         prev = new Translation2d(50, 50);
-    }
     //$("tbody#points tr:last td:nth-child(3) input").prop("value", "30");
-    $("tbody#points").append(
-        "<tr>" +
-        "<td><input value='" +
-        (prev.x + 80) +
-        "'></td>" +
-        "<td><input value='" +
-        (prev.y + 80) +
-        "'></td>" +
-        "<td><input value='0'></td>" +
-        "<td class='comments'><input placeholder='Comments'></td>" +
-        "<td><button onclick='$(this).parent().parent().remove();update()'>Delete</button></td></tr>"
+    $("tbody#points").append("<tr>"
+        +"<td><input value='"+(prev.x+1)+"'></td>"
+        +"<td><input value='"+(prev.y+1)+"'></td>"
+        +"<td><input value='0'></td>"
+        +"<td class='comments'><input placeholder='Comments'></td>"
+        +"<td><button onclick='$(this).parent().parent().remove();update()'>Delete</button></td></tr>"
     );
     update();
-    $("input").unbind("change paste keyup");
-    $("input").bind("change paste keyup", function () {
+    $('input').unbind("change paste keyup");
+    $('input').bind("change paste keyup", function() {
         console.log("change");
         clearTimeout(wto);
-        wto = setTimeout(function () {
+        wto = setTimeout(function() {
             update();
         }, 500);
     });
@@ -395,22 +389,25 @@ function update() {
         drawRotatedRect(pos, robotHeight, robotWidth, -theta, getColorForSpeed(10));
         points.addWaypoint(new WaypointSequence.Waypoint(x, y, theta));
     });
+
     config = new TrajectoryGenerator.Config();
     config.dt = parseFloat($("td.dt input").val());
     config.max_vel = parseFloat($("td.max_vel input").val());
     config.max_acc = parseFloat($("td.max_acc input").val());
     config.max_jerk = parseFloat($("td.max_jerk input").val());
     wheelbase = parseFloat($("td.wheelbase input").val());
-
     if (points.getNumWaypoints() > 1) {
         path = PathGenerator.makePath(points, config, wheelbase, "Curve");
         drawPath();
         $("td.time").text(
             "" + path.getLeftWheelTrajectory().getNumSegments() * config.dt
         );
+
+
     } else {
         $("td.time").text("0");
     }
+
 }
 
 function drawPath() {

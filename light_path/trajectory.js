@@ -71,21 +71,21 @@ var Spline = (function () {
     }
     var yp0_hat = Math.tan(theta0_hat);
     var yp1_hat = Math.tan(theta1_hat);
-    if (type === Spline.CubicHermite_$LI$()) {
+    /*if (type === Spline.CubicHermite_$LI$()) {
       result.a_ = 0;
       result.b_ = 0;
       result.c_ = (yp1_hat + yp0_hat) / (x1_hat * x1_hat);
       result.d_ = -(2 * yp0_hat + yp1_hat) / x1_hat;
       result.e_ = yp0_hat;
     }
-    else if (type === Spline.QuinticHermite_$LI$()) {
+    else if (type === Spline.QuinticHermite_$LI$()) {*/
       result.a_ = -(3 * (yp0_hat + yp1_hat)) / (x1_hat * x1_hat * x1_hat
           * x1_hat);
       result.b_ = (8 * yp0_hat + 7 * yp1_hat) / (x1_hat * x1_hat * x1_hat);
       result.c_ = -(6 * yp0_hat + 4 * yp1_hat) / (x1_hat * x1_hat);
       result.d_ = 0;
       result.e_ = yp0_hat;
-    }
+    //}
     return true;
   };
   Spline.reticulateSplines = function (x0, y0, theta0, x1, y1, theta1, result,
@@ -118,7 +118,7 @@ var Spline = (function () {
     if (this.arc_length_ >= 0) {
       return this.arc_length_;
     }
-    var kNumSamples = 100000;
+    var kNumSamples = 1000;
     var arc_length = 0;
     var t;
     var dydt;
@@ -137,7 +137,7 @@ var Spline = (function () {
     return this.arc_length_;
   };
   Spline.prototype.getPercentageForDistance = function (distance) {
-    var kNumSamples = 100000;
+    var kNumSamples = 1000;
     var arc_length = 0;
     var t = 0;
     var last_arc_length = 0;
