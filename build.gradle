@@ -65,11 +65,11 @@ task swerdUpdate {
     doLast {
         FileTree myFileTree = fileTree(dir: 'paths')
         def date = new Date()
-        def formattedDate = 'logs/' + date.format('yyyy-MM-dd') + '/' + date.format('HH-mm')
+        String formattedDate = "logs/" //+ date.format("yyyyMMdd").toString() + '/' + date.format('HH-mm') + '/'
         ssh.run {
             session(remotes.webServer) {
                 put from: myFileTree.getFiles(), into: '/home/lvuser/paths'
-                get from: '/U', into: formattedDate
+                get from: '/u', into: formattedDate
             }
         }
 
