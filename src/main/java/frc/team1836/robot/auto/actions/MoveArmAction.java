@@ -1,6 +1,5 @@
 package frc.team1836.robot.auto.actions;
 
-import frc.team1836.robot.Robot;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.util.auto.Action;
 

@@ -32,7 +32,7 @@ public class PathFollower {
         return lFollower.isFinishedTrajectory() && rFollower.isFinishedTrajectory();
     }
 
-    public boolean getBrakeMode(){
+    public boolean getBrakeMode() {
         return brakeMode;
     }
 }

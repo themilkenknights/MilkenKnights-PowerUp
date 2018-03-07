@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.team1836.robot.util.auto.Action;
 
 public class DelayAction implements Action {
+    private final Action mAction;
     private double mTimeToWait;
     private double mStartTime;
-    private final Action mAction;
     private boolean start;
 
     public DelayAction(double timeToWait, Action action) {

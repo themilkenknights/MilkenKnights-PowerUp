@@ -8,7 +8,6 @@ import frc.team1836.robot.util.math.MkMath;
  */
 public class DriveSignal {
 
-    public static DriveSignal NEUTRAL = new DriveSignal(0, 0);
     public static DriveSignal BRAKE = new DriveSignal(0, 0, true);
     protected double mLeftMotor;
     protected double mRightMotor;

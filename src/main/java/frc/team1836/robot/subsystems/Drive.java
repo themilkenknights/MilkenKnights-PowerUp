@@ -54,7 +54,7 @@ public class Drive extends Subsystem {
                 DriveDebugOutput.class);
         leftStatus = TrajectoryStatus.NEUTRAL;
         rightStatus = TrajectoryStatus.NEUTRAL;
-        currentSetpoint = DriveSignal.NEUTRAL;
+        currentSetpoint = DriveSignal.BRAKE;
     }
 
     public static Drive getInstance() {
@@ -106,7 +106,6 @@ public class Drive extends Subsystem {
     public boolean isPathFinished() {
         if (pathFollower.getFinished()) {
             RobotState.mDriveControlState = DriveControlState.OPEN_LOOP;
-            setOpenLoop(DriveSignal.NEUTRAL);
             pathFollower = null;
             leftStatus = TrajectoryStatus.NEUTRAL;
             rightStatus = TrajectoryStatus.NEUTRAL;
@@ -268,7 +267,7 @@ public class Drive extends Subsystem {
 
             @Override
             public void onStop(double timestamp) {
-                setOpenLoop(DriveSignal.NEUTRAL);
+                setOpenLoop(DriveSignal.BRAKE);
                 mCSVWriter.flush();
             }
         };

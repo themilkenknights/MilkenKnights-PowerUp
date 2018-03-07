@@ -11,6 +11,7 @@ public class DrivePathAction implements Action {
     private final Path path;
     private boolean done;
     private boolean brakeMode;
+
     public DrivePathAction(Path path, boolean dir, boolean flip, boolean brakeMode) {
         this.path = path.copyPath();
         this.brakeMode = brakeMode;
