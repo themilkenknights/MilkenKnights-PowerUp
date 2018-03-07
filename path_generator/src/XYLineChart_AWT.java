@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class XYLineChart_AWT {
 
+
     public static final HashMap<String, Path> robotPaths = new HashMap<String, Path>();
     public static final Trajectory.Config defaultConfig = new Trajectory.Config(
             Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 145, 95, 200);
@@ -20,37 +21,37 @@ public class XYLineChart_AWT {
     static {
         robotPaths.put("CSR-1", new Path(new Waypoint[]{
                 new Waypoint(23, 156, Pathfinder.d2r(0)),
-                new Waypoint(130, 100, Pathfinder.d2r(0)),
+                new Waypoint(127, 100+18, Pathfinder.d2r(0)),
         }, defaultConfig));
 
         robotPaths.put("CSR-2", new Path(new Waypoint[]{
-                new Waypoint(130, 100, Pathfinder.d2r(0)),
-                new Waypoint(102, 109, Pathfinder.d2r(-45)),
-                new Waypoint(93, 131, Pathfinder.d2r(-90)),
-                new Waypoint(97, 143, Pathfinder.d2r(-120)),
+                new Waypoint(130, 100+18, Pathfinder.d2r(0)),
+                new Waypoint(102, 109+18, Pathfinder.d2r(-45)),
+                new Waypoint(93, 131+18, Pathfinder.d2r(-90)),
+                new Waypoint(101, 150+18, Pathfinder.d2r(-120)),
         }, defaultConfig
         ));
 
         robotPaths.put("CSR-3", new Path(new Waypoint[]{
-                new Waypoint(97, 143, Pathfinder.d2r(-120)),
-                new Waypoint(93, 131, Pathfinder.d2r(-90)),
-                new Waypoint(102, 109, Pathfinder.d2r(-45)),
-                new Waypoint(130, 100, Pathfinder.d2r(0)),
+                new Waypoint(101, 150+18, Pathfinder.d2r(-120)),
+                new Waypoint(93, 131+18, Pathfinder.d2r(-90)),
+                new Waypoint(102, 109+18, Pathfinder.d2r(-45)),
+                new Waypoint(130, 100+18, Pathfinder.d2r(0)),
         }, defaultConfig));
 
         robotPaths.put("CSR-4", new Path(new Waypoint[]{
-                new Waypoint(130, 100, Pathfinder.d2r(0)),
-                new Waypoint(114, 106, Pathfinder.d2r(-45)),
-                new Waypoint(107, 123, Pathfinder.d2r(-90)),
-                new Waypoint(110, 137, Pathfinder.d2r(-120)),
-        }, slowConfig));
+                new Waypoint(130, 100+18, Pathfinder.d2r(0)),
+                new Waypoint(114, 106+18, Pathfinder.d2r(-45)),
+                new Waypoint(107, 123+18, Pathfinder.d2r(-90)),
+                new Waypoint(114, 142+18, Pathfinder.d2r(-120)),
+        }, defaultConfig));
 
         robotPaths.put("CSR-5", new Path(new Waypoint[]{
-                new Waypoint(110, 137, Pathfinder.d2r(-120)),
-                new Waypoint(107, 123, Pathfinder.d2r(-90)),
-                new Waypoint(114, 106, Pathfinder.d2r(-45)),
-                new Waypoint(130, 100, Pathfinder.d2r(0)),
-        }, slowerConfig));
+                new Waypoint(114, 142+18, Pathfinder.d2r(-120)),
+                new Waypoint(107, 123+18, Pathfinder.d2r(-90)),
+                new Waypoint(114, 106+18, Pathfinder.d2r(-45)),
+                new Waypoint(130, 100+18, Pathfinder.d2r(0)),
+        }, defaultConfig));
 
         robotPaths.put("CSL-1", new Path(new Waypoint[]{
                 new Waypoint(23, 156, Pathfinder.d2r(0)),

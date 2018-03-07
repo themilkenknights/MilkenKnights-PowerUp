@@ -101,7 +101,7 @@ public final class Constants {
 		public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
 		public static final double INTAKE_OUT_ROLLER_SPEED = -0.40;
 		public static final double INTAKE_OUT_FAST_ROLLER_SPEED = -0.90;
-		public static final double ANGLE_OFFSET =-1323;
+		public static final double ANGLE_OFFSET =42877;
 	}
 
 	public static class INPUT {
