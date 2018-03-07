@@ -26,7 +26,8 @@ public class AutoChooser {
     private static SendableChooser<AutoPosition> positionChooser = new SendableChooser<>();
     private static SendableChooser<AutoAction> actionChooser = new SendableChooser<>();
     private static AutoModeExecuter mAutoModeExecuter = null;
-    private static String gameData;
+    private static GameObjectPosition switchPosition;
+    private static GameObjectPosition scalePosition;
 
     public static void loadAutos() {
         positionChooser.addDefault("Center", AutoPosition.CENTER);
@@ -43,7 +44,6 @@ public class AutoChooser {
     }
 
     public static AutoModeBase getAutoMode() {
-        gameData = DriverStation.getInstance().getGameSpecificMessage();
         switch (actionChooser.getSelected()) {
             case STANDSTILL:
                 return new StandStillMode();
@@ -72,25 +72,25 @@ public class AutoChooser {
     private static AutoModeBase getSwitchMode() {
         if (Drive.getInstance().isEncodersConnected()) {
             if (positionChooser.getSelected() == AutoPosition.LEFT) {
-                return new LeftSwitchMode(getSwitchPosition());
+                return new LeftSwitchMode(switchPosition);
             }
             if (positionChooser.getSelected() == AutoPosition.RIGHT) {
-                return new RightSwitchMode(getSwitchPosition());
+                return new RightSwitchMode(switchPosition);
             }
             if (positionChooser.getSelected() == AutoPosition.CENTER) {
-                return new CenterSwitchMode(getSwitchPosition());
+                return new CenterSwitchMode(switchPosition);
             }
         } else {
             if (positionChooser.getSelected() == AutoPosition.LEFT
-                    && getSwitchPosition() == GameObjectPosition.LEFT) {
+                    && switchPosition == GameObjectPosition.LEFT) {
                 return new SwitchOpenLoop();
             }
             if (positionChooser.getSelected() == AutoPosition.RIGHT
-                    && getSwitchPosition() == GameObjectPosition.RIGHT) {
+                    && switchPosition == GameObjectPosition.RIGHT) {
                 return new SwitchOpenLoop();
             }
             if (positionChooser.getSelected() == AutoPosition.CENTER) {
-                return new CenterSwitchOpenLoopGyro(getSwitchPosition());
+                return new CenterSwitchOpenLoopGyro(switchPosition);
             }
         }
         CrashTracker.logMarker("Couldn't Get Switch Mode");
@@ -115,8 +115,10 @@ public class AutoChooser {
         mAutoModeExecuter = null;
     }
 
-    public static GameObjectPosition getSwitchPosition() {
-        return gameData.charAt(0) == 'L' ? GameObjectPosition.LEFT : GameObjectPosition.RIGHT;
+    public static void updateGameData(){
+        String gameData = DriverStation.getInstance().getGameSpecificMessage();
+        switchPosition = gameData.charAt(0) =='L' ? GameObjectPosition.LEFT : GameObjectPosition.RIGHT;
+        scalePosition =  gameData.charAt(0) == 'L' ? GameObjectPosition.LEFT : GameObjectPosition.RIGHT;
     }
 
     public enum AutoPosition {
