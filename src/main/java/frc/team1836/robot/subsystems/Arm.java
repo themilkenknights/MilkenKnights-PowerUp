@@ -81,6 +81,7 @@ public class Arm extends Subsystem {
     public void updateLogger() {
         updateDebugOutput(Timer.getMatchTime());
         mCSVWriter.add(mDebug);
+        mCSVWriter.write();
     }
 
     @Override
