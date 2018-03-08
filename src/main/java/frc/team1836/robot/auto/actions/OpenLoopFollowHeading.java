@@ -25,7 +25,6 @@ public class OpenLoopFollowHeading implements Action {
         this.endAngle = endAngle;
         this.otherAngle = otherAngle;
         timer = new Timer();
-        Drive.getInstance().resetGyro();
     }
 
     /**

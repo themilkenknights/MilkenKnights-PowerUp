@@ -40,7 +40,6 @@ public class Drive extends Subsystem {
         leftDrive.setPIDF();
         rightDrive.setPIDF();
         navX = new MkGyro(Port.kMXP);
-        navX.zeroYaw();
 
         leftDrive.invertMaster(DRIVE.LEFT_MASTER_INVERT);
         leftDrive.invertSlave(DRIVE.LEFT_SLAVE_INVERT);
@@ -98,7 +97,6 @@ public class Drive extends Subsystem {
         CrashTracker.logMarker("Began Path: " + path.getName());
         leftDrive.resetEncoder();
         rightDrive.resetEncoder();
-        navX.zeroYaw();
         pathFollower = new PathFollower(path, dist_tol, ang_tol, brakeMode);
         RobotState.mDriveControlState = RobotState.DriveControlState.PATH_FOLLOWING;
     }
@@ -177,10 +175,6 @@ public class Drive extends Subsystem {
         updateDebugOutput(Timer.getMatchTime());
         mCSVWriter.add(mDebug);
         mCSVWriter.write();
-    }
-
-    public void resetGyro() {
-        navX.zeroYaw();
     }
 
     @Override
