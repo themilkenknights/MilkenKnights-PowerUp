@@ -1,27 +1,23 @@
 package frc.team1836.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.util.drivers.MkLED;
-import frc.team1836.robot.util.logging.CrashTracker;
+import frc.team1836.robot.util.drivers.MkLED.LEDColors;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.other.Subsystem;
 
 public class Superstructure extends Subsystem {
     private MkLED mkLED;
-    private PowerDistributionPanel powerDistributionPanel;
-    private boolean cubeCurrentLimit;
+    //private PowerDistributionPanel powerDistributionPanel;
     private boolean hPSignal;
     private boolean turnOffLED;
 
     public Superstructure() {
         mkLED = new MkLED(Constants.SUPERSTRUCTURE.CANIFIER_ID);
-        powerDistributionPanel = new PowerDistributionPanel(Constants.SUPERSTRUCTURE.PDP_ID);
-        cubeCurrentLimit = false;
+      //  powerDistributionPanel = new PowerDistributionPanel(Constants.SUPERSTRUCTURE.PDP_ID);
         hPSignal = false;
         turnOffLED = false;
     }
@@ -33,17 +29,12 @@ public class Superstructure extends Subsystem {
     @Override
     public void outputToSmartDashboard() {
         SmartDashboard.putString("System State", RobotState.mSystemState.toString());
+       // SmartDashboard.putNumber("Roller Current", powerDistributionPanel.getCurrent(ARM.ROLLER_INTAKE_PDP_PORT));
         updateLEDStrip();
     }
 
     @Override
     public void slowUpdate() {
-        if (powerDistributionPanel.getCurrent(Constants.ARM.ROLLER_INTAKE_PDP_PORT) > Constants.ARM.ROLLER_INTAKE_CURRENT_LIMIT) {
-            cubeCurrentLimit = true;
-            hPSignal = false;
-        } else {
-            cubeCurrentLimit = false;
-        }
     }
 
     public void toggleSignal() {
@@ -66,7 +57,7 @@ public class Superstructure extends Subsystem {
             @Override
             public void onStart(double timestamp) {
                 synchronized (Superstructure.this) {
-                    CrashTracker.logMarker("Voltage: " + Double.toString(powerDistributionPanel.getVoltage()));
+                 //   CrashTracker.logMarker("Voltage: " + Double.toString(powerDistributionPanel.getVoltage()));
                 }
             }
 
@@ -90,24 +81,22 @@ public class Superstructure extends Subsystem {
     }
 
     private void updateLEDStrip() {
-        if (turnOffLED) {
+        mkLED.set_rgb(LEDColors.BLUE);
+        /*if (turnOffLED) {
             return;
         }
         switch (RobotState.mMatchState) {
             case AUTO:
-                mkLED.setPulse(MkLED.LEDColors.BLUE, MkLED.LEDColors.OFF, 0.5);
+                mkLED.setPulse(MkLED.LEDColors.BLUE, MkLED.LEDColors.OFF, 1);
             case TELEOP:
                 if (hPSignal) {
                     mkLED.set_rgb(MkLED.LEDColors.GREEN);
-                }
-                if (cubeCurrentLimit) {
-                    mkLED.setPulse(MkLED.LEDColors.ORANGE, MkLED.LEDColors.OFF, 0.25);
                 } else if (RobotState.matchData.alliance == DriverStation.Alliance.Red) {
-                    mkLED.setPulse(MkLED.LEDColors.BLUE, MkLED.LEDColors.OFF, 0.5);
+                    mkLED.setPulse(MkLED.LEDColors.BLUE, MkLED.LEDColors.OFF, 1);
                 } else if (RobotState.matchData.alliance == DriverStation.Alliance.Blue) {
-                    mkLED.setPulse(MkLED.LEDColors.RED, MkLED.LEDColors.OFF, 0.5);
+                    mkLED.setPulse(MkLED.LEDColors.RED, MkLED.LEDColors.OFF, 1);
                 } else {
-                    mkLED.setPulse(MkLED.LEDColors.PURPLE, MkLED.LEDColors.OFF, 0.5);
+                    mkLED.setPulse(MkLED.LEDColors.PURPLE, MkLED.LEDColors.OFF, 1);
                 }
             case DISABLED:
                 if (RobotState.mSystemState == RobotState.SystemState.CONNECTED) {
@@ -116,9 +105,9 @@ public class Superstructure extends Subsystem {
                     mkLED.set_rgb(MkLED.LEDColors.WHITE);
                 }
             case TEST:
-                mkLED.setPulse(MkLED.LEDColors.ORANGE, MkLED.LEDColors.RED, 0.5);
+                mkLED.setPulse(MkLED.LEDColors.ORANGE, MkLED.LEDColors.RED, 1);
         }
-
+ */
     }
 
 

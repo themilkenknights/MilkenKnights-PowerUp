@@ -75,16 +75,16 @@ public class MkTalon {
 
 
             masterTalon.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
-            masterTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 20, Constants.kTimeoutMs);
+            masterTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 10, Constants.kTimeoutMs);
             masterTalon
-                    .setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 3, Constants.kTimeoutMs);
-            masterTalon.setControlFramePeriod(ControlFrame.Control_3_General, 20);
+                    .setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 2, Constants.kTimeoutMs);
+            masterTalon.setControlFramePeriod(ControlFrame.Control_3_General, 10);
             masterTalon
-                    .setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 3, Constants.kTimeoutMs);
+                    .setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 2, Constants.kTimeoutMs);
             masterTalon
-                    .setStatusFramePeriod(StatusFrameEnhanced.Status_8_PulseWidth, 3, Constants.kTimeoutMs);
+                    .setStatusFramePeriod(StatusFrameEnhanced.Status_8_PulseWidth, 2, Constants.kTimeoutMs);
             masterTalon
-                    .setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 20, Constants.kTimeoutMs);
+                    .setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, Constants.kTimeoutMs);
 
         }
         masterTalon.configNominalOutputForward(0, Constants.kTimeoutMs);
@@ -202,17 +202,23 @@ public class MkTalon {
         masterTalon.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     }
 
+    public void setCoastMode(){
+        masterTalon.setNeutralMode(NeutralMode.Coast);
+        slaveTalon.setNeutralMode(NeutralMode.Coast);
+    }
+
     public void setSensorPhase(boolean dir) {
         masterTalon.setSensorPhase(dir);
     }
 
     public void updateSmartDash() {
         SmartDashboard.putNumber(side.toString() + " Velocity", getSpeed());
-        // SmartDashboard.putNumber(side.toString() + " Error", getError());
-        //SmartDashboard.putNumber(side.toString() + " Master Output", masterTalon.getMotorOutputPercent());
-        //SmartDashboard.putNumber(side.toString() + " Slave Output", slaveTalon.getMotorOutputPercent());
+        SmartDashboard.putNumber(side.toString() + " Error", getError());
+        SmartDashboard.putNumber(side.toString() + " Master Output", masterTalon.getMotorOutputPercent());
+        SmartDashboard.putNumber(side.toString() + " Slave Output", slaveTalon.getMotorOutputPercent());
+
         SmartDashboard.putNumber(side.toString() + " Current", masterTalon.getOutputCurrent());
-        //SmartDashboard.putNumber(side.toString() + " Position", getPosition());
+        SmartDashboard.putNumber(side.toString() + " Position", getPosition());
         if (Math.abs(getRPM()) > maxRPM) {
             maxRPM = Math.abs(getRPM());
         }

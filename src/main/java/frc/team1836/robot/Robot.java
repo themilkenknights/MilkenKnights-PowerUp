@@ -55,6 +55,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         try {
             double dt = edu.wpi.first.wpilibj.Timer.getFPGATimestamp();
+            AutoChooser.updateGameData();
             CrashTracker.logAutoInit();
             RobotState.mMatchState = MatchState.AUTO;
             mEnabledLooper.start();
@@ -96,7 +97,6 @@ public class Robot extends IterativeRobot {
     @Override
     public void disabledPeriodic() {
         allPeriodic();
-        AutoChooser.updateGameData();
     }
 
     @Override

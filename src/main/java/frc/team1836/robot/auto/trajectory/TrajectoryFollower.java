@@ -54,6 +54,7 @@ public class TrajectoryFollower {
         current_segment = (int) (customRound(currentTime - Dt) / Constants.kLooperDt);
         if (current_segment < profile_.length()) {
             //Trajectory.Segment segment = interpolateSegments(current_segment, currentTime);
+
             Trajectory.Segment segment = profile_.get(current_segment);
             double error = segment.position - dist;
             double angError = segment.heading - heading;

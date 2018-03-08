@@ -22,34 +22,34 @@ public class PathGenerator {
         robotPaths.put("CSR", new Path[]{
                 new Path("CSR-1", new Waypoint[]{
                         new Waypoint(23, 155, Pathfinder.d2r(0)),
-                        new Waypoint(121, 104, Pathfinder.d2r(0)),
+                        new Waypoint(121+6, 104, Pathfinder.d2r(0)),
                 },
                         defaultConfig),
                 new Path("CSR-2", new Waypoint[]{
-                        new Waypoint(121, 104, Pathfinder.d2r(0)),
-                        new Waypoint(90, 113, Pathfinder.d2r(-45)),
-                        new Waypoint(83, 130, Pathfinder.d2r(-90)),
-                        new Waypoint(93, 147, Pathfinder.d2r(-140)),
+                        new Waypoint(121+6, 104, Pathfinder.d2r(0)),
+                        new Waypoint(90+6, 113, Pathfinder.d2r(-45)),
+                        new Waypoint(83+6, 130, Pathfinder.d2r(-90)),
+                        new Waypoint(95+6, 149, Pathfinder.d2r(-140)),
                 },
                         defaultConfig),
                 new Path("CSR-3", new Waypoint[]{
-                        new Waypoint(93, 147, Pathfinder.d2r(-140)),
-                        new Waypoint(83, 130, Pathfinder.d2r(-90)),
-                        new Waypoint(90, 113, Pathfinder.d2r(-45)),
-                        new Waypoint(121, 104, Pathfinder.d2r(0)),
+                        new Waypoint(95+6, 149, Pathfinder.d2r(-140)),
+                        new Waypoint(83+6, 130, Pathfinder.d2r(-90)),
+                        new Waypoint(90+6, 113, Pathfinder.d2r(-45)),
+                        new Waypoint(121+6, 104, Pathfinder.d2r(0)),
                 }, defaultConfig),
                 new Path("CSR-4", new Waypoint[]{
-                        new Waypoint(121, 104, Pathfinder.d2r(0)),
-                        new Waypoint(108, 110, Pathfinder.d2r(-45)),
-                        new Waypoint(101, 124, Pathfinder.d2r(-90)),
-                        new Waypoint(105, 140, Pathfinder.d2r(-130)),
+                        new Waypoint(121+6, 104, Pathfinder.d2r(0)),
+                        new Waypoint(108+6, 110, Pathfinder.d2r(-45)),
+                        new Waypoint(101+6, 124, Pathfinder.d2r(-90)),
+                        new Waypoint(105+6, 140, Pathfinder.d2r(-130)),
                 },
                         defaultConfig),
                 new Path("CSR-5", new Waypoint[]{
-                        new Waypoint(105, 140, Pathfinder.d2r(-130)),
-                        new Waypoint(101, 124, Pathfinder.d2r(-90)),
-                        new Waypoint(108, 110, Pathfinder.d2r(-45)),
-                        new Waypoint(121, 104, Pathfinder.d2r(0)),
+                        new Waypoint(105+6, 140, Pathfinder.d2r(-130)),
+                        new Waypoint(101+6, 124, Pathfinder.d2r(-90)),
+                        new Waypoint(108+6, 110, Pathfinder.d2r(-45)),
+                        new Waypoint(121+6, 104, Pathfinder.d2r(0)),
                 }, defaultConfig)
         });
 
@@ -88,10 +88,10 @@ public class PathGenerator {
         });
 
 
-        robotPaths.put("Drive Straight", new Path[]{
-                new Path("Drive Straight", new Waypoint[]{
+        robotPaths.put("DriveStraight", new Path[]{
+                new Path("DriveStraight", new Waypoint[]{
                         new Waypoint(23, 156, 0),
-                        new Waypoint(SWITCH_X, 156, 0)
+                        new Waypoint(127, 156, 0)
                 }, defaultConfig)
         });
 
@@ -103,10 +103,10 @@ public class PathGenerator {
             double pathTime = 0;
             for (Path path : container.getValue()) {
                 Trajectory trajectory = Pathfinder.generate(path.getPoints(), path.getConfig());
-                double offset = lastAngle - Pathfinder.boundHalfDegrees(Pathfinder.r2d(trajectory.get(0).heading));
+              /*  double offset = lastAngle - Pathfinder.boundHalfDegrees(Pathfinder.r2d(trajectory.get(0).heading));
                 for (Trajectory.Segment segment : trajectory.segments) {
                     segment.heading = Pathfinder.boundHalfDegrees(Pathfinder.r2d(segment.heading) + offset);
-                }
+                } */
                 File pathFile = new File("paths/" + path.getName() + ".csv").getAbsoluteFile();
                 Pathfinder.writeToCSV(pathFile, trajectory);
                 System.out

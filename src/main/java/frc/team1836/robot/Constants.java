@@ -56,8 +56,8 @@ public final class Constants {
                 * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
         public static final double RIGHT_DRIVE_F = (1023.0 / ((RIGHT_RPM_MAX / 60.0 / 10.0)
                 * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
-        public static final double MIN_TEST_POS = MAX_VEL * 4.5;
-        public static final double MIN_TEST_VEL = MAX_VEL * 0.95;
+        public static final double MIN_TEST_POS = 720;
+        public static final double MIN_TEST_VEL = 145;
 
         public static final double MAX_PITCH = 30;
 
@@ -87,7 +87,7 @@ public final class Constants {
                 ((RPM_MAX / 60.0 / 10.0) * 4096.0) / GEAR_RATIO; // Degrees per second
         public static final double ARM_P = 2 * ((0.1 * 1023.0) / (1600)); //7.5 deg or 1390 units
         public static final double ARM_I = 0;
-        public static final double ARM_D = ARM_P * 50;
+        public static final double ARM_D = ARM_P * 10;
         public static final double ARM_F = (1023.0 / MAX_RAW_VEL);
 
         public static final double ARM_FORWARD_LIMIT = 250;
@@ -105,7 +105,7 @@ public final class Constants {
         public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
         public static final double INTAKE_OUT_ROLLER_SPEED = -0.40;
         public static final double INTAKE_OUT_FAST_ROLLER_SPEED = -0.90;
-        public static final double ANGLE_OFFSET = 42877;
+        public static final double ANGLE_OFFSET = -1056;
     }
 
     public static class INPUT {

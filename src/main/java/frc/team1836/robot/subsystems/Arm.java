@@ -20,204 +20,200 @@ import frc.team1836.robot.util.other.Subsystem;
 
 public class Arm extends Subsystem {
 
-    private final ReflectingCSVWriter<ArmDebugOutput> mCSVWriter;
-    private final MkTalon armTalon;
-    private final VictorSPX leftIntakeRollerTalon;
-    private final VictorSPX rightIntakeRollerTalon;
-    private ArmDebugOutput mDebug = new ArmDebugOutput();
-    private boolean armSafety = true;
-    private double armPosEnable = 0;
-    private boolean zeroInput = false;
+	private final ReflectingCSVWriter<ArmDebugOutput> mCSVWriter;
+	private final MkTalon armTalon;
+	private final VictorSPX leftIntakeRollerTalon;
+	private final VictorSPX rightIntakeRollerTalon;
+	private ArmDebugOutput mDebug = new ArmDebugOutput();
+	private boolean armSafety = true;
+	private double armPosEnable = 0;
+	private boolean zeroInput = false;
 
-    private Arm() {
-        mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH,
-                ArmDebugOutput.class);
-        armTalon = new MkTalon(ARM.ARM_MASTER_TALON_ID, ARM.ARM_SLAVE_TALON_ID, TalonPosition.Arm);
-        armTalon.setSensorPhase(ARM.ARM_SENSOR_PHASE);
-        armTalon.configMotionMagic();
-        armTalon.setSoftLimit(ARM.ARM_FORWARD_LIMIT, ARM.ARM_REVERSE_LIMIT);
-        armTalon.setLimitEnabled(true);
-        leftIntakeRollerTalon = new VictorSPX(Constants.ARM.LEFT_INTAKE_ROLLER_ID);
-        rightIntakeRollerTalon = new VictorSPX(Constants.ARM.RIGHT_INTAKE_ROLLER_ID);
-        leftIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
-        rightIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
-        armTalon.invertMaster(ARM.ARM_MASTER_DIRECTION);
-        armTalon.invertSlave(ARM.ARM_SLAVE_DIRECTION);
-        leftIntakeRollerTalon.setInverted(ARM.LEFT_INTAKE_DIRECTION);
-        rightIntakeRollerTalon.setInverted(ARM.RIGHT_INTAKE_DIRECTION);
-        armTalon.zeroAbsolute();
-    }
+	private Arm() {
+		mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH,
+				ArmDebugOutput.class);
+		armTalon = new MkTalon(ARM.ARM_MASTER_TALON_ID, ARM.ARM_SLAVE_TALON_ID, TalonPosition.Arm);
+		armTalon.setSensorPhase(ARM.ARM_SENSOR_PHASE);
+		armTalon.configMotionMagic();
+		armTalon.setSoftLimit(ARM.ARM_FORWARD_LIMIT, ARM.ARM_REVERSE_LIMIT);
+		armTalon.setLimitEnabled(true);
+		leftIntakeRollerTalon = new VictorSPX(Constants.ARM.LEFT_INTAKE_ROLLER_ID);
+		rightIntakeRollerTalon = new VictorSPX(Constants.ARM.RIGHT_INTAKE_ROLLER_ID);
+		leftIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
+		rightIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
+		armTalon.invertMaster(ARM.ARM_MASTER_DIRECTION);
+		armTalon.invertSlave(ARM.ARM_SLAVE_DIRECTION);
+		leftIntakeRollerTalon.setInverted(ARM.LEFT_INTAKE_DIRECTION);
+		rightIntakeRollerTalon.setInverted(ARM.RIGHT_INTAKE_DIRECTION);
+		armTalon.zeroAbsolute();
+	}
 
-    public static Arm getInstance() {
-        return InstanceHolder.mInstance;
-    }
+	public static Arm getInstance() {
+		return InstanceHolder.mInstance;
+	}
 
-    @Override
-    public void outputToSmartDashboard() {
-        armTalon.updateSmartDash();
-        //SmartDashboard.putNumber("Arm Current", armTalon.getCurrentOutput());
-        //SmartDashboard.putString("Arm Desired Position", RobotState.mArmState.toString());
-        SmartDashboard.putString("Arm Control Mode", RobotState.mArmControlState.toString());
-        SmartDashboard.putBoolean("Arm Status", armTalon.isEncoderConnected());
-        // SmartDashboard.putNumber("Roller Output", leftIntakeRollerTalon.getMotorOutputPercent());
-        SmartDashboard.putNumber("Arm Absolute Position", armTalon.getAbsolutePosition());
-    }
+	@Override
+	public void outputToSmartDashboard() {
+		armTalon.updateSmartDash();
+		SmartDashboard.putNumber("Arm Current", armTalon.getCurrentOutput());
+		SmartDashboard.putString("Arm Desired Position", RobotState.mArmState.toString());
+		SmartDashboard.putString("Arm Control Mode", RobotState.mArmControlState.toString());
+		SmartDashboard.putBoolean("Arm Status", armTalon.isEncoderConnected());
+		SmartDashboard.putNumber("Roller Output", leftIntakeRollerTalon.getMotorOutputPercent());
+		SmartDashboard.putNumber("Arm Absolute Position", armTalon.getAbsolutePosition());
 
-    @Override
-    public void slowUpdate() {
-        updateDebugOutput(Timer.getMatchTime());
-        mCSVWriter.add(mDebug);
-        mCSVWriter.write();
-    }
+	}
 
-    @Override
-    public void checkSystem() {
-        if (!armTalon.isEncoderConnected()) {
-            System.out.println("ARM ENCODER NOT CONNECTED!!");
-        }
-        if (RobotState.mArmControlState == ArmControlState.MOTION_MAGIC) {
-            for (ArmState state : ArmState.values()) {
-                if (state != ArmState.ENABLE) {
-                    RobotState.mArmState = state;
-                    setIntakeRollers(-0.25);
-                    Timer.delay(2);
-                }
-            }
-            armTalon.setSlaveTalon(ControlMode.PercentOutput, 0);
-            armTalon.setMasterTalon(ControlMode.PercentOutput, -0.2);
-            Timer.delay(3);
-            armTalon.setSlaveTalon(ControlMode.PercentOutput, 0.2);
-            armTalon.setMasterTalon(ControlMode.PercentOutput, 0);
-            Timer.delay(3);
-            armTalon.resetConfig();
-        } else {
-            System.out.println("FAILED!!!");
-        }
-    }
+	@Override
+	public void slowUpdate() {
+		updateDebugOutput(Timer.getMatchTime());
+		mCSVWriter.add(mDebug);
+		mCSVWriter.write();
+	}
 
-    @Override
-    public void registerEnabledLoops(Looper enabledLooper) {
-        Loop mLoop = new Loop() {
+	@Override
+	public void checkSystem() {
+		if (!armTalon.isEncoderConnected()) {
+			System.out.println("ARM ENCODER NOT CONNECTED!!");
+		}
+		if (RobotState.mArmControlState == ArmControlState.MOTION_MAGIC) {
+			for (ArmState state : ArmState.values()) {
+				if (state != ArmState.ENABLE) {
+					RobotState.mArmState = state;
+					setIntakeRollers(-0.25);
+					Timer.delay(2);
+				}
+			}
+			armTalon.resetConfig();
+		} else {
+			System.out.println("FAILED!!!");
+		}
+	}
 
-            @Override
-            public void onStart(double timestamp) {
-                synchronized (Arm.this) {
-                    armPosEnable = armTalon.getPosition();
-                    RobotState.mArmState = ArmState.ENABLE;
+	@Override
+	public void registerEnabledLoops(Looper enabledLooper) {
+		Loop mLoop = new Loop() {
 
-                }
-            }
+			@Override
+			public void onStart(double timestamp) {
+				synchronized (Arm.this) {
+					armPosEnable = armTalon.getPosition();
+					RobotState.mArmState = ArmState.ENABLE;
 
-            /**
-             * Updated from mEnabledLoop in Robot.java
-             * @param timestamp Time in seconds since code start
-             */
-            @Override
-            public void onLoop(double timestamp) {
-                synchronized (Arm.this) {
-                    armSafetyCheck();
-                    switch (RobotState.mArmControlState) {
-                        case MOTION_MAGIC:
-                            updateArmSetpoint();
-                            return;
-                        case OPEN_LOOP:
-                            return;
-                        case ZEROING:
-                            zeroArm();
-                            return;
-                        default:
-                            System.out
-                                    .println("Unexpected arm control state: " + RobotState.mArmControlState);
-                            break;
-                    }
-                }
-            }
+				}
+			}
 
-            @Override
-            public void onStop(double timestamp) {
-                setIntakeRollers(0);
-                mCSVWriter.flush();
-            }
-        };
-        enabledLooper.register(mLoop);
-    }
+			/**
+			 * Updated from mEnabledLoop in Robot.java
+			 * @param timestamp Time in seconds since code start
+			 */
+			@Override
+			public void onLoop(double timestamp) {
+				synchronized (Arm.this) {
+					armSafetyCheck();
+					switch (RobotState.mArmControlState) {
+						case MOTION_MAGIC:
+							updateArmSetpoint();
+							return;
+						case OPEN_LOOP:
+							return;
+						case ZEROING:
+							zeroArm();
+							return;
+						default:
+							System.out
+									.println("Unexpected arm control state: " + RobotState.mArmControlState);
+							break;
+					}
+				}
+			}
 
-    public void changeSafety() {
-        armSafety = !armSafety;
-        armTalon.setLimitEnabled(armSafety);
-    }
+			@Override
+			public void onStop(double timestamp) {
+				setIntakeRollers(0);
+				mCSVWriter.flush();
+			}
+		};
+		enabledLooper.register(mLoop);
+	}
 
-    private void updateDebugOutput(double timestamp) {
-        mDebug.controlMode = RobotState.mArmControlState.toString();
-        mDebug.output = armTalon.getPercentOutput();
-        mDebug.position = armTalon.getPosition();
-        mDebug.velocity = armTalon.getSpeed();
-        mDebug.setpoint = RobotState.mArmState.state;
-        mDebug.timestamp = timestamp;
-    }
+	public void changeSafety() {
+		armSafety = !armSafety;
+		armTalon.setLimitEnabled(armSafety);
+	}
 
-    private void updateArmSetpoint() {
-        if (RobotState.mArmState.equals(ArmState.ENABLE)) {
-            armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(armPosEnable), true);
-        } else {
-            armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state), true);
-        }
-    }
+	private void updateDebugOutput(double timestamp) {
+		mDebug.controlMode = RobotState.mArmControlState.toString();
+		mDebug.output = armTalon.getPercentOutput();
+		mDebug.position = armTalon.getPosition();
+		mDebug.velocity = armTalon.getSpeed();
+		mDebug.setpoint = RobotState.mArmState.state;
+		mDebug.timestamp = timestamp;
+	}
 
-    private void armSafetyCheck() {
-        if (!armTalon.isEncoderConnected()) {
-            System.out.println("Encoder Not Connected");
-            RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
-        }
-    }
+	private void updateArmSetpoint() {
+		if (RobotState.mArmState.equals(ArmState.ENABLE)) {
+			armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(armPosEnable), true);
+		} else {
+			armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state),
+					true);
+		}
+	}
+
+	private void armSafetyCheck() {
+		if (!armTalon.isEncoderConnected()) {
+			System.out.println("Encoder Not Connected");
+			RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+		}
+	}
 
 
-    public void overrideZero(boolean over) {
-        zeroInput = over;
-    }
+	public void overrideZero(boolean over) {
+		zeroInput = over;
+	}
 
-    private void zeroArm() {
-        if (!zeroInput) {
-            if (armTalon.getCurrentOutput() > ARM.CURRENT_HARDSTOP_LIMIT) {
-                RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
-                setOpenLoop(0);
-                edu.wpi.first.wpilibj.Timer.delay(0.2);
-                armTalon.resetEncoder();
-                armPosEnable = armTalon.getPosition();
-                armTalon.setLimitEnabled(true);
-                armSafety = true;
-                System.out.println("Zeroed");
-                RobotState.mArmState = ArmState.ENABLE;
-                RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
-            } else {
-                armTalon.setLimitEnabled(false);
-                setOpenLoop(0);
-            }
-        }
-    }
+	private void zeroArm() {
+		if (!zeroInput) {
+			if (armTalon.getCurrentOutput() > ARM.CURRENT_HARDSTOP_LIMIT) {
+				RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+				setOpenLoop(0);
+				edu.wpi.first.wpilibj.Timer.delay(0.2);
+				armTalon.resetEncoder();
+				armPosEnable = armTalon.getPosition();
+				armTalon.setLimitEnabled(true);
+				armSafety = true;
+				System.out.println("Zeroed");
+				RobotState.mArmState = ArmState.ENABLE;
+				RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
+			} else {
+				armTalon.setLimitEnabled(false);
+				setOpenLoop(0);
+			}
+		}
+	}
 
 
-    public void setOpenLoop(double output) {
-        armTalon.set(ControlMode.PercentOutput, output, true);
-    }
+	public void setOpenLoop(double output) {
+		armTalon.set(ControlMode.PercentOutput, output, true);
+	}
 
-    public void setIntakeRollers(double output) {
-        leftIntakeRollerTalon.set(ControlMode.PercentOutput, output);
-        rightIntakeRollerTalon.set(ControlMode.PercentOutput, output);
-    }
+	public void setIntakeRollers(double output) {
+		leftIntakeRollerTalon.set(ControlMode.PercentOutput, output);
+		rightIntakeRollerTalon.set(ControlMode.PercentOutput, output);
+	}
 
-    public static class ArmDebugOutput {
+	public static class ArmDebugOutput {
 
-        double timestamp;
-        String controlMode;
-        double output;
-        double position;
-        double velocity;
-        double setpoint;
-    }
+		double timestamp;
+		String controlMode;
+		double output;
+		double position;
+		double velocity;
+		double setpoint;
+	}
 
-    private static class InstanceHolder {
+	private static class InstanceHolder {
 
-        private static final Arm mInstance = new Arm();
-    }
+		private static final Arm mInstance = new Arm();
+	}
 }

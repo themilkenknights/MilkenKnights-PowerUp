@@ -27,6 +27,7 @@ public class DelayAction implements Action {
     @Override
     public void update() {
         if (Timer.getFPGATimestamp() - mStartTime >= mTimeToWait && !start) {
+            start = true;
             mAction.start();
         } else if (Timer.getFPGATimestamp() - mStartTime >= mTimeToWait) {
             mAction.update();
