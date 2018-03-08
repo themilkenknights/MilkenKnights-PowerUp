@@ -83,7 +83,6 @@ public class OpenLoopFollowHeading implements Action {
      */
     @Override
     public void start() {
-        Drive.getInstance().resetGyro();
         timer.reset();
         timer.start();
     }
