@@ -603,15 +603,16 @@ function importData() {
 
 function getDataString() {
   var title = $("#title").val().length > 0 ? $("#title").val() : "UntitledPath";
-  var pathInit = "robotPaths.put(\"" + title + "\", new Path(new Waypoint[]{\n";
+  var pathInit = "new Path(\"" + title + "\", new Waypoint[]{\n";
   for (var i = 0; i < waypoints.length; i++) {
     pathInit += waypoints[i].toString() + "\n";
   }
-  pathInit += " }, \n"
-      + "new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, " +
+  pathInit += " }, \n"+
+  /*     "new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, " +
       parseFloat($("td.dt input").val()) + ", " +  parseFloat($("td.max_vel input").val()) + ", " +
-      parseFloat($("td.max_acc input").val()) + ", " +   parseFloat($("td.max_jerk input").val()) + ") \n"
-      + "));";
+      parseFloat($("td.max_acc input").val()) + ", " +   parseFloat($("td.max_jerk input").val()) + ") \n"*/
+  "defaultConfig"
+      + "),";
   return pathInit;
 }
 

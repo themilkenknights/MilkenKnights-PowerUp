@@ -97,6 +97,8 @@ public final class Constants {
         public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
         public static final int ROLLER_INTAKE_PDP_PORT = 6;
         public static final double ROLLER_INTAKE_CURRENT_LIMIT = 2;
+        public static final double CURRENT_HARDSTOP_LIMIT = 2;
+        public static final double ZEROING_POWER = -0.15;
 
         public static final int LEFT_INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
         public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID

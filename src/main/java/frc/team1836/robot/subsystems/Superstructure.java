@@ -16,12 +16,14 @@ public class Superstructure extends Subsystem {
     private PowerDistributionPanel powerDistributionPanel;
     private boolean cubeCurrentLimit;
     private boolean hPSignal;
+    private boolean turnOffLED;
 
     public Superstructure() {
         mkLED = new MkLED(Constants.SUPERSTRUCTURE.CANIFIER_ID);
         powerDistributionPanel = new PowerDistributionPanel(Constants.SUPERSTRUCTURE.PDP_ID);
         cubeCurrentLimit = false;
         hPSignal = false;
+        turnOffLED = false;
     }
 
     public static Superstructure getInstance() {
@@ -46,6 +48,10 @@ public class Superstructure extends Subsystem {
 
     public void toggleSignal() {
         hPSignal = !hPSignal;
+    }
+
+    public void toggleLEDOff() {
+        turnOffLED = !turnOffLED;
     }
 
     @Override
@@ -84,7 +90,9 @@ public class Superstructure extends Subsystem {
     }
 
     private void updateLEDStrip() {
-
+        if (turnOffLED) {
+            return;
+        }
         switch (RobotState.mMatchState) {
             case AUTO:
                 mkLED.setPulse(MkLED.LEDColors.BLUE, MkLED.LEDColors.OFF, 0.5);

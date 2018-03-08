@@ -227,6 +227,10 @@ public class MkTalon {
         masterTalon.setSelectedSensorPosition((int) (getAbsolutePosition() + ARM.ANGLE_OFFSET), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     }
 
+    public void zeroAbsolute(double offset) {
+        masterTalon.setSelectedSensorPosition((int) (getAbsolutePosition() + offset), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+    }
+
     public double getPercentOutput() {
         return masterTalon.getMotorOutputPercent();
     }

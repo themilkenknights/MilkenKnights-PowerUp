@@ -23,7 +23,7 @@ public class MkJoystickButton {
         update();
         if (isPressed) {
             System.out
-                    .println("[Joystick] " + joystick.getPort() + "\t[Button]" + rawButton + "\t Pressed");
+                    .println("[Joystick] " + joystick.getPort() + "\t[Button]" + rawButton + "\t Pressed ( " + buttonName + " )");
         }
         return isPressed;
     }
