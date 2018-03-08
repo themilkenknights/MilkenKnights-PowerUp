@@ -7,10 +7,9 @@ public class PathFollower {
 
     protected TrajectoryFollower lFollower;
     protected TrajectoryFollower rFollower;
-    protected boolean brakeMode;
     private Path path;
 
-    public PathFollower(Path mPath, double distTol, double angTol, boolean brakeMode) {
+    public PathFollower(Path mPath, double distTol, double angTol) {
         path = mPath;
         lFollower = new TrajectoryFollower(mPath.getLeftWheelTrajectory());
         lFollower.configure(Constants.DRIVE.DRIVE_FOLLOWER_P,
@@ -18,7 +17,6 @@ public class PathFollower {
         rFollower = new TrajectoryFollower(mPath.getRightWheelTrajectory());
         rFollower.configure(Constants.DRIVE.DRIVE_FOLLOWER_P,
                 Constants.DRIVE.DRIVE_FOLLOWER_A, -Constants.DRIVE.DRIVE_FOLLOWER_ANG, distTol, angTol);
-        this.brakeMode = brakeMode;
     }
 
 
@@ -36,9 +34,5 @@ public class PathFollower {
 
     public double getEndHeading(){
         return path.getEndHeading();
-    }
-
-    public boolean getBrakeMode() {
-        return brakeMode;
     }
 }

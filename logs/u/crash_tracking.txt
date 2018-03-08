@@ -520,3 +520,172 @@ c0c67d41-cbb3-47d5-b8e7-a911c54ded38, Exception, Thu Mar 08 10:50:21 PST 2018, j
 ee04e643-be10-4dd0-9d67-dab6e84bb8e7, robot startup, Thu Mar 08 10:50:26 PST 2018
 ee04e643-be10-4dd0-9d67-dab6e84bb8e7, robot init, Thu Mar 08 10:50:26 PST 2018
 ee04e643-be10-4dd0-9d67-dab6e84bb8e7, disabled init, Thu Mar 08 10:50:27 PST 2018
+984a5a19-c01f-41a2-ba36-ee055ee4a0b3, robot startup, Thu Mar 08 10:51:58 PST 2018
+984a5a19-c01f-41a2-ba36-ee055ee4a0b3, robot init, Thu Mar 08 10:51:58 PST 2018
+984a5a19-c01f-41a2-ba36-ee055ee4a0b3, disabled init, Thu Mar 08 10:51:59 PST 2018
+984a5a19-c01f-41a2-ba36-ee055ee4a0b3, auto init, Thu Mar 08 10:52:00 PST 2018
+984a5a19-c01f-41a2-ba36-ee055ee4a0b3, Starting Center Switch Mode (Right Side), Thu Mar 08 10:52:00 PST 2018
+984a5a19-c01f-41a2-ba36-ee055ee4a0b3, Began Path: CSR-1, Thu Mar 08 10:52:00 PST 2018
+984a5a19-c01f-41a2-ba36-ee055ee4a0b3, Began Path: CSR-2, Thu Mar 08 10:52:03 PST 2018
+984a5a19-c01f-41a2-ba36-ee055ee4a0b3, Began Path: CSR-3, Thu Mar 08 10:52:05 PST 2018
+984a5a19-c01f-41a2-ba36-ee055ee4a0b3, Began Path: CSR-4, Thu Mar 08 10:52:08 PST 2018
+984a5a19-c01f-41a2-ba36-ee055ee4a0b3, Exception, Thu Mar 08 10:52:09 PST 2018, java.lang.NullPointerException
+	at frc.team1836.robot.subsystems.Drive.updatePathFollower(Drive.java:140)
+	at frc.team1836.robot.subsystems.Drive.access$400(Drive.java:28)
+	at frc.team1836.robot.subsystems.Drive$1.onLoop(Drive.java:273)
+	at frc.team1836.robot.util.loops.Looper$1.runCrashTracked(Looper.java:34)
+	at frc.team1836.robot.util.logging.CrashTrackingRunnable.run(CrashTrackingRunnable.java:11)
+	at edu.wpi.first.wpilibj.Notifier.lambda$new$0(Notifier.java:97)
+	at java.lang.Thread.run(Thread.java:748)
+
+1c41df3a-2b92-4f16-9517-ca983ee55676, robot startup, Thu Mar 08 10:52:14 PST 2018
+1c41df3a-2b92-4f16-9517-ca983ee55676, robot init, Thu Mar 08 10:52:14 PST 2018
+1c41df3a-2b92-4f16-9517-ca983ee55676, disabled init, Thu Mar 08 10:52:15 PST 2018
+0d029add-6eaa-4781-a8b4-af4565eee585, robot startup, Thu Mar 08 10:56:58 PST 2018
+0d029add-6eaa-4781-a8b4-af4565eee585, robot init, Thu Mar 08 10:56:58 PST 2018
+0d029add-6eaa-4781-a8b4-af4565eee585, disabled init, Thu Mar 08 10:56:59 PST 2018
+0d029add-6eaa-4781-a8b4-af4565eee585, auto init, Thu Mar 08 10:57:03 PST 2018
+0d029add-6eaa-4781-a8b4-af4565eee585, Starting Center Switch Mode (Right Side), Thu Mar 08 10:57:03 PST 2018
+0d029add-6eaa-4781-a8b4-af4565eee585, Began Path: CSR-1, Thu Mar 08 10:57:03 PST 2018
+0d029add-6eaa-4781-a8b4-af4565eee585, Began Path: CSR-2, Thu Mar 08 10:57:05 PST 2018
+0d029add-6eaa-4781-a8b4-af4565eee585, Began Path: CSR-3, Thu Mar 08 10:57:08 PST 2018
+0d029add-6eaa-4781-a8b4-af4565eee585, Exception, Thu Mar 08 10:57:10 PST 2018, java.lang.NullPointerException
+	at frc.team1836.robot.subsystems.Drive.updatePathFollower(Drive.java:140)
+	at frc.team1836.robot.subsystems.Drive.access$400(Drive.java:28)
+	at frc.team1836.robot.subsystems.Drive$1.onLoop(Drive.java:273)
+	at frc.team1836.robot.util.loops.Looper$1.runCrashTracked(Looper.java:34)
+	at frc.team1836.robot.util.logging.CrashTrackingRunnable.run(CrashTrackingRunnable.java:11)
+	at edu.wpi.first.wpilibj.Notifier.lambda$new$0(Notifier.java:97)
+	at java.lang.Thread.run(Thread.java:748)
+
+e1efdc48-97d1-401b-8ca1-4d223911a5e7, robot startup, Thu Mar 08 10:57:14 PST 2018
+e1efdc48-97d1-401b-8ca1-4d223911a5e7, robot init, Thu Mar 08 10:57:15 PST 2018
+e1efdc48-97d1-401b-8ca1-4d223911a5e7, disabled init, Thu Mar 08 10:57:15 PST 2018
+ae6fbe5e-52b7-4777-9902-9a62651c1e36, robot startup, Thu Mar 08 10:59:45 PST 2018
+ae6fbe5e-52b7-4777-9902-9a62651c1e36, robot init, Thu Mar 08 10:59:46 PST 2018
+ae6fbe5e-52b7-4777-9902-9a62651c1e36, disabled init, Thu Mar 08 10:59:46 PST 2018
+ae6fbe5e-52b7-4777-9902-9a62651c1e36, auto init, Thu Mar 08 10:59:52 PST 2018
+ae6fbe5e-52b7-4777-9902-9a62651c1e36, Starting Center Switch Mode (Right Side), Thu Mar 08 10:59:52 PST 2018
+ae6fbe5e-52b7-4777-9902-9a62651c1e36, Began Path: CSR-1, Thu Mar 08 10:59:52 PST 2018
+ae6fbe5e-52b7-4777-9902-9a62651c1e36, Began Path: CSR-2, Thu Mar 08 10:59:55 PST 2018
+ae6fbe5e-52b7-4777-9902-9a62651c1e36, Began Path: CSR-3, Thu Mar 08 10:59:57 PST 2018
+ae6fbe5e-52b7-4777-9902-9a62651c1e36, Began Path: CSR-4, Thu Mar 08 11:00:00 PST 2018
+ae6fbe5e-52b7-4777-9902-9a62651c1e36, Began Path: CSR-5, Thu Mar 08 11:00:02 PST 2018
+ae6fbe5e-52b7-4777-9902-9a62651c1e36, disabled init, Thu Mar 08 11:00:05 PST 2018
+5d09cd04-c562-4196-b59f-d7c27a4604ab, robot startup, Thu Mar 08 11:01:23 PST 2018
+5d09cd04-c562-4196-b59f-d7c27a4604ab, robot init, Thu Mar 08 11:01:23 PST 2018
+5d09cd04-c562-4196-b59f-d7c27a4604ab, disabled init, Thu Mar 08 11:01:23 PST 2018
+5d09cd04-c562-4196-b59f-d7c27a4604ab, auto init, Thu Mar 08 11:01:47 PST 2018
+5d09cd04-c562-4196-b59f-d7c27a4604ab, Starting Center Switch Mode (Right Side), Thu Mar 08 11:01:47 PST 2018
+5d09cd04-c562-4196-b59f-d7c27a4604ab, Began Path: CSR-1, Thu Mar 08 11:01:47 PST 2018
+5d09cd04-c562-4196-b59f-d7c27a4604ab, Began Path: CSR-2, Thu Mar 08 11:01:49 PST 2018
+5d09cd04-c562-4196-b59f-d7c27a4604ab, Began Path: CSR-3, Thu Mar 08 11:01:52 PST 2018
+5d09cd04-c562-4196-b59f-d7c27a4604ab, Began Path: CSR-4, Thu Mar 08 11:01:54 PST 2018
+5d09cd04-c562-4196-b59f-d7c27a4604ab, Began Path: CSR-5, Thu Mar 08 11:01:56 PST 2018
+5d09cd04-c562-4196-b59f-d7c27a4604ab, disabled init, Thu Mar 08 11:02:11 PST 2018
+d8645831-e59f-41bd-a05b-0d388dde86b7, robot startup, Thu Mar 08 11:03:43 PST 2018
+d8645831-e59f-41bd-a05b-0d388dde86b7, robot init, Thu Mar 08 11:03:43 PST 2018
+d8645831-e59f-41bd-a05b-0d388dde86b7, disabled init, Thu Mar 08 11:03:43 PST 2018
+d8645831-e59f-41bd-a05b-0d388dde86b7, auto init, Thu Mar 08 11:03:44 PST 2018
+d8645831-e59f-41bd-a05b-0d388dde86b7, Starting Center Switch Mode (Right Side), Thu Mar 08 11:03:44 PST 2018
+d8645831-e59f-41bd-a05b-0d388dde86b7, Began Path: CSR-1, Thu Mar 08 11:03:44 PST 2018
+d8645831-e59f-41bd-a05b-0d388dde86b7, Began Path: CSR-2, Thu Mar 08 11:03:47 PST 2018
+d8645831-e59f-41bd-a05b-0d388dde86b7, Exception, Thu Mar 08 11:03:49 PST 2018, java.lang.NullPointerException
+	at frc.team1836.robot.subsystems.Drive.updatePathFollower(Drive.java:140)
+	at frc.team1836.robot.subsystems.Drive.access$400(Drive.java:28)
+	at frc.team1836.robot.subsystems.Drive$1.onLoop(Drive.java:273)
+	at frc.team1836.robot.util.loops.Looper$1.runCrashTracked(Looper.java:34)
+	at frc.team1836.robot.util.logging.CrashTrackingRunnable.run(CrashTrackingRunnable.java:11)
+	at edu.wpi.first.wpilibj.Notifier.lambda$new$0(Notifier.java:97)
+	at java.lang.Thread.run(Thread.java:748)
+
+d581e4a5-0da6-400e-bd8a-5b1a342743eb, robot startup, Thu Mar 08 11:03:54 PST 2018
+d581e4a5-0da6-400e-bd8a-5b1a342743eb, robot init, Thu Mar 08 11:03:54 PST 2018
+d581e4a5-0da6-400e-bd8a-5b1a342743eb, disabled init, Thu Mar 08 11:05:29 PST 2018
+98e7914a-ebc8-412e-88c5-69ffcc45fbd6, robot startup, Thu Mar 08 11:05:47 PST 2018
+98e7914a-ebc8-412e-88c5-69ffcc45fbd6, robot init, Thu Mar 08 11:05:47 PST 2018
+98e7914a-ebc8-412e-88c5-69ffcc45fbd6, disabled init, Thu Mar 08 11:05:48 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, robot startup, Thu Mar 08 11:05:54 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, robot init, Thu Mar 08 11:05:54 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, disabled init, Thu Mar 08 11:05:55 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, auto init, Thu Mar 08 11:05:59 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, Starting Center Switch Mode (Right Side), Thu Mar 08 11:05:59 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, Began Path: CSR-1, Thu Mar 08 11:06:00 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, Began Path: CSR-2, Thu Mar 08 11:06:02 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, Began Path: CSR-3, Thu Mar 08 11:06:05 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, Began Path: CSR-4, Thu Mar 08 11:06:07 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, Began Path: CSR-5, Thu Mar 08 11:06:09 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, disabled init, Thu Mar 08 11:06:13 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, auto init, Thu Mar 08 11:07:22 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, Starting Center Switch Mode (Left Side), Thu Mar 08 11:07:22 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, Began Path: CSL-1, Thu Mar 08 11:07:22 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, Began Path: CSL-2, Thu Mar 08 11:07:25 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, Began Path: CSL-3, Thu Mar 08 11:07:27 PST 2018
+fc74ba1b-96ef-4c2d-b111-793578689e55, disabled init, Thu Mar 08 11:07:27 PST 2018
+64a859e6-54d8-4708-ba7a-97a58d387262, robot startup, Thu Mar 08 11:09:16 PST 2018
+64a859e6-54d8-4708-ba7a-97a58d387262, robot init, Thu Mar 08 11:09:16 PST 2018
+64a859e6-54d8-4708-ba7a-97a58d387262, disabled init, Thu Mar 08 11:09:16 PST 2018
+64a859e6-54d8-4708-ba7a-97a58d387262, auto init, Thu Mar 08 11:09:19 PST 2018
+64a859e6-54d8-4708-ba7a-97a58d387262, Starting Center Switch Mode (Left Side), Thu Mar 08 11:09:19 PST 2018
+64a859e6-54d8-4708-ba7a-97a58d387262, Began Path: CSL-1, Thu Mar 08 11:09:19 PST 2018
+64a859e6-54d8-4708-ba7a-97a58d387262, Began Path: CSL-2, Thu Mar 08 11:09:22 PST 2018
+64a859e6-54d8-4708-ba7a-97a58d387262, Exception, Thu Mar 08 11:09:24 PST 2018, java.lang.NullPointerException
+	at frc.team1836.robot.subsystems.Drive.updatePathFollower(Drive.java:140)
+	at frc.team1836.robot.subsystems.Drive.access$400(Drive.java:28)
+	at frc.team1836.robot.subsystems.Drive$1.onLoop(Drive.java:273)
+	at frc.team1836.robot.util.loops.Looper$1.runCrashTracked(Looper.java:34)
+	at frc.team1836.robot.util.logging.CrashTrackingRunnable.run(CrashTrackingRunnable.java:11)
+	at edu.wpi.first.wpilibj.Notifier.lambda$new$0(Notifier.java:97)
+	at java.lang.Thread.run(Thread.java:748)
+
+929ab1b1-3b98-4f64-9840-ec54128d0269, robot startup, Thu Mar 08 11:09:29 PST 2018
+929ab1b1-3b98-4f64-9840-ec54128d0269, robot init, Thu Mar 08 11:09:29 PST 2018
+929ab1b1-3b98-4f64-9840-ec54128d0269, disabled init, Thu Mar 08 11:09:29 PST 2018
+7dbabcbc-2a3f-4ed7-ad44-a7b16ab4490e, robot startup, Thu Mar 08 11:12:34 PST 2018
+7dbabcbc-2a3f-4ed7-ad44-a7b16ab4490e, robot init, Thu Mar 08 11:12:35 PST 2018
+7dbabcbc-2a3f-4ed7-ad44-a7b16ab4490e, disabled init, Thu Mar 08 11:12:35 PST 2018
+7dbabcbc-2a3f-4ed7-ad44-a7b16ab4490e, auto init, Thu Mar 08 11:12:38 PST 2018
+7dbabcbc-2a3f-4ed7-ad44-a7b16ab4490e, Starting Center Switch Mode (Left Side), Thu Mar 08 11:12:38 PST 2018
+7dbabcbc-2a3f-4ed7-ad44-a7b16ab4490e, Began Path: CSL-1, Thu Mar 08 11:12:38 PST 2018
+7dbabcbc-2a3f-4ed7-ad44-a7b16ab4490e, Began Path: CSL-2, Thu Mar 08 11:12:41 PST 2018
+7dbabcbc-2a3f-4ed7-ad44-a7b16ab4490e, Began Path: CSL-3, Thu Mar 08 11:12:43 PST 2018
+7dbabcbc-2a3f-4ed7-ad44-a7b16ab4490e, disabled init, Thu Mar 08 11:12:43 PST 2018
+8f8c6d03-7e82-426c-901f-b9b7d6bc2092, robot startup, Thu Mar 08 11:16:37 PST 2018
+8f8c6d03-7e82-426c-901f-b9b7d6bc2092, robot init, Thu Mar 08 11:16:38 PST 2018
+8f8c6d03-7e82-426c-901f-b9b7d6bc2092, disabled init, Thu Mar 08 11:16:38 PST 2018
+8f8c6d03-7e82-426c-901f-b9b7d6bc2092, auto init, Thu Mar 08 11:16:51 PST 2018
+8f8c6d03-7e82-426c-901f-b9b7d6bc2092, Starting Center Switch Mode (Left Side), Thu Mar 08 11:16:51 PST 2018
+8f8c6d03-7e82-426c-901f-b9b7d6bc2092, Began Path: CSL-1, Thu Mar 08 11:16:51 PST 2018
+8f8c6d03-7e82-426c-901f-b9b7d6bc2092, Began Path: CSL-2, Thu Mar 08 11:16:54 PST 2018
+8f8c6d03-7e82-426c-901f-b9b7d6bc2092, Began Path: CSL-3, Thu Mar 08 11:16:56 PST 2018
+8f8c6d03-7e82-426c-901f-b9b7d6bc2092, disabled init, Thu Mar 08 11:16:56 PST 2018
+ca54ea09-ee5a-4beb-a994-26f08cb1d7f4, robot startup, Thu Mar 08 11:17:39 PST 2018
+ca54ea09-ee5a-4beb-a994-26f08cb1d7f4, robot init, Thu Mar 08 11:17:39 PST 2018
+ca54ea09-ee5a-4beb-a994-26f08cb1d7f4, disabled init, Thu Mar 08 11:17:39 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, robot startup, Thu Mar 08 11:17:51 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, robot init, Thu Mar 08 11:17:52 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, disabled init, Thu Mar 08 11:17:52 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, auto init, Thu Mar 08 11:17:56 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, Starting Center Switch Mode (Left Side), Thu Mar 08 11:17:56 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, Began Path: CSL-1, Thu Mar 08 11:17:56 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, Began Path: CSL-2, Thu Mar 08 11:17:59 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, Began Path: CSL-3, Thu Mar 08 11:18:01 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, Began Path: CSL-4, Thu Mar 08 11:18:03 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, Began Path: CSL-5, Thu Mar 08 11:18:05 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, disabled init, Thu Mar 08 11:18:08 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, teleop init, Thu Mar 08 11:18:21 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, disabled init, Thu Mar 08 11:18:32 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, teleop init, Thu Mar 08 11:19:01 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, disabled init, Thu Mar 08 11:19:15 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, teleop init, Thu Mar 08 11:19:49 PST 2018
+e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, disabled init, Thu Mar 08 11:20:08 PST 2018
+66d46d22-47f0-43f0-ae2a-645955d05ffc, robot startup, Thu Mar 08 11:20:49 PST 2018
+66d46d22-47f0-43f0-ae2a-645955d05ffc, robot init, Thu Mar 08 11:20:49 PST 2018
+66d46d22-47f0-43f0-ae2a-645955d05ffc, disabled init, Thu Mar 08 11:20:49 PST 2018
+66d46d22-47f0-43f0-ae2a-645955d05ffc, teleop init, Thu Mar 08 11:21:01 PST 2018
+66d46d22-47f0-43f0-ae2a-645955d05ffc, disabled init, Thu Mar 08 11:21:11 PST 2018
+9dfc5156-93b4-426d-bdc7-c9df3853f77d, robot startup, Thu Mar 08 11:21:37 PST 2018
+9dfc5156-93b4-426d-bdc7-c9df3853f77d, robot init, Thu Mar 08 11:21:38 PST 2018
+9dfc5156-93b4-426d-bdc7-c9df3853f77d, disabled init, Thu Mar 08 11:21:38 PST 2018
+9dfc5156-93b4-426d-bdc7-c9df3853f77d, teleop init, Thu Mar 08 11:21:40 PST 2018
+9dfc5156-93b4-426d-bdc7-c9df3853f77d, disabled init, Thu Mar 08 11:22:06 PST 2018

@@ -57,33 +57,33 @@ public class PathGenerator {
         robotPaths.put("CSL", new Path[]{
                 new Path("CSL-1", new Waypoint[]{
                         new Waypoint(23, 155, Pathfinder.d2r(0)),
-                        new Waypoint(121, 216, Pathfinder.d2r(0)),
+                        new Waypoint(121+6, 216, Pathfinder.d2r(0)),
                 },
                         defaultConfig),
                 new Path("CSL-2", new Waypoint[]{
-                        new Waypoint(121, 216, Pathfinder.d2r(0)),
-                        new Waypoint(101, 209, Pathfinder.d2r(45)),
-                        new Waypoint(95, 197, Pathfinder.d2r(90)),
-                        new Waypoint(97, 182, Pathfinder.d2r(120)),
+                        new Waypoint(121+6, 216, Pathfinder.d2r(0)),
+                        new Waypoint(101+6, 209, Pathfinder.d2r(45)),
+                        new Waypoint(95+6, 197, Pathfinder.d2r(90)),
+                        new Waypoint(97+6, 182, Pathfinder.d2r(120)),
                 }, defaultConfig),
                 new Path("CSL-3", new Waypoint[]{
-                        new Waypoint(97, 182, Pathfinder.d2r(120)),
-                        new Waypoint(95, 197, Pathfinder.d2r(90)),
-                        new Waypoint(101, 209, Pathfinder.d2r(45)),
-                        new Waypoint(121, 216, Pathfinder.d2r(0)),
+                        new Waypoint(97+6, 182, Pathfinder.d2r(120)),
+                        new Waypoint(95+6, 197, Pathfinder.d2r(90)),
+                        new Waypoint(101+6, 209, Pathfinder.d2r(45)),
+                        new Waypoint(121+6, 216, Pathfinder.d2r(0)),
                 }, defaultConfig),
                 new Path("CSL-4", new Waypoint[]{
-                        new Waypoint(121, 216, Pathfinder.d2r(0)),
-                        new Waypoint(108, 211, Pathfinder.d2r(45)),
-                        new Waypoint(103, 198, Pathfinder.d2r(90)),
-                        new Waypoint(108, 184, Pathfinder.d2r(120)),
+                        new Waypoint(121+6, 216, Pathfinder.d2r(0)),
+                        new Waypoint(108+6, 211, Pathfinder.d2r(45)),
+                        new Waypoint(103+6, 198, Pathfinder.d2r(90)),
+                        new Waypoint(108+6, 184, Pathfinder.d2r(120)),
                 },
                         defaultConfig),
                 new Path("CSL-5", new Waypoint[]{
-                        new Waypoint(108, 184, Pathfinder.d2r(120)),
-                        new Waypoint(103, 198, Pathfinder.d2r(90)),
-                        new Waypoint(108, 211, Pathfinder.d2r(45)),
-                        new Waypoint(121, 216, Pathfinder.d2r(0)),
+                        new Waypoint(108+6, 184, Pathfinder.d2r(120)),
+                        new Waypoint(103+6, 198, Pathfinder.d2r(90)),
+                        new Waypoint(108+6, 211, Pathfinder.d2r(45)),
+                        new Waypoint(121+6, 216, Pathfinder.d2r(0)),
                 }, defaultConfig)
         });
 

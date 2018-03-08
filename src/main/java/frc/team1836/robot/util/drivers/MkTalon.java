@@ -77,12 +77,12 @@ public class MkTalon {
             masterTalon.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
             masterTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 10, Constants.kTimeoutMs);
             masterTalon
-                    .setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 2, Constants.kTimeoutMs);
+                    .setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 3, Constants.kTimeoutMs);
             masterTalon.setControlFramePeriod(ControlFrame.Control_3_General, 10);
             masterTalon
-                    .setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 2, Constants.kTimeoutMs);
+                    .setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 3, Constants.kTimeoutMs);
             masterTalon
-                    .setStatusFramePeriod(StatusFrameEnhanced.Status_8_PulseWidth, 2, Constants.kTimeoutMs);
+                    .setStatusFramePeriod(StatusFrameEnhanced.Status_8_PulseWidth, 3, Constants.kTimeoutMs);
             masterTalon
                     .setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, Constants.kTimeoutMs);
 
@@ -222,7 +222,7 @@ public class MkTalon {
         if (Math.abs(getRPM()) > maxRPM) {
             maxRPM = Math.abs(getRPM());
         }
-        //SmartDashboard.putNumber(side.toString() + " RPM", maxRPM);
+        SmartDashboard.putNumber(side.toString() + " RPM", maxRPM);
     }
 
     public double getAbsolutePosition() {

@@ -36,6 +36,7 @@ public class Drive extends Subsystem {
 	private TrajectoryStatus rightStatus;
 	private DriveSignal currentSetpoint;
 	private double lastAngle = 0;
+	private boolean brakePath = true;
 
 	private Drive() {
 		leftDrive = new MkTalon(DRIVE.LEFT_MASTER_ID, DRIVE.LEFT_SLAVE_ID, TalonPosition.Left);
@@ -101,6 +102,7 @@ public class Drive extends Subsystem {
 	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol,
 			boolean brakeMode) {
 		CrashTracker.logMarker("Began Path: " + path.getName());
+		brakePath = brakeMode;
 		double offset = lastAngle - Pathfinder.boundHalfDegrees(Pathfinder.r2d(path.getLeftWheelTrajectory().get(0).heading));
 		for (Trajectory.Segment segment : path.getLeftWheelTrajectory().segments) {
 			segment.heading = Pathfinder.boundHalfDegrees(Pathfinder.r2d(segment.heading) + offset);
@@ -110,7 +112,7 @@ public class Drive extends Subsystem {
 		}
 		leftDrive.resetEncoder();
 		rightDrive.resetEncoder();
-		pathFollower = new PathFollower(path, dist_tol, ang_tol, brakeMode);
+		pathFollower = new PathFollower(path, dist_tol, ang_tol);
 		RobotState.mDriveControlState = RobotState.DriveControlState.PATH_FOLLOWING;
 	}
 
@@ -143,7 +145,7 @@ public class Drive extends Subsystem {
 		rightStatus = rightUpdate;
 		if (isEncodersConnected()) {
 			setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput(),
-							true),
+							brakePath),
 					leftUpdate.getArbFeed(), rightUpdate.getArbFeed());
 		} else {
 			leftDrive.set(ControlMode.PercentOutput,

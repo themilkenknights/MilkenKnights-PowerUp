@@ -40,9 +40,9 @@ public final class Constants {
         public static final double PATH_DIST_TOL = 0.25;
         public static final double PATH_ANGLE_TOL = 0.25;
 
-        public static final double DRIVE_FOLLOWER_P = 1.5;
+        public static final double DRIVE_FOLLOWER_P = 1.25;
         public static final double DRIVE_FOLLOWER_A = 0;
-        public static final double DRIVE_FOLLOWER_ANG = -2.25;
+        public static final double DRIVE_FOLLOWER_ANG = -2;
 
         public static final double LEFT_RPM_MAX = 488.0; //Observed Max Speed for Drivetrain in RPM
         public static final double RIGHT_RPM_MAX = 502.0; //Observed Max Speed for Drivetrain in RPM
@@ -93,7 +93,7 @@ public final class Constants {
         public static final double ARM_FORWARD_LIMIT = 250;
         public static final double ARM_REVERSE_LIMIT = 0;
         public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL;
-        public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 10;
+        public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 20;
         public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
         public static final int ROLLER_INTAKE_PDP_PORT = 6;
         public static final double ROLLER_INTAKE_CURRENT_LIMIT = 2;
