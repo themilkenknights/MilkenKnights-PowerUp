@@ -1,6 +1,7 @@
 package frc.team1836.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.auto.modes.CenterSwitchMode;
@@ -36,13 +37,17 @@ public class AutoChooser {
 		actionChooser.addObject("Standstill", AutoAction.STANDSTILL);
 		actionChooser.addObject("Drive Straight", AutoAction.DRIVE_STRAIGHT);
 		SmartDashboard.putData("Auto Action Chooser", actionChooser);
+		SmartDashboard.putNumber("Auto Delay", 0.0);
 		for (String pathName : Constants.AUTO.autoNames) {
 			autoPaths.put(pathName, DeserializePath.getPathFromFile(pathName));
 		}
 	}
 
 	public static AutoModeBase getAutoMode() {
-		System.out.println(RobotState.matchData.switchPosition.toString());
+		double delay = SmartDashboard.getNumber("Auto Delay", 0.0);
+		if (delay > 0) {
+			Timer.delay(delay);
+		}
 		switch (actionChooser.getSelected()) {
 			case STANDSTILL:
 				return new StandStillMode();

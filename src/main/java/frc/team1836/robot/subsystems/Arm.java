@@ -88,7 +88,7 @@ public class Arm extends Subsystem {
 		}
 	}
 
-	public void setEnable(){
+	public void setEnable() {
 		armPosEnable = armTalon.getPosition();
 		RobotState.mArmState = ArmState.ENABLE;
 	}
@@ -157,7 +157,7 @@ public class Arm extends Subsystem {
 		mDebug.timestamp = timestamp;
 	}
 
-	public void zeroRel(){
+	public void zeroRel() {
 		armTalon.resetEncoder();
 	}
 

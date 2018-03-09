@@ -60,7 +60,7 @@ public class Robot extends IterativeRobot {
             RobotState.mMatchState = MatchState.AUTO;
             mEnabledLooper.start();
             AutoChooser.startAuto();
-            System.out.println("Auto Init Took: " + (edu.wpi.first.wpilibj.Timer.getFPGATimestamp() - dt));
+           CrashTracker.logMarker("Auto Init Took: " + (edu.wpi.first.wpilibj.Timer.getFPGATimestamp() - dt));
         } catch (Throwable t) {
             CrashTracker.logThrowableCrash(t);
             throw t;

@@ -1,8 +1,10 @@
 package frc.team1836.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.RobotState;
+import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.util.drivers.MkLED;
 import frc.team1836.robot.util.drivers.MkLED.LEDColors;
 import frc.team1836.robot.util.loops.Loop;
@@ -14,11 +16,13 @@ public class Superstructure extends Subsystem {
 	private MkLED mkLED;
 	private boolean hPSignal;
 	private boolean turnOffLED;
+	private int ledNum;
 
 	public Superstructure() {
 		mkLED = new MkLED(Constants.SUPERSTRUCTURE.CANIFIER_ID);
 		hPSignal = false;
 		turnOffLED = false;
+		ledNum = 0;
 	}
 
 	public static Superstructure getInstance() {
@@ -74,29 +78,44 @@ public class Superstructure extends Subsystem {
 		enabledLooper.register(mLoop);
 	}
 
-	private void updateLEDStrip() {
-		mkLED.set_rgb(LEDColors.BLUE);
-	/*	if (turnOffLED) {
+	private synchronized void updateLEDStrip() {
+		//	mkLED.set_rgb(LEDColors.BLUE);
+
+		if (turnOffLED) {
+			mkLED.set_rgb(LEDColors.OFF);
 			return;
+		} else if (hPSignal) {
+			mkLED.set_rgb(LEDColors.GREEN);
+		} else if (RobotState.mMatchState == MatchState.DISABLED) {
+			mkLED.set_rgb(MkLED.LEDColors.PURPLE);
+		} else if (RobotState.matchData.alliance == DriverStation.Alliance.Red) {
+			mkLED.set_rgb(LEDColors.RED);
+		} else if (RobotState.matchData.alliance == DriverStation.Alliance.Blue) {
+			mkLED.set_rgb(LEDColors.BLUE);
+		} else {
+			mkLED.set_rgb(LEDColors.BLUE);
 		}
-		switch (RobotState.mMatchState) {
-			case DISABLED:
-				mkLED.set_rgb(LEDColors.BLUE);
-			case AUTO:
-				mkLED.setPulse(MkLED.LEDColors.BLUE, MkLED.LEDColors.OFF, 1);
-			case TELEOP:
-				if (hPSignal) {
-					mkLED.set_rgb(MkLED.LEDColors.GREEN);
-				} else if (RobotState.matchData.alliance == DriverStation.Alliance.Red) {
+
+
+		/*	switch (RobotState.mMatchState) {
+				case DISABLED:
+					mkLED.set_rgb(LEDColors.BLUE);
+				case AUTO:
 					mkLED.setPulse(MkLED.LEDColors.BLUE, MkLED.LEDColors.OFF, 1);
-				} else if (RobotState.matchData.alliance == DriverStation.Alliance.Blue) {
-					mkLED.setPulse(MkLED.LEDColors.RED, MkLED.LEDColors.OFF, 1);
-				} else {
-					mkLED.setPulse(MkLED.LEDColors.PURPLE, MkLED.LEDColors.OFF, 1);
-				}
-			case TEST:
-				mkLED.setPulse(MkLED.LEDColors.ORANGE, MkLED.LEDColors.RED, 1);
-		} */
+				case TELEOP:
+					if (hPSignal) {
+						mkLED.set_rgb(MkLED.LEDColors.GREEN);
+					} else if (RobotState.matchData.alliance == DriverStation.Alliance.Red) {
+						mkLED.setPulse(MkLED.LEDColors.BLUE, MkLED.LEDColors.OFF, 1);
+					} else if (RobotState.matchData.alliance == DriverStation.Alliance.Blue) {
+						mkLED.setPulse(MkLED.LEDColors.RED, MkLED.LEDColors.OFF, 1);
+					} else {
+						mkLED.setPulse(MkLED.LEDColors.PURPLE, MkLED.LEDColors.OFF, 1);
+					}
+				case TEST:
+					mkLED.setPulse(MkLED.LEDColors.ORANGE, MkLED.LEDColors.RED, 1);
+			} */
+
 	}
 
 
