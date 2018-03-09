@@ -72,20 +72,17 @@ public class MkTalon {
 
     public void resetConfig() {
         if (side != TalonPosition.Arm) {
-
-
             masterTalon.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
-            masterTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 10, Constants.kTimeoutMs);
+            masterTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 20, Constants.kTimeoutMs);
             masterTalon
                     .setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 3, Constants.kTimeoutMs);
-            masterTalon.setControlFramePeriod(ControlFrame.Control_3_General, 10);
+            masterTalon.setControlFramePeriod(ControlFrame.Control_3_General, 20);
             masterTalon
                     .setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 3, Constants.kTimeoutMs);
             masterTalon
                     .setStatusFramePeriod(StatusFrameEnhanced.Status_8_PulseWidth, 3, Constants.kTimeoutMs);
             masterTalon
-                    .setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, Constants.kTimeoutMs);
-
+                    .setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 20, Constants.kTimeoutMs);
         }
         masterTalon.configNominalOutputForward(0, Constants.kTimeoutMs);
         masterTalon.configNominalOutputReverse(0, Constants.kTimeoutMs);

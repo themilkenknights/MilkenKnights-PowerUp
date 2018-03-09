@@ -103,7 +103,8 @@ public class Drive extends Subsystem {
 			boolean brakeMode) {
 		CrashTracker.logMarker("Began Path: " + path.getName());
 		brakePath = brakeMode;
-		double offset = lastAngle - Pathfinder.boundHalfDegrees(Pathfinder.r2d(path.getLeftWheelTrajectory().get(0).heading));
+		double offset = lastAngle - Pathfinder
+				.boundHalfDegrees(Pathfinder.r2d(path.getLeftWheelTrajectory().get(0).heading));
 		for (Trajectory.Segment segment : path.getLeftWheelTrajectory().segments) {
 			segment.heading = Pathfinder.boundHalfDegrees(Pathfinder.r2d(segment.heading) + offset);
 		}
@@ -116,7 +117,7 @@ public class Drive extends Subsystem {
 		RobotState.mDriveControlState = RobotState.DriveControlState.PATH_FOLLOWING;
 	}
 
-	public boolean isPathFinished() {
+	public synchronized boolean isPathFinished() {
 		if (pathFollower.getFinished()) {
 			lastAngle = pathFollower.getEndHeading();
 			RobotState.mDriveControlState = DriveControlState.OPEN_LOOP;
@@ -134,7 +135,7 @@ public class Drive extends Subsystem {
 	 * Inputs Position, Speed and Angle to Trajectory Follower
 	 * Creates a new Drive Signal that is then set as a velocity setpoint
 	 */
-	private void updatePathFollower() {
+	private synchronized void updatePathFollower() {
 		TrajectoryStatus leftUpdate = pathFollower
 				.getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(),
 						-navX.getYaw());
@@ -272,7 +273,9 @@ public class Drive extends Subsystem {
 						case VELOCITY_SETPOINT:
 							return;
 						case PATH_FOLLOWING:
-							updatePathFollower();
+							if (pathFollower != null) {
+								updatePathFollower();
+							}
 							return;
 						default:
 							System.out

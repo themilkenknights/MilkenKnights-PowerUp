@@ -39,10 +39,14 @@ public class CenterSwitchMode extends AutoModeBase {
 
 	private void leftRoutine() throws AutoModeEndedException {
 		CrashTracker.logMarker("Starting Center Switch Mode (Left Side)");
-		new MoveArmAction( ArmState.OPPOSITE_SWITCH_PLACE);
+		runAction(new MoveArmAction(ArmState.OPPOSITE_SWITCH_PLACE));
 		runAction(new DrivePathAction(AutoChooser.autoPaths.get("CSL-1"), false, false, false));
-		runAction(new OpenLoopAction(0.2, -0.7, true));
-		runAction(new RollerAction(0.4, ARM.INTAKE_OUT_ROLLER_SPEED));
+		runAction(new ParallelAction(Arrays
+				.asList(
+						new OpenLoopAction(0.2, -0.25, true),
+						new DelayAction(0.1, new RollerAction(0.3, ARM.INTAKE_OUT_ROLLER_SPEED))
+				)));
+
 		runAction(new ParallelAction(Arrays
 				.asList(
 						new RollerAction(0.2, ARM.INTAKE_OUT_ROLLER_SPEED),
@@ -53,11 +57,12 @@ public class CenterSwitchMode extends AutoModeBase {
 				)));
 		runAction(new ParallelAction(Arrays
 				.asList(
+						new RollerAction(0.5, ARM.INTAKE_OUT_ROLLER_SPEED),
 						new DelayAction(0.5, new MoveArmAction(ArmState.OPPOSITE_SWITCH_PLACE)),
 						new DrivePathAction(AutoChooser.autoPaths.get("CSL-3"), false, false, false)
 				)));
-		runAction(new OpenLoopAction(0.2, -0.7, true));
-		runAction(new RollerAction(0.4, ARM.INTAKE_OUT_ROLLER_SPEED));
+		runAction(new OpenLoopAction(0.15, -0.25, true));
+		runAction(new RollerAction(0.3, ARM.INTAKE_OUT_ROLLER_SPEED));
 		runAction(new ParallelAction(Arrays
 				.asList(
 						new RollerAction(0.2, ARM.INTAKE_OUT_ROLLER_SPEED),
@@ -68,10 +73,11 @@ public class CenterSwitchMode extends AutoModeBase {
 				)));
 		runAction(new ParallelAction(Arrays
 				.asList(
+						new RollerAction(0.5, ARM.INTAKE_OUT_ROLLER_SPEED),
 						new DelayAction(0.5, new MoveArmAction(ArmState.OPPOSITE_SWITCH_PLACE)),
 						new DrivePathAction(AutoChooser.autoPaths.get("CSL-5"), false, false, false)
 				)));
-		runAction(new OpenLoopAction(0.2, -0.7, true));
+		runAction(new OpenLoopAction(0.15, -0.25, true));
 		runAction(new RollerAction(2, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
 	}
 
@@ -79,20 +85,26 @@ public class CenterSwitchMode extends AutoModeBase {
 		CrashTracker.logMarker("Starting Center Switch Mode (Right Side)");
 		RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
 		runAction(new DrivePathAction(AutoChooser.autoPaths.get("CSR-1"), false, false, false));
-		runAction(new RollerAction(0.3, ARM.INTAKE_OUT_ROLLER_SPEED));
+		runAction(new ParallelAction(Arrays
+				.asList(
+						new OpenLoopAction(0.2, -0.25, true),
+						new DelayAction(0.1, new RollerAction(0.3, ARM.INTAKE_OUT_ROLLER_SPEED))
+				)));
 		runAction(new ParallelAction(Arrays
 				.asList(
 						new RollerAction(0.2, ARM.INTAKE_OUT_ROLLER_SPEED),
 						new DrivePathAction(AutoChooser.autoPaths.get("CSR-2"), true, false, true),
 						new DelayAction(0.25, new RollerAction(AutoChooser.autoPaths.get("CSR-2").getTime(),
 								ARM.INTAKE_IN_ROLLER_SPEED)),
-						new DelayAction(0.25, new MoveArmAction(ArmState.INTAKE))
+						new MoveArmAction(ArmState.INTAKE)
 				)));
 		runAction(new ParallelAction(Arrays
 				.asList(
+						new RollerAction(0.5, ARM.INTAKE_OUT_ROLLER_SPEED),
 						new DelayAction(0.5, new MoveArmAction(ArmState.OPPOSITE_SWITCH_PLACE)),
 						new DrivePathAction(AutoChooser.autoPaths.get("CSR-3"), false, false, false)
 				)));
+		runAction(new OpenLoopAction(0.15, -0.25, true));
 		runAction(new RollerAction(0.3, ARM.INTAKE_OUT_ROLLER_SPEED));
 		runAction(new ParallelAction(Arrays
 				.asList(
@@ -100,13 +112,15 @@ public class CenterSwitchMode extends AutoModeBase {
 						new DrivePathAction(AutoChooser.autoPaths.get("CSR-4"), true, false, true),
 						new DelayAction(0.3, new RollerAction(AutoChooser.autoPaths.get("CSR-4").getTime(),
 								ARM.INTAKE_IN_ROLLER_SPEED)),
-						new DelayAction(0.1, new MoveArmAction(ArmState.INTAKE))
+						new MoveArmAction(ArmState.INTAKE)
 				)));
 		runAction(new ParallelAction(Arrays
 				.asList(
+						new RollerAction(0.5, ARM.INTAKE_OUT_ROLLER_SPEED),
 						new DelayAction(0.5, new MoveArmAction(ArmState.OPPOSITE_SWITCH_PLACE)),
 						new DrivePathAction(AutoChooser.autoPaths.get("CSR-5"), false, false, false)
 				)));
+		runAction(new OpenLoopAction(0.15, -0.25, true));
 		runAction(new RollerAction(2, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
 	}
 

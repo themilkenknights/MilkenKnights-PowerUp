@@ -27,7 +27,6 @@ public class Arm extends Subsystem {
 	private ArmDebugOutput mDebug = new ArmDebugOutput();
 	private boolean armSafety = true;
 	private double armPosEnable = 0;
-	private boolean zeroInput = false;
 
 	private Arm() {
 		mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH,
@@ -45,7 +44,6 @@ public class Arm extends Subsystem {
 		armTalon.invertSlave(ARM.ARM_SLAVE_DIRECTION);
 		leftIntakeRollerTalon.setInverted(ARM.LEFT_INTAKE_DIRECTION);
 		rightIntakeRollerTalon.setInverted(ARM.RIGHT_INTAKE_DIRECTION);
-		armTalon.zeroAbsolute();
 	}
 
 	public static Arm getInstance() {
@@ -90,6 +88,11 @@ public class Arm extends Subsystem {
 		}
 	}
 
+	public void setEnable(){
+		armPosEnable = armTalon.getPosition();
+		RobotState.mArmState = ArmState.ENABLE;
+	}
+
 	@Override
 	public void registerEnabledLoops(Looper enabledLooper) {
 		Loop mLoop = new Loop() {
@@ -97,9 +100,12 @@ public class Arm extends Subsystem {
 			@Override
 			public void onStart(double timestamp) {
 				synchronized (Arm.this) {
+					armTalon.zeroAbsolute();
+					if (armTalon.getAbsolutePosition() > 4096.0) {
+						RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+					}
 					armPosEnable = armTalon.getPosition();
 					RobotState.mArmState = ArmState.ENABLE;
-
 				}
 			}
 
@@ -115,10 +121,10 @@ public class Arm extends Subsystem {
 						case MOTION_MAGIC:
 							updateArmSetpoint();
 							return;
-						case OPEN_LOOP:
-							return;
 						case ZEROING:
 							zeroArm();
+							return;
+						case OPEN_LOOP:
 							return;
 						default:
 							System.out
@@ -151,6 +157,10 @@ public class Arm extends Subsystem {
 		mDebug.timestamp = timestamp;
 	}
 
+	public void zeroRel(){
+		armTalon.resetEncoder();
+	}
+
 	private void updateArmSetpoint() {
 		if (RobotState.mArmState.equals(ArmState.ENABLE)) {
 			armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(armPosEnable), true);
@@ -167,29 +177,23 @@ public class Arm extends Subsystem {
 		}
 	}
 
-
-	public void overrideZero(boolean over) {
-		zeroInput = over;
-	}
-
 	private void zeroArm() {
-		if (!zeroInput) {
-			if (armTalon.getCurrentOutput() > ARM.CURRENT_HARDSTOP_LIMIT) {
-				RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
-				setOpenLoop(0);
-				edu.wpi.first.wpilibj.Timer.delay(0.2);
-				armTalon.resetEncoder();
-				armPosEnable = armTalon.getPosition();
-				armTalon.setLimitEnabled(true);
-				armSafety = true;
-				System.out.println("Zeroed");
-				RobotState.mArmState = ArmState.ENABLE;
-				RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
-			} else {
-				armTalon.setLimitEnabled(false);
-				setOpenLoop(0);
-			}
+		if (armTalon.getCurrentOutput() > ARM.CURRENT_HARDSTOP_LIMIT) {
+			RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+			setOpenLoop(0);
+			edu.wpi.first.wpilibj.Timer.delay(0.2);
+			armTalon.resetEncoder();
+			armPosEnable = armTalon.getPosition();
+			armTalon.setLimitEnabled(true);
+			armSafety = true;
+			System.out.println("Zeroed");
+			RobotState.mArmState = ArmState.ENABLE;
+			RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
+		} else {
+			armTalon.setLimitEnabled(false);
+			setOpenLoop(0);
 		}
+
 	}
 
 

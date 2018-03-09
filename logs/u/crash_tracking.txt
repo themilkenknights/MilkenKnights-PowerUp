@@ -689,3 +689,879 @@ e8c200fb-2a23-4ded-a635-a9ff78cbf6b6, disabled init, Thu Mar 08 11:20:08 PST 201
 9dfc5156-93b4-426d-bdc7-c9df3853f77d, disabled init, Thu Mar 08 11:21:38 PST 2018
 9dfc5156-93b4-426d-bdc7-c9df3853f77d, teleop init, Thu Mar 08 11:21:40 PST 2018
 9dfc5156-93b4-426d-bdc7-c9df3853f77d, disabled init, Thu Mar 08 11:22:06 PST 2018
+e43f3e57-e81e-4568-b7cc-2147b56786d5, robot startup, Thu Mar 08 11:22:58 PST 2018
+e43f3e57-e81e-4568-b7cc-2147b56786d5, robot init, Thu Mar 08 11:22:58 PST 2018
+e43f3e57-e81e-4568-b7cc-2147b56786d5, disabled init, Thu Mar 08 11:22:59 PST 2018
+e43f3e57-e81e-4568-b7cc-2147b56786d5, auto init, Thu Mar 08 11:23:33 PST 2018
+e43f3e57-e81e-4568-b7cc-2147b56786d5, Starting Center Switch Mode (Left Side), Thu Mar 08 11:23:33 PST 2018
+e43f3e57-e81e-4568-b7cc-2147b56786d5, Began Path: CSL-1, Thu Mar 08 11:23:33 PST 2018
+e43f3e57-e81e-4568-b7cc-2147b56786d5, Began Path: CSL-2, Thu Mar 08 11:23:37 PST 2018
+e43f3e57-e81e-4568-b7cc-2147b56786d5, Began Path: CSL-3, Thu Mar 08 11:23:39 PST 2018
+e43f3e57-e81e-4568-b7cc-2147b56786d5, Began Path: CSL-4, Thu Mar 08 11:23:41 PST 2018
+e43f3e57-e81e-4568-b7cc-2147b56786d5, Began Path: CSL-5, Thu Mar 08 11:23:43 PST 2018
+e43f3e57-e81e-4568-b7cc-2147b56786d5, disabled init, Thu Mar 08 11:23:46 PST 2018
+1b8519e2-241d-46f6-a0b0-e27c9652a199, robot startup, Sun Feb 04 11:10:42 PST 2018
+1b8519e2-241d-46f6-a0b0-e27c9652a199, robot init, Sun Feb 04 11:10:42 PST 2018
+1b8519e2-241d-46f6-a0b0-e27c9652a199, disabled init, Sun Feb 04 11:11:03 PST 2018
+1b8519e2-241d-46f6-a0b0-e27c9652a199, auto init, Thu Mar 08 12:03:04 PST 2018
+1b8519e2-241d-46f6-a0b0-e27c9652a199, Starting Center Switch Mode (Left Side), Thu Mar 08 12:03:04 PST 2018
+1b8519e2-241d-46f6-a0b0-e27c9652a199, Began Path: CSL-1, Thu Mar 08 12:03:04 PST 2018
+1b8519e2-241d-46f6-a0b0-e27c9652a199, Exception, Thu Mar 08 12:03:06 PST 2018, java.lang.NullPointerException
+	at frc.team1836.robot.subsystems.Drive.updatePathFollower(Drive.java:142)
+	at frc.team1836.robot.subsystems.Drive.access$400(Drive.java:28)
+	at frc.team1836.robot.subsystems.Drive$1.onLoop(Drive.java:275)
+	at frc.team1836.robot.util.loops.Looper$1.runCrashTracked(Looper.java:34)
+	at frc.team1836.robot.util.logging.CrashTrackingRunnable.run(CrashTrackingRunnable.java:11)
+	at edu.wpi.first.wpilibj.Notifier.lambda$new$0(Notifier.java:97)
+	at java.lang.Thread.run(Thread.java:748)
+
+717ee513-933e-41bc-a48f-57b85f36d882, robot startup, Thu Mar 08 12:03:11 PST 2018
+717ee513-933e-41bc-a48f-57b85f36d882, robot init, Thu Mar 08 12:03:12 PST 2018
+717ee513-933e-41bc-a48f-57b85f36d882, auto init, Thu Mar 08 12:03:12 PST 2018
+717ee513-933e-41bc-a48f-57b85f36d882, Starting Center Switch Mode (Left Side), Thu Mar 08 12:03:12 PST 2018
+717ee513-933e-41bc-a48f-57b85f36d882, Began Path: CSL-1, Thu Mar 08 12:03:12 PST 2018
+717ee513-933e-41bc-a48f-57b85f36d882, Began Path: CSL-2, Thu Mar 08 12:03:15 PST 2018
+717ee513-933e-41bc-a48f-57b85f36d882, Began Path: CSL-3, Thu Mar 08 12:03:17 PST 2018
+717ee513-933e-41bc-a48f-57b85f36d882, disabled init, Thu Mar 08 12:03:19 PST 2018
+717ee513-933e-41bc-a48f-57b85f36d882, teleop init, Thu Mar 08 12:03:20 PST 2018
+717ee513-933e-41bc-a48f-57b85f36d882, disabled init, Thu Mar 08 12:05:35 PST 2018
+22c955f8-1695-462d-8ca8-0efee836bcb0, robot startup, Thu Mar 08 12:10:08 PST 2018
+22c955f8-1695-462d-8ca8-0efee836bcb0, robot init, Thu Mar 08 12:10:09 PST 2018
+22c955f8-1695-462d-8ca8-0efee836bcb0, disabled init, Thu Mar 08 12:10:09 PST 2018
+e8916d9e-4c2c-4b12-b6e9-a94d6fdd2131, robot startup, Thu Mar 08 12:10:58 PST 2018
+e8916d9e-4c2c-4b12-b6e9-a94d6fdd2131, robot init, Thu Mar 08 12:10:58 PST 2018
+e8916d9e-4c2c-4b12-b6e9-a94d6fdd2131, disabled init, Thu Mar 08 12:10:59 PST 2018
+e8916d9e-4c2c-4b12-b6e9-a94d6fdd2131, auto init, Thu Mar 08 12:15:29 PST 2018
+e8916d9e-4c2c-4b12-b6e9-a94d6fdd2131, Starting Center Switch Mode (Right Side), Thu Mar 08 12:15:29 PST 2018
+e8916d9e-4c2c-4b12-b6e9-a94d6fdd2131, Began Path: CSR-1, Thu Mar 08 12:15:29 PST 2018
+e8916d9e-4c2c-4b12-b6e9-a94d6fdd2131, Exception, Thu Mar 08 12:15:31 PST 2018, java.lang.NullPointerException
+	at frc.team1836.robot.subsystems.Drive.updatePathFollower(Drive.java:142)
+	at frc.team1836.robot.subsystems.Drive.access$400(Drive.java:28)
+	at frc.team1836.robot.subsystems.Drive$1.onLoop(Drive.java:275)
+	at frc.team1836.robot.util.loops.Looper$1.runCrashTracked(Looper.java:34)
+	at frc.team1836.robot.util.logging.CrashTrackingRunnable.run(CrashTrackingRunnable.java:11)
+	at edu.wpi.first.wpilibj.Notifier.lambda$new$0(Notifier.java:97)
+	at java.lang.Thread.run(Thread.java:748)
+
+fe33d72e-7680-460f-adbe-f28892d26c84, robot startup, Thu Mar 08 12:15:36 PST 2018
+fe33d72e-7680-460f-adbe-f28892d26c84, robot init, Thu Mar 08 12:15:36 PST 2018
+fe33d72e-7680-460f-adbe-f28892d26c84, auto init, Thu Mar 08 12:15:36 PST 2018
+fe33d72e-7680-460f-adbe-f28892d26c84, Starting Center Switch Mode (Right Side), Thu Mar 08 12:15:36 PST 2018
+fe33d72e-7680-460f-adbe-f28892d26c84, Began Path: CSR-1, Thu Mar 08 12:15:36 PST 2018
+fe33d72e-7680-460f-adbe-f28892d26c84, Began Path: CSR-2, Thu Mar 08 12:15:39 PST 2018
+fe33d72e-7680-460f-adbe-f28892d26c84, Began Path: CSR-3, Thu Mar 08 12:15:42 PST 2018
+fe33d72e-7680-460f-adbe-f28892d26c84, disabled init, Thu Mar 08 12:15:44 PST 2018
+fe33d72e-7680-460f-adbe-f28892d26c84, teleop init, Thu Mar 08 12:15:44 PST 2018
+fe33d72e-7680-460f-adbe-f28892d26c84, disabled init, Thu Mar 08 12:18:00 PST 2018
+8dcd60f9-b289-4706-a072-14a1085fbe10, robot startup, Sun Feb 04 11:10:42 PST 2018
+8dcd60f9-b289-4706-a072-14a1085fbe10, robot init, Sun Feb 04 11:10:42 PST 2018
+8dcd60f9-b289-4706-a072-14a1085fbe10, disabled init, Sun Feb 04 11:10:57 PST 2018
+8dcd60f9-b289-4706-a072-14a1085fbe10, auto init, Thu Mar 08 12:24:22 PST 2018
+8dcd60f9-b289-4706-a072-14a1085fbe10, Starting Center Switch Mode (Right Side), Thu Mar 08 12:24:22 PST 2018
+8dcd60f9-b289-4706-a072-14a1085fbe10, Began Path: CSR-1, Thu Mar 08 12:24:22 PST 2018
+8dcd60f9-b289-4706-a072-14a1085fbe10, Exception, Thu Mar 08 12:24:25 PST 2018, java.lang.NullPointerException
+	at frc.team1836.robot.subsystems.Drive.updatePathFollower(Drive.java:142)
+	at frc.team1836.robot.subsystems.Drive.access$400(Drive.java:28)
+	at frc.team1836.robot.subsystems.Drive$1.onLoop(Drive.java:275)
+	at frc.team1836.robot.util.loops.Looper$1.runCrashTracked(Looper.java:34)
+	at frc.team1836.robot.util.logging.CrashTrackingRunnable.run(CrashTrackingRunnable.java:11)
+	at edu.wpi.first.wpilibj.Notifier.lambda$new$0(Notifier.java:97)
+	at java.lang.Thread.run(Thread.java:748)
+
+67254dcf-23fc-42d8-955f-1f450578b1c9, robot startup, Thu Mar 08 12:24:29 PST 2018
+67254dcf-23fc-42d8-955f-1f450578b1c9, robot init, Thu Mar 08 12:24:29 PST 2018
+67254dcf-23fc-42d8-955f-1f450578b1c9, auto init, Thu Mar 08 12:24:30 PST 2018
+67254dcf-23fc-42d8-955f-1f450578b1c9, Starting Center Switch Mode (Right Side), Thu Mar 08 12:24:30 PST 2018
+67254dcf-23fc-42d8-955f-1f450578b1c9, Began Path: CSR-1, Thu Mar 08 12:24:30 PST 2018
+67254dcf-23fc-42d8-955f-1f450578b1c9, Began Path: CSR-2, Thu Mar 08 12:24:33 PST 2018
+67254dcf-23fc-42d8-955f-1f450578b1c9, Began Path: CSR-3, Thu Mar 08 12:24:35 PST 2018
+67254dcf-23fc-42d8-955f-1f450578b1c9, Exception, Thu Mar 08 12:24:37 PST 2018, java.lang.NullPointerException
+	at frc.team1836.robot.subsystems.Drive.updatePathFollower(Drive.java:142)
+	at frc.team1836.robot.subsystems.Drive.access$400(Drive.java:28)
+	at frc.team1836.robot.subsystems.Drive$1.onLoop(Drive.java:275)
+	at frc.team1836.robot.util.loops.Looper$1.runCrashTracked(Looper.java:34)
+	at frc.team1836.robot.util.logging.CrashTrackingRunnable.run(CrashTrackingRunnable.java:11)
+	at edu.wpi.first.wpilibj.Notifier.lambda$new$0(Notifier.java:97)
+	at java.lang.Thread.run(Thread.java:748)
+
+ec0f39fe-c5c2-4670-9a4a-56fbfa431520, robot startup, Thu Mar 08 12:24:42 PST 2018
+ec0f39fe-c5c2-4670-9a4a-56fbfa431520, robot init, Thu Mar 08 12:24:42 PST 2018
+ec0f39fe-c5c2-4670-9a4a-56fbfa431520, teleop init, Thu Mar 08 12:24:42 PST 2018
+ec0f39fe-c5c2-4670-9a4a-56fbfa431520, disabled init, Thu Mar 08 12:26:53 PST 2018
+2e169258-3db7-40d8-918b-471cfa19fb4d, robot startup, Sun Feb 04 11:10:42 PST 2018
+2e169258-3db7-40d8-918b-471cfa19fb4d, robot init, Sun Feb 04 11:10:42 PST 2018
+2e169258-3db7-40d8-918b-471cfa19fb4d, disabled init, Sun Feb 04 11:11:03 PST 2018
+2e169258-3db7-40d8-918b-471cfa19fb4d, auto init, Thu Mar 08 12:31:48 PST 2018
+2e169258-3db7-40d8-918b-471cfa19fb4d, Starting Center Switch Mode (Left Side), Thu Mar 08 12:31:48 PST 2018
+2e169258-3db7-40d8-918b-471cfa19fb4d, Began Path: CSL-1, Thu Mar 08 12:31:48 PST 2018
+2e169258-3db7-40d8-918b-471cfa19fb4d, Began Path: CSL-2, Thu Mar 08 12:31:51 PST 2018
+2e169258-3db7-40d8-918b-471cfa19fb4d, Began Path: CSL-3, Thu Mar 08 12:31:54 PST 2018
+2e169258-3db7-40d8-918b-471cfa19fb4d, Began Path: CSL-4, Thu Mar 08 12:31:56 PST 2018
+2e169258-3db7-40d8-918b-471cfa19fb4d, Exception, Thu Mar 08 12:31:59 PST 2018, java.lang.NullPointerException
+	at frc.team1836.robot.subsystems.Drive.updatePathFollower(Drive.java:142)
+	at frc.team1836.robot.subsystems.Drive.access$400(Drive.java:28)
+	at frc.team1836.robot.subsystems.Drive$1.onLoop(Drive.java:275)
+	at frc.team1836.robot.util.loops.Looper$1.runCrashTracked(Looper.java:34)
+	at frc.team1836.robot.util.logging.CrashTrackingRunnable.run(CrashTrackingRunnable.java:11)
+	at edu.wpi.first.wpilibj.Notifier.lambda$new$0(Notifier.java:97)
+	at java.lang.Thread.run(Thread.java:748)
+
+b3de7c2e-3252-4071-8d3e-6ca1dcbfc4a3, robot startup, Thu Mar 08 12:32:03 PST 2018
+b3de7c2e-3252-4071-8d3e-6ca1dcbfc4a3, robot init, Thu Mar 08 12:32:03 PST 2018
+b3de7c2e-3252-4071-8d3e-6ca1dcbfc4a3, teleop init, Thu Mar 08 12:32:04 PST 2018
+b3de7c2e-3252-4071-8d3e-6ca1dcbfc4a3, disabled init, Thu Mar 08 12:34:19 PST 2018
+b74091cd-ecdd-43f0-944f-7ab3f00a2341, robot startup, Sun Feb 04 11:10:42 PST 2018
+b74091cd-ecdd-43f0-944f-7ab3f00a2341, robot init, Sun Feb 04 11:10:42 PST 2018
+b74091cd-ecdd-43f0-944f-7ab3f00a2341, disabled init, Sun Feb 04 11:20:04 PST 2018
+79d59676-e1f2-4f22-9972-de8fbc60f372, robot startup, Thu Mar 08 13:09:25 PST 2018
+79d59676-e1f2-4f22-9972-de8fbc60f372, robot init, Thu Mar 08 13:09:25 PST 2018
+79d59676-e1f2-4f22-9972-de8fbc60f372, disabled init, Thu Mar 08 13:09:25 PST 2018
+0159f363-757d-4909-be43-067bc540c686, robot startup, Thu Mar 08 13:09:35 PST 2018
+0159f363-757d-4909-be43-067bc540c686, robot init, Thu Mar 08 13:09:35 PST 2018
+0159f363-757d-4909-be43-067bc540c686, disabled init, Thu Mar 08 13:09:36 PST 2018
+bceb9275-1ce4-40b2-a34b-8b0d1b232ea4, robot startup, Thu Mar 08 13:11:10 PST 2018
+bceb9275-1ce4-40b2-a34b-8b0d1b232ea4, robot init, Thu Mar 08 13:11:10 PST 2018
+bceb9275-1ce4-40b2-a34b-8b0d1b232ea4, disabled init, Thu Mar 08 13:11:10 PST 2018
+91eca137-dd03-4ffe-ba1c-b4a04f703912, robot startup, Thu Mar 08 13:11:38 PST 2018
+91eca137-dd03-4ffe-ba1c-b4a04f703912, robot init, Thu Mar 08 13:11:38 PST 2018
+91eca137-dd03-4ffe-ba1c-b4a04f703912, disabled init, Thu Mar 08 13:11:39 PST 2018
+91eca137-dd03-4ffe-ba1c-b4a04f703912, teleop init, Thu Mar 08 13:11:47 PST 2018
+91eca137-dd03-4ffe-ba1c-b4a04f703912, disabled init, Thu Mar 08 13:11:47 PST 2018
+fe097bd7-f1fb-4c1a-bd93-16443988bc9e, robot startup, Thu Mar 08 13:12:35 PST 2018
+fe097bd7-f1fb-4c1a-bd93-16443988bc9e, robot init, Thu Mar 08 13:12:36 PST 2018
+fe097bd7-f1fb-4c1a-bd93-16443988bc9e, disabled init, Thu Mar 08 13:12:36 PST 2018
+fe097bd7-f1fb-4c1a-bd93-16443988bc9e, teleop init, Thu Mar 08 13:12:45 PST 2018
+3e0666eb-8aea-44f0-9887-069416bf5e2f, robot startup, Thu Mar 08 13:13:30 PST 2018
+3e0666eb-8aea-44f0-9887-069416bf5e2f, robot init, Thu Mar 08 13:13:30 PST 2018
+3e0666eb-8aea-44f0-9887-069416bf5e2f, disabled init, Thu Mar 08 13:13:31 PST 2018
+3e0666eb-8aea-44f0-9887-069416bf5e2f, teleop init, Thu Mar 08 13:14:52 PST 2018
+3e0666eb-8aea-44f0-9887-069416bf5e2f, disabled init, Thu Mar 08 13:15:28 PST 2018
+3e0666eb-8aea-44f0-9887-069416bf5e2f, teleop init, Thu Mar 08 13:15:29 PST 2018
+3e0666eb-8aea-44f0-9887-069416bf5e2f, disabled init, Thu Mar 08 13:15:30 PST 2018
+3e0666eb-8aea-44f0-9887-069416bf5e2f, teleop init, Thu Mar 08 13:16:17 PST 2018
+3e0666eb-8aea-44f0-9887-069416bf5e2f, disabled init, Thu Mar 08 13:16:46 PST 2018
+30451e78-ad87-4124-a039-12bf279c83cc, robot startup, Thu Mar 08 13:17:20 PST 2018
+30451e78-ad87-4124-a039-12bf279c83cc, robot init, Thu Mar 08 13:17:20 PST 2018
+30451e78-ad87-4124-a039-12bf279c83cc, disabled init, Thu Mar 08 13:17:21 PST 2018
+30451e78-ad87-4124-a039-12bf279c83cc, teleop init, Thu Mar 08 13:17:47 PST 2018
+30451e78-ad87-4124-a039-12bf279c83cc, disabled init, Thu Mar 08 13:17:59 PST 2018
+8d6338b3-2d6b-4f08-81a1-8f6f5bd547bf, robot startup, Thu Mar 08 13:18:29 PST 2018
+8d6338b3-2d6b-4f08-81a1-8f6f5bd547bf, robot init, Thu Mar 08 13:18:30 PST 2018
+8d6338b3-2d6b-4f08-81a1-8f6f5bd547bf, disabled init, Thu Mar 08 13:18:30 PST 2018
+8d6338b3-2d6b-4f08-81a1-8f6f5bd547bf, teleop init, Thu Mar 08 13:18:32 PST 2018
+8d6338b3-2d6b-4f08-81a1-8f6f5bd547bf, disabled init, Thu Mar 08 13:18:42 PST 2018
+bd1063ac-367f-4d66-bba1-830f1fc68e19, robot startup, Thu Mar 08 13:19:34 PST 2018
+bd1063ac-367f-4d66-bba1-830f1fc68e19, robot init, Thu Mar 08 13:19:35 PST 2018
+bd1063ac-367f-4d66-bba1-830f1fc68e19, disabled init, Thu Mar 08 13:19:36 PST 2018
+bd1063ac-367f-4d66-bba1-830f1fc68e19, teleop init, Thu Mar 08 13:19:38 PST 2018
+bd1063ac-367f-4d66-bba1-830f1fc68e19, disabled init, Thu Mar 08 13:19:40 PST 2018
+bd1063ac-367f-4d66-bba1-830f1fc68e19, teleop init, Thu Mar 08 13:19:53 PST 2018
+bd1063ac-367f-4d66-bba1-830f1fc68e19, disabled init, Thu Mar 08 13:19:59 PST 2018
+bca9d4b8-c1ba-47f1-a2fc-c4cf82ee3708, robot startup, Thu Mar 08 13:20:22 PST 2018
+bca9d4b8-c1ba-47f1-a2fc-c4cf82ee3708, robot init, Thu Mar 08 13:20:22 PST 2018
+bca9d4b8-c1ba-47f1-a2fc-c4cf82ee3708, disabled init, Thu Mar 08 13:20:22 PST 2018
+bca9d4b8-c1ba-47f1-a2fc-c4cf82ee3708, teleop init, Thu Mar 08 13:20:24 PST 2018
+bca9d4b8-c1ba-47f1-a2fc-c4cf82ee3708, disabled init, Thu Mar 08 13:20:30 PST 2018
+ad2aa828-5e48-459a-815f-94ea6006ca97, robot startup, Thu Mar 08 13:20:53 PST 2018
+ad2aa828-5e48-459a-815f-94ea6006ca97, robot init, Thu Mar 08 13:20:53 PST 2018
+ad2aa828-5e48-459a-815f-94ea6006ca97, disabled init, Thu Mar 08 13:20:53 PST 2018
+ad2aa828-5e48-459a-815f-94ea6006ca97, teleop init, Thu Mar 08 13:20:55 PST 2018
+ad2aa828-5e48-459a-815f-94ea6006ca97, disabled init, Thu Mar 08 13:21:01 PST 2018
+56021743-3253-45ab-9caa-cb3e895d626a, robot startup, Thu Mar 08 13:21:23 PST 2018
+56021743-3253-45ab-9caa-cb3e895d626a, robot init, Thu Mar 08 13:21:23 PST 2018
+56021743-3253-45ab-9caa-cb3e895d626a, disabled init, Thu Mar 08 13:21:24 PST 2018
+56021743-3253-45ab-9caa-cb3e895d626a, teleop init, Thu Mar 08 13:21:24 PST 2018
+56021743-3253-45ab-9caa-cb3e895d626a, disabled init, Thu Mar 08 13:21:41 PST 2018
+49757e54-a0a4-4aa0-a5cd-0920c3184415, robot startup, Thu Mar 08 13:22:18 PST 2018
+49757e54-a0a4-4aa0-a5cd-0920c3184415, robot init, Thu Mar 08 13:22:18 PST 2018
+49757e54-a0a4-4aa0-a5cd-0920c3184415, disabled init, Thu Mar 08 13:22:18 PST 2018
+49757e54-a0a4-4aa0-a5cd-0920c3184415, teleop init, Thu Mar 08 13:22:44 PST 2018
+49757e54-a0a4-4aa0-a5cd-0920c3184415, disabled init, Thu Mar 08 13:23:02 PST 2018
+49757e54-a0a4-4aa0-a5cd-0920c3184415, teleop init, Thu Mar 08 13:23:08 PST 2018
+49757e54-a0a4-4aa0-a5cd-0920c3184415, disabled init, Thu Mar 08 13:23:31 PST 2018
+9aeebda4-5c7f-4dcd-97bf-6fc9c3a9a477, robot startup, Thu Mar 08 13:23:49 PST 2018
+9aeebda4-5c7f-4dcd-97bf-6fc9c3a9a477, robot init, Thu Mar 08 13:23:50 PST 2018
+9aeebda4-5c7f-4dcd-97bf-6fc9c3a9a477, disabled init, Thu Mar 08 13:23:50 PST 2018
+9aeebda4-5c7f-4dcd-97bf-6fc9c3a9a477, teleop init, Thu Mar 08 13:23:55 PST 2018
+9aeebda4-5c7f-4dcd-97bf-6fc9c3a9a477, disabled init, Thu Mar 08 13:24:12 PST 2018
+845efb5c-80be-49d0-8596-f40fc23b5784, robot startup, Thu Mar 08 13:24:28 PST 2018
+845efb5c-80be-49d0-8596-f40fc23b5784, robot init, Thu Mar 08 13:24:28 PST 2018
+845efb5c-80be-49d0-8596-f40fc23b5784, disabled init, Thu Mar 08 13:24:29 PST 2018
+845efb5c-80be-49d0-8596-f40fc23b5784, teleop init, Thu Mar 08 13:24:34 PST 2018
+845efb5c-80be-49d0-8596-f40fc23b5784, disabled init, Thu Mar 08 13:24:36 PST 2018
+b56cfd8b-28b7-4af8-8526-f3a93c3dc286, robot startup, Thu Mar 08 13:27:29 PST 2018
+b56cfd8b-28b7-4af8-8526-f3a93c3dc286, robot init, Thu Mar 08 13:27:30 PST 2018
+b56cfd8b-28b7-4af8-8526-f3a93c3dc286, disabled init, Thu Mar 08 13:27:30 PST 2018
+b56cfd8b-28b7-4af8-8526-f3a93c3dc286, teleop init, Thu Mar 08 13:28:07 PST 2018
+b0717528-043e-4863-9e25-920bc02f7673, robot startup, Thu Mar 08 13:28:58 PST 2018
+b0717528-043e-4863-9e25-920bc02f7673, robot init, Thu Mar 08 13:28:58 PST 2018
+b0717528-043e-4863-9e25-920bc02f7673, disabled init, Thu Mar 08 13:28:59 PST 2018
+b0717528-043e-4863-9e25-920bc02f7673, teleop init, Thu Mar 08 13:29:06 PST 2018
+b0717528-043e-4863-9e25-920bc02f7673, disabled init, Thu Mar 08 13:29:13 PST 2018
+60738063-2ceb-445b-b6b7-99d2efc21e03, robot startup, Thu Mar 08 13:29:33 PST 2018
+60738063-2ceb-445b-b6b7-99d2efc21e03, robot init, Thu Mar 08 13:29:33 PST 2018
+60738063-2ceb-445b-b6b7-99d2efc21e03, disabled init, Thu Mar 08 13:29:33 PST 2018
+60738063-2ceb-445b-b6b7-99d2efc21e03, teleop init, Thu Mar 08 13:29:35 PST 2018
+60738063-2ceb-445b-b6b7-99d2efc21e03, disabled init, Thu Mar 08 13:29:47 PST 2018
+c4e9b326-1a97-45c1-9d98-e241c76d60b8, robot startup, Thu Mar 08 13:30:14 PST 2018
+c4e9b326-1a97-45c1-9d98-e241c76d60b8, robot init, Thu Mar 08 13:30:14 PST 2018
+c4e9b326-1a97-45c1-9d98-e241c76d60b8, disabled init, Thu Mar 08 13:30:14 PST 2018
+c4e9b326-1a97-45c1-9d98-e241c76d60b8, teleop init, Thu Mar 08 13:30:18 PST 2018
+c4e9b326-1a97-45c1-9d98-e241c76d60b8, disabled init, Thu Mar 08 13:30:26 PST 2018
+e54583a0-e627-48f0-a047-4e3352d23f0c, robot startup, Thu Mar 08 13:30:43 PST 2018
+e54583a0-e627-48f0-a047-4e3352d23f0c, robot init, Thu Mar 08 13:30:43 PST 2018
+e54583a0-e627-48f0-a047-4e3352d23f0c, disabled init, Thu Mar 08 13:30:44 PST 2018
+471d7371-2338-4486-82dd-c11a59881dbe, robot startup, Thu Mar 08 13:30:52 PST 2018
+471d7371-2338-4486-82dd-c11a59881dbe, robot init, Thu Mar 08 13:30:52 PST 2018
+471d7371-2338-4486-82dd-c11a59881dbe, disabled init, Thu Mar 08 13:30:52 PST 2018
+471d7371-2338-4486-82dd-c11a59881dbe, teleop init, Thu Mar 08 13:30:53 PST 2018
+471d7371-2338-4486-82dd-c11a59881dbe, disabled init, Thu Mar 08 13:31:04 PST 2018
+430b40b7-7696-42d8-a4b4-0068eb37af6f, robot startup, Thu Mar 08 13:31:27 PST 2018
+430b40b7-7696-42d8-a4b4-0068eb37af6f, robot init, Thu Mar 08 13:31:27 PST 2018
+430b40b7-7696-42d8-a4b4-0068eb37af6f, disabled init, Thu Mar 08 13:31:27 PST 2018
+430b40b7-7696-42d8-a4b4-0068eb37af6f, teleop init, Thu Mar 08 13:31:32 PST 2018
+430b40b7-7696-42d8-a4b4-0068eb37af6f, disabled init, Thu Mar 08 13:31:53 PST 2018
+14ca097c-9376-4939-a3f6-498e88bf7190, robot startup, Thu Mar 08 13:32:17 PST 2018
+14ca097c-9376-4939-a3f6-498e88bf7190, robot init, Thu Mar 08 13:32:18 PST 2018
+14ca097c-9376-4939-a3f6-498e88bf7190, disabled init, Thu Mar 08 13:32:18 PST 2018
+14ca097c-9376-4939-a3f6-498e88bf7190, teleop init, Thu Mar 08 13:32:19 PST 2018
+14ca097c-9376-4939-a3f6-498e88bf7190, disabled init, Thu Mar 08 13:32:46 PST 2018
+808a209e-ab04-4f1b-9263-700a696e8faf, robot startup, Thu Mar 08 13:33:03 PST 2018
+808a209e-ab04-4f1b-9263-700a696e8faf, robot init, Thu Mar 08 13:33:03 PST 2018
+808a209e-ab04-4f1b-9263-700a696e8faf, disabled init, Thu Mar 08 13:33:04 PST 2018
+808a209e-ab04-4f1b-9263-700a696e8faf, teleop init, Thu Mar 08 13:33:09 PST 2018
+808a209e-ab04-4f1b-9263-700a696e8faf, disabled init, Thu Mar 08 13:33:27 PST 2018
+808a209e-ab04-4f1b-9263-700a696e8faf, teleop init, Thu Mar 08 13:33:35 PST 2018
+808a209e-ab04-4f1b-9263-700a696e8faf, disabled init, Thu Mar 08 13:34:06 PST 2018
+808a209e-ab04-4f1b-9263-700a696e8faf, teleop init, Thu Mar 08 13:34:41 PST 2018
+808a209e-ab04-4f1b-9263-700a696e8faf, disabled init, Thu Mar 08 13:34:56 PST 2018
+808a209e-ab04-4f1b-9263-700a696e8faf, teleop init, Thu Mar 08 13:34:58 PST 2018
+1ce835f9-a6f3-4060-a05c-23e8d42bf984, robot startup, Thu Mar 08 13:36:04 PST 2018
+1ce835f9-a6f3-4060-a05c-23e8d42bf984, robot init, Thu Mar 08 13:36:05 PST 2018
+1ce835f9-a6f3-4060-a05c-23e8d42bf984, disabled init, Thu Mar 08 13:36:05 PST 2018
+1ce835f9-a6f3-4060-a05c-23e8d42bf984, teleop init, Thu Mar 08 13:36:08 PST 2018
+91c87a12-ec8d-4f1a-82ad-def13200763e, robot startup, Thu Mar 08 13:37:00 PST 2018
+91c87a12-ec8d-4f1a-82ad-def13200763e, robot init, Thu Mar 08 13:37:01 PST 2018
+91c87a12-ec8d-4f1a-82ad-def13200763e, disabled init, Thu Mar 08 13:37:01 PST 2018
+91c87a12-ec8d-4f1a-82ad-def13200763e, teleop init, Thu Mar 08 13:37:07 PST 2018
+91c87a12-ec8d-4f1a-82ad-def13200763e, disabled init, Thu Mar 08 13:37:56 PST 2018
+117882ca-f05f-43aa-86fe-c846b793d1fb, robot startup, Thu Mar 08 13:38:21 PST 2018
+117882ca-f05f-43aa-86fe-c846b793d1fb, robot init, Thu Mar 08 13:38:21 PST 2018
+117882ca-f05f-43aa-86fe-c846b793d1fb, disabled init, Thu Mar 08 13:38:22 PST 2018
+117882ca-f05f-43aa-86fe-c846b793d1fb, teleop init, Thu Mar 08 13:39:49 PST 2018
+117882ca-f05f-43aa-86fe-c846b793d1fb, disabled init, Thu Mar 08 13:39:51 PST 2018
+bd96537c-a014-4b3e-872b-340d5016e249, robot startup, Thu Mar 08 13:45:31 PST 2018
+bd96537c-a014-4b3e-872b-340d5016e249, robot init, Thu Mar 08 13:45:31 PST 2018
+bd96537c-a014-4b3e-872b-340d5016e249, disabled init, Thu Mar 08 13:45:32 PST 2018
+bd96537c-a014-4b3e-872b-340d5016e249, teleop init, Thu Mar 08 13:45:47 PST 2018
+bd96537c-a014-4b3e-872b-340d5016e249, disabled init, Thu Mar 08 13:45:49 PST 2018
+d766932d-9aff-4f7b-8be4-20cd5c727747, robot startup, Thu Mar 08 13:46:13 PST 2018
+d766932d-9aff-4f7b-8be4-20cd5c727747, robot init, Thu Mar 08 13:46:13 PST 2018
+d766932d-9aff-4f7b-8be4-20cd5c727747, disabled init, Thu Mar 08 13:46:14 PST 2018
+d766932d-9aff-4f7b-8be4-20cd5c727747, teleop init, Thu Mar 08 13:46:17 PST 2018
+d766932d-9aff-4f7b-8be4-20cd5c727747, disabled init, Thu Mar 08 13:46:18 PST 2018
+c818cc57-9312-4a11-abe1-0194770d9231, robot startup, Thu Mar 08 13:46:51 PST 2018
+c818cc57-9312-4a11-abe1-0194770d9231, robot init, Thu Mar 08 13:46:51 PST 2018
+c818cc57-9312-4a11-abe1-0194770d9231, disabled init, Thu Mar 08 13:46:52 PST 2018
+8fcf45c1-bedd-4568-8387-3381d92416c9, robot startup, Thu Mar 08 13:47:03 PST 2018
+8fcf45c1-bedd-4568-8387-3381d92416c9, robot init, Thu Mar 08 13:47:03 PST 2018
+8fcf45c1-bedd-4568-8387-3381d92416c9, disabled init, Thu Mar 08 13:47:04 PST 2018
+8fcf45c1-bedd-4568-8387-3381d92416c9, teleop init, Thu Mar 08 13:47:04 PST 2018
+8fcf45c1-bedd-4568-8387-3381d92416c9, disabled init, Thu Mar 08 13:47:06 PST 2018
+f7a1abdb-4d51-453c-9f1b-c907f3340957, robot startup, Thu Mar 08 13:47:34 PST 2018
+f7a1abdb-4d51-453c-9f1b-c907f3340957, robot init, Thu Mar 08 13:47:35 PST 2018
+f7a1abdb-4d51-453c-9f1b-c907f3340957, disabled init, Thu Mar 08 13:47:35 PST 2018
+f7a1abdb-4d51-453c-9f1b-c907f3340957, teleop init, Thu Mar 08 13:47:36 PST 2018
+f7a1abdb-4d51-453c-9f1b-c907f3340957, disabled init, Thu Mar 08 13:47:37 PST 2018
+84d8eec4-7394-4245-b221-cad6a7abb4cd, robot startup, Thu Mar 08 13:48:25 PST 2018
+84d8eec4-7394-4245-b221-cad6a7abb4cd, robot init, Thu Mar 08 13:48:26 PST 2018
+84d8eec4-7394-4245-b221-cad6a7abb4cd, disabled init, Thu Mar 08 13:48:26 PST 2018
+84d8eec4-7394-4245-b221-cad6a7abb4cd, teleop init, Thu Mar 08 13:48:28 PST 2018
+84d8eec4-7394-4245-b221-cad6a7abb4cd, disabled init, Thu Mar 08 13:48:33 PST 2018
+471bd909-0804-4f01-927e-459936a5852c, robot startup, Thu Mar 08 13:49:11 PST 2018
+471bd909-0804-4f01-927e-459936a5852c, robot init, Thu Mar 08 13:49:11 PST 2018
+471bd909-0804-4f01-927e-459936a5852c, disabled init, Thu Mar 08 13:49:12 PST 2018
+471bd909-0804-4f01-927e-459936a5852c, teleop init, Thu Mar 08 13:49:21 PST 2018
+471bd909-0804-4f01-927e-459936a5852c, disabled init, Thu Mar 08 13:49:32 PST 2018
+9b3763cb-dc45-4e7d-a2a1-295fbdaa9cb6, robot startup, Thu Mar 08 13:50:28 PST 2018
+9b3763cb-dc45-4e7d-a2a1-295fbdaa9cb6, robot init, Thu Mar 08 13:50:28 PST 2018
+9b3763cb-dc45-4e7d-a2a1-295fbdaa9cb6, disabled init, Thu Mar 08 13:50:28 PST 2018
+9b3763cb-dc45-4e7d-a2a1-295fbdaa9cb6, teleop init, Thu Mar 08 13:50:30 PST 2018
+9b3763cb-dc45-4e7d-a2a1-295fbdaa9cb6, disabled init, Thu Mar 08 13:50:46 PST 2018
+c8c46fdc-b177-4688-8e9b-43f29a3da4ae, robot startup, Thu Mar 08 13:52:23 PST 2018
+c8c46fdc-b177-4688-8e9b-43f29a3da4ae, robot init, Thu Mar 08 13:52:23 PST 2018
+c8c46fdc-b177-4688-8e9b-43f29a3da4ae, disabled init, Thu Mar 08 13:52:24 PST 2018
+c8c46fdc-b177-4688-8e9b-43f29a3da4ae, teleop init, Thu Mar 08 13:53:45 PST 2018
+c8c46fdc-b177-4688-8e9b-43f29a3da4ae, disabled init, Thu Mar 08 13:54:04 PST 2018
+2bc92633-8211-4a4c-a96c-7809b46f6d11, robot startup, Thu Mar 08 14:00:21 PST 2018
+2bc92633-8211-4a4c-a96c-7809b46f6d11, robot init, Thu Mar 08 14:00:21 PST 2018
+2bc92633-8211-4a4c-a96c-7809b46f6d11, disabled init, Thu Mar 08 14:00:21 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, robot startup, Thu Mar 08 14:02:22 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, robot init, Thu Mar 08 14:02:22 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, disabled init, Thu Mar 08 14:02:23 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, auto init, Thu Mar 08 14:03:09 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, Starting Center Switch Mode (Left Side), Thu Mar 08 14:03:09 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, Began Path: CSL-1, Thu Mar 08 14:03:09 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, disabled init, Thu Mar 08 14:03:09 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, auto init, Thu Mar 08 14:03:10 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, Starting Center Switch Mode (Left Side), Thu Mar 08 14:03:10 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, Began Path: CSL-1, Thu Mar 08 14:03:10 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, disabled init, Thu Mar 08 14:03:10 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, auto init, Thu Mar 08 14:03:28 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, Starting Center Switch Mode (Left Side), Thu Mar 08 14:03:28 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, Began Path: CSL-1, Thu Mar 08 14:03:28 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, Began Path: CSL-2, Thu Mar 08 14:03:31 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, Began Path: CSL-3, Thu Mar 08 14:03:34 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, Began Path: CSL-4, Thu Mar 08 14:03:36 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, Began Path: CSL-5, Thu Mar 08 14:03:39 PST 2018
+ee6f217b-5dd9-40a2-a415-e8a007f9f822, disabled init, Thu Mar 08 14:03:42 PST 2018
+4afe24b5-f465-4022-856e-98758808312f, robot startup, Thu Mar 08 14:07:58 PST 2018
+4afe24b5-f465-4022-856e-98758808312f, robot init, Thu Mar 08 14:07:58 PST 2018
+4afe24b5-f465-4022-856e-98758808312f, disabled init, Thu Mar 08 14:07:58 PST 2018
+4afe24b5-f465-4022-856e-98758808312f, auto init, Thu Mar 08 14:08:00 PST 2018
+4afe24b5-f465-4022-856e-98758808312f, Starting Center Switch Mode (Left Side), Thu Mar 08 14:08:00 PST 2018
+4afe24b5-f465-4022-856e-98758808312f, Began Path: CSL-1, Thu Mar 08 14:08:00 PST 2018
+4afe24b5-f465-4022-856e-98758808312f, Began Path: CSL-2, Thu Mar 08 14:08:03 PST 2018
+4afe24b5-f465-4022-856e-98758808312f, Began Path: CSL-3, Thu Mar 08 14:08:06 PST 2018
+4afe24b5-f465-4022-856e-98758808312f, Began Path: CSL-4, Thu Mar 08 14:08:08 PST 2018
+4afe24b5-f465-4022-856e-98758808312f, Began Path: CSL-5, Thu Mar 08 14:08:11 PST 2018
+4afe24b5-f465-4022-856e-98758808312f, disabled init, Thu Mar 08 14:08:14 PST 2018
+3c226daf-d9eb-46db-8ddb-5df0cc704470, robot startup, Thu Mar 08 14:09:22 PST 2018
+3c226daf-d9eb-46db-8ddb-5df0cc704470, robot init, Thu Mar 08 14:09:22 PST 2018
+3c226daf-d9eb-46db-8ddb-5df0cc704470, disabled init, Thu Mar 08 14:09:23 PST 2018
+3c226daf-d9eb-46db-8ddb-5df0cc704470, auto init, Thu Mar 08 14:09:42 PST 2018
+3c226daf-d9eb-46db-8ddb-5df0cc704470, Starting Center Switch Mode (Left Side), Thu Mar 08 14:09:42 PST 2018
+3c226daf-d9eb-46db-8ddb-5df0cc704470, Began Path: CSL-1, Thu Mar 08 14:09:42 PST 2018
+3c226daf-d9eb-46db-8ddb-5df0cc704470, Began Path: CSL-2, Thu Mar 08 14:09:45 PST 2018
+3c226daf-d9eb-46db-8ddb-5df0cc704470, Began Path: CSL-3, Thu Mar 08 14:09:48 PST 2018
+3c226daf-d9eb-46db-8ddb-5df0cc704470, Began Path: CSL-4, Thu Mar 08 14:09:50 PST 2018
+3c226daf-d9eb-46db-8ddb-5df0cc704470, Began Path: CSL-5, Thu Mar 08 14:09:53 PST 2018
+3c226daf-d9eb-46db-8ddb-5df0cc704470, disabled init, Thu Mar 08 14:09:56 PST 2018
+c445f99f-1bd3-4063-a780-6fd21276f80b, robot startup, Thu Mar 08 14:10:53 PST 2018
+c445f99f-1bd3-4063-a780-6fd21276f80b, robot init, Thu Mar 08 14:10:53 PST 2018
+c445f99f-1bd3-4063-a780-6fd21276f80b, disabled init, Thu Mar 08 14:10:53 PST 2018
+2039ca84-d12d-4952-8482-e2b102faa797, robot startup, Thu Mar 08 14:11:09 PST 2018
+2039ca84-d12d-4952-8482-e2b102faa797, robot init, Thu Mar 08 14:11:10 PST 2018
+2039ca84-d12d-4952-8482-e2b102faa797, disabled init, Thu Mar 08 14:11:10 PST 2018
+2039ca84-d12d-4952-8482-e2b102faa797, auto init, Thu Mar 08 14:11:28 PST 2018
+2039ca84-d12d-4952-8482-e2b102faa797, Starting Center Switch Mode (Left Side), Thu Mar 08 14:11:28 PST 2018
+2039ca84-d12d-4952-8482-e2b102faa797, Began Path: CSL-1, Thu Mar 08 14:11:28 PST 2018
+2039ca84-d12d-4952-8482-e2b102faa797, Began Path: CSL-2, Thu Mar 08 14:11:31 PST 2018
+2039ca84-d12d-4952-8482-e2b102faa797, disabled init, Thu Mar 08 14:11:33 PST 2018
+5b03782b-a886-41b3-a2c2-23d64545880e, robot startup, Thu Mar 08 14:12:16 PST 2018
+5b03782b-a886-41b3-a2c2-23d64545880e, robot init, Thu Mar 08 14:12:16 PST 2018
+5b03782b-a886-41b3-a2c2-23d64545880e, disabled init, Thu Mar 08 14:12:17 PST 2018
+5b03782b-a886-41b3-a2c2-23d64545880e, auto init, Thu Mar 08 14:12:56 PST 2018
+5b03782b-a886-41b3-a2c2-23d64545880e, Starting Center Switch Mode (Left Side), Thu Mar 08 14:12:56 PST 2018
+5b03782b-a886-41b3-a2c2-23d64545880e, Began Path: CSL-1, Thu Mar 08 14:12:56 PST 2018
+5b03782b-a886-41b3-a2c2-23d64545880e, Began Path: CSL-2, Thu Mar 08 14:12:59 PST 2018
+5b03782b-a886-41b3-a2c2-23d64545880e, Began Path: CSL-3, Thu Mar 08 14:13:02 PST 2018
+5b03782b-a886-41b3-a2c2-23d64545880e, Began Path: CSL-4, Thu Mar 08 14:13:04 PST 2018
+5b03782b-a886-41b3-a2c2-23d64545880e, Began Path: CSL-5, Thu Mar 08 14:13:07 PST 2018
+5b03782b-a886-41b3-a2c2-23d64545880e, disabled init, Thu Mar 08 14:13:11 PST 2018
+6dd5e550-80f5-499a-ae58-d534b7864443, robot startup, Thu Mar 08 14:14:56 PST 2018
+6dd5e550-80f5-499a-ae58-d534b7864443, robot init, Thu Mar 08 14:14:56 PST 2018
+6dd5e550-80f5-499a-ae58-d534b7864443, disabled init, Thu Mar 08 14:14:57 PST 2018
+6dd5e550-80f5-499a-ae58-d534b7864443, auto init, Thu Mar 08 14:15:11 PST 2018
+6dd5e550-80f5-499a-ae58-d534b7864443, Starting Center Switch Mode (Left Side), Thu Mar 08 14:15:11 PST 2018
+6dd5e550-80f5-499a-ae58-d534b7864443, Began Path: CSL-1, Thu Mar 08 14:15:11 PST 2018
+6dd5e550-80f5-499a-ae58-d534b7864443, Began Path: CSL-2, Thu Mar 08 14:15:14 PST 2018
+6dd5e550-80f5-499a-ae58-d534b7864443, Began Path: CSL-3, Thu Mar 08 14:15:17 PST 2018
+6dd5e550-80f5-499a-ae58-d534b7864443, Began Path: CSL-4, Thu Mar 08 14:15:19 PST 2018
+6dd5e550-80f5-499a-ae58-d534b7864443, Began Path: CSL-5, Thu Mar 08 14:15:22 PST 2018
+6dd5e550-80f5-499a-ae58-d534b7864443, disabled init, Thu Mar 08 14:15:25 PST 2018
+b54e109e-dc63-44f7-bb97-c989b85e705e, robot startup, Thu Mar 08 14:18:25 PST 2018
+b54e109e-dc63-44f7-bb97-c989b85e705e, robot init, Thu Mar 08 14:18:25 PST 2018
+b54e109e-dc63-44f7-bb97-c989b85e705e, disabled init, Thu Mar 08 14:18:26 PST 2018
+b54e109e-dc63-44f7-bb97-c989b85e705e, auto init, Thu Mar 08 14:18:28 PST 2018
+b54e109e-dc63-44f7-bb97-c989b85e705e, Starting Center Switch Mode (Left Side), Thu Mar 08 14:18:28 PST 2018
+b54e109e-dc63-44f7-bb97-c989b85e705e, Began Path: CSL-1, Thu Mar 08 14:18:28 PST 2018
+b54e109e-dc63-44f7-bb97-c989b85e705e, Began Path: CSL-2, Thu Mar 08 14:18:31 PST 2018
+b54e109e-dc63-44f7-bb97-c989b85e705e, Began Path: CSL-3, Thu Mar 08 14:18:34 PST 2018
+b54e109e-dc63-44f7-bb97-c989b85e705e, Began Path: CSL-4, Thu Mar 08 14:18:36 PST 2018
+b54e109e-dc63-44f7-bb97-c989b85e705e, Began Path: CSL-5, Thu Mar 08 14:18:39 PST 2018
+b54e109e-dc63-44f7-bb97-c989b85e705e, disabled init, Thu Mar 08 14:18:41 PST 2018
+58a9f072-5fbf-4119-a985-6ecc6b114f4a, robot startup, Thu Mar 08 14:19:44 PST 2018
+58a9f072-5fbf-4119-a985-6ecc6b114f4a, robot init, Thu Mar 08 14:19:44 PST 2018
+58a9f072-5fbf-4119-a985-6ecc6b114f4a, disabled init, Thu Mar 08 14:19:45 PST 2018
+84578533-f07a-4b1d-9bb6-0812d6ff7517, robot startup, Thu Mar 08 14:20:12 PST 2018
+84578533-f07a-4b1d-9bb6-0812d6ff7517, robot init, Thu Mar 08 14:20:13 PST 2018
+84578533-f07a-4b1d-9bb6-0812d6ff7517, disabled init, Thu Mar 08 14:20:13 PST 2018
+84578533-f07a-4b1d-9bb6-0812d6ff7517, auto init, Thu Mar 08 14:20:15 PST 2018
+84578533-f07a-4b1d-9bb6-0812d6ff7517, Starting Center Switch Mode (Left Side), Thu Mar 08 14:20:15 PST 2018
+84578533-f07a-4b1d-9bb6-0812d6ff7517, Began Path: CSL-1, Thu Mar 08 14:20:15 PST 2018
+84578533-f07a-4b1d-9bb6-0812d6ff7517, Began Path: CSL-2, Thu Mar 08 14:20:18 PST 2018
+84578533-f07a-4b1d-9bb6-0812d6ff7517, Began Path: CSL-3, Thu Mar 08 14:20:21 PST 2018
+84578533-f07a-4b1d-9bb6-0812d6ff7517, Began Path: CSL-4, Thu Mar 08 14:20:23 PST 2018
+84578533-f07a-4b1d-9bb6-0812d6ff7517, Began Path: CSL-5, Thu Mar 08 14:20:26 PST 2018
+84578533-f07a-4b1d-9bb6-0812d6ff7517, disabled init, Thu Mar 08 14:20:29 PST 2018
+eb0fa36d-21c2-4291-9356-c741a4659fc7, robot startup, Thu Mar 08 14:23:02 PST 2018
+eb0fa36d-21c2-4291-9356-c741a4659fc7, robot init, Thu Mar 08 14:23:02 PST 2018
+eb0fa36d-21c2-4291-9356-c741a4659fc7, disabled init, Thu Mar 08 14:23:02 PST 2018
+eb0fa36d-21c2-4291-9356-c741a4659fc7, auto init, Thu Mar 08 14:23:07 PST 2018
+eb0fa36d-21c2-4291-9356-c741a4659fc7, Starting Center Switch Mode (Left Side), Thu Mar 08 14:23:07 PST 2018
+eb0fa36d-21c2-4291-9356-c741a4659fc7, Began Path: CSL-1, Thu Mar 08 14:23:07 PST 2018
+eb0fa36d-21c2-4291-9356-c741a4659fc7, Began Path: CSL-2, Thu Mar 08 14:23:10 PST 2018
+eb0fa36d-21c2-4291-9356-c741a4659fc7, Began Path: CSL-3, Thu Mar 08 14:23:13 PST 2018
+eb0fa36d-21c2-4291-9356-c741a4659fc7, Began Path: CSL-4, Thu Mar 08 14:23:15 PST 2018
+eb0fa36d-21c2-4291-9356-c741a4659fc7, Began Path: CSL-5, Thu Mar 08 14:23:18 PST 2018
+eb0fa36d-21c2-4291-9356-c741a4659fc7, disabled init, Thu Mar 08 14:23:20 PST 2018
+8e752a73-03e6-428f-a9bb-02eb4ccc453b, robot startup, Thu Mar 08 14:23:47 PST 2018
+8e752a73-03e6-428f-a9bb-02eb4ccc453b, robot init, Thu Mar 08 14:23:47 PST 2018
+8e752a73-03e6-428f-a9bb-02eb4ccc453b, disabled init, Thu Mar 08 14:23:48 PST 2018
+629fb9a7-c5bf-41b6-a01b-ef423760fd81, robot startup, Thu Mar 08 14:24:34 PST 2018
+629fb9a7-c5bf-41b6-a01b-ef423760fd81, robot init, Thu Mar 08 14:24:34 PST 2018
+629fb9a7-c5bf-41b6-a01b-ef423760fd81, disabled init, Thu Mar 08 14:24:35 PST 2018
+629fb9a7-c5bf-41b6-a01b-ef423760fd81, auto init, Thu Mar 08 14:24:35 PST 2018
+629fb9a7-c5bf-41b6-a01b-ef423760fd81, Starting Center Switch Mode (Left Side), Thu Mar 08 14:24:35 PST 2018
+629fb9a7-c5bf-41b6-a01b-ef423760fd81, Began Path: CSL-1, Thu Mar 08 14:24:35 PST 2018
+629fb9a7-c5bf-41b6-a01b-ef423760fd81, disabled init, Thu Mar 08 14:24:38 PST 2018
+cf31668f-b4a6-48d9-b15f-3f0a71e39c09, robot startup, Thu Mar 08 14:25:54 PST 2018
+cf31668f-b4a6-48d9-b15f-3f0a71e39c09, robot init, Thu Mar 08 14:25:54 PST 2018
+cf31668f-b4a6-48d9-b15f-3f0a71e39c09, disabled init, Thu Mar 08 14:25:54 PST 2018
+cf31668f-b4a6-48d9-b15f-3f0a71e39c09, auto init, Thu Mar 08 14:26:08 PST 2018
+cf31668f-b4a6-48d9-b15f-3f0a71e39c09, Starting Center Switch Mode (Left Side), Thu Mar 08 14:26:08 PST 2018
+cf31668f-b4a6-48d9-b15f-3f0a71e39c09, Began Path: CSL-1, Thu Mar 08 14:26:08 PST 2018
+cf31668f-b4a6-48d9-b15f-3f0a71e39c09, Began Path: CSL-2, Thu Mar 08 14:26:11 PST 2018
+cf31668f-b4a6-48d9-b15f-3f0a71e39c09, disabled init, Thu Mar 08 14:26:13 PST 2018
+cf31668f-b4a6-48d9-b15f-3f0a71e39c09, teleop init, Thu Mar 08 14:26:24 PST 2018
+cf31668f-b4a6-48d9-b15f-3f0a71e39c09, disabled init, Thu Mar 08 14:27:15 PST 2018
+2582bcdc-64c7-4c39-82aa-bfe520ff0ed0, robot startup, Thu Mar 08 14:27:39 PST 2018
+2582bcdc-64c7-4c39-82aa-bfe520ff0ed0, robot init, Thu Mar 08 14:27:39 PST 2018
+2582bcdc-64c7-4c39-82aa-bfe520ff0ed0, disabled init, Thu Mar 08 14:27:40 PST 2018
+2582bcdc-64c7-4c39-82aa-bfe520ff0ed0, teleop init, Thu Mar 08 14:27:42 PST 2018
+2582bcdc-64c7-4c39-82aa-bfe520ff0ed0, disabled init, Thu Mar 08 14:27:53 PST 2018
+2582bcdc-64c7-4c39-82aa-bfe520ff0ed0, auto init, Thu Mar 08 14:29:14 PST 2018
+2582bcdc-64c7-4c39-82aa-bfe520ff0ed0, Starting Center Switch Mode (Left Side), Thu Mar 08 14:29:14 PST 2018
+2582bcdc-64c7-4c39-82aa-bfe520ff0ed0, Began Path: CSL-1, Thu Mar 08 14:29:14 PST 2018
+2582bcdc-64c7-4c39-82aa-bfe520ff0ed0, Began Path: CSL-2, Thu Mar 08 14:29:17 PST 2018
+2582bcdc-64c7-4c39-82aa-bfe520ff0ed0, Began Path: CSL-3, Thu Mar 08 14:29:20 PST 2018
+2582bcdc-64c7-4c39-82aa-bfe520ff0ed0, Began Path: CSL-4, Thu Mar 08 14:29:22 PST 2018
+2582bcdc-64c7-4c39-82aa-bfe520ff0ed0, Began Path: CSL-5, Thu Mar 08 14:29:25 PST 2018
+2582bcdc-64c7-4c39-82aa-bfe520ff0ed0, disabled init, Thu Mar 08 14:29:28 PST 2018
+5f12527f-145e-4210-9b9b-fedc93c42b29, robot startup, Thu Mar 08 14:33:25 PST 2018
+5f12527f-145e-4210-9b9b-fedc93c42b29, robot init, Thu Mar 08 14:33:26 PST 2018
+5f12527f-145e-4210-9b9b-fedc93c42b29, disabled init, Thu Mar 08 14:33:26 PST 2018
+5f12527f-145e-4210-9b9b-fedc93c42b29, auto init, Thu Mar 08 14:33:27 PST 2018
+5f12527f-145e-4210-9b9b-fedc93c42b29, Starting Center Switch Mode (Left Side), Thu Mar 08 14:33:27 PST 2018
+5f12527f-145e-4210-9b9b-fedc93c42b29, Began Path: CSL-1, Thu Mar 08 14:33:27 PST 2018
+5f12527f-145e-4210-9b9b-fedc93c42b29, disabled init, Thu Mar 08 14:33:29 PST 2018
+69193548-1e9a-47a4-99ed-e790296f0eaf, robot startup, Thu Mar 08 14:34:24 PST 2018
+69193548-1e9a-47a4-99ed-e790296f0eaf, robot init, Thu Mar 08 14:34:24 PST 2018
+69193548-1e9a-47a4-99ed-e790296f0eaf, disabled init, Thu Mar 08 14:34:24 PST 2018
+afdd7cf5-5508-4f6c-b3e5-f4919f2310a9, robot startup, Thu Mar 08 14:35:44 PST 2018
+afdd7cf5-5508-4f6c-b3e5-f4919f2310a9, robot init, Thu Mar 08 14:35:44 PST 2018
+afdd7cf5-5508-4f6c-b3e5-f4919f2310a9, disabled init, Thu Mar 08 14:35:44 PST 2018
+afdd7cf5-5508-4f6c-b3e5-f4919f2310a9, auto init, Thu Mar 08 14:35:46 PST 2018
+afdd7cf5-5508-4f6c-b3e5-f4919f2310a9, Starting Center Switch Mode (Left Side), Thu Mar 08 14:35:46 PST 2018
+afdd7cf5-5508-4f6c-b3e5-f4919f2310a9, Began Path: CSL-1, Thu Mar 08 14:35:46 PST 2018
+afdd7cf5-5508-4f6c-b3e5-f4919f2310a9, Began Path: CSL-2, Thu Mar 08 14:35:49 PST 2018
+afdd7cf5-5508-4f6c-b3e5-f4919f2310a9, Began Path: CSL-3, Thu Mar 08 14:35:53 PST 2018
+afdd7cf5-5508-4f6c-b3e5-f4919f2310a9, Began Path: CSL-4, Thu Mar 08 14:35:55 PST 2018
+afdd7cf5-5508-4f6c-b3e5-f4919f2310a9, Began Path: CSL-5, Thu Mar 08 14:35:58 PST 2018
+afdd7cf5-5508-4f6c-b3e5-f4919f2310a9, disabled init, Thu Mar 08 14:36:00 PST 2018
+b544fdb2-df4f-47cf-bb4f-fd1a2fd2ff21, robot startup, Thu Mar 08 14:36:47 PST 2018
+b544fdb2-df4f-47cf-bb4f-fd1a2fd2ff21, robot init, Thu Mar 08 14:36:47 PST 2018
+b544fdb2-df4f-47cf-bb4f-fd1a2fd2ff21, disabled init, Thu Mar 08 14:36:48 PST 2018
+4aabd22a-5501-4765-8060-21a3d0a33bf5, robot startup, Thu Mar 08 14:37:12 PST 2018
+4aabd22a-5501-4765-8060-21a3d0a33bf5, robot init, Thu Mar 08 14:37:12 PST 2018
+4aabd22a-5501-4765-8060-21a3d0a33bf5, disabled init, Thu Mar 08 14:37:13 PST 2018
+4aabd22a-5501-4765-8060-21a3d0a33bf5, auto init, Thu Mar 08 14:37:38 PST 2018
+4aabd22a-5501-4765-8060-21a3d0a33bf5, Starting Center Switch Mode (Left Side), Thu Mar 08 14:37:38 PST 2018
+4aabd22a-5501-4765-8060-21a3d0a33bf5, Began Path: CSL-1, Thu Mar 08 14:37:38 PST 2018
+4aabd22a-5501-4765-8060-21a3d0a33bf5, Began Path: CSL-2, Thu Mar 08 14:37:41 PST 2018
+4aabd22a-5501-4765-8060-21a3d0a33bf5, Began Path: CSL-3, Thu Mar 08 14:37:44 PST 2018
+4aabd22a-5501-4765-8060-21a3d0a33bf5, Began Path: CSL-4, Thu Mar 08 14:37:47 PST 2018
+4aabd22a-5501-4765-8060-21a3d0a33bf5, Began Path: CSL-5, Thu Mar 08 14:37:50 PST 2018
+4aabd22a-5501-4765-8060-21a3d0a33bf5, disabled init, Thu Mar 08 14:37:54 PST 2018
+510fd3fc-b1ea-4439-9041-dd66ae74b6b8, robot startup, Thu Mar 08 14:40:36 PST 2018
+510fd3fc-b1ea-4439-9041-dd66ae74b6b8, robot init, Thu Mar 08 14:40:36 PST 2018
+510fd3fc-b1ea-4439-9041-dd66ae74b6b8, disabled init, Thu Mar 08 14:40:37 PST 2018
+50f1fbe4-3867-4659-bda4-ea113724a4da, robot startup, Thu Mar 08 14:40:45 PST 2018
+50f1fbe4-3867-4659-bda4-ea113724a4da, robot init, Thu Mar 08 14:40:45 PST 2018
+50f1fbe4-3867-4659-bda4-ea113724a4da, disabled init, Thu Mar 08 14:40:46 PST 2018
+50f1fbe4-3867-4659-bda4-ea113724a4da, auto init, Thu Mar 08 14:43:35 PST 2018
+50f1fbe4-3867-4659-bda4-ea113724a4da, Starting Center Switch Mode (Left Side), Thu Mar 08 14:43:35 PST 2018
+50f1fbe4-3867-4659-bda4-ea113724a4da, Began Path: CSL-1, Thu Mar 08 14:43:35 PST 2018
+50f1fbe4-3867-4659-bda4-ea113724a4da, Began Path: CSL-2, Thu Mar 08 14:43:38 PST 2018
+50f1fbe4-3867-4659-bda4-ea113724a4da, Began Path: CSL-3, Thu Mar 08 14:43:41 PST 2018
+50f1fbe4-3867-4659-bda4-ea113724a4da, Began Path: CSL-4, Thu Mar 08 14:43:43 PST 2018
+50f1fbe4-3867-4659-bda4-ea113724a4da, Began Path: CSL-5, Thu Mar 08 14:43:46 PST 2018
+50f1fbe4-3867-4659-bda4-ea113724a4da, disabled init, Thu Mar 08 14:43:51 PST 2018
+bc38cd39-7337-4b17-befc-09d9025d27e2, robot startup, Thu Mar 08 14:48:45 PST 2018
+bc38cd39-7337-4b17-befc-09d9025d27e2, robot init, Thu Mar 08 14:48:45 PST 2018
+bc38cd39-7337-4b17-befc-09d9025d27e2, disabled init, Thu Mar 08 14:48:46 PST 2018
+bc38cd39-7337-4b17-befc-09d9025d27e2, auto init, Thu Mar 08 14:48:50 PST 2018
+bc38cd39-7337-4b17-befc-09d9025d27e2, Starting Center Switch Mode (Left Side), Thu Mar 08 14:48:50 PST 2018
+bc38cd39-7337-4b17-befc-09d9025d27e2, Began Path: CSL-1, Thu Mar 08 14:48:50 PST 2018
+bc38cd39-7337-4b17-befc-09d9025d27e2, Began Path: CSL-2, Thu Mar 08 14:48:53 PST 2018
+bc38cd39-7337-4b17-befc-09d9025d27e2, Began Path: CSL-3, Thu Mar 08 14:48:55 PST 2018
+bc38cd39-7337-4b17-befc-09d9025d27e2, Began Path: CSL-4, Thu Mar 08 14:48:58 PST 2018
+bc38cd39-7337-4b17-befc-09d9025d27e2, Began Path: CSL-5, Thu Mar 08 14:49:00 PST 2018
+bc38cd39-7337-4b17-befc-09d9025d27e2, disabled init, Thu Mar 08 14:49:03 PST 2018
+cade7788-89cf-4b5b-b478-12587b54d31b, robot startup, Thu Mar 08 14:50:38 PST 2018
+cade7788-89cf-4b5b-b478-12587b54d31b, robot init, Thu Mar 08 14:50:38 PST 2018
+cade7788-89cf-4b5b-b478-12587b54d31b, disabled init, Thu Mar 08 14:50:39 PST 2018
+30267504-24d4-4f24-8b2b-8f9de59cac06, robot startup, Thu Mar 08 14:51:16 PST 2018
+30267504-24d4-4f24-8b2b-8f9de59cac06, robot init, Thu Mar 08 14:51:16 PST 2018
+30267504-24d4-4f24-8b2b-8f9de59cac06, disabled init, Thu Mar 08 14:51:17 PST 2018
+f906b199-a514-4b3f-93d9-e117087e7942, robot startup, Thu Mar 08 14:51:34 PST 2018
+f906b199-a514-4b3f-93d9-e117087e7942, robot init, Thu Mar 08 14:51:34 PST 2018
+f906b199-a514-4b3f-93d9-e117087e7942, disabled init, Thu Mar 08 14:51:34 PST 2018
+f906b199-a514-4b3f-93d9-e117087e7942, auto init, Thu Mar 08 14:51:38 PST 2018
+f906b199-a514-4b3f-93d9-e117087e7942, Starting Center Switch Mode (Left Side), Thu Mar 08 14:51:38 PST 2018
+f906b199-a514-4b3f-93d9-e117087e7942, Began Path: CSL-1, Thu Mar 08 14:51:38 PST 2018
+f906b199-a514-4b3f-93d9-e117087e7942, Began Path: CSL-2, Thu Mar 08 14:51:41 PST 2018
+f906b199-a514-4b3f-93d9-e117087e7942, Began Path: CSL-3, Thu Mar 08 14:51:43 PST 2018
+f906b199-a514-4b3f-93d9-e117087e7942, Began Path: CSL-4, Thu Mar 08 14:51:46 PST 2018
+f906b199-a514-4b3f-93d9-e117087e7942, Began Path: CSL-5, Thu Mar 08 14:51:48 PST 2018
+f906b199-a514-4b3f-93d9-e117087e7942, disabled init, Thu Mar 08 14:51:53 PST 2018
+abb575da-6af0-404f-bb67-4cea67ba1101, robot startup, Thu Mar 08 14:57:33 PST 2018
+abb575da-6af0-404f-bb67-4cea67ba1101, robot init, Thu Mar 08 14:57:33 PST 2018
+abb575da-6af0-404f-bb67-4cea67ba1101, disabled init, Thu Mar 08 14:57:34 PST 2018
+14c23942-387a-4aab-9d99-ce17a46f3ed6, robot startup, Thu Mar 08 14:57:55 PST 2018
+14c23942-387a-4aab-9d99-ce17a46f3ed6, robot init, Thu Mar 08 14:57:55 PST 2018
+14c23942-387a-4aab-9d99-ce17a46f3ed6, disabled init, Thu Mar 08 14:57:56 PST 2018
+14c23942-387a-4aab-9d99-ce17a46f3ed6, auto init, Thu Mar 08 14:58:08 PST 2018
+14c23942-387a-4aab-9d99-ce17a46f3ed6, Starting Center Switch Mode (Left Side), Thu Mar 08 14:58:08 PST 2018
+14c23942-387a-4aab-9d99-ce17a46f3ed6, Began Path: CSL-1, Thu Mar 08 14:58:08 PST 2018
+14c23942-387a-4aab-9d99-ce17a46f3ed6, Began Path: CSL-2, Thu Mar 08 14:58:11 PST 2018
+14c23942-387a-4aab-9d99-ce17a46f3ed6, Began Path: CSL-3, Thu Mar 08 14:58:14 PST 2018
+14c23942-387a-4aab-9d99-ce17a46f3ed6, Began Path: CSL-4, Thu Mar 08 14:58:16 PST 2018
+14c23942-387a-4aab-9d99-ce17a46f3ed6, Began Path: CSL-5, Thu Mar 08 14:58:19 PST 2018
+14c23942-387a-4aab-9d99-ce17a46f3ed6, disabled init, Thu Mar 08 14:58:23 PST 2018
+847eaad9-0696-49f2-b962-139495b46ef1, robot startup, Thu Mar 08 15:01:26 PST 2018
+847eaad9-0696-49f2-b962-139495b46ef1, robot init, Thu Mar 08 15:01:26 PST 2018
+847eaad9-0696-49f2-b962-139495b46ef1, disabled init, Thu Mar 08 15:01:26 PST 2018
+847eaad9-0696-49f2-b962-139495b46ef1, auto init, Thu Mar 08 15:01:29 PST 2018
+847eaad9-0696-49f2-b962-139495b46ef1, Starting Center Switch Mode (Left Side), Thu Mar 08 15:01:29 PST 2018
+847eaad9-0696-49f2-b962-139495b46ef1, Began Path: CSL-1, Thu Mar 08 15:01:29 PST 2018
+847eaad9-0696-49f2-b962-139495b46ef1, Began Path: CSL-2, Thu Mar 08 15:01:32 PST 2018
+847eaad9-0696-49f2-b962-139495b46ef1, Began Path: CSL-3, Thu Mar 08 15:01:34 PST 2018
+847eaad9-0696-49f2-b962-139495b46ef1, Began Path: CSL-4, Thu Mar 08 15:01:37 PST 2018
+847eaad9-0696-49f2-b962-139495b46ef1, Began Path: CSL-5, Thu Mar 08 15:01:40 PST 2018
+847eaad9-0696-49f2-b962-139495b46ef1, disabled init, Thu Mar 08 15:01:43 PST 2018
+a0563615-bcf6-49ab-a412-beda785074fd, robot startup, Thu Mar 08 15:02:22 PST 2018
+a0563615-bcf6-49ab-a412-beda785074fd, robot init, Thu Mar 08 15:02:22 PST 2018
+a0563615-bcf6-49ab-a412-beda785074fd, disabled init, Thu Mar 08 15:02:22 PST 2018
+a0563615-bcf6-49ab-a412-beda785074fd, auto init, Thu Mar 08 15:02:49 PST 2018
+a0563615-bcf6-49ab-a412-beda785074fd, Starting Center Switch Mode (Left Side), Thu Mar 08 15:02:49 PST 2018
+a0563615-bcf6-49ab-a412-beda785074fd, Began Path: CSL-1, Thu Mar 08 15:02:49 PST 2018
+a0563615-bcf6-49ab-a412-beda785074fd, Began Path: CSL-2, Thu Mar 08 15:02:52 PST 2018
+a0563615-bcf6-49ab-a412-beda785074fd, Began Path: CSL-3, Thu Mar 08 15:02:55 PST 2018
+a0563615-bcf6-49ab-a412-beda785074fd, Began Path: CSL-4, Thu Mar 08 15:02:57 PST 2018
+a0563615-bcf6-49ab-a412-beda785074fd, Began Path: CSL-5, Thu Mar 08 15:03:00 PST 2018
+a0563615-bcf6-49ab-a412-beda785074fd, disabled init, Thu Mar 08 15:03:04 PST 2018
+54b850bf-1642-49f2-8c8e-927e3ebfc1c8, robot startup, Thu Mar 08 15:05:47 PST 2018
+54b850bf-1642-49f2-8c8e-927e3ebfc1c8, robot init, Thu Mar 08 15:05:47 PST 2018
+54b850bf-1642-49f2-8c8e-927e3ebfc1c8, disabled init, Thu Mar 08 15:05:47 PST 2018
+54b850bf-1642-49f2-8c8e-927e3ebfc1c8, auto init, Thu Mar 08 15:06:01 PST 2018
+54b850bf-1642-49f2-8c8e-927e3ebfc1c8, Starting Center Switch Mode (Left Side), Thu Mar 08 15:06:01 PST 2018
+54b850bf-1642-49f2-8c8e-927e3ebfc1c8, Began Path: CSL-1, Thu Mar 08 15:06:01 PST 2018
+54b850bf-1642-49f2-8c8e-927e3ebfc1c8, Began Path: CSL-2, Thu Mar 08 15:06:04 PST 2018
+54b850bf-1642-49f2-8c8e-927e3ebfc1c8, Began Path: CSL-3, Thu Mar 08 15:06:07 PST 2018
+54b850bf-1642-49f2-8c8e-927e3ebfc1c8, Began Path: CSL-4, Thu Mar 08 15:06:09 PST 2018
+54b850bf-1642-49f2-8c8e-927e3ebfc1c8, Began Path: CSL-5, Thu Mar 08 15:06:12 PST 2018
+54b850bf-1642-49f2-8c8e-927e3ebfc1c8, disabled init, Thu Mar 08 15:06:16 PST 2018
+ba33e4f1-7e0b-49a3-ab21-b64ba5abb2d2, robot startup, Thu Mar 08 15:09:05 PST 2018
+ba33e4f1-7e0b-49a3-ab21-b64ba5abb2d2, robot init, Thu Mar 08 15:09:05 PST 2018
+ba33e4f1-7e0b-49a3-ab21-b64ba5abb2d2, disabled init, Thu Mar 08 15:09:06 PST 2018
+ba33e4f1-7e0b-49a3-ab21-b64ba5abb2d2, auto init, Thu Mar 08 15:09:32 PST 2018
+ba33e4f1-7e0b-49a3-ab21-b64ba5abb2d2, Starting Center Switch Mode (Left Side), Thu Mar 08 15:09:32 PST 2018
+ba33e4f1-7e0b-49a3-ab21-b64ba5abb2d2, Began Path: CSL-1, Thu Mar 08 15:09:32 PST 2018
+ba33e4f1-7e0b-49a3-ab21-b64ba5abb2d2, Began Path: CSL-2, Thu Mar 08 15:09:35 PST 2018
+ba33e4f1-7e0b-49a3-ab21-b64ba5abb2d2, Began Path: CSL-3, Thu Mar 08 15:09:38 PST 2018
+ba33e4f1-7e0b-49a3-ab21-b64ba5abb2d2, Began Path: CSL-4, Thu Mar 08 15:09:40 PST 2018
+ba33e4f1-7e0b-49a3-ab21-b64ba5abb2d2, Began Path: CSL-5, Thu Mar 08 15:09:43 PST 2018
+ba33e4f1-7e0b-49a3-ab21-b64ba5abb2d2, disabled init, Thu Mar 08 15:09:46 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, robot startup, Thu Mar 08 15:12:11 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, robot init, Thu Mar 08 15:12:11 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, disabled init, Thu Mar 08 15:12:12 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, auto init, Thu Mar 08 15:12:35 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, Starting Center Switch Mode (Left Side), Thu Mar 08 15:12:35 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, Began Path: CSL-1, Thu Mar 08 15:12:35 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, Began Path: CSL-2, Thu Mar 08 15:12:38 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, Began Path: CSL-3, Thu Mar 08 15:12:41 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, Began Path: CSL-4, Thu Mar 08 15:12:43 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, Began Path: CSL-5, Thu Mar 08 15:12:46 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, disabled init, Thu Mar 08 15:12:50 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, auto init, Thu Mar 08 15:14:02 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, Starting Center Switch Mode (Left Side), Thu Mar 08 15:14:02 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, Began Path: CSL-1, Thu Mar 08 15:14:03 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, Began Path: CSL-2, Thu Mar 08 15:14:05 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, Began Path: CSL-3, Thu Mar 08 15:14:08 PST 2018
+0a870a3e-6dca-46b3-903b-a6c4dc825847, disabled init, Thu Mar 08 15:14:09 PST 2018
+bc182ae0-a627-435b-b9a1-ecaee370f2c7, robot startup, Thu Mar 08 15:14:44 PST 2018
+bc182ae0-a627-435b-b9a1-ecaee370f2c7, robot init, Thu Mar 08 15:14:44 PST 2018
+bc182ae0-a627-435b-b9a1-ecaee370f2c7, disabled init, Thu Mar 08 15:14:44 PST 2018
+bc182ae0-a627-435b-b9a1-ecaee370f2c7, auto init, Thu Mar 08 15:15:12 PST 2018
+bc182ae0-a627-435b-b9a1-ecaee370f2c7, Starting Center Switch Mode (Left Side), Thu Mar 08 15:15:12 PST 2018
+bc182ae0-a627-435b-b9a1-ecaee370f2c7, Began Path: CSL-1, Thu Mar 08 15:15:12 PST 2018
+bc182ae0-a627-435b-b9a1-ecaee370f2c7, Began Path: CSL-2, Thu Mar 08 15:15:15 PST 2018
+bc182ae0-a627-435b-b9a1-ecaee370f2c7, Began Path: CSL-3, Thu Mar 08 15:15:18 PST 2018
+bc182ae0-a627-435b-b9a1-ecaee370f2c7, Began Path: CSL-4, Thu Mar 08 15:15:21 PST 2018
+bc182ae0-a627-435b-b9a1-ecaee370f2c7, Began Path: CSL-5, Thu Mar 08 15:15:23 PST 2018
+bc182ae0-a627-435b-b9a1-ecaee370f2c7, disabled init, Thu Mar 08 15:15:28 PST 2018
+683dd564-36c9-4f4e-93e5-ea35927fb19e, robot startup, Thu Mar 08 15:15:59 PST 2018
+683dd564-36c9-4f4e-93e5-ea35927fb19e, robot init, Thu Mar 08 15:15:59 PST 2018
+683dd564-36c9-4f4e-93e5-ea35927fb19e, disabled init, Thu Mar 08 15:16:00 PST 2018
+683dd564-36c9-4f4e-93e5-ea35927fb19e, auto init, Thu Mar 08 15:16:21 PST 2018
+683dd564-36c9-4f4e-93e5-ea35927fb19e, Starting Center Switch Mode (Left Side), Thu Mar 08 15:16:21 PST 2018
+683dd564-36c9-4f4e-93e5-ea35927fb19e, Began Path: CSL-1, Thu Mar 08 15:16:21 PST 2018
+683dd564-36c9-4f4e-93e5-ea35927fb19e, Began Path: CSL-2, Thu Mar 08 15:16:24 PST 2018
+683dd564-36c9-4f4e-93e5-ea35927fb19e, Began Path: CSL-3, Thu Mar 08 15:16:27 PST 2018
+683dd564-36c9-4f4e-93e5-ea35927fb19e, Began Path: CSL-4, Thu Mar 08 15:16:29 PST 2018
+683dd564-36c9-4f4e-93e5-ea35927fb19e, Began Path: CSL-5, Thu Mar 08 15:16:32 PST 2018
+683dd564-36c9-4f4e-93e5-ea35927fb19e, disabled init, Thu Mar 08 15:16:35 PST 2018
+2c76a007-68ab-43e5-99fa-60b760aa91d2, robot startup, Thu Mar 08 15:16:51 PST 2018
+2c76a007-68ab-43e5-99fa-60b760aa91d2, robot init, Thu Mar 08 15:16:51 PST 2018
+2c76a007-68ab-43e5-99fa-60b760aa91d2, disabled init, Thu Mar 08 15:16:51 PST 2018
+2c76a007-68ab-43e5-99fa-60b760aa91d2, auto init, Thu Mar 08 15:17:46 PST 2018
+2c76a007-68ab-43e5-99fa-60b760aa91d2, Starting Center Switch Mode (Left Side), Thu Mar 08 15:17:46 PST 2018
+2c76a007-68ab-43e5-99fa-60b760aa91d2, Began Path: CSL-1, Thu Mar 08 15:17:46 PST 2018
+2c76a007-68ab-43e5-99fa-60b760aa91d2, Began Path: CSL-2, Thu Mar 08 15:17:49 PST 2018
+2c76a007-68ab-43e5-99fa-60b760aa91d2, Began Path: CSL-3, Thu Mar 08 15:17:52 PST 2018
+2c76a007-68ab-43e5-99fa-60b760aa91d2, Began Path: CSL-4, Thu Mar 08 15:17:55 PST 2018
+2c76a007-68ab-43e5-99fa-60b760aa91d2, Began Path: CSL-5, Thu Mar 08 15:17:57 PST 2018
+2c76a007-68ab-43e5-99fa-60b760aa91d2, disabled init, Thu Mar 08 15:18:11 PST 2018
+8848ea22-1075-44e5-9a97-6bab6a597812, robot startup, Thu Mar 08 15:19:07 PST 2018
+8848ea22-1075-44e5-9a97-6bab6a597812, robot init, Thu Mar 08 15:19:07 PST 2018
+8848ea22-1075-44e5-9a97-6bab6a597812, disabled init, Thu Mar 08 15:19:08 PST 2018
+8848ea22-1075-44e5-9a97-6bab6a597812, auto init, Thu Mar 08 15:19:22 PST 2018
+8848ea22-1075-44e5-9a97-6bab6a597812, Starting Center Switch Mode (Left Side), Thu Mar 08 15:19:22 PST 2018
+8848ea22-1075-44e5-9a97-6bab6a597812, Began Path: CSL-1, Thu Mar 08 15:19:22 PST 2018
+8848ea22-1075-44e5-9a97-6bab6a597812, Began Path: CSL-2, Thu Mar 08 15:19:25 PST 2018
+8848ea22-1075-44e5-9a97-6bab6a597812, Began Path: CSL-3, Thu Mar 08 15:19:28 PST 2018
+8848ea22-1075-44e5-9a97-6bab6a597812, Began Path: CSL-4, Thu Mar 08 15:19:30 PST 2018
+8848ea22-1075-44e5-9a97-6bab6a597812, Began Path: CSL-5, Thu Mar 08 15:19:33 PST 2018
+8848ea22-1075-44e5-9a97-6bab6a597812, disabled init, Thu Mar 08 15:19:56 PST 2018
+fc63794e-a09e-43c2-a459-ffedebacaaa1, robot startup, Thu Mar 08 15:20:56 PST 2018
+fc63794e-a09e-43c2-a459-ffedebacaaa1, robot init, Thu Mar 08 15:20:57 PST 2018
+fc63794e-a09e-43c2-a459-ffedebacaaa1, disabled init, Thu Mar 08 15:20:57 PST 2018
+fc63794e-a09e-43c2-a459-ffedebacaaa1, auto init, Thu Mar 08 15:20:59 PST 2018
+fc63794e-a09e-43c2-a459-ffedebacaaa1, Starting Center Switch Mode (Left Side), Thu Mar 08 15:20:59 PST 2018
+fc63794e-a09e-43c2-a459-ffedebacaaa1, Began Path: CSL-1, Thu Mar 08 15:20:59 PST 2018
+fc63794e-a09e-43c2-a459-ffedebacaaa1, Began Path: CSL-2, Thu Mar 08 15:21:02 PST 2018
+fc63794e-a09e-43c2-a459-ffedebacaaa1, Began Path: CSL-3, Thu Mar 08 15:21:05 PST 2018
+fc63794e-a09e-43c2-a459-ffedebacaaa1, Began Path: CSL-4, Thu Mar 08 15:21:07 PST 2018
+fc63794e-a09e-43c2-a459-ffedebacaaa1, Began Path: CSL-5, Thu Mar 08 15:21:10 PST 2018
+fc63794e-a09e-43c2-a459-ffedebacaaa1, disabled init, Thu Mar 08 15:21:14 PST 2018
+ab52196f-d64d-4406-9503-c423e66703f4, robot startup, Sun Feb 04 11:10:42 PST 2018
+ab52196f-d64d-4406-9503-c423e66703f4, robot init, Sun Feb 04 11:10:42 PST 2018
+ab52196f-d64d-4406-9503-c423e66703f4, disabled init, Sun Feb 04 11:11:12 PST 2018
+0250cfaf-4343-4cd0-a843-c7a16189547d, robot startup, Thu Mar 08 15:28:58 PST 2018
+0250cfaf-4343-4cd0-a843-c7a16189547d, robot init, Thu Mar 08 15:28:59 PST 2018
+0250cfaf-4343-4cd0-a843-c7a16189547d, disabled init, Thu Mar 08 15:28:59 PST 2018
+720838c6-bcc2-4042-a4e9-3c46d62841a9, robot startup, Sun Feb 04 11:10:42 PST 2018
+720838c6-bcc2-4042-a4e9-3c46d62841a9, robot init, Sun Feb 04 11:10:42 PST 2018
+720838c6-bcc2-4042-a4e9-3c46d62841a9, disabled init, Sun Feb 04 11:13:06 PST 2018
+720838c6-bcc2-4042-a4e9-3c46d62841a9, auto init, Thu Mar 08 15:36:56 PST 2018
+720838c6-bcc2-4042-a4e9-3c46d62841a9, Starting Right Switch Mode (Right Side), Thu Mar 08 15:36:56 PST 2018
+720838c6-bcc2-4042-a4e9-3c46d62841a9, Began Path: DriveStraight, Thu Mar 08 15:36:56 PST 2018
+720838c6-bcc2-4042-a4e9-3c46d62841a9, disabled init, Thu Mar 08 15:37:11 PST 2018
+720838c6-bcc2-4042-a4e9-3c46d62841a9, teleop init, Thu Mar 08 15:37:11 PST 2018
+720838c6-bcc2-4042-a4e9-3c46d62841a9, disabled init, Thu Mar 08 15:39:27 PST 2018
+bf8e2ad7-b0ba-408d-b53c-adcca3eb610f, robot startup, Sun Feb 04 11:10:42 PST 2018
+bf8e2ad7-b0ba-408d-b53c-adcca3eb610f, robot init, Sun Feb 04 11:10:42 PST 2018
+bf8e2ad7-b0ba-408d-b53c-adcca3eb610f, disabled init, Sun Feb 04 11:12:00 PST 2018
+bf8e2ad7-b0ba-408d-b53c-adcca3eb610f, auto init, Thu Mar 08 15:48:48 PST 2018
+bf8e2ad7-b0ba-408d-b53c-adcca3eb610f, Starting Center Switch Mode (Left Side), Thu Mar 08 15:48:48 PST 2018
+bf8e2ad7-b0ba-408d-b53c-adcca3eb610f, Began Path: CSL-1, Thu Mar 08 15:48:48 PST 2018
+bf8e2ad7-b0ba-408d-b53c-adcca3eb610f, Began Path: CSL-2, Thu Mar 08 15:48:51 PST 2018
+bf8e2ad7-b0ba-408d-b53c-adcca3eb610f, Began Path: CSL-3, Thu Mar 08 15:48:54 PST 2018
+bf8e2ad7-b0ba-408d-b53c-adcca3eb610f, Began Path: CSL-4, Thu Mar 08 15:48:56 PST 2018
+bf8e2ad7-b0ba-408d-b53c-adcca3eb610f, Began Path: CSL-5, Thu Mar 08 15:48:59 PST 2018
+bf8e2ad7-b0ba-408d-b53c-adcca3eb610f, disabled init, Thu Mar 08 15:49:03 PST 2018
+bf8e2ad7-b0ba-408d-b53c-adcca3eb610f, teleop init, Thu Mar 08 15:49:04 PST 2018
+bf8e2ad7-b0ba-408d-b53c-adcca3eb610f, disabled init, Thu Mar 08 15:51:19 PST 2018
+c1d951c3-dd96-46df-92ad-b279fa322385, robot startup, Sun Feb 04 11:10:42 PST 2018
+c1d951c3-dd96-46df-92ad-b279fa322385, robot init, Sun Feb 04 11:10:42 PST 2018
+c1d951c3-dd96-46df-92ad-b279fa322385, disabled init, Sun Feb 04 11:11:47 PST 2018
+c1d951c3-dd96-46df-92ad-b279fa322385, auto init, Thu Mar 08 15:58:45 PST 2018
+c1d951c3-dd96-46df-92ad-b279fa322385, disabled init, Thu Mar 08 15:59:00 PST 2018
+c1d951c3-dd96-46df-92ad-b279fa322385, teleop init, Thu Mar 08 15:59:00 PST 2018
+c1d951c3-dd96-46df-92ad-b279fa322385, disabled init, Thu Mar 08 16:01:16 PST 2018
+8997bf7a-b1b3-4479-99d0-6e861a0df516, robot startup, Sun Feb 04 11:10:42 PST 2018
+8997bf7a-b1b3-4479-99d0-6e861a0df516, robot init, Sun Feb 04 11:10:42 PST 2018
+8997bf7a-b1b3-4479-99d0-6e861a0df516, disabled init, Sun Feb 04 11:12:59 PST 2018
+8997bf7a-b1b3-4479-99d0-6e861a0df516, auto init, Thu Mar 08 16:10:06 PST 2018
+8997bf7a-b1b3-4479-99d0-6e861a0df516, Starting Center Switch Mode (Left Side), Thu Mar 08 16:10:06 PST 2018
+8997bf7a-b1b3-4479-99d0-6e861a0df516, Began Path: CSL-1, Thu Mar 08 16:10:06 PST 2018
+8997bf7a-b1b3-4479-99d0-6e861a0df516, Began Path: CSL-2, Thu Mar 08 16:10:09 PST 2018
+8997bf7a-b1b3-4479-99d0-6e861a0df516, Began Path: CSL-3, Thu Mar 08 16:10:11 PST 2018
+8997bf7a-b1b3-4479-99d0-6e861a0df516, Began Path: CSL-4, Thu Mar 08 16:10:14 PST 2018
+8997bf7a-b1b3-4479-99d0-6e861a0df516, Began Path: CSL-5, Thu Mar 08 16:10:17 PST 2018
+8997bf7a-b1b3-4479-99d0-6e861a0df516, disabled init, Thu Mar 08 16:10:21 PST 2018
+8997bf7a-b1b3-4479-99d0-6e861a0df516, teleop init, Thu Mar 08 16:10:21 PST 2018
+8997bf7a-b1b3-4479-99d0-6e861a0df516, disabled init, Thu Mar 08 16:12:37 PST 2018
+67d7165d-19b7-4d36-a909-a7f2a0a56643, robot startup, Sun Feb 04 11:10:41 PST 2018
+67d7165d-19b7-4d36-a909-a7f2a0a56643, robot init, Sun Feb 04 11:10:41 PST 2018
+05ef1ba0-fcc1-4d41-bc6a-5453eb61a3b6, robot startup, Sun Feb 04 11:10:41 PST 2018
+05ef1ba0-fcc1-4d41-bc6a-5453eb61a3b6, robot init, Sun Feb 04 11:10:41 PST 2018
+b3569143-3bc5-4dcd-af0b-db028822c5f3, robot startup, Sun Feb 04 11:10:42 PST 2018
+b3569143-3bc5-4dcd-af0b-db028822c5f3, robot init, Sun Feb 04 11:10:42 PST 2018
+b3569143-3bc5-4dcd-af0b-db028822c5f3, disabled init, Sun Feb 04 11:13:01 PST 2018
+829ab373-b732-46f1-b16f-e49376f367fc, robot startup, Thu Mar 08 16:33:33 PST 2018
+829ab373-b732-46f1-b16f-e49376f367fc, robot init, Thu Mar 08 16:33:33 PST 2018
+829ab373-b732-46f1-b16f-e49376f367fc, disabled init, Thu Mar 08 16:33:33 PST 2018
+03c01a31-fdf4-4135-aac5-197602077e94, robot startup, Thu Mar 08 16:58:18 PST 2018
+03c01a31-fdf4-4135-aac5-197602077e94, robot init, Thu Mar 08 16:58:19 PST 2018
+03c01a31-fdf4-4135-aac5-197602077e94, disabled init, Thu Mar 08 16:58:19 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, robot startup, Thu Mar 08 17:06:57 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, robot init, Thu Mar 08 17:06:57 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, disabled init, Thu Mar 08 17:06:58 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, auto init, Thu Mar 08 17:07:44 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, Starting Center Switch Mode (Right Side), Thu Mar 08 17:07:44 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, Began Path: CSR-1, Thu Mar 08 17:07:44 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, disabled init, Thu Mar 08 17:07:44 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, auto init, Thu Mar 08 17:07:45 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, Starting Center Switch Mode (Right Side), Thu Mar 08 17:07:45 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, Began Path: CSR-1, Thu Mar 08 17:07:45 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, disabled init, Thu Mar 08 17:07:45 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, auto init, Thu Mar 08 17:07:58 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, Starting Center Switch Mode (Right Side), Thu Mar 08 17:07:58 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, Began Path: CSR-1, Thu Mar 08 17:07:58 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, Began Path: CSR-2, Thu Mar 08 17:08:01 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, Began Path: CSR-3, Thu Mar 08 17:08:03 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, Began Path: CSR-4, Thu Mar 08 17:08:06 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, Began Path: CSR-5, Thu Mar 08 17:08:07 PST 2018
+ca6a20be-7415-4c19-8e33-d6d553d5d8e5, disabled init, Thu Mar 08 17:08:11 PST 2018
+48237ad7-0c65-441c-ba92-e5214eb43977, robot startup, Thu Mar 08 17:13:50 PST 2018
+48237ad7-0c65-441c-ba92-e5214eb43977, robot init, Thu Mar 08 17:13:50 PST 2018
+48237ad7-0c65-441c-ba92-e5214eb43977, disabled init, Thu Mar 08 17:13:51 PST 2018
+b03bc8b6-189e-483b-9d31-77dd2efd9854, robot startup, Sun Feb 04 11:10:42 PST 2018
+b03bc8b6-189e-483b-9d31-77dd2efd9854, robot init, Sun Feb 04 11:10:42 PST 2018
+b03bc8b6-189e-483b-9d31-77dd2efd9854, disabled init, Sun Feb 04 11:12:03 PST 2018
+7b826d22-a615-4d23-8d91-416d2d6fd340, robot startup, Thu Mar 08 17:23:27 PST 2018
+7b826d22-a615-4d23-8d91-416d2d6fd340, robot init, Thu Mar 08 17:23:27 PST 2018
+7b826d22-a615-4d23-8d91-416d2d6fd340, disabled init, Thu Mar 08 17:23:27 PST 2018
+7b826d22-a615-4d23-8d91-416d2d6fd340, auto init, Thu Mar 08 17:24:21 PST 2018
+7b826d22-a615-4d23-8d91-416d2d6fd340, Starting Center Switch Mode (Right Side), Thu Mar 08 17:24:21 PST 2018
+7b826d22-a615-4d23-8d91-416d2d6fd340, Began Path: CSR-1, Thu Mar 08 17:24:21 PST 2018
+7b826d22-a615-4d23-8d91-416d2d6fd340, Began Path: CSR-2, Thu Mar 08 17:24:24 PST 2018
+7b826d22-a615-4d23-8d91-416d2d6fd340, Began Path: CSR-3, Thu Mar 08 17:24:27 PST 2018
+7b826d22-a615-4d23-8d91-416d2d6fd340, Began Path: CSR-4, Thu Mar 08 17:24:29 PST 2018
+7b826d22-a615-4d23-8d91-416d2d6fd340, disabled init, Thu Mar 08 17:24:30 PST 2018
+8c3d127a-64ee-4283-bffc-9d816e0208e6, robot startup, Thu Mar 08 17:25:26 PST 2018
+8c3d127a-64ee-4283-bffc-9d816e0208e6, robot init, Thu Mar 08 17:25:26 PST 2018
+8c3d127a-64ee-4283-bffc-9d816e0208e6, disabled init, Thu Mar 08 17:25:27 PST 2018
+8c3d127a-64ee-4283-bffc-9d816e0208e6, auto init, Thu Mar 08 17:25:50 PST 2018
+8c3d127a-64ee-4283-bffc-9d816e0208e6, Starting Center Switch Mode (Right Side), Thu Mar 08 17:25:50 PST 2018
+8c3d127a-64ee-4283-bffc-9d816e0208e6, Began Path: CSR-1, Thu Mar 08 17:25:50 PST 2018
+8c3d127a-64ee-4283-bffc-9d816e0208e6, Began Path: CSR-2, Thu Mar 08 17:25:53 PST 2018
+8c3d127a-64ee-4283-bffc-9d816e0208e6, Began Path: CSR-3, Thu Mar 08 17:25:56 PST 2018
+8c3d127a-64ee-4283-bffc-9d816e0208e6, Began Path: CSR-4, Thu Mar 08 17:25:59 PST 2018
+8c3d127a-64ee-4283-bffc-9d816e0208e6, Began Path: CSR-5, Thu Mar 08 17:26:02 PST 2018
+8c3d127a-64ee-4283-bffc-9d816e0208e6, disabled init, Thu Mar 08 17:26:05 PST 2018
+50c314c5-01ea-49da-a61e-23a573ef653b, robot startup, Thu Mar 08 17:38:50 PST 2018
+50c314c5-01ea-49da-a61e-23a573ef653b, robot init, Thu Mar 08 17:38:50 PST 2018
+50c314c5-01ea-49da-a61e-23a573ef653b, disabled init, Thu Mar 08 17:38:51 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, robot startup, Thu Mar 08 17:39:20 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, robot init, Thu Mar 08 17:39:21 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, disabled init, Thu Mar 08 17:39:21 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, auto init, Thu Mar 08 17:41:48 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, Starting Center Switch Mode (Right Side), Thu Mar 08 17:41:48 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, Began Path: CSR-1, Thu Mar 08 17:41:48 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, Began Path: CSR-2, Thu Mar 08 17:41:51 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, Began Path: CSR-3, Thu Mar 08 17:41:54 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, Began Path: CSR-4, Thu Mar 08 17:41:57 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, Began Path: CSR-5, Thu Mar 08 17:42:00 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, disabled init, Thu Mar 08 17:42:02 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, auto init, Thu Mar 08 17:50:50 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, Starting Center Switch Mode (Right Side), Thu Mar 08 17:50:50 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, Began Path: CSR-1, Thu Mar 08 17:50:50 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, Began Path: CSR-2, Thu Mar 08 17:50:53 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, Began Path: CSR-3, Thu Mar 08 17:50:56 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, Began Path: CSR-4, Thu Mar 08 17:50:58 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, Began Path: CSR-5, Thu Mar 08 17:51:01 PST 2018
+75e697a4-e7af-4ecc-a1dc-54b88364d96b, disabled init, Thu Mar 08 17:51:05 PST 2018
+96f0ff3d-cb30-4e02-b400-c5a5910f461b, robot startup, Thu Mar 08 17:52:14 PST 2018
+96f0ff3d-cb30-4e02-b400-c5a5910f461b, robot init, Thu Mar 08 17:52:14 PST 2018
+96f0ff3d-cb30-4e02-b400-c5a5910f461b, disabled init, Thu Mar 08 17:52:14 PST 2018
+96f0ff3d-cb30-4e02-b400-c5a5910f461b, auto init, Thu Mar 08 17:52:59 PST 2018
+96f0ff3d-cb30-4e02-b400-c5a5910f461b, Starting Center Switch Mode (Right Side), Thu Mar 08 17:52:59 PST 2018
+96f0ff3d-cb30-4e02-b400-c5a5910f461b, Began Path: CSR-1, Thu Mar 08 17:52:59 PST 2018
+96f0ff3d-cb30-4e02-b400-c5a5910f461b, Began Path: CSR-2, Thu Mar 08 17:53:02 PST 2018
+96f0ff3d-cb30-4e02-b400-c5a5910f461b, Began Path: CSR-3, Thu Mar 08 17:53:05 PST 2018
+96f0ff3d-cb30-4e02-b400-c5a5910f461b, Began Path: CSR-4, Thu Mar 08 17:53:08 PST 2018
+96f0ff3d-cb30-4e02-b400-c5a5910f461b, Began Path: CSR-5, Thu Mar 08 17:53:10 PST 2018
+96f0ff3d-cb30-4e02-b400-c5a5910f461b, disabled init, Thu Mar 08 17:53:15 PST 2018
+28c3d098-40f8-4d1e-b1a2-b7dc8e214aea, robot startup, Thu Mar 08 17:53:59 PST 2018
+28c3d098-40f8-4d1e-b1a2-b7dc8e214aea, robot init, Thu Mar 08 17:53:59 PST 2018
+28c3d098-40f8-4d1e-b1a2-b7dc8e214aea, disabled init, Thu Mar 08 17:53:59 PST 2018
+82c56898-745e-48e4-9c15-d4555336b5a5, robot startup, Thu Mar 08 17:54:06 PST 2018
+82c56898-745e-48e4-9c15-d4555336b5a5, robot init, Thu Mar 08 17:54:06 PST 2018
+82c56898-745e-48e4-9c15-d4555336b5a5, disabled init, Thu Mar 08 17:54:07 PST 2018
+82c56898-745e-48e4-9c15-d4555336b5a5, auto init, Thu Mar 08 17:54:20 PST 2018
+82c56898-745e-48e4-9c15-d4555336b5a5, Starting Center Switch Mode (Right Side), Thu Mar 08 17:54:20 PST 2018
+82c56898-745e-48e4-9c15-d4555336b5a5, Began Path: CSR-1, Thu Mar 08 17:54:20 PST 2018
+82c56898-745e-48e4-9c15-d4555336b5a5, Began Path: CSR-2, Thu Mar 08 17:54:23 PST 2018
+82c56898-745e-48e4-9c15-d4555336b5a5, Began Path: CSR-3, Thu Mar 08 17:54:26 PST 2018
+82c56898-745e-48e4-9c15-d4555336b5a5, Began Path: CSR-4, Thu Mar 08 17:54:29 PST 2018
+82c56898-745e-48e4-9c15-d4555336b5a5, Began Path: CSR-5, Thu Mar 08 17:54:31 PST 2018
+82c56898-745e-48e4-9c15-d4555336b5a5, disabled init, Thu Mar 08 17:54:35 PST 2018
+06f6fb7c-ba0f-412b-a84a-9aade9beaf72, robot startup, Sun Feb 04 11:10:42 PST 2018
+06f6fb7c-ba0f-412b-a84a-9aade9beaf72, robot init, Sun Feb 04 11:10:42 PST 2018
+06f6fb7c-ba0f-412b-a84a-9aade9beaf72, disabled init, Sun Feb 04 11:11:03 PST 2018
+06f6fb7c-ba0f-412b-a84a-9aade9beaf72, teleop init, Thu Mar 08 17:59:01 PST 2018
+06f6fb7c-ba0f-412b-a84a-9aade9beaf72, disabled init, Thu Mar 08 17:59:07 PST 2018
+06f6fb7c-ba0f-412b-a84a-9aade9beaf72, teleop init, Thu Mar 08 17:59:26 PST 2018
+06f6fb7c-ba0f-412b-a84a-9aade9beaf72, disabled init, Thu Mar 08 18:00:43 PST 2018
+06f6fb7c-ba0f-412b-a84a-9aade9beaf72, teleop init, Thu Mar 08 18:06:08 PST 2018
+67eaf4b1-b4d2-48b1-8442-8665e2b3177a, robot startup, Sun Feb 04 11:10:42 PST 2018
+67eaf4b1-b4d2-48b1-8442-8665e2b3177a, robot init, Sun Feb 04 11:10:42 PST 2018
+92cb6ff6-aa7b-4171-bfec-32085b1253c7, robot startup, Sun Feb 04 11:10:42 PST 2018
+92cb6ff6-aa7b-4171-bfec-32085b1253c7, robot init, Sun Feb 04 11:10:42 PST 2018
+8194d511-5058-4265-8337-110925e4c4a2, robot startup, Thu Mar 08 18:27:51 PST 2018
+8194d511-5058-4265-8337-110925e4c4a2, robot init, Thu Mar 08 18:27:51 PST 2018
+8194d511-5058-4265-8337-110925e4c4a2, disabled init, Thu Mar 08 18:27:52 PST 2018
+8194d511-5058-4265-8337-110925e4c4a2, teleop init, Thu Mar 08 18:29:08 PST 2018
+8194d511-5058-4265-8337-110925e4c4a2, disabled init, Thu Mar 08 18:29:15 PST 2018
+8194d511-5058-4265-8337-110925e4c4a2, teleop init, Thu Mar 08 18:29:43 PST 2018
+8194d511-5058-4265-8337-110925e4c4a2, disabled init, Thu Mar 08 18:32:46 PST 2018
+8194d511-5058-4265-8337-110925e4c4a2, teleop init, Thu Mar 08 18:33:04 PST 2018
+ac6df427-d297-44f8-ba7f-056bffd200db, robot startup, Sun Feb 04 11:10:42 PST 2018
+ac6df427-d297-44f8-ba7f-056bffd200db, robot init, Sun Feb 04 11:10:42 PST 2018
+ac6df427-d297-44f8-ba7f-056bffd200db, disabled init, Sun Feb 04 11:11:17 PST 2018
+7ed51e2a-f8ce-4079-8abb-1ca694559ca0, robot startup, Thu Mar 08 18:41:20 PST 2018
+7ed51e2a-f8ce-4079-8abb-1ca694559ca0, robot init, Thu Mar 08 18:41:20 PST 2018
+7ed51e2a-f8ce-4079-8abb-1ca694559ca0, disabled init, Thu Mar 08 18:41:20 PST 2018
+1f595d3d-fe4f-46bf-b51b-9adef5fc373f, robot startup, Thu Mar 08 18:42:33 PST 2018
+1f595d3d-fe4f-46bf-b51b-9adef5fc373f, robot init, Thu Mar 08 18:42:33 PST 2018
+1f595d3d-fe4f-46bf-b51b-9adef5fc373f, disabled init, Thu Mar 08 18:42:34 PST 2018
+1f595d3d-fe4f-46bf-b51b-9adef5fc373f, teleop init, Thu Mar 08 18:42:47 PST 2018
+1f595d3d-fe4f-46bf-b51b-9adef5fc373f, disabled init, Thu Mar 08 18:42:48 PST 2018
+db090bce-014d-4b77-9ea0-1bf52530b507, robot startup, Thu Mar 08 18:45:14 PST 2018
+db090bce-014d-4b77-9ea0-1bf52530b507, robot init, Thu Mar 08 18:45:14 PST 2018
+db090bce-014d-4b77-9ea0-1bf52530b507, disabled init, Thu Mar 08 18:45:15 PST 2018
+db090bce-014d-4b77-9ea0-1bf52530b507, teleop init, Thu Mar 08 18:46:10 PST 2018
+db090bce-014d-4b77-9ea0-1bf52530b507, disabled init, Thu Mar 08 18:46:16 PST 2018
+11d25132-6d85-48a9-be6b-d3c8d97bcfe0, robot startup, Thu Mar 08 18:46:50 PST 2018
+11d25132-6d85-48a9-be6b-d3c8d97bcfe0, robot init, Thu Mar 08 18:46:51 PST 2018
+11d25132-6d85-48a9-be6b-d3c8d97bcfe0, disabled init, Thu Mar 08 18:46:51 PST 2018
+25806666-d01a-451d-a6c5-59ff336ce9a8, robot startup, Thu Mar 08 18:48:54 PST 2018
+25806666-d01a-451d-a6c5-59ff336ce9a8, robot init, Thu Mar 08 18:48:54 PST 2018
+25806666-d01a-451d-a6c5-59ff336ce9a8, disabled init, Thu Mar 08 18:48:55 PST 2018
+2a2bda76-d4e5-434a-82f3-d51a7219ee1e, robot startup, Thu Mar 08 18:50:15 PST 2018
+2a2bda76-d4e5-434a-82f3-d51a7219ee1e, robot init, Thu Mar 08 18:50:16 PST 2018
+2a2bda76-d4e5-434a-82f3-d51a7219ee1e, disabled init, Thu Mar 08 18:50:16 PST 2018
+74c24e63-ca9c-4c6d-92c2-11317fcb7f02, robot startup, Thu Mar 08 18:50:29 PST 2018
+74c24e63-ca9c-4c6d-92c2-11317fcb7f02, robot init, Thu Mar 08 18:50:29 PST 2018
+74c24e63-ca9c-4c6d-92c2-11317fcb7f02, disabled init, Thu Mar 08 18:50:29 PST 2018
+1a049190-58a6-4bce-b545-c17e57515491, robot startup, Thu Mar 08 18:51:03 PST 2018
+1a049190-58a6-4bce-b545-c17e57515491, robot init, Thu Mar 08 18:51:03 PST 2018
+1a049190-58a6-4bce-b545-c17e57515491, disabled init, Thu Mar 08 18:51:04 PST 2018
+3d57c2d0-a7e3-407d-84dd-f0a05ae32f9b, robot startup, Thu Mar 08 18:52:23 PST 2018
+3d57c2d0-a7e3-407d-84dd-f0a05ae32f9b, robot init, Thu Mar 08 18:52:23 PST 2018
+3d57c2d0-a7e3-407d-84dd-f0a05ae32f9b, disabled init, Thu Mar 08 18:52:23 PST 2018
+b66e29ff-2bca-47bd-850c-10e4e74eb79b, robot startup, Thu Mar 08 18:53:11 PST 2018
+b66e29ff-2bca-47bd-850c-10e4e74eb79b, robot init, Thu Mar 08 18:53:11 PST 2018
+b66e29ff-2bca-47bd-850c-10e4e74eb79b, disabled init, Thu Mar 08 18:53:12 PST 2018
+4c67995a-ea6d-47ea-a593-6244f9f66334, robot startup, Thu Mar 08 18:54:30 PST 2018
+4c67995a-ea6d-47ea-a593-6244f9f66334, robot init, Thu Mar 08 18:54:31 PST 2018
+4c67995a-ea6d-47ea-a593-6244f9f66334, disabled init, Thu Mar 08 18:54:31 PST 2018
+751165b4-3696-427c-b714-df0c632869ff, robot startup, Thu Mar 08 18:55:32 PST 2018
+751165b4-3696-427c-b714-df0c632869ff, robot init, Thu Mar 08 18:55:32 PST 2018
+751165b4-3696-427c-b714-df0c632869ff, disabled init, Thu Mar 08 18:55:32 PST 2018
+d1191168-b52a-4028-aca1-0d1ddabeffb6, robot startup, Thu Mar 08 18:56:07 PST 2018
+d1191168-b52a-4028-aca1-0d1ddabeffb6, robot init, Thu Mar 08 18:56:07 PST 2018

@@ -4,17 +4,11 @@ import frc.team1836.robot.util.state.MatchData;
 
 public class RobotState {
 
-    public static SystemState mSystemState = SystemState.DISCONNECTED;
     public static MatchState mMatchState = MatchState.DISABLED;
     public static DriveControlState mDriveControlState = DriveControlState.OPEN_LOOP;
     public static ArmControlState mArmControlState = ArmControlState.MOTION_MAGIC;
     public static ArmState mArmState = ArmState.ENABLE;
     public static MatchData matchData = MatchData.defaultMatch;
-
-    // Intenal state of the system
-    public enum SystemState {
-        CONNECTED, DISCONNECTED
-    }
 
     public enum MatchState {
         AUTO, TELEOP, DISABLED, TEST

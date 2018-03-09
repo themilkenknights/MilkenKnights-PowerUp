@@ -1,7 +1,6 @@
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Waypoint;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,139 +8,136 @@ import java.util.Map;
 public class PathGenerator {
 
 
-    public static final HashMap<String, Path[]> robotPaths = new HashMap<>();
-    public static final Trajectory.Config defaultConfig = new Trajectory.Config(
-            Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 145, 95, 500);
-    public static final Trajectory.Config slowConfig = new Trajectory.Config(
-            Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 130, 85, 120);
-    public static final Trajectory.Config slowerConfig = new Trajectory.Config(
-            Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 100, 60, 100);
-    public static final double SWITCH_X = 135;
+	public static final HashMap<String, Path[]> robotPaths = new HashMap<>();
+	public static final Trajectory.Config defaultConfig = new Trajectory.Config(
+			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 145, 95, 500);
+	public static final Trajectory.Config slowConfig = new Trajectory.Config(
+			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 100, 65, 120);
+	public static final Trajectory.Config slowerConfig = new Trajectory.Config(
+			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 100, 60, 100);
+	public static final double SWITCH_X = 135;
 
-    static {
-        robotPaths.put("CSR", new Path[]{
-                new Path("CSR-1", new Waypoint[]{
-                        new Waypoint(23, 155, Pathfinder.d2r(0)),
-                        new Waypoint(121+6, 104, Pathfinder.d2r(0)),
-                },
-                        defaultConfig),
-                new Path("CSR-2", new Waypoint[]{
-                        new Waypoint(121+6, 104, Pathfinder.d2r(0)),
-                        new Waypoint(90+6, 113, Pathfinder.d2r(-45)),
-                        new Waypoint(83+6, 130, Pathfinder.d2r(-90)),
-                        new Waypoint(95+6, 149, Pathfinder.d2r(-140)),
-                },
-                        defaultConfig),
-                new Path("CSR-3", new Waypoint[]{
-                        new Waypoint(95+6, 149, Pathfinder.d2r(-140)),
-                        new Waypoint(83+6, 130, Pathfinder.d2r(-90)),
-                        new Waypoint(90+6, 113, Pathfinder.d2r(-45)),
-                        new Waypoint(121+6, 104, Pathfinder.d2r(0)),
-                }, defaultConfig),
-                new Path("CSR-4", new Waypoint[]{
-                        new Waypoint(121+6, 104, Pathfinder.d2r(0)),
-                        new Waypoint(108+6, 110, Pathfinder.d2r(-45)),
-                        new Waypoint(101+6, 124, Pathfinder.d2r(-90)),
-                        new Waypoint(105+6, 140, Pathfinder.d2r(-130)),
-                },
-                        defaultConfig),
-                new Path("CSR-5", new Waypoint[]{
-                        new Waypoint(105+6, 140, Pathfinder.d2r(-130)),
-                        new Waypoint(101+6, 124, Pathfinder.d2r(-90)),
-                        new Waypoint(108+6, 110, Pathfinder.d2r(-45)),
-                        new Waypoint(121+6, 104, Pathfinder.d2r(0)),
-                }, defaultConfig)
-        });
+	static {
+		robotPaths.put("CSR", new Path[]{
+				new Path("CSR-1", new Waypoint[]{
+						new Waypoint(23, 155, Pathfinder.d2r(0)),
+						new Waypoint(121 + 10, 104, Pathfinder.d2r(0)),
+				},
+						defaultConfig),
+				new Path("CSR-2", new Waypoint[]{
+						new Waypoint(121 ,104 ,Pathfinder.d2r(0)),
+						new Waypoint(100 ,111 ,Pathfinder.d2r(-45)),
+						new Waypoint(92 ,134 ,Pathfinder.d2r(-90)),
+						new Waypoint(97 ,148 ,Pathfinder.d2r(-120)),
+				}, slowerConfig),
+				new Path("CSR-3", new Waypoint[]{
+						new Waypoint(97 ,148 ,Pathfinder.d2r(-120)),
+						new Waypoint(90 ,124 ,Pathfinder.d2r(-90)),
+						new Waypoint(101 ,101 ,Pathfinder.d2r(-45)),
+						new Waypoint(123 ,94 ,Pathfinder.d2r(0)),
+				}, defaultConfig),
+				new Path("CSR-4", new Waypoint[]{
+						new Waypoint(121 + 10, 104, Pathfinder.d2r(0)),
+						new Waypoint(108 + 10, 110, Pathfinder.d2r(-45)),
+						new Waypoint(101 + 10, 124, Pathfinder.d2r(-90)),
+						new Waypoint(105 + 10, 140, Pathfinder.d2r(-130)),
+				},
+						slowerConfig),
+				new Path("CSR-5", new Waypoint[]{
+						new Waypoint(105 + 10, 140, Pathfinder.d2r(-130)),
+						new Waypoint(101 + 10, 124, Pathfinder.d2r(-90)),
+						new Waypoint(108 + 10, 110, Pathfinder.d2r(-45)),
+						new Waypoint(121 + 10, 104, Pathfinder.d2r(0)),
+				}, defaultConfig)
+		});
 
+		robotPaths.put("CSL", new Path[]{
+				new Path("CSL-1", new Waypoint[]{
+						new Waypoint(23, 155, Pathfinder.d2r(0)),
+						new Waypoint(121 + 10, 216, Pathfinder.d2r(0)),
+				},
+						defaultConfig),
+				new Path("CSL-2", new Waypoint[]{
+						new Waypoint(121 + 10, 216, Pathfinder.d2r(0)),
+						new Waypoint(101 + 10, 209, Pathfinder.d2r(45)),
+						new Waypoint(95 + 10, 197, Pathfinder.d2r(90)),
+						new Waypoint(97 + 10, 182, Pathfinder.d2r(120)),
+				}, slowerConfig),
+				new Path("CSL-3", new Waypoint[]{
+						new Waypoint(97 + 10, 182, Pathfinder.d2r(120)),
+						new Waypoint(91 + 10, 201, Pathfinder.d2r(90)),
+						new Waypoint(98 + 10, 220, Pathfinder.d2r(45)),
+						new Waypoint(121 + 10, 230, Pathfinder.d2r(0)),
+				}, defaultConfig),
+				new Path("CSL-4", new Waypoint[]{
+						new Waypoint(121 + 10, 216, Pathfinder.d2r(0)),
+						new Waypoint(108 + 10, 211, Pathfinder.d2r(45)),
+						new Waypoint(103 + 10, 198, Pathfinder.d2r(90)),
+						new Waypoint(110 + 10, 182, Pathfinder.d2r(130)),
+				},
+						slowerConfig),
+				new Path("CSL-5", new Waypoint[]{
+						new Waypoint(97+10 ,182 ,Pathfinder.d2r(120)),
+						new Waypoint(94+10 ,193 ,Pathfinder.d2r(90)),
+						new Waypoint(102+10 ,210 ,Pathfinder.d2r(45)),
+						new Waypoint(121+10 ,218 ,Pathfinder.d2r(0)),
+				}, defaultConfig)
+		});
 
-        robotPaths.put("CSL", new Path[]{
-                new Path("CSL-1", new Waypoint[]{
-                        new Waypoint(23, 155, Pathfinder.d2r(0)),
-                        new Waypoint(121+6, 216, Pathfinder.d2r(0)),
-                },
-                        defaultConfig),
-                new Path("CSL-2", new Waypoint[]{
-                        new Waypoint(121+6, 216, Pathfinder.d2r(0)),
-                        new Waypoint(101+6, 209, Pathfinder.d2r(45)),
-                        new Waypoint(95+6, 197, Pathfinder.d2r(90)),
-                        new Waypoint(97+6, 182, Pathfinder.d2r(120)),
-                }, defaultConfig),
-                new Path("CSL-3", new Waypoint[]{
-                        new Waypoint(97+6, 182, Pathfinder.d2r(120)),
-                        new Waypoint(95+6, 197, Pathfinder.d2r(90)),
-                        new Waypoint(101+6, 209, Pathfinder.d2r(45)),
-                        new Waypoint(121+6, 216, Pathfinder.d2r(0)),
-                }, defaultConfig),
-                new Path("CSL-4", new Waypoint[]{
-                        new Waypoint(121+6, 216, Pathfinder.d2r(0)),
-                        new Waypoint(108+6, 211, Pathfinder.d2r(45)),
-                        new Waypoint(103+6, 198, Pathfinder.d2r(90)),
-                        new Waypoint(108+6, 184, Pathfinder.d2r(120)),
-                },
-                        defaultConfig),
-                new Path("CSL-5", new Waypoint[]{
-                        new Waypoint(108+6, 184, Pathfinder.d2r(120)),
-                        new Waypoint(103+6, 198, Pathfinder.d2r(90)),
-                        new Waypoint(108+6, 211, Pathfinder.d2r(45)),
-                        new Waypoint(121+6, 216, Pathfinder.d2r(0)),
-                }, defaultConfig)
-        });
+		robotPaths.put("DriveStraight", new Path[]{
+				new Path("DriveStraight", new Waypoint[]{
+						new Waypoint(23, 156, 0),
+						new Waypoint(127, 156, 0)
+				}, defaultConfig)
+		});
 
+	}
 
-        robotPaths.put("DriveStraight", new Path[]{
-                new Path("DriveStraight", new Waypoint[]{
-                        new Waypoint(23, 156, 0),
-                        new Waypoint(127, 156, 0)
-                }, defaultConfig)
-        });
-
-    }
-
-    public static void main(String[] args) {
-        for (Map.Entry<String, Path[]> container : robotPaths.entrySet()) {
-            double lastAngle = 0;
-            double pathTime = 0;
-            for (Path path : container.getValue()) {
-                Trajectory trajectory = Pathfinder.generate(path.getPoints(), path.getConfig());
+	public static void main(String[] args) {
+		for (Map.Entry<String, Path[]> container : robotPaths.entrySet()) {
+			double lastAngle = 0;
+			double pathTime = 0;
+			for (Path path : container.getValue()) {
+				Trajectory trajectory = Pathfinder.generate(path.getPoints(), path.getConfig());
               /*  double offset = lastAngle - Pathfinder.boundHalfDegrees(Pathfinder.r2d(trajectory.get(0).heading));
                 for (Trajectory.Segment segment : trajectory.segments) {
                     segment.heading = Pathfinder.boundHalfDegrees(Pathfinder.r2d(segment.heading) + offset);
                 } */
-                File pathFile = new File("paths/" + path.getName() + ".csv").getAbsoluteFile();
-                Pathfinder.writeToCSV(pathFile, trajectory);
-                System.out
-                        .println("Path: " + path.getName() + " Time: " + trajectory.length() * 0.005 + " Sec");
-                lastAngle = trajectory.get(trajectory.length() - 1).heading;
-                pathTime += trajectory.length() * 0.005;
-            }
-            System.out.println("Container: " + container.getKey() + " Time: " + pathTime + " Sec");
-        }
-    }
+				File pathFile = new File("paths/" + path.getName() + ".csv").getAbsoluteFile();
+				Pathfinder.writeToCSV(pathFile, trajectory);
+				System.out
+						.println("Path: " + path.getName() + " Time: " + trajectory.length() * 0.005 + " Sec");
+				lastAngle = trajectory.get(trajectory.length() - 1).heading;
+				pathTime += trajectory.length() * 0.005;
+			}
+			System.out.println("Container: " + container.getKey() + " Time: " + pathTime + " Sec");
+		}
+	}
 
 
-    static class Path {
+	static class Path {
 
-        Waypoint[] points;
-        Trajectory.Config config;
-        String name;
+		Waypoint[] points;
+		Trajectory.Config config;
+		String name;
 
-        public Path(String name, Waypoint[] points, Trajectory.Config config) {
-            this.points = points;
-            this.config = config;
-            this.name = name;
-        }
+		public Path(String name, Waypoint[] points, Trajectory.Config config) {
+			this.points = points;
+			this.config = config;
+			this.name = name;
+		}
 
-        public Waypoint[] getPoints() {
-            return points;
-        }
+		public Waypoint[] getPoints() {
+			return points;
+		}
 
-        public Trajectory.Config getConfig() {
-            return config;
-        }
+		public Trajectory.Config getConfig() {
+			return config;
+		}
 
-        public String getName() {
-            return name;
-        }
+		public String getName() {
+			return name;
+		}
 
-    }
+	}
 }
