@@ -1,6 +1,5 @@
 package frc.team1836.robot.auto.modes;
 
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import frc.team1836.robot.AutoChooser;
 import frc.team1836.robot.AutoChooser.GameObjectPosition;
 import frc.team1836.robot.Constants;
@@ -58,6 +57,16 @@ public class CenterSwitchMode extends AutoModeBase {
 				)));
 		runAction(new ParallelAction(Arrays
 				.asList(
+						new RollerAction(0.2, ARM.INTAKE_IN_ROLLER_SPEED),
+						new OpenLoopAction(0.2, 0.275, true)
+				)));
+		runAction(new ParallelAction(Arrays
+				.asList(
+						new RollerAction(0.1, ARM.INTAKE_IN_ROLLER_SPEED),
+						new OpenLoopAction(0.1, -0.275, true)
+				)));
+		runAction(new ParallelAction(Arrays
+				.asList(
 						new RollerAction(0.5,
 								ARM.INTAKE_IN_ROLLER_SPEED),
 						new DelayAction(0.5, new MoveArmAction(ArmState.OPPOSITE_SWITCH_PLACE)),
@@ -72,6 +81,16 @@ public class CenterSwitchMode extends AutoModeBase {
 						new DelayAction(0.25, new RollerAction(AutoChooser.autoPaths.get("CSL-4").getTime(),
 								ARM.INTAKE_IN_ROLLER_SPEED)),
 						new MoveArmAction(ArmState.INTAKE)
+				)));
+		runAction(new ParallelAction(Arrays
+				.asList(
+						new RollerAction(0.2, ARM.INTAKE_IN_ROLLER_SPEED),
+						new OpenLoopAction(0.2, 0.275, true)
+				)));
+		runAction(new ParallelAction(Arrays
+				.asList(
+						new RollerAction(0.1, ARM.INTAKE_IN_ROLLER_SPEED),
+						new OpenLoopAction(0.1, -0.275, true)
 				)));
 		runAction(new ParallelAction(Arrays
 				.asList(
@@ -101,14 +120,16 @@ public class CenterSwitchMode extends AutoModeBase {
 								ARM.INTAKE_IN_ROLLER_SPEED)),
 						new MoveArmAction(ArmState.INTAKE)
 				)));
-		if (RobotState.matchData.alliance == Alliance.Blue) {
-			runAction(new ParallelAction(Arrays
-					.asList(
-							new RollerAction(0.15, ARM.INTAKE_IN_ROLLER_SPEED),
-							new OpenLoopAction(0.15, 0.275, true)
-					)));
-			runAction(new OpenLoopAction(0.1, -0.275, true));
-		}
+		runAction(new ParallelAction(Arrays
+				.asList(
+						new RollerAction(0.2, ARM.INTAKE_IN_ROLLER_SPEED),
+						new OpenLoopAction(0.2, 0.275, true)
+				)));
+		runAction(new ParallelAction(Arrays
+				.asList(
+						new RollerAction(0.1, ARM.INTAKE_IN_ROLLER_SPEED),
+						new OpenLoopAction(0.1, -0.275, true)
+				)));
 		runAction(new ParallelAction(Arrays
 				.asList(
 						new RollerAction(0.5,
@@ -126,14 +147,18 @@ public class CenterSwitchMode extends AutoModeBase {
 								ARM.INTAKE_IN_ROLLER_SPEED)),
 						new MoveArmAction(ArmState.INTAKE)
 				)));
-		if (RobotState.matchData.alliance == Alliance.Blue) {
+
 			runAction(new ParallelAction(Arrays
 					.asList(
-							new RollerAction(0.15, ARM.INTAKE_IN_ROLLER_SPEED),
-							new OpenLoopAction(0.15, 0.275, true)
+							new RollerAction(0.2, ARM.INTAKE_IN_ROLLER_SPEED),
+							new OpenLoopAction(0.2, 0.275, true)
 					)));
-		runAction(new OpenLoopAction(0.1, -0.275, true));
-		}
+			runAction(new ParallelAction(Arrays
+					.asList(
+							new RollerAction(0.1, ARM.INTAKE_IN_ROLLER_SPEED),
+							new OpenLoopAction(0.1, -0.275, true)
+					)));
+
 		runAction(new ParallelAction(Arrays
 				.asList(
 						new RollerAction(0.5,

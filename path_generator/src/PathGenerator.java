@@ -25,29 +25,33 @@ public class PathGenerator {
 				},
 						defaultConfig),
 				new Path("CSR-2", new Waypoint[]{
-						new Waypoint(121 ,104 ,Pathfinder.d2r(0)),
-						new Waypoint(100 ,111 ,Pathfinder.d2r(-45)),
-						new Waypoint(92 ,134 ,Pathfinder.d2r(-90)),
-						new Waypoint(97 ,148 ,Pathfinder.d2r(-120)),
+						new Waypoint(121 + 10, 104, Pathfinder.d2r(0)),
+						new Waypoint(94 + 10, 113, Pathfinder.d2r(-45)),
+						new Waypoint(86 + 10, 129, Pathfinder.d2r(-90)),
+						new Waypoint(94 + 10, 148, Pathfinder.d2r(-130)),
 				}, slowerConfig),
 				new Path("CSR-3", new Waypoint[]{
-						new Waypoint(97 ,148 ,Pathfinder.d2r(-120)),
-						new Waypoint(90 ,124 ,Pathfinder.d2r(-90)),
-						new Waypoint(101 ,101 ,Pathfinder.d2r(-45)),
-						new Waypoint(123 ,93 ,Pathfinder.d2r(0)),
+						new Waypoint(94 + 10, 148, Pathfinder.d2r(-130)),
+						new Waypoint(86 + 10, 129, Pathfinder.d2r(-90)),
+						new Waypoint(94 + 10, 113, Pathfinder.d2r(-45)),
+						new Waypoint(121 + 10, 104, Pathfinder.d2r(0)),
+
+
 				}, defaultConfig),
 				new Path("CSR-4", new Waypoint[]{
 						new Waypoint(121 + 10, 104, Pathfinder.d2r(0)),
-						new Waypoint(108 + 10, 110, Pathfinder.d2r(-45)),
+						new Waypoint(108 + 10, 109, Pathfinder.d2r(-45)),
 						new Waypoint(101 + 10, 124, Pathfinder.d2r(-90)),
-						new Waypoint(108 + 10, 142, Pathfinder.d2r(-130)),
+						new Waypoint(107 + 10, 140, Pathfinder.d2r(-130)),
 				},
 						slowerConfig),
 				new Path("CSR-5", new Waypoint[]{
-						new Waypoint(105 + 10, 140, Pathfinder.d2r(-130)),
-						new Waypoint(101 + 10, 124, Pathfinder.d2r(-90)),
-						new Waypoint(108 + 10, 110, Pathfinder.d2r(-45)),
-						new Waypoint(121 + 10, 104, Pathfinder.d2r(0)),
+						new Waypoint(107 + 10, 140, Pathfinder.d2r(-130)),
+						new Waypoint(101 + 10, 120, Pathfinder.d2r(-90)),
+						new Waypoint(108 + 10, 106, Pathfinder.d2r(-45)),
+						new Waypoint(121 + 10, 100, Pathfinder.d2r(0)),
+
+
 				}, defaultConfig)
 		});
 
@@ -55,19 +59,19 @@ public class PathGenerator {
 				new Path("CSL-1", new Waypoint[]{
 						new Waypoint(23, 155, Pathfinder.d2r(0)),
 						new Waypoint(121 + 10, 216, Pathfinder.d2r(0)),
-				},
-						defaultConfig),
+				}, defaultConfig),
 				new Path("CSL-2", new Waypoint[]{
 						new Waypoint(121 + 10, 216, Pathfinder.d2r(0)),
-						new Waypoint(101 + 10, 209, Pathfinder.d2r(45)),
-						new Waypoint(95 + 10, 197, Pathfinder.d2r(90)),
-						new Waypoint(98 + 10, 179, Pathfinder.d2r(120)),
+						new Waypoint(97 + 10, 208, Pathfinder.d2r(45)),
+						new Waypoint(90 + 10, 192, Pathfinder.d2r(90)),
+						new Waypoint(95 + 10, 176, Pathfinder.d2r(135)),
 				}, slowerConfig),
 				new Path("CSL-3", new Waypoint[]{
-						new Waypoint(97 + 10, 182, Pathfinder.d2r(120)),
-						new Waypoint(91 + 10, 201, Pathfinder.d2r(90)),
-						new Waypoint(98 + 10, 220, Pathfinder.d2r(45)),
-						new Waypoint(121 + 10, 231, Pathfinder.d2r(0)),
+						new Waypoint(95, 176, Pathfinder.d2r(135)),
+						new Waypoint(90, 192, Pathfinder.d2r(90)),
+						new Waypoint(97, 214, Pathfinder.d2r(45)),
+						new Waypoint(121, 224, Pathfinder.d2r(0)),
+
 				}, defaultConfig),
 				new Path("CSL-4", new Waypoint[]{
 						new Waypoint(121 + 10, 216, Pathfinder.d2r(0)),
@@ -77,10 +81,10 @@ public class PathGenerator {
 				},
 						slowerConfig),
 				new Path("CSL-5", new Waypoint[]{
-						new Waypoint(97+10 ,182 ,Pathfinder.d2r(120)),
-						new Waypoint(94+10 ,193 ,Pathfinder.d2r(90)),
-						new Waypoint(102+10 ,210 ,Pathfinder.d2r(45)),
-						new Waypoint(121+10 ,219 ,Pathfinder.d2r(0)),
+						new Waypoint(97 + 10, 182, Pathfinder.d2r(130)),
+						new Waypoint(94 + 10, 193, Pathfinder.d2r(90)),
+						new Waypoint(102 + 10, 210, Pathfinder.d2r(45)),
+						new Waypoint(123 + 10, 219, Pathfinder.d2r(0)),
 				}, defaultConfig)
 		});
 

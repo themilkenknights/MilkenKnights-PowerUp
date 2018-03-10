@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.RobotState;
+import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.util.drivers.MkLED;
 import frc.team1836.robot.util.drivers.MkLED.LEDColors;
@@ -86,6 +87,17 @@ public class Superstructure extends Subsystem {
 			return;
 		} else if (hPSignal) {
 			mkLED.set_rgb(LEDColors.GREEN);
+		} else if (RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT
+				&& RobotState.mMatchState != MatchState.AUTO) {
+			if(ledNum <= 15){
+				mkLED.set_rgb(LEDColors.RED);
+			} else if(ledNum <= 30){
+				mkLED.set_rgb(LEDColors.OFF);
+			} else{
+				mkLED.set_rgb(LEDColors.RED);
+				ledNum = 0;
+			}
+			ledNum++;
 		} else if (RobotState.mMatchState == MatchState.DISABLED) {
 			mkLED.set_rgb(MkLED.LEDColors.PURPLE);
 		} else if (RobotState.matchData.alliance == DriverStation.Alliance.Red) {
