@@ -107,9 +107,9 @@ class Waypoint {
         var comment = this.comment.length > 0 ? " //" + this.comment : "";
         return (
             " new Waypoint(" +
-            this.position.x +
+            (this.position.x - 23) +
             " ," +
-            this.position.y +
+            (this.position.y - 155)+
             " ,Pathfinder.d2r(" +
             Math.round(this.theta * (180 / Math.PI)) +
             "))," +
@@ -323,8 +323,8 @@ function init() {
         x = Math.floor(x * fieldWidth);
         y = Math.floor(y * fieldHeight);
 
-        $($("table tbody#points tr:last td input")[0]).prop("value", x);
-        $($("table tbody#points tr:last td input")[1]).prop("value", y);
+        $($("table tbody#points tr:last td input")[0]).prop("value", x -23);
+        $($("table tbody#points tr:last td input")[1]).prop("value", y -155);
         update();
     });
 }
@@ -384,10 +384,10 @@ function update() {
     waypoints = [];
     points = new WaypointSequence($("tbody#points tr").length);
     eachPoint(function (x, y, theta, comment) {
-        var pos = new Translation2d(x, y);
+        var pos = new Translation2d(x + 23, y + 155);
         waypoints.push(new Waypoint(pos, theta, comment));
         drawRotatedRect(pos, robotHeight, robotWidth, -theta, getColorForSpeed(10));
-        points.addWaypoint(new WaypointSequence.Waypoint(x, y, theta));
+        points.addWaypoint(new WaypointSequence.Waypoint(x + 23, y + 155, theta));
     });
 
     config = new TrajectoryGenerator.Config();
