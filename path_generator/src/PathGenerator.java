@@ -34,13 +34,13 @@ public class PathGenerator {
 						new Waypoint(97 ,148 ,Pathfinder.d2r(-120)),
 						new Waypoint(90 ,124 ,Pathfinder.d2r(-90)),
 						new Waypoint(101 ,101 ,Pathfinder.d2r(-45)),
-						new Waypoint(123 ,94 ,Pathfinder.d2r(0)),
+						new Waypoint(123 ,93 ,Pathfinder.d2r(0)),
 				}, defaultConfig),
 				new Path("CSR-4", new Waypoint[]{
 						new Waypoint(121 + 10, 104, Pathfinder.d2r(0)),
 						new Waypoint(108 + 10, 110, Pathfinder.d2r(-45)),
 						new Waypoint(101 + 10, 124, Pathfinder.d2r(-90)),
-						new Waypoint(105 + 10, 140, Pathfinder.d2r(-130)),
+						new Waypoint(108 + 10, 142, Pathfinder.d2r(-130)),
 				},
 						slowerConfig),
 				new Path("CSR-5", new Waypoint[]{
@@ -61,26 +61,26 @@ public class PathGenerator {
 						new Waypoint(121 + 10, 216, Pathfinder.d2r(0)),
 						new Waypoint(101 + 10, 209, Pathfinder.d2r(45)),
 						new Waypoint(95 + 10, 197, Pathfinder.d2r(90)),
-						new Waypoint(97 + 10, 182, Pathfinder.d2r(120)),
+						new Waypoint(98 + 10, 179, Pathfinder.d2r(120)),
 				}, slowerConfig),
 				new Path("CSL-3", new Waypoint[]{
 						new Waypoint(97 + 10, 182, Pathfinder.d2r(120)),
 						new Waypoint(91 + 10, 201, Pathfinder.d2r(90)),
 						new Waypoint(98 + 10, 220, Pathfinder.d2r(45)),
-						new Waypoint(121 + 10, 230, Pathfinder.d2r(0)),
+						new Waypoint(121 + 10, 231, Pathfinder.d2r(0)),
 				}, defaultConfig),
 				new Path("CSL-4", new Waypoint[]{
 						new Waypoint(121 + 10, 216, Pathfinder.d2r(0)),
 						new Waypoint(108 + 10, 211, Pathfinder.d2r(45)),
 						new Waypoint(103 + 10, 198, Pathfinder.d2r(90)),
-						new Waypoint(110 + 10, 182, Pathfinder.d2r(130)),
+						new Waypoint(111 + 10, 180, Pathfinder.d2r(130)),
 				},
 						slowerConfig),
 				new Path("CSL-5", new Waypoint[]{
 						new Waypoint(97+10 ,182 ,Pathfinder.d2r(120)),
 						new Waypoint(94+10 ,193 ,Pathfinder.d2r(90)),
 						new Waypoint(102+10 ,210 ,Pathfinder.d2r(45)),
-						new Waypoint(121+10 ,218 ,Pathfinder.d2r(0)),
+						new Waypoint(121+10 ,219 ,Pathfinder.d2r(0)),
 				}, defaultConfig)
 		});
 
