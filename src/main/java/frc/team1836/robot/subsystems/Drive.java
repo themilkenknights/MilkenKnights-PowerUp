@@ -263,6 +263,9 @@ public class Drive extends Subsystem {
         rightDrive.configTeleopVelocity();
     }
 
+    public boolean gyroConnected(){
+        return navX.isConnected();
+    }
     @Override
     public void registerEnabledLoops(Looper enabledLooper) {
         Loop mLoop = new Loop() {

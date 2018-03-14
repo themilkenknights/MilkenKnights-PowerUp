@@ -118,9 +118,9 @@ public final class Constants {
     public static class AUTO {
 
         public static final String pathPath = "/home/lvuser/paths/";
-        public static final String[] autoNames = {"CSL-1", "CSL-2", "CSL-3",
-                "CSL-4", "CSL-5", "CSR-1", "CSR-2", "CSR-3",
-                "CSR-4", "CSR-5", "DriveStraight"};
+        public static final String[] autoNames = {"CS-1L", "CS-2L", "CS-3L",
+                "CS-4L", "CS-5L", "CS-1R", "CS-2R", "CS-3R",
+                "CS-4R", "CS-5R", "DriveStraight"};
     }
 
     public static class SUPERSTRUCTURE {
