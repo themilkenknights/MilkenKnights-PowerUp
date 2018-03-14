@@ -81,7 +81,7 @@ public class MkTalon {
         }
     }
 
-    public void configTeleopVelocity(){
+    public void configTeleopVelocity() {
         if (side.equals(TalonPosition.Left)) {
             masterTalon.config_kF(Constants.kPIDLoopIdx, DRIVE.LEFT_DRIVE_F, Constants.kTimeoutMs);
         } else if (side.equals(TalonPosition.Right)) {
@@ -249,12 +249,15 @@ public class MkTalon {
     }
 
     public void zeroAbsolute() {
-        masterTalon.setSelectedSensorPosition((int) (getAbsolutePosition() + ARM.ANGLE_OFFSET), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+        int pulseWidth = masterTalon.getSensorCollection().getPulseWidthPosition();
+        int newCenter;
+        newCenter = (Constants.ARM.kBookEnd_0 + Constants.ARM.kBookEnd_1) / 2;
+        newCenter &= 0xFFF;
+        pulseWidth -= newCenter;
+        pulseWidth = pulseWidth & 0xFFF;
+        masterTalon.setSelectedSensorPosition(pulseWidth, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     }
 
-    public void zeroAbsolute(double offset) {
-        masterTalon.setSelectedSensorPosition((int) (getAbsolutePosition() + offset), Constants.kPIDLoopIdx, Constants.kTimeoutMs);
-    }
 
     public double getPercentOutput() {
         return masterTalon.getMotorOutputPercent();
