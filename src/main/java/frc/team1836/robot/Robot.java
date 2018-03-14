@@ -1,6 +1,8 @@
 package frc.team1836.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import frc.team1836.robot.RobotState.ArmControlState;
 import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.RobotState.MatchState;
@@ -11,7 +13,6 @@ import frc.team1836.robot.subsystems.Superstructure;
 import frc.team1836.robot.util.logging.CrashTracker;
 import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.other.SubsystemManager;
-
 import java.util.Arrays;
 
 public class Robot extends IterativeRobot {
@@ -30,6 +31,7 @@ public class Robot extends IterativeRobot {
             CrashTracker.logRobotInit();
             mSubsystemManager.registerEnabledLoops(mEnabledLooper);
             AutoChooser.loadAutos();
+            CameraServer.getInstance().startAutomaticCapture().setResolution(640, 480);
         } catch (Throwable t) {
             CrashTracker.logThrowableCrash(t);
             throw t;
@@ -119,6 +121,7 @@ public class Robot extends IterativeRobot {
             mSubsystemManager.outputToSmartDashboard();
             mSubsystemManager.slowUpdate();
             mEnabledLooper.outputToSmartDashboard();
+            Superstructure.getInstance().setLastPacketTime(Timer.getFPGATimestamp());
         } catch (Throwable t) {
             CrashTracker.logThrowableCrash(t);
             throw t;
