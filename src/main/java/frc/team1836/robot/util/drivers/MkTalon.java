@@ -31,9 +31,7 @@ public class MkTalon {
         slaveID = slave;
 
         resetConfig();
-        if (side.equals(TalonPosition.Arm)) {
-            configMotionMagic();
-        }
+        configMotionMagic();
     }
 
     public void setPIDF() {
@@ -61,13 +59,37 @@ public class MkTalon {
     }
 
     public void configMotionMagic() {
-        masterTalon.config_kF(Constants.kPIDLoopIdx, ARM.ARM_F, Constants.kTimeoutMs);
-        masterTalon.config_kP(Constants.kPIDLoopIdx, ARM.ARM_P, Constants.kTimeoutMs);
-        masterTalon.config_kI(Constants.kPIDLoopIdx, ARM.ARM_I, Constants.kTimeoutMs);
-        masterTalon.config_kD(Constants.kPIDLoopIdx, ARM.ARM_D, Constants.kTimeoutMs);
-        masterTalon.configMotionCruiseVelocity((int) ARM.MOTION_MAGIC_CRUISE_VEL, Constants.kTimeoutMs);
-        masterTalon.configMotionAcceleration((int) ARM.MOTION_MAGIC_ACCEL, Constants.kTimeoutMs);
-        zeroAbsolute();
+        if (side == TalonPosition.Arm) {
+            masterTalon.config_kF(Constants.kPIDLoopIdx, ARM.ARM_F, Constants.kTimeoutMs);
+            masterTalon.config_kP(Constants.kPIDLoopIdx, ARM.ARM_P, Constants.kTimeoutMs);
+            masterTalon.config_kI(Constants.kPIDLoopIdx, ARM.ARM_I, Constants.kTimeoutMs);
+            masterTalon.config_kD(Constants.kPIDLoopIdx, ARM.ARM_D, Constants.kTimeoutMs);
+            masterTalon.configMotionCruiseVelocity((int) ARM.MOTION_MAGIC_CRUISE_VEL, Constants.kTimeoutMs);
+            masterTalon.configMotionAcceleration((int) ARM.MOTION_MAGIC_ACCEL, Constants.kTimeoutMs);
+            zeroAbsolute();
+        } else {
+            if (side == TalonPosition.Left) {
+                masterTalon.config_kF(Constants.kPIDLoopIdx, DRIVE.LEFT_DRIVE_F, Constants.kTimeoutMs);
+            } else {
+                masterTalon.config_kF(Constants.kPIDLoopIdx, DRIVE.RIGHT_DRIVE_F, Constants.kTimeoutMs);
+            }
+            masterTalon.config_kP(Constants.kPIDLoopIdx, DRIVE.DRIVE_P, Constants.kTimeoutMs);
+            masterTalon.config_kI(Constants.kPIDLoopIdx, DRIVE.DRIVE_I, Constants.kTimeoutMs);
+            masterTalon.config_kD(Constants.kPIDLoopIdx, DRIVE.DRIVE_D, Constants.kTimeoutMs);
+            masterTalon.configMotionCruiseVelocity((int) DRIVE.MOTION_MAGIC_CRUISE_VEL, Constants.kTimeoutMs);
+            masterTalon.configMotionAcceleration((int) DRIVE.MOTION_MAGIC_ACCEL, Constants.kTimeoutMs);
+        }
+    }
+
+    public void configTeleopVelocity(){
+        if (side.equals(TalonPosition.Left)) {
+            masterTalon.config_kF(Constants.kPIDLoopIdx, DRIVE.LEFT_DRIVE_F, Constants.kTimeoutMs);
+        } else if (side.equals(TalonPosition.Right)) {
+            masterTalon.config_kF(Constants.kPIDLoopIdx, DRIVE.RIGHT_DRIVE_F, Constants.kTimeoutMs);
+        }
+        masterTalon.config_kP(Constants.kPIDLoopIdx, DRIVE.TELEOP_DRIVE_P, Constants.kTimeoutMs);
+        masterTalon.config_kI(Constants.kPIDLoopIdx, DRIVE.TELEOP_DRIVE_I, Constants.kTimeoutMs);
+        masterTalon.config_kD(Constants.kPIDLoopIdx, DRIVE.TELEOP_DRIVE_D, Constants.kTimeoutMs);
     }
 
     public void resetConfig() {
@@ -99,11 +121,11 @@ public class MkTalon {
         slaveTalon.setNeutralMode(NeutralMode.Brake);
         slaveTalon.follow(masterTalon);
 
-        masterTalon.configVoltageCompSaturation(12.9, Constants.kTimeoutMs);
+        masterTalon.configVoltageCompSaturation(12.75, Constants.kTimeoutMs);
         masterTalon.enableVoltageCompensation(true);
         masterTalon.configVoltageMeasurementFilter(32, Constants.kTimeoutMs);
 
-        slaveTalon.configVoltageCompSaturation(12.9, Constants.kTimeoutMs);
+        slaveTalon.configVoltageCompSaturation(12.75, Constants.kTimeoutMs);
         slaveTalon.enableVoltageCompensation(true);
         slaveTalon.configVoltageMeasurementFilter(32, Constants.kTimeoutMs);
 
@@ -199,7 +221,7 @@ public class MkTalon {
         masterTalon.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
     }
 
-    public void setCoastMode(){
+    public void setCoastMode() {
         masterTalon.setNeutralMode(NeutralMode.Coast);
         slaveTalon.setNeutralMode(NeutralMode.Coast);
     }

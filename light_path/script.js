@@ -107,9 +107,9 @@ class Waypoint {
         var comment = this.comment.length > 0 ? " //" + this.comment : "";
         return (
             " new Waypoint(" +
-            (this.position.x - 23) +
+            (this.position.x) +
             " ," +
-            (this.position.y - 155)+
+            (this.position.y - 162)+
             " ,Pathfinder.d2r(" +
             Math.round(this.theta * (180 / Math.PI)) +
             "))," +
@@ -323,8 +323,8 @@ function init() {
         x = Math.floor(x * fieldWidth);
         y = Math.floor(y * fieldHeight);
 
-        $($("table tbody#points tr:last td input")[0]).prop("value", x -23);
-        $($("table tbody#points tr:last td input")[1]).prop("value", y -155);
+        $($("table tbody#points tr:last td input")[0]).prop("value", x);
+        $($("table tbody#points tr:last td input")[1]).prop("value", y - 162);
         update();
     });
 }
@@ -359,7 +359,7 @@ function addPoint() {
     //$("tbody#points tr:last td:nth-child(3) input").prop("value", "30");
     $("tbody#points").append("<tr>"
         +"<td><input value='"+(prev.x+1)+"'></td>"
-        +"<td><input value='"+(prev.y+1)+"'></td>"
+        +"<td><input value='"+(prev.y - 161)+"'></td>"
         +"<td><input value='0'></td>"
         +"<td class='comments'><input placeholder='Comments'></td>"
         +"<td><button onclick='$(this).parent().parent().remove();update()'>Delete</button></td></tr>"
@@ -384,10 +384,10 @@ function update() {
     waypoints = [];
     points = new WaypointSequence($("tbody#points tr").length);
     eachPoint(function (x, y, theta, comment) {
-        var pos = new Translation2d(x + 23, y + 155);
+        var pos = new Translation2d(x, y + 162);
         waypoints.push(new Waypoint(pos, theta, comment));
         drawRotatedRect(pos, robotHeight, robotWidth, -theta, getColorForSpeed(10));
-        points.addWaypoint(new WaypointSequence.Waypoint(x + 23, y + 155, theta));
+        points.addWaypoint(new WaypointSequence.Waypoint(x, y + 162, theta));
     });
 
     config = new TrajectoryGenerator.Config();

@@ -121,9 +121,6 @@ public class Arm extends Subsystem {
 						case MOTION_MAGIC:
 							updateArmSetpoint();
 							return;
-						case ZEROING:
-							zeroArm();
-							return;
 						case OPEN_LOOP:
 							return;
 						default:
@@ -176,26 +173,6 @@ public class Arm extends Subsystem {
 			RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
 		}
 	}
-
-	private void zeroArm() {
-		if (armTalon.getCurrentOutput() > ARM.CURRENT_HARDSTOP_LIMIT) {
-			RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
-			setOpenLoop(0);
-			edu.wpi.first.wpilibj.Timer.delay(0.2);
-			armTalon.resetEncoder();
-			armPosEnable = armTalon.getPosition();
-			armTalon.setLimitEnabled(true);
-			armSafety = true;
-			System.out.println("Zeroed");
-			RobotState.mArmState = ArmState.ENABLE;
-			RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
-		} else {
-			armTalon.setLimitEnabled(false);
-			setOpenLoop(0);
-		}
-
-	}
-
 
 	public void setOpenLoop(double output) {
 		armTalon.set(ControlMode.PercentOutput, output, true);

@@ -58,8 +58,12 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 Link to Path Generator - https://milken-computer-science.github.io/MilkenKnights-PowerUp/light_path
 
 ## Useful Links
-- http://www.ctr-electronics.com/control-system/motor-control/talon-srx.html#product_tabs_technical_resources
-- https://github.com/CrossTheRoadElec/Phoenix-Documentation/raw/master/Talon%20SRX%20Victor%20SPX%20-%20Software%20Reference%20Manual.pdf
-- http://www.ctr-electronics.com/control-system/hro.html#product_tabs_technical_resources
-- https://github.com/Open-RIO/GradleRIO
-- https://github.com/CrossTheRoadElec/Phoenix-Documentation
+- [Talon Software Reference Manual](https://github.com/CrossTheRoadElec/Phoenix-Documentation/raw/master/Talon%20SRX%20Victor%20SPX%20-%20Software%20Reference%20Manual.pdf)
+- [CTRE Control System](http://www.ctr-electronics.com/control-system/hro.html#product_tabs_technical_resources)
+- [CTRE Github Documentation](https://github.com/CrossTheRoadElec/Phoenix-Documentation)
+- [GradleRIO](https://github.com/Open-RIO/GradleRIO)
+- [Pathfinder](https://github.com/JacisNonsense/Pathfinder)
+
+## Credits
+ - Much of our code structure comes from (or are inspired from) [254's 2017 Code](https://github.com/Team254/FRC-2017-Public)
+ - [Lightning Path](https://github.com/frc-862/glitch) was built by Team 862
