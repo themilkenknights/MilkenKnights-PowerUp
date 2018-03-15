@@ -55,7 +55,7 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 - ID TYPICALLY DENOTES A CAN ID
 - ALL PID CONSTANTS SENT TO THE TALON ARE IN NATIVE UNITS (4096 Per Rotation)
 
-Link to Path Generator - https://milken-computer-science.github.io/MilkenKnights-PowerUp/light_path
+[Path Generator](https://themilkenknights.github.io/MilkenKnights-PowerUp/light_path)
 
 ## Useful Links
 - [Talon Software Reference Manual](https://github.com/CrossTheRoadElec/Phoenix-Documentation/raw/master/Talon%20SRX%20Victor%20SPX%20-%20Software%20Reference%20Manual.pdf)
