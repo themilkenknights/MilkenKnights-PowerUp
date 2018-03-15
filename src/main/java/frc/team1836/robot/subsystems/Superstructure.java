@@ -69,7 +69,7 @@ public class Superstructure extends Subsystem {
             @Override
             public void onLoop(double timestamp) {
                 synchronized (Superstructure.this) {
-                   // updateLEDStrip(timestamp);
+                    // updateLEDStrip(timestamp);
                 }
             }
 
@@ -81,7 +81,7 @@ public class Superstructure extends Subsystem {
         enabledLooper.register(mLoop);
     }
 
-    private synchronized void updateLEDStrip(double timestamp) {
+    public synchronized void updateLEDStrip(double timestamp) {
         if (turnOffLED) {
             mkLED.set_rgb(LEDColors.OFF);
         } else if (timestamp - mLastPacketTime > kConnectionTimeoutSec) {

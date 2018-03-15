@@ -13,6 +13,7 @@ import frc.team1836.robot.subsystems.Superstructure;
 import frc.team1836.robot.util.logging.CrashTracker;
 import frc.team1836.robot.util.loops.Looper;
 import frc.team1836.robot.util.other.SubsystemManager;
+
 import java.util.Arrays;
 
 public class Robot extends IterativeRobot {
@@ -97,6 +98,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void disabledPeriodic() {
         allPeriodic();
+        Superstructure.getInstance().updateLEDStrip(Timer.getFPGATimestamp());
     }
 
     @Override

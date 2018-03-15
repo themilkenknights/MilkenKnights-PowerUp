@@ -63,7 +63,7 @@ public class AutoChooser {
 
 
     private static AutoModeBase getStraightMode() {
-        if (Drive.getInstance().isEncodersConnected()) {
+        if (Drive.getInstance().isEncodersConnected() && Drive.getInstance().gyroConnected()) {
             return new DriveStraightMode();
         } else {
             return new DriveStraightOpenLoopMode();
@@ -72,11 +72,11 @@ public class AutoChooser {
 
     private static AutoModeBase getSwitchMode() {
         if (positionChooser.getSelected() == AutoPosition.CENTER) {
-            getCenterSwitch();
+            return getCenterSwitch();
         } else if (positionChooser.getSelected() == AutoPosition.LEFT) {
-            getLeftSwitch();
+            return getLeftSwitch();
         } else if (positionChooser.getSelected() == AutoPosition.RIGHT) {
-            getRightSwitch();
+            return getRightSwitch();
         }
         return null;
     }
@@ -96,9 +96,9 @@ public class AutoChooser {
             } else if (RobotState.matchData.switchPosition == GameObjectPosition.LEFT) {
                 return new SideSwitchMode();
             } else {
-                getStraightMode();
+                return getStraightMode();
             }
-        } else if (positionChooser.getSelected() == AutoPosition.RIGHT) {
+        } else {
             if (RobotState.matchData.switchPosition == RobotState.matchData.scalePosition) {
                 if (RobotState.matchData.switchPosition == GameObjectPosition.RIGHT) {
                     return new SingleSideSwitchMode(RobotState.matchData.switchPosition);
@@ -108,10 +108,9 @@ public class AutoChooser {
             } else if (RobotState.matchData.switchPosition == GameObjectPosition.RIGHT) {
                 return new SideSwitchMode();
             } else {
-                getStraightMode();
+                return getStraightMode();
             }
         }
-        return null;
     }
 
     private static AutoModeBase getCenterSwitch() {
@@ -127,16 +126,20 @@ public class AutoChooser {
     private static AutoModeBase getRightSwitch() {
         if (Drive.getInstance().isEncodersConnected() && Drive.getInstance().gyroConnected()) {
             return new RightSwitchMode(RobotState.matchData.switchPosition);
+        } else if (RobotState.matchData.switchPosition == GameObjectPosition.RIGHT) {
+            return new SwitchOpenLoop();
         } else {
-            return new DriveStraightMode();
+            return getStraightMode();
         }
     }
 
     private static AutoModeBase getLeftSwitch() {
         if (Drive.getInstance().isEncodersConnected() && Drive.getInstance().gyroConnected()) {
             return new LeftSwitchMode(RobotState.matchData.switchPosition);
+        } else if (RobotState.matchData.switchPosition == GameObjectPosition.LEFT) {
+            return new SwitchOpenLoop();
         } else {
-            return new DriveStraightMode();
+            return getStraightMode();
         }
     }
 
@@ -167,6 +170,7 @@ public class AutoChooser {
                 gameData.charAt(0) == 'L' ? GameObjectPosition.LEFT : GameObjectPosition.RIGHT;
         RobotState.matchData.scalePosition =
                 gameData.charAt(1) == 'L' ? GameObjectPosition.LEFT : GameObjectPosition.RIGHT;
+        CrashTracker.logMarker("Alliance: " + RobotState.matchData.alliance.toString() + " Match Number: " + RobotState.matchData.matchNumber + " Match Type: " + RobotState.matchData.matchType.toString() + " Switch Position: " + RobotState.matchData.switchPosition.toString() + " Scale Position: " + RobotState.matchData.scalePosition.toString());
     }
 
     public enum AutoPosition {
