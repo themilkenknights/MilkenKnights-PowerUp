@@ -56,13 +56,11 @@ public class Robot extends IterativeRobot {
     @Override
     public void autonomousInit() {
         try {
-            double dt = edu.wpi.first.wpilibj.Timer.getFPGATimestamp();
             AutoChooser.updateGameData();
             CrashTracker.logAutoInit();
             RobotState.mMatchState = MatchState.AUTO;
             mEnabledLooper.start();
             AutoChooser.startAuto();
-           CrashTracker.logMarker("Auto Init Took: " + (edu.wpi.first.wpilibj.Timer.getFPGATimestamp() - dt));
         } catch (Throwable t) {
             CrashTracker.logThrowableCrash(t);
             throw t;
@@ -109,6 +107,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void teleopPeriodic() {
         allPeriodic();
+        mSubsystemManager.slowUpdate();
     }
 
     @Override
@@ -119,7 +118,6 @@ public class Robot extends IterativeRobot {
     private void allPeriodic() {
         try {
             mSubsystemManager.outputToSmartDashboard();
-            mSubsystemManager.slowUpdate();
             mEnabledLooper.outputToSmartDashboard();
             Superstructure.getInstance().setLastPacketTime(Timer.getFPGATimestamp());
         } catch (Throwable t) {

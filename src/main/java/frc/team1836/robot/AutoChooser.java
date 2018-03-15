@@ -89,7 +89,7 @@ public class AutoChooser {
         } else if (positionChooser.getSelected() == AutoPosition.LEFT) {
             if (RobotState.matchData.switchPosition == RobotState.matchData.scalePosition) {
                 if (RobotState.matchData.switchPosition == GameObjectPosition.LEFT) {
-                    return new SingleSideSwitchMode();
+                    return new SingleSideSwitchMode(RobotState.matchData.switchPosition);
                 } else {
                     return new SideSwitchMode();
                 }
@@ -101,7 +101,7 @@ public class AutoChooser {
         } else if (positionChooser.getSelected() == AutoPosition.RIGHT) {
             if (RobotState.matchData.switchPosition == RobotState.matchData.scalePosition) {
                 if (RobotState.matchData.switchPosition == GameObjectPosition.RIGHT) {
-                    return new SingleSideSwitchMode();
+                    return new SingleSideSwitchMode(RobotState.matchData.switchPosition);
                 } else {
                     return new SideSwitchMode();
                 }

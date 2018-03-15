@@ -42,6 +42,7 @@ public class Arm extends Subsystem {
 		rightIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
 		armTalon.invertMaster(ARM.ARM_MASTER_DIRECTION);
 		armTalon.invertSlave(ARM.ARM_SLAVE_DIRECTION);
+		armTalon.zeroAbsolute();
 		leftIntakeRollerTalon.setInverted(ARM.LEFT_INTAKE_DIRECTION);
 		rightIntakeRollerTalon.setInverted(ARM.RIGHT_INTAKE_DIRECTION);
 	}
@@ -100,7 +101,6 @@ public class Arm extends Subsystem {
 			@Override
 			public void onStart(double timestamp) {
 				synchronized (Arm.this) {
-					armTalon.zeroAbsolute();
 					if (armTalon.getAbsolutePosition() > 4096.0) {
 						RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
 					}
@@ -156,6 +156,7 @@ public class Arm extends Subsystem {
 
 	public void zeroRel() {
 		armTalon.resetEncoder();
+		armPosEnable = armTalon.getPosition();
 	}
 
 	private void updateArmSetpoint() {
@@ -185,12 +186,12 @@ public class Arm extends Subsystem {
 
 	public static class ArmDebugOutput {
 
-		double timestamp;
-		String controlMode;
-		double output;
-		double position;
-		double velocity;
-		double setpoint;
+		public double timestamp;
+		public String controlMode;
+		public double output;
+		public double position;
+		public double velocity;
+		public double setpoint;
 	}
 
 	private static class InstanceHolder {

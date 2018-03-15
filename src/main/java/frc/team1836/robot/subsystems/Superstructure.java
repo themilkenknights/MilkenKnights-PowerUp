@@ -69,7 +69,7 @@ public class Superstructure extends Subsystem {
             @Override
             public void onLoop(double timestamp) {
                 synchronized (Superstructure.this) {
-                    updateLEDStrip(timestamp);
+                   // updateLEDStrip(timestamp);
                 }
             }
 
