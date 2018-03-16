@@ -39,7 +39,6 @@ public class Superstructure extends Subsystem {
     @Override
     public void outputToSmartDashboard() {
         SmartDashboard.putString("Robot State", RobotState.mMatchState.toString());
-
     }
 
     public void toggleSignal() {

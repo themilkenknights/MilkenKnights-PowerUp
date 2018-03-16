@@ -65,11 +65,15 @@ task swerdUpdate {
     doLast {
         FileTree myFileTree = fileTree(dir: 'paths')
         def date = new Date()
-        String formattedDate = "logs/" //+ date.format("yyyyMMdd").toString() + '/' + date.format('HH-mm') + '/'
+        String formattedDate = date.format("yyyyMMdd").toString() + '/' + date.format('HH-mm') + '/'
+        def logBase = new File('logs')
+        logBase.mkdirs()
+        def logDir = new File(logBase.absolutePath + '/' +formattedDate)
+        logDir.mkdirs()
         ssh.run {
             session(remotes.webServer) {
                 put from: myFileTree.getFiles(), into: '/home/lvuser/paths'
-                get from: '/u', into: formattedDate
+                get from: '/u', into: 'logs/' + formattedDate
             }
         }
 
@@ -77,8 +81,11 @@ task swerdUpdate {
     }
 }
 
+
+
 task deployAll {
     dependsOn 'swerdUpdate'
     dependsOn 'deploy'
     tasks.findByName('deploy').mustRunAfter 'swerdUpdate'
 }
+

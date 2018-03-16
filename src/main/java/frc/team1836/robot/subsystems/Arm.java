@@ -152,6 +152,7 @@ public class Arm extends Subsystem {
         mDebug.velocity = armTalon.getSpeed();
         mDebug.setpoint = RobotState.mArmState.state;
         mDebug.timestamp = timestamp;
+        mDebug.current = armTalon.getCurrentOutput();
     }
 
     public void zeroRel() {
@@ -160,12 +161,12 @@ public class Arm extends Subsystem {
     }
 
     private void updateArmSetpoint() {
-        double armFeed = Math.sin(Math.toDegrees(armTalon.getPosition() + 140.0)) * 0.2;
+        double armFeed = Math.sin(Math.toRadians(-(armTalon.getPosition() - 127.3))) * 0.15;
         if (RobotState.mArmState.equals(ArmState.ENABLE)) {
             armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(armPosEnable), true);
         } else {
             armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state),
-                    true);
+                    true, armFeed);
         }
     }
 
@@ -193,6 +194,7 @@ public class Arm extends Subsystem {
         public double position;
         public double velocity;
         public double setpoint;
+        public double current;
     }
 
     private static class InstanceHolder {

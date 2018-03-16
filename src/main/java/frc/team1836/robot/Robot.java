@@ -98,7 +98,6 @@ public class Robot extends IterativeRobot {
     @Override
     public void disabledPeriodic() {
         allPeriodic();
-        Superstructure.getInstance().updateLEDStrip(Timer.getFPGATimestamp());
     }
 
     @Override
@@ -122,6 +121,7 @@ public class Robot extends IterativeRobot {
             mSubsystemManager.outputToSmartDashboard();
             mEnabledLooper.outputToSmartDashboard();
             Superstructure.getInstance().setLastPacketTime(Timer.getFPGATimestamp());
+            Superstructure.getInstance().updateLEDStrip(Timer.getFPGATimestamp());
         } catch (Throwable t) {
             CrashTracker.logThrowableCrash(t);
             throw t;

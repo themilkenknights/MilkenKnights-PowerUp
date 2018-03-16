@@ -41,7 +41,7 @@ public final class Constants {
 		public static final double PATH_ANGLE_TOL = 0.25;
 
 		public static final double DRIVE_FOLLOWER_P = 1.25;
-		public static final double DRIVE_FOLLOWER_A = 0;
+		public static final double DRIVE_FOLLOWER_A = 0.0015;
 		public static final double DRIVE_FOLLOWER_ANG = -2;
 
 		public static final double LEFT_RPM_MAX = 488.0; //Observed Max Speed for Drivetrain in RPM
@@ -92,7 +92,7 @@ public final class Constants {
 				((RPM_MAX / 60.0 / 10.0) * 4096.0) / GEAR_RATIO; // Degrees per second
 		public static final double ARM_P = 25 * ((0.1 * 1023.0) / (1600)); //7.5 deg or 1390 units
 		public static final double ARM_I = 0;
-		public static final double ARM_D = ARM_P * 20;
+		public static final double ARM_D = ARM_P * 45;
 		public static final double ARM_F = (1023.0 / MAX_RAW_VEL);
 
 		public static final double ARM_FORWARD_LIMIT = 250;
@@ -120,9 +120,9 @@ public final class Constants {
 	public static class AUTO {
 
 		public static final String pathPath = "/home/lvuser/paths/";
-		public static final String[] autoNames = {"CS-1L", "CS-2L", "CS-3L",
-				"CS-4L", "CS-5L", "CS-1R", "CS-2R", "CS-3R",
-				"CS-4R", "CS-5R", "DriveStraight"};
+		public static final String[] autoNames = {"CS-1L", "CS-21L","CS-22L", "CS-31L", "CS-32L",
+				"CS-41L","CS-42L", "CS-51L", "CS-52L", "CS-1R", "CS-2R", "CS-3R",
+				"CS-4R", "CS-5R", "CBS-1L", "CBS-2L", "CBS-3L", "CBS-1R", "CBS-2R", "CBS-3R", "DriveStraight"};
 	}
 
 	public static class SUPERSTRUCTURE {

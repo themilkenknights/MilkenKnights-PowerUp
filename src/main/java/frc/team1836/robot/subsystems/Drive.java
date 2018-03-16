@@ -79,6 +79,7 @@ public class Drive extends Subsystem {
      * @param signal An object that contains left and right velocities (inches per sec)
      */
 
+
     public synchronized void setVelocitySetpoint(DriveSignal signal, double leftFeed,
                                                  double rightFeed) {
         if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
@@ -311,7 +312,6 @@ public class Drive extends Subsystem {
 
         mDebug.timestamp = timestamp;
         mDebug.controlMode = RobotState.mDriveControlState.toString();
-        mDebug.leftOutput = leftDrive.getPercentOutput();
         mDebug.leftOutput = leftDrive.getMotorVoltage();
         mDebug.rightOutput = rightDrive.getMotorVoltage();
         mDebug.rightPosition = leftDrive.getPosition();
@@ -321,6 +321,8 @@ public class Drive extends Subsystem {
         mDebug.heading = navX.getYaw();
         mDebug.leftSetpoint = currentSetpoint.getLeft();
         mDebug.rightSetpoint = currentSetpoint.getRight();
+        mDebug.leftCurrent = leftDrive.getCurrentOutput();
+        mDebug.rightCurrent = rightDrive.getCurrentOutput();
 
         if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
             mDebug.leftDesiredPos = leftStatus.getSeg().position;
@@ -377,6 +379,8 @@ public class Drive extends Subsystem {
         public double rightVelError;
         public double desiredX;
         public double desiredY;
+        public double leftCurrent;
+        public double rightCurrent;
     }
 
     private static class InstanceHolder {
