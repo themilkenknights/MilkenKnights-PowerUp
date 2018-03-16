@@ -62,7 +62,7 @@ public class CenterSwitchMode extends AutoModeBase {
 						new DelayAction(AutoChooser.autoPaths.get("CS-32L").getTime() - 0.15,
 								new RollerAction(0.4, ARM.INTAKE_OUT_ROLLER_SPEED))
 				)));
-		runAction(	new DrivePathAction(AutoChooser.autoPaths.get("CS-41L"), true, false, true));
+		runAction(	new DrivePathAction(AutoChooser.autoPaths.get("CS-41L"), false, false, true));
 		runAction(new ParallelAction(Arrays
 				.asList(
 
