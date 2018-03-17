@@ -15,6 +15,7 @@ public final class Constants {
 	public static final int kTimeoutMs = 0;
 	public static final double kLooperDt = 0.005;
 	public static final double PI = 3.14159265359;
+	public static final double CODES_PER_REV = 4096.0;
 
 	public static class DRIVE {
 
@@ -31,7 +32,6 @@ public final class Constants {
 		public static final boolean LEFT_INVERT_SENSOR = true;
 		public static final boolean RIGHT_INVERT_SENSOR = true;
 
-		public static final double CODES_PER_REV = 4096.0;
 		public static final double WHEEL_DIAMETER = 5.98;
 		public static final double CIRCUMFERENCE = WHEEL_DIAMETER * PI;
 		public static final double TURN_IN_PLACE_CIRCUMFERENCE = 104.1;
@@ -60,14 +60,12 @@ public final class Constants {
 		public static final double MIN_TEST_VEL = 145;
 
 		public static final double mPangFollower = -0.075;
-		public static double kTrackScrubFactor = 0.924;
 		public static final double MOTION_MAGIC_CRUISE_VEL =
 				((MAX_VEL / 10.0) / CIRCUMFERENCE) * CODES_PER_REV;
 		public static final double MOTION_MAGIC_ACCEL = MOTION_MAGIC_CRUISE_VEL * 5;
-
-		public static final double TELEOP_DRIVE_P = 7 * (0.1 * 1023.0) / (700); //300
+		public static final double TELEOP_DRIVE_P = 3 * (0.1 * 1023.0) / (700);
 		public static final double TELEOP_DRIVE_I = 0;
-		public static final double TELEOP_DRIVE_D = 3 * DRIVE_P;
+		public static final double TELEOP_DRIVE_D = 1 * DRIVE_P;
 	}
 
 	public static class LOGGING {
@@ -100,6 +98,7 @@ public final class Constants {
 		public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL;
 		public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 10;
 		public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
+		public static final double MAX_SAFE_CURRENT = 60;
 
 		public static final int LEFT_INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
 		public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID
@@ -108,6 +107,8 @@ public final class Constants {
 		public static final double INTAKE_OUT_FAST_ROLLER_SPEED = -0.90;
 		public static final int kBookEnd_0 = 827;
 		public static final int kBookEnd_1 = 3790;
+		public static final double ARM_OFFSET = -127.3;
+		public static final double FEED_CONSTANT = 0.15;
 	}
 
 	public static class INPUT {
@@ -120,15 +121,18 @@ public final class Constants {
 	public static class AUTO {
 
 		public static final String pathPath = "/home/lvuser/paths/";
-		public static final String[] autoNames = {"CS-1L", "CS-21L","CS-22L", "CS-31L", "CS-32L",
-				"CS-41L","CS-42L", "CS-51L", "CS-52L", "CS-1R", "CS-2R", "CS-3R",
-				"CS-4R", "CS-5R", "CBS-1L", "CBS-2L", "CBS-3L", "CBS-1R", "CBS-2R", "CBS-3R", "DriveStraight"};
+		public static final String[] autoNames = {
+				"CS-1L", "CS-21L", "CS-22L", "CS-31L", "CS-32L", "CS-41L", "CS-42L", "CS-51L", "CS-52L",
+				"CS-1R", "CS-2R", "CS-3R", "CS-4R", "CS-5R",
+				"SB-1L", "SB-2L", "SB-3L", "SB-4L",
+				"SB-1R", "SB-2R", "SB-3R", "SB-4R",
+				"SF-1L", "SF-1R",
+				"DriveStraight"};
 	}
 
 	public static class SUPERSTRUCTURE {
 
 		public static final int CANIFIER_ID = 11;
-		public static final int PDP_ID = 0;
 	}
 
 }

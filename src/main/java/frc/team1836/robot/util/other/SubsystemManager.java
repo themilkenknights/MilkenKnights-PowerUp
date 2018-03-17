@@ -1,6 +1,6 @@
 package frc.team1836.robot.util.other;
 
-
+import edu.wpi.first.wpilibj.Timer;
 import frc.team1836.robot.util.loops.Looper;
 
 import java.util.List;
@@ -10,27 +10,27 @@ import java.util.List;
  */
 public class SubsystemManager {
 
-    private final List<Subsystem> mAllSubsystems;
+	private final List<Subsystem> mAllSubsystems;
 
-    public SubsystemManager(List<Subsystem> allSubsystems) {
-        mAllSubsystems = allSubsystems;
-    }
+	public SubsystemManager(List<Subsystem> allSubsystems) {
+		mAllSubsystems = allSubsystems;
+	}
 
-    public void outputToSmartDashboard() {
-        mAllSubsystems.forEach((s) -> s.outputToSmartDashboard());
-    }
+	public void outputToSmartDashboard() {
+		mAllSubsystems.forEach((s) -> s.outputToSmartDashboard());
+	}
 
-    public void slowUpdate() {
-        mAllSubsystems.forEach((s) -> s.slowUpdate());
-    }
+	public void slowUpdate() {
+		double timestamp = Timer.getFPGATimestamp();
+		mAllSubsystems.forEach((s) -> s.slowUpdate(timestamp));
+	}
 
-    public void checkSystem() {
-        mAllSubsystems.forEach((s) -> s.checkSystem());
-    }
+	public void checkSystem() {
+		mAllSubsystems.forEach((s) -> s.checkSystem());
+	}
 
-    public void registerEnabledLoops(Looper enabledLooper) {
-        mAllSubsystems.forEach((s) -> s.registerEnabledLoops(enabledLooper));
-    }
-
+	public void registerEnabledLoops(Looper enabledLooper) {
+		mAllSubsystems.forEach((s) -> s.registerEnabledLoops(enabledLooper));
+	}
 
 }

@@ -7,167 +7,117 @@ import java.util.Map;
 
 public class PathGenerator {
 
-
 	public static final HashMap<String, Path> robotPaths = new HashMap<>();
 	public static final Trajectory.Config fastConfig = new Trajectory.Config(
-			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 145, 125, 600);
+			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
+			0.005, 145, 125, 600);
 	public static final Trajectory.Config defaultConfig = new Trajectory.Config(
-			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 140, 100, 400);
+			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config
+			.SAMPLES_HIGH, 0.005, 140, 100, 400);
 
 	public static final Trajectory.Config slowerConfig = new Trajectory.Config(
-			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 100, 60, 100);
+			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
+			0.005, 100, 60, 100);
 
 	public static final Trajectory.Config slowConfig = new Trajectory.Config(
-			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH, 0.005, 120, 80, 250);
+			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
+			0.005, 120, 80, 250);
 
 	public static final double SWITCH_X_OFFSET = 0;
 	public static final double SWITCH_Y_OFFSET = 0;
 
 	static {
-		robotPaths.put("CS-1R",
-				new Path(new Waypoint[]{
-						new Waypoint(22, -7, Pathfinder.d2r(0)),
-						new Waypoint(121, -59, Pathfinder.d2r(0))
-				}, fastConfig, false));
+		robotPaths.put("CS-1R", new Path(new Waypoint[]{
+				new Waypoint(22, -7, Pathfinder.d2r(0)),
+				new Waypoint(121, -59, Pathfinder.d2r(0))},
+				fastConfig, false));
 
-		robotPaths.put("CS-1L",
-				new Path(new Waypoint[]{
-						new Waypoint(22, -7, Pathfinder.d2r(0)),
-						new Waypoint(121, 59, Pathfinder.d2r(0)),
-				}, fastConfig, false));
-
-		/*robotPaths.put("CS-2",
-				new Path(new Waypoint[]{
-						new Waypoint(121, -59, Pathfinder.d2r(0)),
-						new Waypoint(75, -59, Pathfinder.d2r(0)),
-						new Waypoint(60, -56, Pathfinder.d2r(-30)),
-						new Waypoint(48, -44, Pathfinder.d2r(-60)),
-						new Waypoint(45, -31, Pathfinder.d2r(-90)),
-						new Waypoint(52, -12, Pathfinder.d2r(-120)),
-						new Waypoint(64, -3, Pathfinder.d2r(-150)),
-						new Waypoint(90, 2, Pathfinder.d2r(-180)),
-				}, slowConfig, true)); */
+		robotPaths.put("CS-1L", new Path(new Waypoint[]{
+				new Waypoint(22, -7, Pathfinder.d2r(0)),
+				new Waypoint(121, 59, Pathfinder.d2r(0)),},
+				fastConfig, false));
 
 		robotPaths.put("CS-21", new Path(new Waypoint[]{
 				new Waypoint(121, -59, Pathfinder.d2r(0)),
-				new Waypoint(62, 7, Pathfinder.d2r(-30)),
-		}, defaultConfig, true));
+				new Waypoint(62, 7, Pathfinder.d2r(-30)),},
+				defaultConfig, true));
 
 		robotPaths.put("CS-22", new Path(new Waypoint[]{
 				new Waypoint(62, 7, Pathfinder.d2r(-30)),
-				new Waypoint(92, 0, Pathfinder.d2r(0)),
-		}, defaultConfig, true));
-
-	/*	robotPaths.put("CS-3",
-				new Path(new Waypoint[]{
-						new Waypoint(90, 2, Pathfinder.d2r(-180)),
-						new Waypoint(64, -3, Pathfinder.d2r(-150)),
-						new Waypoint(52, -12, Pathfinder.d2r(-120)),
-						new Waypoint(45, -31, Pathfinder.d2r(-90)),
-						new Waypoint(48, -44, Pathfinder.d2r(-60)),
-						new Waypoint(60, -56, Pathfinder.d2r(-30)),
-						new Waypoint(75, -59, Pathfinder.d2r(0)),
-						new Waypoint(121, -59, Pathfinder.d2r(0)),
-				}, slowConfig, true)); */
+				new Waypoint(92, 0, Pathfinder.d2r(0)),},
+				defaultConfig, true));
 
 		robotPaths.put("CS-31", new Path(new Waypoint[]{
 				new Waypoint(92, 0, Pathfinder.d2r(0)),
-				new Waypoint(62, 7, Pathfinder.d2r(-30)),
-		}, defaultConfig, true));
+				new Waypoint(62, 7, Pathfinder.d2r(-30)),},
+				defaultConfig, true));
 
 		robotPaths.put("CS-32", new Path(new Waypoint[]{
 				new Waypoint(62, 7, Pathfinder.d2r(-30)),
-				new Waypoint(121, -59, Pathfinder.d2r(0)),
-		}, defaultConfig, true));
+				new Waypoint(121, -59, Pathfinder.d2r(0)),},
+				defaultConfig, true));
 
 		robotPaths.put("CS-41", new Path(new Waypoint[]{
 				new Waypoint(121, -59, Pathfinder.d2r(0)),
-				new Waypoint(62, 7, Pathfinder.d2r(-30)),
-		}, defaultConfig, true));
+				new Waypoint(62, 7, Pathfinder.d2r(-30)),},
+				defaultConfig, true));
 
 		robotPaths.put("CS-42", new Path(new Waypoint[]{
 				new Waypoint(62, 7, Pathfinder.d2r(-30)),
-				new Waypoint(107, 0, Pathfinder.d2r(0)),
-		}, defaultConfig, true));
+				new Waypoint(107, 0, Pathfinder.d2r(0)),},
+				defaultConfig, true));
 		robotPaths.put("CS-51", new Path(new Waypoint[]{
 				new Waypoint(107, 0, Pathfinder.d2r(0)),
-				new Waypoint(62, 7, Pathfinder.d2r(-30)),
-		}, defaultConfig, true));
+				new Waypoint(62, 7, Pathfinder.d2r(-30)),},
+				defaultConfig, true));
 
 		robotPaths.put("CS-52", new Path(new Waypoint[]{
 				new Waypoint(62, 7, Pathfinder.d2r(-30)),
-				new Waypoint(121, -59, Pathfinder.d2r(0)),
-		}, defaultConfig, true));
-
-		/*robotPaths.put("CS-4", new Path(new Waypoint[]{
-				new Waypoint(121, -59, Pathfinder.d2r(0)),
-				new Waypoint(105, -59, Pathfinder.d2r(0)),
-				new Waypoint(78, -52, Pathfinder.d2r(-30)),
-				new Waypoint(68, -42, Pathfinder.d2r(-60)),
-				new Waypoint(64, -29, Pathfinder.d2r(-90)),
-				new Waypoint(68, -15, Pathfinder.d2r(-120)),
-				new Waypoint(80, -4, Pathfinder.d2r(-150)),
-				new Waypoint(105, 0, Pathfinder.d2r(-180)),
-		}, slowConfig, true));
-
-		robotPaths.put("CS-5", new Path(new Waypoint[]{
-				new Waypoint(105, 0, Pathfinder.d2r(-180)),
-				new Waypoint(80, -4, Pathfinder.d2r(-150)),
-				new Waypoint(68, -15, Pathfinder.d2r(-120)),
-				new Waypoint(64, -29, Pathfinder.d2r(-90)),
-				new Waypoint(68, -42, Pathfinder.d2r(-60)),
-				new Waypoint(78, -52, Pathfinder.d2r(-30)),
-				new Waypoint(105, -59, Pathfinder.d2r(0)),
-				new Waypoint(121, -59, Pathfinder.d2r(0)),
-		}, slowConfig, true)); */
+				new Waypoint(121, -59, Pathfinder.d2r(0)),},
+				defaultConfig, true));
 
 		robotPaths.put("DriveStraight",
 				new Path(new Waypoint[]{
 						new Waypoint(23, 156, 0),
-						new Waypoint(127, 156, 0)
-				}, defaultConfig, false));
+						new Waypoint(127, 156, 0)}, defaultConfig,
+						false));
 
-		robotPaths.put("CBS-1L",
-				new Path(new Waypoint[]{
-						new Waypoint(22, -7, Pathfinder.d2r(0)),
-						new Waypoint(209, -137, Pathfinder.d2r(0)),
-						new Waypoint(234, -124, Pathfinder.d2r(45)),
-						new Waypoint(244, -94, Pathfinder.d2r(90)),
-						new Waypoint(236, -76, Pathfinder.d2r(135)),
-						new Waypoint(221, -71, Pathfinder.d2r(180))
-				}, defaultConfig, false));
+		robotPaths.put("SB-1", new Path(new Waypoint[]{
+				new Waypoint(22, -113, Pathfinder.d2r(0)),
+				new Waypoint(113, -137, Pathfinder.d2r(0)),
+				new Waypoint(160, -120, Pathfinder.d2r(45)),
+				new Waypoint(170, -96, Pathfinder.d2r(90)),},
+				fastConfig, true));
 
-		robotPaths.put("CBS-1R",
-				new Path(new Waypoint[]{
-						new Waypoint(22, -7, Pathfinder.d2r(0)),
-						new Waypoint(209, 137, Pathfinder.d2r(0)),
-						new Waypoint(234, 124, Pathfinder.d2r(45)),
-						new Waypoint(244, 94, Pathfinder.d2r(90)),
-						new Waypoint(236, 76, Pathfinder.d2r(135)),
-						new Waypoint(221, 71, Pathfinder.d2r(180))
-				}, defaultConfig, false));
-		robotPaths.put("CBS-2",
-				new Path(new Waypoint[]{
-						new Waypoint(22, -115, Pathfinder.d2r(0)),
-						new Waypoint(126, -132, Pathfinder.d2r(0)),
-						new Waypoint(154, -125, Pathfinder.d2r(30)),
-						new Waypoint(170, -109, Pathfinder.d2r(60)),
-						new Waypoint(173, -96, Pathfinder.d2r(90)),
-				}, defaultConfig, true));
-
-		robotPaths.put("CBS-3", new Path(new Waypoint[]{
-				new Waypoint(173, -96, Pathfinder.d2r(90)),
-				new Waypoint(180, -117, Pathfinder.d2r(120)),
-				new Waypoint(195, -131, Pathfinder.d2r(150)),
-				new Waypoint(215, -135, Pathfinder.d2r(180)),
-				new Waypoint(232, -129, Pathfinder.d2r(210)),
-				new Waypoint(248, -113, Pathfinder.d2r(240)),
-				new Waypoint(253, -96, Pathfinder.d2r(270)),
-				new Waypoint(248, -80, Pathfinder.d2r(300)),
-				new Waypoint(236, -68, Pathfinder.d2r(330)),
-				new Waypoint(218, -64, Pathfinder.d2r(360)),
+		robotPaths.put("SB-2", new Path(new Waypoint[]{
+				new Waypoint(170, -96, Pathfinder.d2r(90)),
+				new Waypoint(209, -136, Pathfinder.d2r(0)),
+				new Waypoint(252, -97, Pathfinder.d2r(90)),
+				new Waypoint(223, -70, Pathfinder.d2r(0)),
 		}, defaultConfig, true));
 
+		robotPaths.put("SB-3", new Path(new Waypoint[]{
+				new Waypoint(248, -85, Pathfinder.d2r(-60)),
+				new Waypoint(242, -66, Pathfinder.d2r(-90)),
+				new Waypoint(234, -49, Pathfinder.d2r(-45)),
+				new Waypoint(219, -42, Pathfinder.d2r(0)),
+		}, defaultConfig, true));
+
+		robotPaths.put("SB-4", new Path(new Waypoint[]{
+				new Waypoint(248, -85, Pathfinder.d2r(-60)),
+				new Waypoint(242, -66, Pathfinder.d2r(-90)),
+				new Waypoint(234, -49, Pathfinder.d2r(-45)),
+				new Waypoint(219, -42, Pathfinder.d2r(0)),
+		}, defaultConfig, true));
+
+		robotPaths.put("SF-1",new Path(new Waypoint[]{
+				new Waypoint(22 ,-113 ,Pathfinder.d2r(0)),
+				new Waypoint(188 ,-113 ,Pathfinder.d2r(0)),
+				new Waypoint(237 ,-59 ,Pathfinder.d2r(90)),
+				new Waypoint(243 ,5 ,Pathfinder.d2r(90)),
+				new Waypoint(234 ,32 ,Pathfinder.d2r(135)),
+				new Waypoint(214 ,42 ,Pathfinder.d2r(180)),
+		}, defaultConfig, true));
 
 	}
 
@@ -196,7 +146,6 @@ public class PathGenerator {
 		}
 	}
 
-
 	static class Path {
 
 		Waypoint[] points;
@@ -219,7 +168,6 @@ public class PathGenerator {
 				waypoint.x = waypoint.x + x;
 			}
 		}
-
 
 		public Waypoint[] getPoints() {
 			return points;

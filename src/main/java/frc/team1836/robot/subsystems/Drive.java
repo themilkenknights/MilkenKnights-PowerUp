@@ -14,7 +14,7 @@ import frc.team1836.robot.auto.trajectory.PathFollower;
 import frc.team1836.robot.util.drivers.MkGyro;
 import frc.team1836.robot.util.drivers.MkTalon;
 import frc.team1836.robot.util.drivers.MkTalon.TalonPosition;
-import frc.team1836.robot.util.logging.CrashTracker;
+import frc.team1836.robot.util.logging.Log;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
@@ -53,8 +53,7 @@ public class Drive extends Subsystem {
 		rightDrive.invertSlave(DRIVE.RIGHT_SLAVE_INVERT);
 		rightDrive.setSensorPhase(DRIVE.RIGHT_INVERT_SENSOR);
 
-		mCSVWriter = new ReflectingCSVWriter<DriveDebugOutput>(LOGGING.DRIVE_LOG_PATH,
-				DriveDebugOutput.class);
+		mCSVWriter = new ReflectingCSVWriter<DriveDebugOutput>(LOGGING.DRIVE_LOG_PATH, DriveDebugOutput.class);
 		leftStatus = TrajectoryStatus.NEUTRAL;
 		rightStatus = TrajectoryStatus.NEUTRAL;
 		currentSetpoint = DriveSignal.BRAKE;
@@ -79,14 +78,10 @@ public class Drive extends Subsystem {
 	 * @param signal An object that contains left and right velocities (inches per sec)
 	 */
 
-
-	public synchronized void setVelocitySetpoint(DriveSignal signal, double leftFeed,
-			double rightFeed) {
+	public synchronized void setVelocitySetpoint(DriveSignal signal, double leftFeed, double rightFeed) {
 		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING) {
-			leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVelTraj(), signal.getBrakeMode(),
-					leftFeed);
-			rightDrive.set(ControlMode.Velocity, signal.getRightNativeVelTraj(), signal.getBrakeMode(),
-					rightFeed);
+			leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVelTraj(), signal.getBrakeMode(), leftFeed);
+			rightDrive.set(ControlMode.Velocity, signal.getRightNativeVelTraj(), signal.getBrakeMode(), rightFeed);
 		} else {
 			RobotState.mDriveControlState = DriveControlState.VELOCITY_SETPOINT;
 			leftDrive.set(ControlMode.Velocity, signal.getLeftNativeVel(), signal.getBrakeMode());
@@ -96,16 +91,14 @@ public class Drive extends Subsystem {
 	}
 
 	/**
-	 * @param path Robot Path
+	 * @param path     Robot Path
 	 * @param dist_tol Position Tolerance for Path Follower
-	 * @param ang_tol Robot Angle Tolerance for Path Follower (Degrees)
+	 * @param ang_tol  Robot Angle Tolerance for Path Follower (Degrees)
 	 */
-	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol,
-			boolean brakeMode) {
-		CrashTracker.logMarker("Began Path: " + path.getName());
+	public synchronized void setDrivePath(Path path, double dist_tol, double ang_tol, boolean brakeMode) {
+		Log.marker("Began Path: " + path.getName());
 		brakePath = brakeMode;
-		double offset = lastAngle - Pathfinder
-				.boundHalfDegrees(Pathfinder.r2d(path.getLeftWheelTrajectory().get(0).heading));
+		double offset = lastAngle - Pathfinder.boundHalfDegrees(Pathfinder.r2d(path.getLeftWheelTrajectory().get(0).heading));
 		for (Trajectory.Segment segment : path.getLeftWheelTrajectory().segments) {
 			segment.heading = Pathfinder.boundHalfDegrees(Pathfinder.r2d(segment.heading) + offset);
 		}
@@ -118,6 +111,9 @@ public class Drive extends Subsystem {
 		RobotState.mDriveControlState = RobotState.DriveControlState.PATH_FOLLOWING;
 	}
 
+	/*
+	Called from Auto Action to check when the path finishes. Saves the last angle to use with the next path and resets the Trajectory Status
+	 */
 	public synchronized boolean isPathFinished() {
 		if (pathFollower.getFinished()) {
 			lastAngle = pathFollower.getEndHeading();
@@ -137,25 +133,15 @@ public class Drive extends Subsystem {
 	 * Creates a new Drive Signal that is then set as a velocity setpoint
 	 */
 	private synchronized void updatePathFollower() {
-		TrajectoryStatus leftUpdate = pathFollower
-				.getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(),
-						-navX.getYaw());
-		TrajectoryStatus rightUpdate = pathFollower
-				.getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(),
-						-navX.getYaw());
+		TrajectoryStatus leftUpdate = pathFollower.getLeftVelocity(leftDrive.getPosition(), leftDrive.getSpeed(), - navX.getYaw());
+		TrajectoryStatus rightUpdate = pathFollower.getRightVelocity(rightDrive.getPosition(), rightDrive.getSpeed(), - navX.getYaw());
 		leftStatus = leftUpdate;
 		rightStatus = rightUpdate;
 		if (isEncodersConnected()) {
-			setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput(),
-							brakePath),
-					leftUpdate.getArbFeed(), rightUpdate.getArbFeed());
+			setVelocitySetpoint(new DriveSignal(leftUpdate.getOutput(), rightUpdate.getOutput(), brakePath), leftUpdate.getArbFeed(), rightUpdate.getArbFeed());
 		} else {
-			leftDrive.set(ControlMode.PercentOutput,
-					((1.0 / MkMath.RPMToInchesPerSec(DRIVE.RIGHT_RPM_MAX)) * leftUpdate.getOutput()), false,
-					leftUpdate.getArbFeed());
-			rightDrive.set(ControlMode.PercentOutput,
-					((1.0 / MkMath.RPMToInchesPerSec(DRIVE.LEFT_RPM_MAX)) * rightUpdate.getOutput()), false,
-					rightUpdate.getArbFeed());
+			leftDrive.set(ControlMode.PercentOutput, ((1.0 / MkMath.RPMToInchesPerSec(DRIVE.RIGHT_RPM_MAX)) * leftUpdate.getOutput()), false, leftUpdate.getArbFeed());
+			rightDrive.set(ControlMode.PercentOutput, ((1.0 / MkMath.RPMToInchesPerSec(DRIVE.LEFT_RPM_MAX)) * rightUpdate.getOutput()), false, rightUpdate.getArbFeed());
 		}
 	}
 
@@ -164,11 +150,9 @@ public class Drive extends Subsystem {
 		leftDrive.updateSmartDash();
 		rightDrive.updateSmartDash();
 		SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
-		SmartDashboard.putBoolean("Drivetrain Status",
-				leftDrive.isEncoderConnected() && rightDrive.isEncoderConnected());
+		SmartDashboard.putBoolean("Drivetrain Status", leftDrive.isEncoderConnected() && rightDrive.isEncoderConnected());
 
-		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
-				&& leftStatus != TrajectoryStatus.NEUTRAL) {
+		if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING && leftStatus != TrajectoryStatus.NEUTRAL) {
 			SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
 			SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
 			SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
@@ -192,10 +176,12 @@ public class Drive extends Subsystem {
 	}
 
 	@Override
-	public void slowUpdate() {
-		updateDebugOutput(Timer.getFPGATimestamp());
-		mCSVWriter.add(mDebug);
-		mCSVWriter.write();
+	public void slowUpdate(double timestamp) {
+		if (RobotState.mMatchState != RobotState.MatchState.DISABLED) {
+			updateDebugOutput(timestamp);
+			mCSVWriter.add(mDebug);
+			mCSVWriter.write();
+		}
 	}
 
 	@Override
@@ -206,46 +192,35 @@ public class Drive extends Subsystem {
 		leftDrive.set(ControlMode.PercentOutput, 0, true);
 		rightDrive.set(ControlMode.PercentOutput, 0, true);
 		boolean check = true;
-		if (leftDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS
-				|| leftDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
-			System.out.println("FAILED - LEFT DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
-			System.out
-					.println("Position: " + leftDrive.getPosition() + " Speed: " + leftDrive.getSpeed());
+		if (leftDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || leftDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
+			Log.marker("FAILED - LEFT DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
+			Log.marker("Left Drive Test Failed - Vel: " + leftDrive.getSpeed() + " Pos: " + leftDrive.getPosition());
 			check = false;
-			CrashTracker.logMarker(
-					"Left Drive Test Failed - Vel: " + leftDrive.getSpeed() + " Pos: " + leftDrive
-							.getPosition());
 		} else {
-			System.out
-					.println("Position: " + leftDrive.getPosition() + " Speed: " + leftDrive.getSpeed());
+			Log.verbose("Position: " + leftDrive.getPosition() + " Speed: " + leftDrive.getSpeed());
 		}
-		if (rightDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS
-				|| rightDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
-			System.out.println("FAILED - RIGHT DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
-			System.out
-					.println("Position: " + rightDrive.getPosition() + "Speed: " + rightDrive.getSpeed());
+		if (rightDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || rightDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
+			Log.marker("FAILED - RIGHT DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
+			Log.marker("Right Drive Test Failed - Vel: " + rightDrive.getSpeed() + " Pos: " + rightDrive.getPosition());
 			check = false;
-			CrashTracker.logMarker(
-					"Right Drive Test Failed - Vel: " + rightDrive.getSpeed() + " Pos: " + rightDrive
-							.getPosition());
+
 		} else {
-			System.out
-					.println("Position: " + rightDrive.getPosition() + " Speed: " + rightDrive.getSpeed());
+			Log.verbose("Position: " + rightDrive.getPosition() + " Speed: " + rightDrive.getSpeed());
 		}
 
-		if (!navX.isConnected()) {
+		if (! navX.isConnected()) {
 			System.out.println("FAILED - NAVX DISCONNECTED");
 			check = false;
 		}
 
 		if (check) {
-			System.out.println("Drive Test Success");
+			Log.verbose("Drive Test Success");
 		}
 
 		leftDrive.resetConfig();
 		rightDrive.resetConfig();
 	}
-
+	
 	public void configVelocityControl() {
 		leftDrive.configTeleopVelocity();
 		rightDrive.configTeleopVelocity();
@@ -288,8 +263,7 @@ public class Drive extends Subsystem {
 							}
 							return;
 						default:
-							System.out
-									.println("Unexpected drive control state: " + RobotState.mDriveControlState);
+							Log.marker("Unexpected drive control state: " + RobotState.mDriveControlState);
 							break;
 					}
 				}

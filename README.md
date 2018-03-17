@@ -23,6 +23,7 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
   Subsystems are consolidated into one central class per subsystem, all of which implement the Subsystem abstract class. Each Subsystem uses state machines for control.
   Each Subsystem is also a singleton, meaning that there is only one instance of each Subsystem class. To modify a subsystem, one would get the instance of the subsystem and change its desired state. The Subsystem class will work on setting the desired state.
 	- Drive controls the Drivetrain
+	- Arm controls all Arm functions including the intake rollers
 	- Input holds HID (Human Input Device) objects to receive control input from the Driver Station and control various subsystems during Teleop
 	- Superstructure contains any hardware object that does not fit into a subsystem and contains the current robot state to allow for easy system control
 	- Subsystem is the interface for all subsystems requiring default methods
@@ -55,9 +56,8 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 - ID TYPICALLY DENOTES A CAN ID
 - ALL PID CONSTANTS SENT TO THE TALON ARE IN NATIVE UNITS (4096 Per Rotation)
 
-[Path Generator](https://themilkenknights.github.io/MilkenKnights-PowerUp/light_path)
-
 ## Useful Links
+- [Path Generator](https://themilkenknights.github.io/MilkenKnights-PowerUp/light_path)
 - [Talon Software Reference Manual](https://github.com/CrossTheRoadElec/Phoenix-Documentation/raw/master/Talon%20SRX%20Victor%20SPX%20-%20Software%20Reference%20Manual.pdf)
 - [CTRE Control System](http://www.ctr-electronics.com/control-system/hro.html#product_tabs_technical_resources)
 - [CTRE Github Documentation](https://github.com/CrossTheRoadElec/Phoenix-Documentation)
@@ -65,5 +65,5 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 - [Pathfinder](https://github.com/JacisNonsense/Pathfinder)
 
 ## Credits
- - Much of our code structure comes from (or are inspired from) [254's 2017 Code](https://github.com/Team254/FRC-2017-Public)
+ - Several classes and methods were taken from [254's 2017 Code](https://github.com/Team254/FRC-2017-Public)
  - [Lightning Path](https://github.com/frc-862/glitch) was built by Team 862
