@@ -7,10 +7,10 @@ import frc.team1836.robot.util.auto.AutoModeEndedException;
 
 public class DriveStraightMode extends AutoModeBase {
 
-	@Override
-	protected void routine() throws AutoModeEndedException {
+  @Override
+  protected void routine() throws AutoModeEndedException {
 
-		runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight"), false, false, false));
+    runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight"), false, false, false));
 
-	}
+  }
 }

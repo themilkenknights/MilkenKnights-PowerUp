@@ -586,8 +586,8 @@ function importData() {
                     "'></td>" +
                     "<td><button onclick='$(this).parent().parent().remove();''>Delete</button></td></tr>"
                 );
-            });
-            update();
+        })
+          update();
             $("input").unbind("change paste keyup");
             $("input").bind("change paste keyup", function () {
                 console.log("change");
@@ -598,7 +598,7 @@ function importData() {
             });
         };
         fr.readAsText(file);
-    });
+})
 }
 
 function getDataString() {

@@ -8,46 +8,46 @@ import frc.team1836.robot.util.auto.Action;
 
 public class DrivePathAction implements Action {
 
-	private final Path path;
-	private boolean done;
-	private boolean brakeMode;
+  private final Path path;
+  private boolean done;
+  private boolean brakeMode;
 
-	public DrivePathAction(Path path, boolean dir, boolean flip, boolean brakeMode) {
-		this.path = path.copyPath();
-		this.brakeMode = brakeMode;
-		if (dir) {
-			this.path.invert();
-		}
-		if (flip) {
-			this.path.invertSide();
-		}
-		done = false;
-	}
+  public DrivePathAction(Path path, boolean dir, boolean flip, boolean brakeMode) {
+    this.path = path.copyPath();
+    this.brakeMode = brakeMode;
+    if (dir) {
+      this.path.invert();
+    }
+    if (flip) {
+      this.path.invertSide();
+    }
+    done = false;
+  }
 
-	@Override
-	public boolean isFinished() {
-		if (done) {
-			return true;
-		}
-		if (Drive.getInstance().isPathFinished()) {
-			done = true;
-			return true;
-		}
-		return false;
-	}
+  @Override
+  public boolean isFinished() {
+    if (done) {
+      return true;
+    }
+    if (Drive.getInstance().isPathFinished()) {
+      done = true;
+      return true;
+    }
+    return false;
+  }
 
-	@Override
-	public void update() {
+  @Override
+  public void update() {
 
-	}
+  }
 
-	@Override
-	public void done() {
-		RobotState.mDriveControlState = RobotState.DriveControlState.VELOCITY_SETPOINT;
-	}
+  @Override
+  public void done() {
+    RobotState.mDriveControlState = RobotState.DriveControlState.VELOCITY_SETPOINT;
+  }
 
-	@Override
-	public void start() {
-		Drive.getInstance().setDrivePath(path, DRIVE.PATH_DIST_TOL, DRIVE.PATH_ANGLE_TOL, brakeMode);
-	}
+  @Override
+  public void start() {
+    Drive.getInstance().setDrivePath(path, DRIVE.PATH_DIST_TOL, DRIVE.PATH_ANGLE_TOL, brakeMode);
+  }
 }
