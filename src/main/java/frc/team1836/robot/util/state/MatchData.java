@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import frc.team1836.robot.AutoChooser;
 
 public class MatchData {
-	public static MatchData defaultMatch = new MatchData(DriverStation.MatchType.None, 0, Alliance.Blue, AutoChooser.GameObjectPosition.INVALID, AutoChooser.GameObjectPosition.INVALID);
+	public static MatchData defaultMatch = new MatchData(DriverStation.MatchType.None, 0, Alliance.Blue, AutoChooser.GameObjectPosition.LEFT, AutoChooser.GameObjectPosition.LEFT);
 	public DriverStation.MatchType matchType;
 	public int matchNumber;
 	public DriverStation.Alliance alliance;

@@ -40,9 +40,9 @@ public final class Constants {
 		public static final double PATH_DIST_TOL = 0.25;
 		public static final double PATH_ANGLE_TOL = 0.25;
 
-		public static final double DRIVE_FOLLOWER_P = 1.25;
+		public static final double DRIVE_FOLLOWER_P = 2;
 		public static final double DRIVE_FOLLOWER_A = 0.00125;
-		public static final double DRIVE_FOLLOWER_ANG = -2;
+		public static final double DRIVE_FOLLOWER_ANG = -2.75;
 
 		public static final double LEFT_RPM_MAX = 488.0; //Observed Max Speed for Drivetrain in RPM
 		public static final double RIGHT_RPM_MAX = 502.0; //Observed Max Speed for Drivetrain in RPM
@@ -123,7 +123,7 @@ public final class Constants {
 		public static final String pathPath = "/home/lvuser/paths/";
 		public static final String[] autoNames = {
 				"CS-1L", "CS-21L", "CS-22L", "CS-31L", "CS-32L", "CS-41L", "CS-42L", "CS-51L", "CS-52L",
-				"CS-1R", "CS-2R", "CS-3R", "CS-4R", "CS-5R",
+				"CS-1R", "CS-21R", "CS-22R", "CS-31R", "CS-32R", "CS-41R", "CS-42R", "CS-51R", "CS-52R",
 				"SB-1L", "SB-2L", "SB-3L", "SB-4L",
 				"SB-1R", "SB-2R", "SB-3R", "SB-4R",
 				"SF-1L", "SF-1R",

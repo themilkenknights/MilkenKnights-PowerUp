@@ -6,7 +6,7 @@ package frc.team1836.robot.util.auto;
  */
 public abstract class AutoModeBase {
 
-	protected double m_update_rate = 1.0 / 50.0;
+	protected double m_update_rate = 1.0 / 200.0;
 	protected boolean m_active = false;
 
 	protected abstract void routine() throws AutoModeEndedException;

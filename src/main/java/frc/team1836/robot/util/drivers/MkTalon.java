@@ -1,13 +1,19 @@
 package frc.team1836.robot.util.drivers;
 
-import com.ctre.phoenix.motorcontrol.*;
+import com.ctre.phoenix.motorcontrol.ControlFrame;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
+import com.ctre.phoenix.motorcontrol.Faults;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
+import com.ctre.phoenix.motorcontrol.VelocityMeasPeriod;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.Constants.DRIVE;
-import frc.team1836.robot.util.logging.Log;
 import frc.team1836.robot.util.math.MkMath;
 
 public class MkTalon {
@@ -40,7 +46,6 @@ public class MkTalon {
 		resetConfig();
 		configMotionMagic();
 		talonMode = NeutralMode.Brake;
-		getStickyFaults();
 	}
 
 	public void setPIDF() {
@@ -63,15 +68,6 @@ public class MkTalon {
 	public void setLimitEnabled(boolean enabled) {
 		masterTalon.configForwardSoftLimitEnable(enabled, Constants.kTimeoutMs);
 		masterTalon.configReverseSoftLimitEnable(enabled, Constants.kTimeoutMs);
-	}
-
-	public void getStickyFaults() {
-		masterTalon.getFaults(masterFaults);
-		slaveTalon.getFaults(slaveFaults);
-		masterTalon.clearStickyFaults(Constants.kTimeoutMs);
-		slaveTalon.clearStickyFaults(Constants.kTimeoutMs);
-		Log.verbose(side.toString() + " Master Talon " + masterFaults);
-		Log.verbose(side.toString() + " Slave Talon " + slaveFaults);
 	}
 
 	public void configMotionMagic() {

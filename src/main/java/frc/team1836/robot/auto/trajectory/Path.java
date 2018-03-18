@@ -48,6 +48,10 @@ public class Path {
 		this.pair_ = new Pair(pair_.right, pair_.left);
 	}
 
+	public void invertSide(){
+		invert = !invert;
+	}
+
 	public Trajectory getLeftWheelTrajectory() {
 		return invert ? pair_.right : pair_.left;
 	}

@@ -51,7 +51,7 @@ public class Log {
 	}
 
 	public static void verbose(String mark) {
-		logVerboseMarker(mark, null);
+		marker(mark, null);
 		System.out.println(mark);
 	}
 

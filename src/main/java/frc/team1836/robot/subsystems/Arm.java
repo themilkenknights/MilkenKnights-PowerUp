@@ -28,6 +28,7 @@ public class Arm extends Subsystem {
 	private ArmDebugOutput mDebug = new ArmDebugOutput();
 	private boolean armSafety = true;
 	private double armPosEnable = 0;
+	private double rollerSetpoint = 0;
 
 	private Arm() {
 		mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH, ArmDebugOutput.class);
@@ -73,14 +74,14 @@ public class Arm extends Subsystem {
 
 	@Override
 	public void checkSystem() {
-		if (! armTalon.isEncoderConnected()) {
+		if (!armTalon.isEncoderConnected()) {
 			Log.marker("Arm Encoder Not Connected");
 		}
 		if (RobotState.mArmControlState == ArmControlState.MOTION_MAGIC) {
 			for (ArmState state : ArmState.values()) {
 				if (state != ArmState.ENABLE) {
 					RobotState.mArmState = state;
-					setIntakeRollers(- 0.25);
+					setIntakeRollers(-0.25);
 					Timer.delay(2);
 				}
 			}
@@ -115,6 +116,7 @@ public class Arm extends Subsystem {
 			public void onLoop(double timestamp) {
 				synchronized (Arm.this) {
 					armSafetyCheck();
+					updateRollers();
 					switch (RobotState.mArmControlState) {
 						case MOTION_MAGIC:
 							updateArmSetpoint();
@@ -138,7 +140,7 @@ public class Arm extends Subsystem {
 	}
 
 	public void changeSafety() {
-		armSafety = ! armSafety;
+		armSafety = !armSafety;
 		armTalon.setLimitEnabled(armSafety);
 	}
 
@@ -162,12 +164,14 @@ public class Arm extends Subsystem {
 		if (RobotState.mArmState.equals(ArmState.ENABLE)) {
 			armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(armPosEnable), true);
 		} else {
-			armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state), true, - armFeed);
+			armTalon
+					.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state), true,
+							-armFeed);
 		}
 	}
 
 	private void armSafetyCheck() {
-		if (! armTalon.isEncoderConnected()) {
+		if (!armTalon.isEncoderConnected()) {
 			Log.marker("Arm Encoder Not Connected");
 			RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
 		}
@@ -181,13 +185,17 @@ public class Arm extends Subsystem {
 		}
 	}
 
+	public void updateRollers() {
+		leftIntakeRollerTalon.set(ControlMode.PercentOutput, rollerSetpoint);
+		rightIntakeRollerTalon.set(ControlMode.PercentOutput, rollerSetpoint);
+	}
+
 	public void setOpenLoop(double output) {
 		armTalon.set(ControlMode.PercentOutput, output, true);
 	}
 
 	public void setIntakeRollers(double output) {
-		leftIntakeRollerTalon.set(ControlMode.PercentOutput, output);
-		rightIntakeRollerTalon.set(ControlMode.PercentOutput, output);
+		rollerSetpoint = output;
 	}
 
 	public static class ArmDebugOutput {
