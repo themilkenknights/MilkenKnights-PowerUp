@@ -3,6 +3,7 @@ package frc.team1836.robot.subsystems;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
+import frc.team1836.robot.Constants.SUPERSTRUCTURE;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.RobotState.MatchState;
@@ -10,12 +11,10 @@ import frc.team1836.robot.util.drivers.MkLED;
 import frc.team1836.robot.util.drivers.MkLED.LEDColors;
 import frc.team1836.robot.util.loops.Loop;
 import frc.team1836.robot.util.loops.Looper;
-import frc.team1836.robot.util.other.LatchedBoolean;
 import frc.team1836.robot.util.other.Subsystem;
 
 public class Superstructure extends Subsystem {
 
-  public static double kConnectionTimeoutSec = 1.0;
   private MkLED mkLED;
   private boolean hPSignal;
   private boolean turnOffLED;
@@ -84,7 +83,7 @@ public class Superstructure extends Subsystem {
   public synchronized void updateLEDStrip(double timestamp) {
     if (turnOffLED) {
       mkLED.set_rgb(LEDColors.OFF);
-    } else if (timestamp - mLastPacketTime > kConnectionTimeoutSec) {
+    } else if (timestamp - mLastPacketTime > SUPERSTRUCTURE.CONNECTION_TIMEOUT) {
       mkLED.setPulse(LEDColors.RED, LEDColors.OFF, 0.25);
     } else if (hPSignal) {
       mkLED.set_rgb(LEDColors.GREEN);

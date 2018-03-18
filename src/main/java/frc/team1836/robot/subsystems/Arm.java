@@ -179,7 +179,7 @@ public class Arm extends Subsystem {
       Log.marker("Arm Absolution Position > 4096");
       RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
     }
-    if (armTalon.getCurrentOutput() > ARM.MAX_SAFE_CURRENT) {
+    if (armTalon.getCurrentOutput() > ARM.MAX_SAFE_CURRENT && armSafety) {
       Log.marker("Unsafe Current " + armTalon.getCurrentOutput() + " Amps");
       RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
     }
