@@ -95,12 +95,8 @@ public class MovingAverage {
     return _cnt;
   }
 
-  ;
-
   public float getMinimum() {
     return _min;
   }
-
-  ;
 
 }

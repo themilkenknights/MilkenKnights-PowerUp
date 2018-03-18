@@ -607,7 +607,7 @@ function getDataString() {
   for (var i = 0; i < waypoints.length; i++) {
     pathInit += waypoints[i].toString() + "\n";
   }
-  pathInit += " }, defaultConfig, true));";
+  pathInit += " }, fastConfig));";
   return pathInit;
 }
 
@@ -617,7 +617,7 @@ function getReverseDataString() {
     for (var i = waypoints.length -1; i >= 0; i--) {
         pathInit += waypoints[i].toString() + "\n";
     }
-    pathInit += " }, defaultConfig, true));";
+    pathInit += " }, fastConfig));";
     return pathInit;
 }
 
@@ -648,7 +648,8 @@ function getTXTString() {
         right_segments += rsegment;
     });
 
-    var str =
+    // noinspection UnnecessaryLocalVariableJS
+  var str =
         `${title}  
 ${num_elements}
 ${left_segments}${right_segments}`;
@@ -682,7 +683,8 @@ function getReversedTXTString() {
         right_segments += rsegment;
     });
 
-    var str =
+    // noinspection UnnecessaryLocalVariableJS
+  var str =
         `${title}  
 ${num_elements}
 ${right_segments}${left_segments}`;
@@ -728,6 +730,15 @@ function showData() {
     $("#modalTitle").html(title + ".java");
     $(".modal > pre").text(getDataString());
     showModal();
+
+    var inp =document.createElement('input');
+    document.body.appendChild(inp)
+    inp.value = getDataString();
+    inp.select();
+    document.execCommand('copy',false);
+    inp.remove();
+
+
 }
 
 function showReverseData() {

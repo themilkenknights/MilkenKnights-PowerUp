@@ -20,16 +20,12 @@ public class Superstructure extends Subsystem {
   private boolean hPSignal;
   private boolean turnOffLED;
   private double mLastPacketTime;
-  private LatchedBoolean mJustReconnected;
-  private LatchedBoolean mJustDisconnected;
 
   public Superstructure() {
     mkLED = new MkLED(Constants.SUPERSTRUCTURE.CANIFIER_ID);
     hPSignal = false;
     turnOffLED = false;
     mLastPacketTime = 0.0;
-    mJustReconnected = new LatchedBoolean();
-    mJustDisconnected = new LatchedBoolean();
   }
 
   public static Superstructure getInstance() {

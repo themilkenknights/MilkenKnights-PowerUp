@@ -57,7 +57,6 @@ public class Robot extends IterativeRobot {
   public void autonomousInit() {
     try {
       Log.logAutoInit();
-      AutoChooser.updateGameData();
       RobotState.mMatchState = MatchState.AUTO;
       mEnabledLooper.start();
       AutoChooser.startAuto();

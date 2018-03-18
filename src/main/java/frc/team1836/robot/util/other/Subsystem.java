@@ -18,8 +18,6 @@ public abstract class Subsystem {
   public void slowUpdate(double timestamp) {
   }
 
-  ;
-
   public abstract void checkSystem();
 
   public abstract void registerEnabledLoops(Looper enabledLooper);

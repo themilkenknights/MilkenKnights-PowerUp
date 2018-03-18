@@ -8,10 +8,10 @@ import frc.team1836.robot.util.state.DriveSignal;
 
 public class OpenLoopFollowHeading implements Action {
 
-  double m_t1 = 0; // Time to start deceling
-  double m_t2 = 0; // Time to end decel
-  double m_start_power = 0;
-  double m_end_power = 0;
+  double m_t1; // Time to start deceling
+  double m_t2; // Time to end decel
+  double m_start_power;
+  double m_end_power;
   private Timer timer;
   private double endAngle;
   private double otherAngle;
@@ -45,9 +45,9 @@ public class OpenLoopFollowHeading implements Action {
   @Override
   public void update() {
     double power;
-    double Angslope = 0;
-    double angleSetpoint = 0;
-    double angPower = 0;
+    double Angslope;
+    double angleSetpoint;
+    double angPower;
     if (timer.get() <= m_t1) {
       power = m_start_power;
       Angslope = (endAngle) / (m_t2);

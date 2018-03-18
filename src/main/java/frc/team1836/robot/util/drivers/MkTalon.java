@@ -20,28 +20,19 @@ public class MkTalon {
 
   private final TalonSRX masterTalon;
   private final VictorSPX slaveTalon;
-  private int masterID, slaveID;
   private TalonPosition side;
   private double maxRPM = 0;
   private NeutralMode talonMode;
-  private Faults masterFaults;
-  private Faults slaveFaults;
 
   /**
    * @param master Talon with Encoder CAN ID
    * @param slave Follower Talon CAN ID
    */
   public MkTalon(int master, int slave, TalonPosition side) {
-    masterFaults = new Faults();
-    slaveFaults = new Faults();
-
     masterTalon = new TalonSRX(master);
     slaveTalon = new VictorSPX(slave);
 
     this.side = side;
-
-    masterID = master;
-    slaveID = slave;
 
     resetConfig();
     configMotionMagic();

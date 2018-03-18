@@ -11,16 +11,15 @@ import frc.team1836.robot.util.auto.AutoModeEndedException;
 
 public class CenterSwitchOpenLoopGyro extends AutoModeBase {
 
-  private GameObjectPosition position;
 
-  public CenterSwitchOpenLoopGyro(AutoChooser.GameObjectPosition position) {
-    this.position = position;
+  public CenterSwitchOpenLoopGyro() {
+
   }
 
   @Override
   protected void routine() throws AutoModeEndedException {
     RobotState.mArmState = RobotState.ArmState.OPPOSITE_SWITCH_PLACE;
-    switch (position) {
+    switch (RobotState.matchData.switchPosition) {
       case LEFT:
         leftRoutine();
         break;
