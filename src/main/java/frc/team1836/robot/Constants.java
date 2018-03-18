@@ -134,6 +134,7 @@ public final class Constants {
   }
 
   public static class SUPERSTRUCTURE {
+
     public static final int CANIFIER_ID = 11;
     public static double CONNECTION_TIMEOUT = 1.0;
   }

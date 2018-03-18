@@ -1,6 +1,7 @@
 package frc.team1836.robot.util.drivers;
 
 import edu.wpi.first.wpilibj.Joystick;
+import frc.team1836.robot.util.logging.Log;
 
 public class MkJoystickButton {
 
@@ -22,9 +23,8 @@ public class MkJoystickButton {
     final boolean isPressed = !lastState && joystick.getRawButton(rawButton);
     update();
     if (isPressed) {
-      System.out.println(
-          "[Joystick] " + joystick.getPort() + "\t[Button]" + rawButton + "\t Pressed ( "
-              + buttonName + " )");
+      Log.verbose("[Joystick] " + joystick.getPort() + "\t[Button]" + rawButton + "\t Pressed ( "
+          + buttonName + " )");
     }
     return isPressed;
   }

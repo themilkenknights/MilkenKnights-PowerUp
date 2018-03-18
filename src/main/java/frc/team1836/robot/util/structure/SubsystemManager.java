@@ -1,7 +1,7 @@
-package frc.team1836.robot.util.other;
+package frc.team1836.robot.util.structure;
 
 import edu.wpi.first.wpilibj.Timer;
-import frc.team1836.robot.util.loops.Looper;
+import frc.team1836.robot.util.structure.loops.Looper;
 import java.util.List;
 
 /**

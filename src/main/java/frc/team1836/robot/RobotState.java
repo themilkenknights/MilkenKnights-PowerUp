@@ -10,6 +10,12 @@ public class RobotState {
   public static ArmState mArmState = ArmState.ENABLE;
   public static MatchData matchData = MatchData.defaultMatch;
 
+  public static void resetDefaultState() {
+    RobotState.mArmState = RobotState.ArmState.ENABLE;
+    RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
+    RobotState.mDriveControlState = DriveControlState.OPEN_LOOP;
+  }
+
   public enum MatchState {
     AUTO, TELEOP, DISABLED, TEST
   }
@@ -38,12 +44,6 @@ public class RobotState {
     ArmState(final double state) {
       this.state = state;
     }
-  }
-
-  public static void resetDefaultState() {
-    RobotState.mArmState = RobotState.ArmState.ENABLE;
-    RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
-    RobotState.mDriveControlState = DriveControlState.OPEN_LOOP;
   }
 
 }

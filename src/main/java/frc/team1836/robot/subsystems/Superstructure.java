@@ -10,9 +10,9 @@ import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.util.drivers.MkLED;
 import frc.team1836.robot.util.drivers.MkLED.LEDColors;
-import frc.team1836.robot.util.loops.Loop;
-import frc.team1836.robot.util.loops.Looper;
-import frc.team1836.robot.util.other.Subsystem;
+import frc.team1836.robot.util.structure.loops.Loop;
+import frc.team1836.robot.util.structure.loops.Looper;
+import frc.team1836.robot.util.structure.Subsystem;
 
 public class Superstructure extends Subsystem {
 

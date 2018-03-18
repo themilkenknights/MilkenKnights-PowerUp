@@ -5,7 +5,7 @@ import frc.team1836.robot.AutoChooser;
 import frc.team1836.robot.AutoChooser.GameObjectPosition;
 import frc.team1836.robot.Constants.DRIVE;
 import frc.team1836.robot.RobotState;
-import frc.team1836.robot.auto.trajectory.Path;
+import frc.team1836.robot.util.auto.trajectory.Path;
 import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.util.auto.Action;
 
@@ -28,7 +28,10 @@ public class DrivePathAction implements Action {
   }
 
   public DrivePathAction(int pathNum, boolean dir, boolean brakeMode) {
-    this(AutoChooser.autoPaths.get("CS-" + Integer.toString(pathNum) + ((RobotState.matchData.switchPosition == GameObjectPosition.LEFT) ? "L" : "R") + ((RobotState.matchData.alliance == Alliance.Blue) ? "B" : "R")), dir, false, brakeMode);
+    this(AutoChooser.autoPaths.get(
+        "CS-" + Integer.toString(pathNum) + ((RobotState.matchData.switchPosition
+            == GameObjectPosition.LEFT) ? "L" : "R") + ((RobotState.matchData.alliance
+            == Alliance.Blue) ? "B" : "R")), dir, false, brakeMode);
   }
 
   @Override

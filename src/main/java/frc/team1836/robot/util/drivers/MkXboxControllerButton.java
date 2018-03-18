@@ -1,6 +1,7 @@
 package frc.team1836.robot.util.drivers;
 
 import edu.wpi.first.wpilibj.XboxController;
+import frc.team1836.robot.util.logging.Log;
 
 public class MkXboxControllerButton {
 
@@ -23,7 +24,7 @@ public class MkXboxControllerButton {
     final boolean isPressed = !lastState && joystick.getRawButton(rawButton);
     update();
     if (isPressed) {
-      System.out.println(
+      Log.verbose(
           "[Joystick] " + joystick.getPort() + "\t[Button]" + rawButton + "\t Pressed ( "
               + buttonName + " )");
     }

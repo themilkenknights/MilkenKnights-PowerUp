@@ -1,17 +1,14 @@
 package frc.team1836.robot;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import frc.team1836.robot.RobotState.ArmControlState;
-import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.subsystems.Arm;
 import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.subsystems.Input;
 import frc.team1836.robot.subsystems.Superstructure;
 import frc.team1836.robot.util.logging.Log;
-import frc.team1836.robot.util.loops.Looper;
-import frc.team1836.robot.util.other.SubsystemManager;
+import frc.team1836.robot.util.structure.loops.Looper;
+import frc.team1836.robot.util.structure.SubsystemManager;
 import java.util.Arrays;
 
 public class Robot extends IterativeRobot {
@@ -22,7 +19,7 @@ public class Robot extends IterativeRobot {
   private Looper mEnabledLooper = new Looper();
 
   public Robot() {
-    Log.logRobotConstruction();
+    Log.logRobotStartup();
   }
 
   @Override

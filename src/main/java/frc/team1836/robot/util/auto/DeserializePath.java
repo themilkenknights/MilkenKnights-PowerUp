@@ -1,7 +1,7 @@
 package frc.team1836.robot.util.auto;
 
 import frc.team1836.robot.Constants;
-import frc.team1836.robot.auto.trajectory.Path;
+import frc.team1836.robot.util.auto.trajectory.Path;
 import frc.team1836.robot.util.logging.Log;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;

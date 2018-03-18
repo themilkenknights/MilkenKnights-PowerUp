@@ -14,10 +14,10 @@ import frc.team1836.robot.util.drivers.MkTalon;
 import frc.team1836.robot.util.drivers.MkTalon.TalonPosition;
 import frc.team1836.robot.util.logging.Log;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
-import frc.team1836.robot.util.loops.Loop;
-import frc.team1836.robot.util.loops.Looper;
+import frc.team1836.robot.util.structure.loops.Loop;
+import frc.team1836.robot.util.structure.loops.Looper;
 import frc.team1836.robot.util.math.MkMath;
-import frc.team1836.robot.util.other.Subsystem;
+import frc.team1836.robot.util.structure.Subsystem;
 
 public class Arm extends Subsystem {
 

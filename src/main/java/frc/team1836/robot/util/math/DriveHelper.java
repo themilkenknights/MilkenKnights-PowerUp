@@ -1,4 +1,4 @@
-package frc.team1836.robot.util.other;
+package frc.team1836.robot.util.math;
 
 import frc.team1836.robot.Constants.INPUT;
 import frc.team1836.robot.util.state.DriveSignal;

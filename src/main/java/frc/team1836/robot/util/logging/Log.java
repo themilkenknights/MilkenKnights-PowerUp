@@ -12,12 +12,9 @@ import java.util.UUID;
 public class Log {
 
   private static final UUID RUN_INSTANCE_UUID = UUID.randomUUID();
+  private static final UUID RUN_INSTANCE_UUID_VERBOSE = UUID.randomUUID();
 
   public static void logRobotStartup() {
-    marker("robot startup");
-  }
-
-  public static void logRobotConstruction() {
     marker("robot startup");
   }
 
@@ -75,7 +72,7 @@ public class Log {
 
   private static void logVerboseMarker(String mark, Throwable nullableException) {
     try (PrintWriter writer = new PrintWriter(new FileWriter("/u/verbose_log.txt", true))) {
-      writer.print(RUN_INSTANCE_UUID.toString());
+      writer.print(RUN_INSTANCE_UUID_VERBOSE.toString());
       writer.print(", ");
       writer.print(mark);
       writer.print(", ");

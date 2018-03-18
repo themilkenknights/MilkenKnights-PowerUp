@@ -1,4 +1,4 @@
-package frc.team1836.robot.auto.trajectory;
+package frc.team1836.robot.util.auto.trajectory;
 
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.util.state.TrajectoryStatus;

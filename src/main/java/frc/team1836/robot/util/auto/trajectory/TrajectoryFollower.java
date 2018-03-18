@@ -1,4 +1,4 @@
-package frc.team1836.robot.auto.trajectory;
+package frc.team1836.robot.util.auto.trajectory;
 
 import edu.wpi.first.wpilibj.Timer;
 import frc.team1836.robot.Constants;

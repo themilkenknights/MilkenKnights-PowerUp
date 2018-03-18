@@ -63,7 +63,9 @@ public class CenterSwitchMode extends AutoModeBase {
 
   private double getTime(int pathNum) {
     return AutoChooser.autoPaths.get(
-        "CS-" + Integer.toString(pathNum) +((RobotState.matchData.switchPosition == GameObjectPosition.LEFT) ? "L" : "R") + ((RobotState.matchData.alliance == Alliance.Blue) ? "B" : "R")).getTime();
+        "CS-" + Integer.toString(pathNum) + ((RobotState.matchData.switchPosition
+            == GameObjectPosition.LEFT) ? "L" : "R") + ((RobotState.matchData.alliance
+            == Alliance.Blue) ? "B" : "R")).getTime();
   }
 
 }
