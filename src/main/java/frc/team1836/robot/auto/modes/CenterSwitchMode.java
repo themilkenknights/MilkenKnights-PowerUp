@@ -23,41 +23,41 @@ public class CenterSwitchMode extends AutoModeBase {
     Log.marker("Starting Center Switch Mode");
 
     runAction(new ParallelAction(Arrays.asList(
-        new DrivePathAction(1, true, false),
+        new DrivePathAction(1, false, false),
         new MoveArmAction(ArmState.SWITCH_PLACE),
         new DelayAction(getTime(1) - 0.5, new RollerAction(0.4, ARM.INTAKE_OUT_ROLLER_SPEED)))));
 
     runAction(new ParallelAction(Arrays.asList(
-        new DrivePathAction(2, false, true),
+        new DrivePathAction(2, true, true),
         new DelayAction(0.3, new MoveArmAction(ArmState.INTAKE))
     )));
 
     runAction(new ParallelAction(Arrays.asList(
-        new DrivePathAction(3, true, true),
+        new DrivePathAction(3, false, true),
         new RollerAction(getTime(3), ARM.INTAKE_IN_ROLLER_SPEED, true)
     )));
 
-    runAction(new DrivePathAction(4, false, false));
+    runAction(new DrivePathAction(4, true, false));
 
     runAction(new ParallelAction(Arrays.asList(
-        new DrivePathAction(5, true, false),
+        new DrivePathAction(5, false, false),
         new DelayAction(0.5, new MoveArmAction(ArmState.SWITCH_PLACE)),
         new DelayAction(getTime(5) - 0.6, new RollerAction(0.5, ARM.INTAKE_OUT_ROLLER_SPEED))
     )));
 
-    runAction(new DrivePathAction(6, false, true));
+    runAction(new DrivePathAction(6, true, true));
 
     runAction(new ParallelAction(Arrays.asList(
-        new DrivePathAction(7, true, true),
+        new DrivePathAction(7, false, true),
         new RollerAction(getTime(7), ARM.INTAKE_IN_ROLLER_SPEED, true),
         new MoveArmAction(ArmState.SECOND_SWITCH_PLACE)
     )));
 
-    runAction(new DrivePathAction(8, false, false));
+    runAction(new DrivePathAction(8, true, false));
 
     runAction(new ParallelAction(Arrays.asList(
         new DelayAction(0.5, new MoveArmAction(ArmState.SWITCH_PLACE)),
-        new DrivePathAction(9, true, false),
+        new DrivePathAction(9, false, false),
         new DelayAction(getTime(9) - 0.75, new RollerAction(0.5, ARM.INTAKE_OUT_ROLLER_SPEED)))));
   }
 

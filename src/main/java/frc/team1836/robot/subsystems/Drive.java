@@ -287,6 +287,9 @@ public class Drive extends Subsystem {
     return navX.getYaw();
   }
 
+  /*
+  Change Talon PID Constants to reduce oscillation during teleop driving
+   */
   public void configVelocityControl() {
     leftDrive.configTeleopVelocity();
     rightDrive.configTeleopVelocity();

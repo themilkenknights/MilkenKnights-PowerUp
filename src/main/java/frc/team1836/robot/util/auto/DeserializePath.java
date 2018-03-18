@@ -10,6 +10,9 @@ import java.io.File;
 
 public class DeserializePath {
 
+  /*
+  Read CSV Files into memory and create left and right sides
+   */
   public static Path getPathFromFile(String name) {
     try {
       String filePath = Constants.AUTO.pathPath + name + ".csv";
@@ -17,19 +20,7 @@ public class DeserializePath {
       TankModifier modifier = new TankModifier(traj).modify(Constants.DRIVE.PATH_WHEELBASE);
       Trajectory left = modifier.getLeftTrajectory();
       Trajectory right = modifier.getRightTrajectory();
-      for (Trajectory.Segment segment : left.segments) {
-        segment.position = -segment.position;
-        segment.velocity = -segment.velocity;
-        segment.acceleration = -segment.acceleration;
-        segment.jerk = -segment.jerk;
-      }
-      for (Trajectory.Segment segment : right.segments) {
-        segment.position = -segment.position;
-        segment.velocity = -segment.velocity;
-        segment.acceleration = -segment.acceleration;
-        segment.jerk = -segment.jerk;
-      }
-      return new Path(name, new Path.Pair(right, left));
+      return new Path(name, new Path.Pair(left, right));
     } catch (Throwable t) {
       Log.marker("Crashed Trying to Deserialize Paths");
       Log.logThrowableCrash(t);

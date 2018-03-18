@@ -31,7 +31,6 @@ public class Robot extends IterativeRobot {
       Log.logRobotInit();
       mSubsystemManager.registerEnabledLoops(mEnabledLooper);
       AutoChooser.loadAutos();
-      CameraServer.getInstance().startAutomaticCapture().setResolution(640, 480);
     } catch (Throwable t) {
       Log.logThrowableCrash(t);
       throw t;
@@ -45,8 +44,7 @@ public class Robot extends IterativeRobot {
       Log.logDisabledInit();
       AutoChooser.disableAuto();
       mEnabledLooper.stop();
-      RobotState.mMatchState = MatchState.DISABLED;
-      RobotState.mArmState = RobotState.ArmState.ENABLE;
+      RobotState.resetDefaultState();
     } catch (Throwable t) {
       Log.logThrowableCrash(t);
       throw t;
@@ -70,9 +68,8 @@ public class Robot extends IterativeRobot {
   public void teleopInit() {
     try {
       Log.logTeleopInit();
-      RobotState.mMatchState = MatchState.TELEOP;
-      RobotState.mDriveControlState = DriveControlState.OPEN_LOOP;
-      RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
+      RobotState.mMatchState = MatchState.DISABLED;
+      RobotState.resetDefaultState();
       mEnabledLooper.start();
     } catch (Throwable t) {
       Log.logThrowableCrash(t);
@@ -84,6 +81,8 @@ public class Robot extends IterativeRobot {
   public void testInit() {
     try {
       Log.logTestInit();
+      RobotState.mMatchState = MatchState.TEST;
+      RobotState.resetDefaultState();
       mEnabledLooper.start();
       mSubsystemManager.checkSystem();
     } catch (Throwable t) {

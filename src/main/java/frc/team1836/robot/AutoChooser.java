@@ -28,6 +28,9 @@ public class AutoChooser {
   private static SendableChooser<AutoAction> actionChooser = new SendableChooser<>();
   private static AutoModeExecuter mAutoModeExecuter = null;
 
+  /*
+  Initialize Smart Dashboard Choosers and Serialize all paths into memory
+   */
   public static void loadAutos() {
     positionChooser.addDefault("Center", AutoPosition.CENTER);
     positionChooser.addObject("Left", AutoPosition.LEFT);
@@ -86,8 +89,9 @@ public class AutoChooser {
       return getLeftSwitch();
     } else if (positionChooser.getSelected() == AutoPosition.RIGHT) {
       return getRightSwitch();
+    } else {
+      return getStraightMode();
     }
-    return null;
   }
 
   private static AutoModeBase getCenterSwitch() {
@@ -138,7 +142,7 @@ public class AutoChooser {
     mAutoModeExecuter = null;
   }
 
-  public static void updateGameData() {
+  private static void updateGameData() {
     RobotState.matchData.alliance = DriverStation.getInstance().getAlliance();
     RobotState.matchData.matchNumber = DriverStation.getInstance().getMatchNumber();
     RobotState.matchData.matchType = DriverStation.getInstance().getMatchType();

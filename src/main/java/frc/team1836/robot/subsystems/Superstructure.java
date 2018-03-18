@@ -1,5 +1,6 @@
 package frc.team1836.robot.subsystems;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
@@ -25,6 +26,7 @@ public class Superstructure extends Subsystem {
     hPSignal = false;
     turnOffLED = false;
     mLastPacketTime = 0.0;
+    CameraServer.getInstance().startAutomaticCapture().setResolution(640, 480);
   }
 
   public static Superstructure getInstance() {

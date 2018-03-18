@@ -44,10 +44,6 @@ public class Path {
     }
   }
 
-  public void flipSides() {
-    this.pair_ = new Pair(pair_.right, pair_.left);
-  }
-
   public void invertSide() {
     invert = !invert;
   }

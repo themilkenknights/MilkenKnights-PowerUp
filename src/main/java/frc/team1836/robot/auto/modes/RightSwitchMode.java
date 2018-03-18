@@ -26,6 +26,9 @@ public class RightSwitchMode extends AutoModeBase {
       case RIGHT:
         rightRoutine();
         break;
+      default:
+        Log.marker("Error - Invalid Switch Position");
+        break;
     }
   }
 
@@ -37,7 +40,7 @@ public class RightSwitchMode extends AutoModeBase {
   private void rightRoutine() throws AutoModeEndedException {
     Log.marker("Starting Right Switch Mode (Right Side)");
     RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
-    runAction(new DrivePathAction(AutoChooser.autoPaths.get("FS-1R" + ((RobotState.matchData.alliance == Alliance.Blue) ? "B" : "R")), true, false, false));
+    runAction(new DrivePathAction(AutoChooser.autoPaths.get("FS-1R" + ((RobotState.matchData.alliance == Alliance.Blue) ? "B" : "R")), false, false, false));
     runAction(new RollerAction(0.5, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
   }
 
