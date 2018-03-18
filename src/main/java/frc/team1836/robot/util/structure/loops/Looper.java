@@ -1,4 +1,4 @@
-package frc.team1836.robot.util.loops;
+package frc.team1836.robot.util.structure.loops;
 
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.Timer;
