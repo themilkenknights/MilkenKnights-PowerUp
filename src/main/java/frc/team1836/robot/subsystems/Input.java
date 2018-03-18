@@ -26,15 +26,21 @@ public class Input extends Subsystem {
 	private final MkJoystickButton turnOffLED = driverJoystick.getButton(3, "Turn Off LED");
 
 	private final MkJoystickButton armIntakeButton = operatorJoystick.getButton(2, "Arm Intake");
-	private final MkJoystickButton armDisableSafety = operatorJoystick.getButton(11, "Arm Disable Current Limit");
+	private final MkJoystickButton armDisableSafety = operatorJoystick
+			.getButton(11, "Arm Disable Current Limit");
 	private final MkJoystickButton armSwitchButton = operatorJoystick.getButton(6, "Arm Switch");
-	private final MkJoystickButton armSecondSwitchButton = operatorJoystick.getButton(1, "Arm Second Switch");
-	private final MkJoystickButton armSwitchReverseButton = operatorJoystick.getButton(4, "Arm Switch Reverse");
-	private final MkJoystickButton armChangeModeButton = operatorJoystick.getButton(8, "Arm Change Mode");
+	private final MkJoystickButton armSecondSwitchButton = operatorJoystick
+			.getButton(1, "Arm Second Switch");
+	private final MkJoystickButton armSwitchReverseButton = operatorJoystick
+			.getButton(4, "Arm Switch Reverse");
+	private final MkJoystickButton armChangeModeButton = operatorJoystick
+			.getButton(8, "Arm Change Mode");
 	private final MkJoystickButton armZeroButton = operatorJoystick.getButton(7, "Arm Zero");
 	private final MkJoystickButton intakeRollerIn = operatorJoystick.getButton(3, "Intake Roller In");
-	private final MkJoystickButton intakeRollerOut = operatorJoystick.getButton(5, "Intake Roller Out");
-	private final MkJoystickButton intakeRollerOutFast = operatorJoystick.getButton(9, "Intake Roller Out Fast");
+	private final MkJoystickButton intakeRollerOut = operatorJoystick
+			.getButton(5, "Intake Roller Out");
+	private final MkJoystickButton intakeRollerOutFast = operatorJoystick
+			.getButton(9, "Intake Roller Out Fast");
 
 	public Input() {
 
@@ -85,9 +91,13 @@ public class Input extends Subsystem {
 	private void updateDriveInput() {
 		if (changeDriveMode.isPressed()) {
 			Drive.getInstance().configVelocityControl();
-			RobotState.mDriveControlState = RobotState.mDriveControlState.equals(DriveControlState.OPEN_LOOP) ? DriveControlState.VELOCITY_SETPOINT : DriveControlState.OPEN_LOOP;
+			RobotState.mDriveControlState =
+					RobotState.mDriveControlState.equals(DriveControlState.OPEN_LOOP)
+							? DriveControlState.VELOCITY_SETPOINT : DriveControlState.OPEN_LOOP;
 		}
-		DriveSignal sig = DriveHelper.cheesyDrive((- driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3)), (- driverJoystick.getRawAxis(0)), true);
+		DriveSignal sig = DriveHelper
+				.cheesyDrive((-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3)),
+						(-driverJoystick.getRawAxis(0)), true);
 		if (RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
 			Drive.getInstance().setVelocitySetpoint(sig, 0, 0);
 		} else if (RobotState.mDriveControlState == DriveControlState.OPEN_LOOP) {
@@ -119,7 +129,7 @@ public class Input extends Subsystem {
 					RobotState.mArmState = ArmState.SWITCH_PLACE;
 				} else if (armSwitchReverseButton.isPressed()) {
 					RobotState.mArmState = ArmState.OPPOSITE_STOW;
-				} else if (operatorJoystick.getPOV() != - 1) {
+				} else if (operatorJoystick.getPOV() != -1) {
 					RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
 				}
 				if (armChangeModeButton.isPressed()) {
@@ -127,7 +137,8 @@ public class Input extends Subsystem {
 				}
 				break;
 			case OPEN_LOOP:
-				Arm.getInstance().setOpenLoop(MkMath.handleDeadband(operatorJoystick.getRawAxis(1), Constants.INPUT.OPERATOR_DEADBAND));
+				Arm.getInstance().setOpenLoop(MkMath
+						.handleDeadband(operatorJoystick.getRawAxis(1), Constants.INPUT.OPERATOR_DEADBAND));
 				if (armChangeModeButton.isPressed()) {
 					Arm.getInstance().setEnable();
 					RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
@@ -145,7 +156,7 @@ public class Input extends Subsystem {
 		} else if (intakeRollerOutFast.isHeld()) {
 			Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_FAST_ROLLER_SPEED);
 		} else {
-			if (! RobotState.mArmState.equals(ArmState.ENABLE)) {
+			if (!RobotState.mArmState.equals(ArmState.ENABLE)) {
 				Arm.getInstance().setIntakeRollers(ARM.SLOW_INTAKE_HOLD_SPEED);
 			} else {
 				Arm.getInstance().setIntakeRollers(0);

@@ -42,7 +42,7 @@ public class CurveOpenLoopAction implements Action {
 		power = power * power;
 
 		power = 1 - power;
-		Drive.getInstance().setOpenLoop(new DriveSignal(- power, - power));
+		Drive.getInstance().setOpenLoop(new DriveSignal(-power, -power));
 	}
 
 	/**

@@ -59,7 +59,7 @@ public class TrajectoryFollower {
 			double angError = segment.heading - heading;
 			if (angError > 180) {
 				angError = angError - 360;
-			} else if (angError < - 180) {
+			} else if (angError < -180) {
 				angError = angError + 360;
 			}
 			double velError = segment.velocity - vel;
@@ -104,14 +104,20 @@ public class TrajectoryFollower {
 		double firstTime = firstSeg.dt * (currentSeg - 1);
 		double lastTime = lastSeg.dt * (currentSeg);
 		double currentTime = time - Dt;
-		pos = (((currentTime - firstTime) * (lastSeg.position - firstSeg.position)) / (lastTime - firstTime)) + firstSeg.position;
-		vel = (((currentTime - firstTime) * (lastSeg.velocity - firstSeg.velocity)) / (lastTime - firstTime)) + firstSeg.velocity;
-		acc = (((currentTime - firstTime) * (lastSeg.acceleration - firstSeg.acceleration)) / (lastTime - firstTime)) + firstSeg.acceleration;
-		jerk = (((currentTime - firstTime) * (lastSeg.jerk - firstSeg.jerk)) / (lastTime - firstTime)) + firstSeg.jerk;
+		pos = (((currentTime - firstTime) * (lastSeg.position - firstSeg.position)) / (lastTime
+				- firstTime)) + firstSeg.position;
+		vel = (((currentTime - firstTime) * (lastSeg.velocity - firstSeg.velocity)) / (lastTime
+				- firstTime)) + firstSeg.velocity;
+		acc = (((currentTime - firstTime) * (lastSeg.acceleration - firstSeg.acceleration)) / (lastTime
+				- firstTime)) + firstSeg.acceleration;
+		jerk = (((currentTime - firstTime) * (lastSeg.jerk - firstSeg.jerk)) / (lastTime - firstTime))
+				+ firstSeg.jerk;
 		heading = lastSeg.heading;
 		dt = firstSeg.dt;
-		x = (((currentTime - firstTime) * (lastSeg.x - firstSeg.x)) / (lastTime - firstTime)) + firstSeg.x;
-		y = (((currentTime - firstTime) * (lastSeg.y - firstSeg.y)) / (lastTime - firstTime)) + firstSeg.y;
+		x = (((currentTime - firstTime) * (lastSeg.x - firstSeg.x)) / (lastTime - firstTime))
+				+ firstSeg.x;
+		y = (((currentTime - firstTime) * (lastSeg.y - firstSeg.y)) / (lastTime - firstTime))
+				+ firstSeg.y;
 		return new Trajectory.Segment(pos, vel, acc, jerk, heading, dt, x, y);
 	}
 

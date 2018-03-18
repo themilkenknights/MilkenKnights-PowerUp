@@ -36,7 +36,7 @@ public abstract class AutoModeBase {
 	}
 
 	public boolean isActiveWithThrow() throws AutoModeEndedException {
-		if (! isActive()) {
+		if (!isActive()) {
 			throw new AutoModeEndedException();
 		}
 
@@ -47,7 +47,7 @@ public abstract class AutoModeBase {
 		isActiveWithThrow();
 		action.start();
 
-		while (isActiveWithThrow() && ! action.isFinished()) {
+		while (isActiveWithThrow() && !action.isFinished()) {
 			action.update();
 			long waitTime = (long) (m_update_rate * 1000.0);
 

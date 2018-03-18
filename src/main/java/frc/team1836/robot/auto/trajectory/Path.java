@@ -30,17 +30,17 @@ public class Path {
 	public void invert() {
 		invert = true;
 		for (Trajectory.Segment segment : pair_.left.segments) {
-			segment.position = - segment.position;
-			segment.velocity = - segment.velocity;
-			segment.acceleration = - segment.acceleration;
-			segment.jerk = - segment.jerk;
+			segment.position = -segment.position;
+			segment.velocity = -segment.velocity;
+			segment.acceleration = -segment.acceleration;
+			segment.jerk = -segment.jerk;
 		}
 
 		for (Trajectory.Segment segment : pair_.right.segments) {
-			segment.position = - segment.position;
-			segment.velocity = - segment.velocity;
-			segment.acceleration = - segment.acceleration;
-			segment.jerk = - segment.jerk;
+			segment.position = -segment.position;
+			segment.velocity = -segment.velocity;
+			segment.acceleration = -segment.acceleration;
+			segment.jerk = -segment.jerk;
 		}
 	}
 
@@ -48,7 +48,7 @@ public class Path {
 		this.pair_ = new Pair(pair_.right, pair_.left);
 	}
 
-	public void invertSide(){
+	public void invertSide() {
 		invert = !invert;
 	}
 
@@ -75,7 +75,8 @@ public class Path {
 	}
 
 	public Path copyPath() {
-		return new Path(name_, new Pair(getLeftWheelTrajectory().copy(), getRightWheelTrajectory().copy()));
+		return new Path(name_,
+				new Pair(getLeftWheelTrajectory().copy(), getRightWheelTrajectory().copy()));
 	}
 
 	public static class Pair {

@@ -19,10 +19,12 @@ public class MkJoystickButton {
 	 * Returns true if the button is pressed and this is the first time it is being run.
 	 */
 	public boolean isPressed() {
-		final boolean isPressed = ! lastState && joystick.getRawButton(rawButton);
+		final boolean isPressed = !lastState && joystick.getRawButton(rawButton);
 		update();
 		if (isPressed) {
-			System.out.println("[Joystick] " + joystick.getPort() + "\t[Button]" + rawButton + "\t Pressed ( " + buttonName + " )");
+			System.out.println(
+					"[Joystick] " + joystick.getPort() + "\t[Button]" + rawButton + "\t Pressed ( "
+							+ buttonName + " )");
 		}
 		return isPressed;
 	}

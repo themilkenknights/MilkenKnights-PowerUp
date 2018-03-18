@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.team1836.robot.util.auto.Action;
 
 public class DelayAction implements Action {
+
 	private final Action mAction;
 	private double mTimeToWait;
 	private double mStartTime;
@@ -26,7 +27,7 @@ public class DelayAction implements Action {
 	 */
 	@Override
 	public void update() {
-		if (Timer.getFPGATimestamp() - mStartTime >= mTimeToWait && ! start) {
+		if (Timer.getFPGATimestamp() - mStartTime >= mTimeToWait && !start) {
 			start = true;
 			mAction.start();
 		} else if (Timer.getFPGATimestamp() - mStartTime >= mTimeToWait) {

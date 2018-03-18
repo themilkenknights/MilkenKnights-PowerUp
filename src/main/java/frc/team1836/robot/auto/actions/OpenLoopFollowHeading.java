@@ -16,7 +16,8 @@ public class OpenLoopFollowHeading implements Action {
 	private double endAngle;
 	private double otherAngle;
 
-	public OpenLoopFollowHeading(double start_power, double time_full_on, double end_power, double time_to_decel, double endAngle, double otherAngle) {
+	public OpenLoopFollowHeading(double start_power, double time_full_on, double end_power,
+			double time_to_decel, double endAngle, double otherAngle) {
 		m_t1 = time_full_on;
 		m_t2 = m_t1 + time_to_decel;
 		m_start_power = start_power;

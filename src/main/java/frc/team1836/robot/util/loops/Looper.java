@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.util.logging.CrashTrackingRunnable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +53,7 @@ public class Looper {
 	}
 
 	public synchronized void start() {
-		if (! running_) {
+		if (!running_) {
 			System.out.println("Starting loops");
 			synchronized (taskRunningLock_) {
 				timestamp_ = Timer.getFPGATimestamp();

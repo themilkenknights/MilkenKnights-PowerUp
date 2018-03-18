@@ -29,16 +29,16 @@ public class DriveHelper {
 				leftMotorSpeed = moveValue - rotateValue;
 				rightMotorSpeed = Math.max(moveValue, rotateValue);
 			} else {
-				leftMotorSpeed = Math.max(moveValue, - rotateValue);
+				leftMotorSpeed = Math.max(moveValue, -rotateValue);
 				rightMotorSpeed = moveValue + rotateValue;
 			}
 		} else {
 			if (rotateValue > 0.0) {
-				leftMotorSpeed = - Math.max(- moveValue, rotateValue);
+				leftMotorSpeed = -Math.max(-moveValue, rotateValue);
 				rightMotorSpeed = moveValue + rotateValue;
 			} else {
 				leftMotorSpeed = moveValue - rotateValue;
-				rightMotorSpeed = - Math.max(- moveValue, - rotateValue);
+				rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
 			}
 		}
 
@@ -49,8 +49,8 @@ public class DriveHelper {
 		if (num > 1.0) {
 			return 1.0;
 		}
-		if (num < - 1.0) {
-			return - 1.0;
+		if (num < -1.0) {
+			return -1.0;
 		}
 		return num;
 	}

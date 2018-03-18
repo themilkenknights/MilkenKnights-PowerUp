@@ -41,23 +41,15 @@ public class Superstructure extends Subsystem {
 		SmartDashboard.putString("Robot State", RobotState.mMatchState.toString());
 	}
 
-	public void toggleSignal() {
-		hPSignal = ! hPSignal;
-	}
-
-	public void toggleLEDOff() {
-		turnOffLED = ! turnOffLED;
+	@Override
+	public void slowUpdate(double timestamp) {
+		Superstructure.getInstance().setLastPacketTime(timestamp);
+		Superstructure.getInstance().updateLEDStrip(timestamp);
 	}
 
 	@Override
 	public void checkSystem() {
 
-	}
-
-	@Override
-	public void slowUpdate(double timestamp) {
-		Superstructure.getInstance().setLastPacketTime(timestamp);
-		Superstructure.getInstance().updateLEDStrip(timestamp);
 	}
 
 	@Override
@@ -85,6 +77,14 @@ public class Superstructure extends Subsystem {
 		enabledLooper.register(mLoop);
 	}
 
+	public void toggleSignal() {
+		hPSignal = !hPSignal;
+	}
+
+	public void toggleLEDOff() {
+		turnOffLED = !turnOffLED;
+	}
+
 	public synchronized void updateLEDStrip(double timestamp) {
 		if (turnOffLED) {
 			mkLED.set_rgb(LEDColors.OFF);
@@ -92,7 +92,8 @@ public class Superstructure extends Subsystem {
 			mkLED.setPulse(LEDColors.RED, LEDColors.OFF, 0.25);
 		} else if (hPSignal) {
 			mkLED.set_rgb(LEDColors.GREEN);
-		} else if (RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT && RobotState.mMatchState != MatchState.AUTO) {
+		} else if (RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT
+				&& RobotState.mMatchState != MatchState.AUTO) {
 			mkLED.setPulse(LEDColors.GREEN, LEDColors.OFF, 0.25);
 		} else if (RobotState.mMatchState == MatchState.DISABLED) {
 			mkLED.set_rgb(MkLED.LEDColors.PURPLE);

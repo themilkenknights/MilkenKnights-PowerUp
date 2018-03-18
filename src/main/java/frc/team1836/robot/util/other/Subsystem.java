@@ -13,6 +13,7 @@ import frc.team1836.robot.util.loops.Looper;
  * instantializing all member components at the start of the match.
  */
 public abstract class Subsystem {
+
 	public abstract void outputToSmartDashboard();
 
 	public void slowUpdate(double timestamp) {

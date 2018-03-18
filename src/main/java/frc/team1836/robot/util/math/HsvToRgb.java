@@ -1,6 +1,7 @@
 package frc.team1836.robot.util.math;
 
 public class HsvToRgb {
+
 	/**
 	 * Convert hue/saturation/and value into RGB values
 	 *
@@ -82,7 +83,7 @@ public class HsvToRgb {
 					G = tv;
 					B = pv;
 					break;
-				case - 1:
+				case -1:
 					R = V;
 					G = pv;
 					B = qv;

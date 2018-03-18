@@ -91,11 +91,6 @@ public class Arm extends Subsystem {
 		}
 	}
 
-	public void setEnable() {
-		armPosEnable = armTalon.getPosition();
-		RobotState.mArmState = ArmState.ENABLE;
-	}
-
 	@Override
 	public void registerEnabledLoops(Looper enabledLooper) {
 		Loop mLoop = new Loop() {
@@ -137,6 +132,11 @@ public class Arm extends Subsystem {
 			}
 		};
 		enabledLooper.register(mLoop);
+	}
+
+	public void setEnable() {
+		armPosEnable = armTalon.getPosition();
+		RobotState.mArmState = ArmState.ENABLE;
 	}
 
 	public void changeSafety() {

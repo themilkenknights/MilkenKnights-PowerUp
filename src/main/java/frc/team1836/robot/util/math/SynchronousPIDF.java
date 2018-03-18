@@ -14,7 +14,7 @@ public class SynchronousPIDF {
 	private double m_D; // factor for "derivative" control
 	private double m_F; // factor for feed forward gain
 	private double m_maximumOutput = 1.0; // |maximum output|
-	private double m_minimumOutput = - 1.0; // |minimum output|
+	private double m_minimumOutput = -1.0; // |minimum output|
 	private double m_maximumInput = 0.0; // maximum input - limit setpoint to
 	// this
 	private double m_minimumInput = 0.0; // minimum input - limit setpoint to
@@ -98,7 +98,8 @@ public class SynchronousPIDF {
 		// Don't blow away m_error so as to not break derivative
 		double proportionalError = Math.abs(m_error) < m_deadband ? 0 : m_error;
 
-		m_result = (m_P * proportionalError + m_I * m_totalError + m_D * (m_error - m_prevError) / dt + m_F * m_setpoint);
+		m_result = (m_P * proportionalError + m_I * m_totalError + m_D * (m_error - m_prevError) / dt
+				+ m_F * m_setpoint);
 		m_prevError = m_error;
 
 		if (m_result > m_maximumOutput) {

@@ -1,6 +1,7 @@
 package frc.team1836.robot.util.math;
 
 public class MovingAverage {
+
 	private int _in;
 	private int _ou;
 	private int _cnt;
@@ -35,12 +36,16 @@ public class MovingAverage {
 		_sum += d;
 
 		/* if full, pop one */
-		if (_cnt >= _cap) pop();
+		if (_cnt >= _cap) {
+			pop();
+		}
 
 		/* push new one */
 		_d[_in] = d;
-		if (++ _in >= _cap) _in = 0;
-		++ _cnt;
+		if (++_in >= _cap) {
+			_in = 0;
+		}
+		++_cnt;
 
 		/* calc new min - slow */
 		calcMin();
@@ -54,8 +59,10 @@ public class MovingAverage {
 		_sum -= d;
 
 		/* pop it */
-		if (++ _ou >= _cap) _ou = 0;
-		-- _cnt;
+		if (++_ou >= _cap) {
+			_ou = 0;
+		}
+		--_cnt;
 	}
 
 	private void calcMin() {
@@ -67,11 +74,15 @@ public class MovingAverage {
 			float d = _d[ou];
 
 			/* process sample */
-			if (_min > d) _min = d;
+			if (_min > d) {
+				_min = d;
+			}
 
 			/* iterate */
-			if (++ ou >= _cnt) ou = 0;
-			-- cnt;
+			if (++ou >= _cnt) {
+				ou = 0;
+			}
+			--cnt;
 		}
 	}
 

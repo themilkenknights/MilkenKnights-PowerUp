@@ -24,7 +24,7 @@ public class ParallelAction implements Action {
 	public boolean isFinished() {
 		boolean all_finished = true;
 		for (Action action : mActions) {
-			if (! action.isFinished()) {
+			if (!action.isFinished()) {
 				all_finished = false;
 			}
 		}

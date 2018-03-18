@@ -6,7 +6,6 @@ import frc.team1836.robot.util.logging.Log;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.modifiers.TankModifier;
-
 import java.io.File;
 
 public class DeserializePath {
@@ -19,16 +18,16 @@ public class DeserializePath {
 			Trajectory left = modifier.getLeftTrajectory();
 			Trajectory right = modifier.getRightTrajectory();
 			for (Trajectory.Segment segment : left.segments) {
-				segment.position = - segment.position;
-				segment.velocity = - segment.velocity;
-				segment.acceleration = - segment.acceleration;
-				segment.jerk = - segment.jerk;
+				segment.position = -segment.position;
+				segment.velocity = -segment.velocity;
+				segment.acceleration = -segment.acceleration;
+				segment.jerk = -segment.jerk;
 			}
 			for (Trajectory.Segment segment : right.segments) {
-				segment.position = - segment.position;
-				segment.velocity = - segment.velocity;
-				segment.acceleration = - segment.acceleration;
-				segment.jerk = - segment.jerk;
+				segment.position = -segment.position;
+				segment.velocity = -segment.velocity;
+				segment.acceleration = -segment.acceleration;
+				segment.jerk = -segment.jerk;
 			}
 			return new Path(name, new Path.Pair(right, left));
 		} catch (Throwable t) {
