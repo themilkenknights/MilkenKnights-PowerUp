@@ -6,6 +6,7 @@ import frc.team1836.robot.Constants;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.ArmState;
 import frc.team1836.robot.auto.actions.DrivePathAction;
+import frc.team1836.robot.auto.actions.MoveArmAction;
 import frc.team1836.robot.auto.actions.RollerAction;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeEndedException;
@@ -33,7 +34,7 @@ public class LeftSwitchMode extends AutoModeBase {
 
   private void leftRoutine() throws AutoModeEndedException {
     Log.marker("Starting Left Switch Mode (Left Side)");
-    RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
+    runAction(new MoveArmAction(RobotState.mArmState = ArmState.SWITCH_PLACE));
     runAction(new DrivePathAction(AutoChooser.autoPaths.get(
         "FS-1L" + ((RobotState.matchData.alliance
             == Alliance.Blue) ? "B" : "R")), false, false, false));

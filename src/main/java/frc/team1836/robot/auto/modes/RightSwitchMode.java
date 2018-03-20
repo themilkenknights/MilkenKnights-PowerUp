@@ -6,6 +6,7 @@ import frc.team1836.robot.Constants;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.ArmState;
 import frc.team1836.robot.auto.actions.DrivePathAction;
+import frc.team1836.robot.auto.actions.MoveArmAction;
 import frc.team1836.robot.auto.actions.RollerAction;
 import frc.team1836.robot.util.auto.AutoModeBase;
 import frc.team1836.robot.util.auto.AutoModeEndedException;
@@ -39,7 +40,7 @@ public class RightSwitchMode extends AutoModeBase {
 
   private void rightRoutine() throws AutoModeEndedException {
     Log.marker("Starting Right Switch Mode (Right Side)");
-    RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
+    runAction(new MoveArmAction(RobotState.mArmState = ArmState.SWITCH_PLACE));
     runAction(new DrivePathAction(AutoChooser.autoPaths.get(
         "FS-1R" + ((RobotState.matchData.alliance
             == Alliance.Blue) ? "B" : "R")), false, false, false));

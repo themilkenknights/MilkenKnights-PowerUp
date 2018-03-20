@@ -164,6 +164,7 @@ public class Drive extends Subsystem {
     SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
     SmartDashboard.putBoolean("Drivetrain Status",
         leftDrive.isEncoderConnected() && rightDrive.isEncoderConnected());
+    SmartDashboard.putNumber("Current Difference", leftDrive.getCurrentOutput() - rightDrive.getCurrentOutput());
 
     if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
         && leftStatus != TrajectoryStatus.NEUTRAL) {
@@ -209,6 +210,7 @@ public class Drive extends Subsystem {
           .getPosition());
       check = false;
     } else {
+      System.out.println("Position: " + leftDrive.getPosition() + " Speed: " + leftDrive.getSpeed());
       Log.verbose("Position: " + leftDrive.getPosition() + " Speed: " + leftDrive.getSpeed());
     }
     if (rightDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS
@@ -219,6 +221,7 @@ public class Drive extends Subsystem {
       check = false;
 
     } else {
+      System.out.println("Position: " + rightDrive.getPosition() + " Speed: " + rightDrive.getSpeed());
       Log.verbose("Position: " + rightDrive.getPosition() + " Speed: " + rightDrive.getSpeed());
     }
 
@@ -228,6 +231,7 @@ public class Drive extends Subsystem {
     }
 
     if (check) {
+      System.out.println("Drive Test Success");
       Log.verbose("Drive Test Success");
     }
 
