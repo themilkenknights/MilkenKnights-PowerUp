@@ -61,7 +61,7 @@ public final class Constants {
     public static final double MOTION_MAGIC_CRUISE_VEL =
         ((MAX_VEL / 10.0) / CIRCUMFERENCE) * CODES_PER_REV;
     public static final double MOTION_MAGIC_ACCEL = MOTION_MAGIC_CRUISE_VEL * 5;
-    public static final double TELEOP_DRIVE_P = 3 * (0.1 * 1023.0) / (700);
+    public static final double TELEOP_DRIVE_P = 2 * (0.1 * 1023.0) / (700);
     public static final double TELEOP_DRIVE_I = 0;
     public static final double TELEOP_DRIVE_D = 1 * DRIVE_P;
   }

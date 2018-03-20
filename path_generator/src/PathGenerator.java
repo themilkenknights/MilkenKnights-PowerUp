@@ -8,12 +8,9 @@ import java.util.Map;
 public class PathGenerator {
 
 	public static final HashMap<String, Path> robotPaths = new HashMap<>();
-	/*public static final Trajectory.Config fastConfig = new Trajectory.Config(
-			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
-			0.005, 145, 130, 800); */
 	public static final Trajectory.Config fastConfig = new Trajectory.Config(
 			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
-			0.005, 80, 50, 200);
+			0.005, 145, 135, 800);
 	public static final Trajectory.Config defaultConfig = new Trajectory.Config(
 			Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config
 			.SAMPLES_HIGH, 0.005, 140, 100, 400);

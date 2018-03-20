@@ -3,39 +3,36 @@ package frc.team1836.robot.util.logging;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * Tracks start-up and caught crash events, logging them to a file which dosn't roll over
  */
 public class Log {
 
-  private static final UUID RUN_INSTANCE_UUID = UUID.randomUUID();
-  private static final UUID RUN_INSTANCE_UUID_VERBOSE = UUID.randomUUID();
-
   public static void logRobotStartup() {
-    marker("robot startup");
+    verbose("robot startup");
   }
 
   public static void logRobotInit() {
-    marker("robot init");
+    verbose("robot init");
   }
 
   public static void logTeleopInit() {
-    marker("teleop init");
+    verbose("teleop init");
   }
 
   public static void logTestInit() {
-    marker("test init");
+    verbose("test init");
   }
 
   public static void logAutoInit() {
-    marker("auto init");
+    verbose("auto init");
   }
 
   public static void logDisabledInit() {
-    marker("disabled init");
+    verbose("disabled init");
   }
 
   public static void logThrowableCrash(Throwable throwable) {
@@ -53,11 +50,9 @@ public class Log {
 
   private static void marker(String mark, Throwable nullableException) {
     try (PrintWriter writer = new PrintWriter(new FileWriter("/u/crash_tracking.txt", true))) {
-      writer.print(RUN_INSTANCE_UUID.toString());
-      writer.print(", ");
+      writer.print(new SimpleDateFormat("MMMM dd yyyy hh:mm:ss aaa").format(new Date()));
+      writer.print(": ");
       writer.print(mark);
-      writer.print(", ");
-      writer.print(new Date().toString());
 
       if (nullableException != null) {
         writer.print(", ");
@@ -72,11 +67,9 @@ public class Log {
 
   private static void logVerboseMarker(String mark, Throwable nullableException) {
     try (PrintWriter writer = new PrintWriter(new FileWriter("/u/verbose_log.txt", true))) {
-      writer.print(RUN_INSTANCE_UUID_VERBOSE.toString());
-      writer.print(", ");
+      writer.print(new SimpleDateFormat("MMMM dd yyyy hh:mm:ss aaa").format(new Date()));
+      writer.print(": ");
       writer.print(mark);
-      writer.print(", ");
-      writer.print(new Date().toString());
 
       if (nullableException != null) {
         writer.print(", ");
