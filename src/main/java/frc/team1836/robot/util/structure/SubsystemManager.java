@@ -34,7 +34,7 @@ public class SubsystemManager {
     mAllSubsystems.forEach((s) -> s.registerEnabledLoops(enabledLooper));
   }
 
-  public void setTimeOffset(){
+  public void setTimeOffset() {
     timeOffset = -Timer.getFPGATimestamp();
   }
 

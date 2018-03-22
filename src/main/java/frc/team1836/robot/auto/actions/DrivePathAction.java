@@ -5,9 +5,9 @@ import frc.team1836.robot.AutoChooser;
 import frc.team1836.robot.AutoChooser.GameObjectPosition;
 import frc.team1836.robot.Constants.DRIVE;
 import frc.team1836.robot.RobotState;
-import frc.team1836.robot.util.auto.trajectory.Path;
 import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.util.auto.Action;
+import frc.team1836.robot.util.auto.trajectory.Path;
 
 public class DrivePathAction implements Action {
 

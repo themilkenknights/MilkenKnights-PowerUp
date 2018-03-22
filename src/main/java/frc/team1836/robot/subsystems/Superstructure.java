@@ -86,7 +86,8 @@ public class Superstructure extends Subsystem {
   private synchronized void updateLEDStrip(double timestamp) {
     if (turnOffLED) {
       mkLED.set_rgb(LEDColors.OFF);
-    } else if (timestamp - mLastPacketTime > SUPERSTRUCTURE.CONNECTION_TIMEOUT || RobotState.mArmControlState == ArmControlState.OPEN_LOOP) {
+    } else if (timestamp - mLastPacketTime > SUPERSTRUCTURE.CONNECTION_TIMEOUT
+        || RobotState.mArmControlState == ArmControlState.OPEN_LOOP) {
       mkLED.setPulse(LEDColors.RED, LEDColors.OFF, 0.25);
     } else if (hPSignal) {
       mkLED.set_rgb(LEDColors.GREEN);

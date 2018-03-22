@@ -7,8 +7,8 @@ import frc.team1836.robot.subsystems.Drive;
 import frc.team1836.robot.subsystems.Input;
 import frc.team1836.robot.subsystems.Superstructure;
 import frc.team1836.robot.util.logging.Log;
-import frc.team1836.robot.util.structure.loops.Looper;
 import frc.team1836.robot.util.structure.SubsystemManager;
+import frc.team1836.robot.util.structure.loops.Looper;
 import java.util.Arrays;
 
 public class Robot extends IterativeRobot {

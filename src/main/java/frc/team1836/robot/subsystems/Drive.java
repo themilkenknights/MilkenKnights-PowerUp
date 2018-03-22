@@ -16,12 +16,12 @@ import frc.team1836.robot.util.drivers.MkTalon;
 import frc.team1836.robot.util.drivers.MkTalon.TalonPosition;
 import frc.team1836.robot.util.logging.Log;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
-import frc.team1836.robot.util.structure.loops.Loop;
-import frc.team1836.robot.util.structure.loops.Looper;
 import frc.team1836.robot.util.math.MkMath;
-import frc.team1836.robot.util.structure.Subsystem;
 import frc.team1836.robot.util.state.DriveSignal;
 import frc.team1836.robot.util.state.TrajectoryStatus;
+import frc.team1836.robot.util.structure.Subsystem;
+import frc.team1836.robot.util.structure.loops.Loop;
+import frc.team1836.robot.util.structure.loops.Looper;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 
@@ -164,7 +164,8 @@ public class Drive extends Subsystem {
     SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
     SmartDashboard.putBoolean("Drivetrain Status",
         leftDrive.isEncoderConnected() && rightDrive.isEncoderConnected());
-    SmartDashboard.putNumber("Current Difference", leftDrive.getCurrentOutput() - rightDrive.getCurrentOutput());
+    SmartDashboard.putNumber("Current Difference",
+        leftDrive.getCurrentOutput() - rightDrive.getCurrentOutput());
 
     if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
         && leftStatus != TrajectoryStatus.NEUTRAL) {
@@ -210,7 +211,8 @@ public class Drive extends Subsystem {
           .getPosition());
       check = false;
     } else {
-      System.out.println("Position: " + leftDrive.getPosition() + " Speed: " + leftDrive.getSpeed());
+      System.out.println(
+          "Position: " + leftDrive.getPosition() + " Speed: " + leftDrive.getSpeed());
       Log.verbose("Position: " + leftDrive.getPosition() + " Speed: " + leftDrive.getSpeed());
     }
     if (rightDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS
@@ -221,7 +223,8 @@ public class Drive extends Subsystem {
       check = false;
 
     } else {
-      System.out.println("Position: " + rightDrive.getPosition() + " Speed: " + rightDrive.getSpeed());
+      System.out.println(
+          "Position: " + rightDrive.getPosition() + " Speed: " + rightDrive.getSpeed());
       Log.verbose("Position: " + rightDrive.getPosition() + " Speed: " + rightDrive.getSpeed());
     }
 
