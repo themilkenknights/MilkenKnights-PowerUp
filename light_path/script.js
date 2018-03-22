@@ -288,6 +288,26 @@ class Arc {
 }
 
 function init() {
+
+
+  var st = window.decodeURI(location.search.substr(1));
+
+
+    if(!isEmpty(st)) {
+      console.log("fs");
+      jd = JSON.parse(st);
+      $("tbody#points").empty();
+      jd.forEach((wpd) => {
+        let wp = new Waypoint(new Translation2d(wpd.position.x, wpd.position.y - 162), wpd.theta);
+      $("tbody#points").append("<tr>"
+          + "<td><input value='" + wp.position.x + "'></td>"
+          + "<td><input value='" + wp.position.y + "'></td>"
+          + "<td><input value='" + wp.theta + "'></td>"
+          + "<td class='comments'><input placeholder='Comments'></td>"
+          + "<td><button onclick='$(this).parent().parent().remove();update()'>Delete</button></td></tr>");
+    })
+    }
+
     $("#field").css("width", width / 1.5 + "px");
     $("#field").css("height", height / 1.5 + "px");
     ctx = document.getElementById("field").getContext("2d");
@@ -327,6 +347,11 @@ function init() {
         $($("table tbody#points tr:last td input")[1]).prop("value", y - 162);
         update();
     });
+
+}
+
+function isEmpty(str) {
+  return (!str || 0 === str.length);
 }
 
 function clear() {
@@ -407,6 +432,15 @@ function update() {
     } else {
         $("td.time").text("0");
     }
+
+  var st = encodeURI(JSON.stringify(waypoints));
+
+  if (typeof (history.pushState) != "undefined") {
+    var obj = { Title: "Light", Url: '?' + st };
+    history.pushState(obj, obj.Title, obj.Url);
+  } else {
+    alert("Browser does not support HTML5.");
+  }
 
 }
 
@@ -737,8 +771,6 @@ function showData() {
     inp.select();
     document.execCommand('copy',false);
     inp.remove();
-
-
 }
 
 function showReverseData() {

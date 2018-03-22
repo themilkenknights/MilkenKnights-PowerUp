@@ -10,9 +10,11 @@ import java.util.List;
 public class SubsystemManager {
 
   private final List<Subsystem> mAllSubsystems;
+  private double timeOffset;
 
   public SubsystemManager(List<Subsystem> allSubsystems) {
     mAllSubsystems = allSubsystems;
+    timeOffset = 0;
   }
 
   public void outputToSmartDashboard() {
@@ -20,7 +22,7 @@ public class SubsystemManager {
   }
 
   public void slowUpdate() {
-    double timestamp = Timer.getFPGATimestamp();
+    double timestamp = Timer.getFPGATimestamp() + timeOffset;
     mAllSubsystems.forEach((s) -> s.slowUpdate(timestamp));
   }
 
@@ -30,6 +32,10 @@ public class SubsystemManager {
 
   public void registerEnabledLoops(Looper enabledLooper) {
     mAllSubsystems.forEach((s) -> s.registerEnabledLoops(enabledLooper));
+  }
+
+  public void setTimeOffset(){
+    timeOffset = -Timer.getFPGATimestamp();
   }
 
 }

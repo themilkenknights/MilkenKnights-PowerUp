@@ -22,7 +22,7 @@ public class RobotState {
 
   public enum DriveControlState {
     OPEN_LOOP, // Open Loop PercentVBus Control
-    VELOCITY_SETPOINT, // Closed-loop velocity pidf on talons - Only used as a backup to aid in driving in order to compensate for any failure
+    VELOCITY_SETPOINT, // Closed-loop velocity pidf on talons - Only used as a backup
     PATH_FOLLOWING, // Used in autonomous to follow a pregenerated path
   }
 

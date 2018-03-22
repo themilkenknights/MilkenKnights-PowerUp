@@ -164,9 +164,7 @@ public class Arm extends Subsystem {
     if (RobotState.mArmState.equals(ArmState.ENABLE)) {
       armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(armPosEnable), true);
     } else {
-      armTalon
-          .set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state), true,
-              -armFeed);
+      armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state), true, -armFeed);
     }
   }
 

@@ -65,6 +65,7 @@ public class Robot extends IterativeRobot {
   public void teleopInit() {
     try {
       Log.logTeleopInit();
+      mSubsystemManager.setTimeOffset();
       RobotState.mMatchState = MatchState.TELEOP;
       RobotState.resetDefaultState();
       mEnabledLooper.start();

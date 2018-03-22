@@ -6,13 +6,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.SUPERSTRUCTURE;
 import frc.team1836.robot.RobotState;
+import frc.team1836.robot.RobotState.ArmControlState;
 import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.util.drivers.MkLED;
 import frc.team1836.robot.util.drivers.MkLED.LEDColors;
+import frc.team1836.robot.util.structure.Subsystem;
 import frc.team1836.robot.util.structure.loops.Loop;
 import frc.team1836.robot.util.structure.loops.Looper;
-import frc.team1836.robot.util.structure.Subsystem;
 
 public class Superstructure extends Subsystem {
 
@@ -82,10 +83,10 @@ public class Superstructure extends Subsystem {
     turnOffLED = !turnOffLED;
   }
 
-  public synchronized void updateLEDStrip(double timestamp) {
+  private synchronized void updateLEDStrip(double timestamp) {
     if (turnOffLED) {
       mkLED.set_rgb(LEDColors.OFF);
-    } else if (timestamp - mLastPacketTime > SUPERSTRUCTURE.CONNECTION_TIMEOUT) {
+    } else if (timestamp - mLastPacketTime > SUPERSTRUCTURE.CONNECTION_TIMEOUT || RobotState.mArmControlState == ArmControlState.OPEN_LOOP) {
       mkLED.setPulse(LEDColors.RED, LEDColors.OFF, 0.25);
     } else if (hPSignal) {
       mkLED.set_rgb(LEDColors.GREEN);
@@ -96,8 +97,6 @@ public class Superstructure extends Subsystem {
       mkLED.set_rgb(MkLED.LEDColors.PURPLE);
     } else if (RobotState.matchData.alliance == DriverStation.Alliance.Red) {
       mkLED.set_rgb(LEDColors.RED);
-    } else if (RobotState.matchData.alliance == DriverStation.Alliance.Blue) {
-      mkLED.set_rgb(LEDColors.BLUE);
     } else {
       mkLED.set_rgb(LEDColors.BLUE);
     }
