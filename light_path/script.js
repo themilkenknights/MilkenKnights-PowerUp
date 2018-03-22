@@ -302,7 +302,7 @@ function init() {
       $("tbody#points").append("<tr>"
           + "<td><input value='" + wp.position.x + "'></td>"
           + "<td><input value='" + wp.position.y + "'></td>"
-          + "<td><input value='" + wp.theta + "'></td>"
+          + "<td><input value='" + Math.round(wp.theta * (180 / Math.PI)) + "'></td>"
           + "<td class='comments'><input placeholder='Comments'></td>"
           + "<td><button onclick='$(this).parent().parent().remove();update()'>Delete</button></td></tr>");
     })

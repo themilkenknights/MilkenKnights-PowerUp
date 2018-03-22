@@ -132,9 +132,8 @@ public class Drive extends Subsystem {
   }
 
   /**
-   * Called from Looper during Path Following Gets a TrajectoryStatus containing output velocity and
-   * Desired Trajectory Information for logging Inputs Position, Speed and Angle to Trajectory
-   * Follower Creates a new Drive Signal that is then set as a velocity setpoint
+   * Called from Looper during Path Following Gets a TrajectoryStatus containing output velocity and Desired Trajectory Information for logging Inputs Position, Speed and Angle to Trajectory Follower
+   * Creates a new Drive Signal that is then set as a velocity setpoint
    */
   private synchronized void updatePathFollower() {
     TrajectoryStatus leftUpdate = pathFollower
@@ -198,34 +197,63 @@ public class Drive extends Subsystem {
 
   @Override
   public void checkSystem() {
-    leftDrive.set(ControlMode.PercentOutput, 1, true);
-    rightDrive.set(ControlMode.PercentOutput, 1, true);
-    Timer.delay(5.0);
-    leftDrive.set(ControlMode.PercentOutput, 0, true);
-    rightDrive.set(ControlMode.PercentOutput, 0, true);
     boolean check = true;
-    if (leftDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS
-        || leftDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
-      Log.marker("FAILED - LEFT DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
-      Log.marker("Left Drive Test Failed - Vel: " + leftDrive.getSpeed() + " Pos: " + leftDrive
-          .getPosition());
+    leftDrive.setCoastMode();
+    leftDrive.setSlaveTalon(ControlMode.PercentOutput, 0);
+    leftDrive.setMasterTalon(ControlMode.PercentOutput, 1);
+    Timer.delay(2.0);
+    if (leftDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || leftDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
+      Log.marker("FAILED - LEFT MASTER DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
+      Log.marker("Left Drive Test Failed - Vel: " + leftDrive.getSpeed() + " Pos: " + leftDrive.getPosition());
       check = false;
     } else {
-      System.out.println(
-          "Position: " + leftDrive.getPosition() + " Speed: " + leftDrive.getSpeed());
-      Log.verbose("Position: " + leftDrive.getPosition() + " Speed: " + leftDrive.getSpeed());
+      System.out.println("Left Master Position: " + leftDrive.getPosition() + "Left Master Speed: " + leftDrive.getSpeed());
+      Log.verbose("Left Master Position: " + leftDrive.getPosition() + " Left Master Speed: " + leftDrive.getSpeed());
     }
-    if (rightDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS
-        || rightDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
-      Log.marker("FAILED - RIGHT DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
-      Log.marker("Right Drive Test Failed - Vel: " + rightDrive.getSpeed() + " Pos: " + rightDrive
-          .getPosition());
-      check = false;
 
+    leftDrive.setSlaveTalon(ControlMode.PercentOutput, 0);
+    leftDrive.setMasterTalon(ControlMode.PercentOutput, 0);
+    Timer.delay(1.0);
+
+    leftDrive.setMasterTalon(ControlMode.PercentOutput, 0);
+    leftDrive.setSlaveTalon(ControlMode.PercentOutput, 1);
+    Timer.delay(2.0);
+    if (leftDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || leftDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
+      Log.marker("FAILED - LEFT SLAVE DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
+      Log.marker("Left Drive Test Failed - Vel: " + leftDrive.getSpeed() + " Pos: " + leftDrive.getPosition());
+      check = false;
     } else {
-      System.out.println(
-          "Position: " + rightDrive.getPosition() + " Speed: " + rightDrive.getSpeed());
-      Log.verbose("Position: " + rightDrive.getPosition() + " Speed: " + rightDrive.getSpeed());
+      System.out.println("Left Slave Position: " + leftDrive.getPosition() + "Left Slave Speed: " + leftDrive.getSpeed());
+      Log.verbose("Left Slave Position: " + leftDrive.getPosition() + " Left Slave Speed: " + leftDrive.getSpeed());
+    }
+
+    rightDrive.setCoastMode();
+    rightDrive.setSlaveTalon(ControlMode.PercentOutput, 0);
+    rightDrive.setMasterTalon(ControlMode.PercentOutput, 1);
+    Timer.delay(2.0);
+    if (rightDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || rightDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
+      Log.marker("FAILED - RIGHT MASTER DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
+      Log.marker("Right Drive Test Failed - Vel: " + leftDrive.getSpeed() + " Pos: " + leftDrive.getPosition());
+      check = false;
+    } else {
+      System.out.println("Right Master Position: " + rightDrive.getPosition() + "Right Master Speed: " + rightDrive.getSpeed());
+      Log.verbose("Right Master Position: " + rightDrive.getPosition() + " Right Master Speed: " + rightDrive.getSpeed());
+    }
+
+    rightDrive.setSlaveTalon(ControlMode.PercentOutput, 0);
+    rightDrive.setMasterTalon(ControlMode.PercentOutput, 0);
+    Timer.delay(1.0);
+
+    rightDrive.setMasterTalon(ControlMode.PercentOutput, 0);
+    rightDrive.setSlaveTalon(ControlMode.PercentOutput, 1);
+    Timer.delay(2.0);
+    if (rightDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || rightDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
+      Log.marker("FAILED - RIGHT SLAVE DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
+      Log.marker("Right Drive Test Failed - Vel: " + rightDrive.getSpeed() + " Pos: " + rightDrive.getPosition());
+      check = false;
+    } else {
+      System.out.println("Right Slave Position: " + rightDrive.getPosition() + "Right Slave Speed: " + rightDrive.getSpeed());
+      Log.verbose("Right Slave Position: " + rightDrive.getPosition() + " Right Slave Speed: " + rightDrive.getSpeed());
     }
 
     if (!navX.isConnected()) {
