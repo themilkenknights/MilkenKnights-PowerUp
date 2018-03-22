@@ -37,7 +37,6 @@ public class AutoChooser {
     positionChooser.addObject("Right", AutoPosition.RIGHT);
     SmartDashboard.putData("Auto Position Chooser", positionChooser);
     actionChooser.addDefault("Switch", AutoAction.SWITCH);
-    actionChooser.addDefault("Switch (Don't Run Across)", AutoAction.SWITCH);
     actionChooser.addObject("Standstill", AutoAction.STANDSTILL);
     actionChooser.addObject("Drive Straight", AutoAction.DRIVE_STRAIGHT);
     SmartDashboard.putData("Auto Action Chooser", actionChooser);

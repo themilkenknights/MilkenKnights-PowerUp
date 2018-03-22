@@ -149,9 +149,7 @@ public class MkTalon {
   }
 
   public boolean isEncoderConnected() {
-    return true;
-    //FUDGE
-    //return masterTalon.getSensorCollection().getPulseWidthRiseToRiseUs() > 100;
+    return masterTalon.getSensorCollection().getPulseWidthRiseToRiseUs() > 100;
   }
 
   public void setMasterTalon(ControlMode mode, double out) {
@@ -269,6 +267,16 @@ public class MkTalon {
     pulseWidth = pulseWidth & 0xFFF;
     masterTalon.setSelectedSensorPosition(pulseWidth + (-ARM.kBookEnd_0), Constants.kPIDLoopIdx,
         Constants.kTimeoutMs);
+  }
+
+  public int getZer(){
+    int pulseWidth = masterTalon.getSensorCollection().getPulseWidthPosition();
+		/*int newCenter;
+		newCenter = (Constants.ARM.kBookEnd_0 + Constants.ARM.kBookEnd_1) / 2;
+		newCenter &= 0xFFF;
+		pulseWidth -= newCenter; */
+    pulseWidth = pulseWidth & 0xFFF;
+    return pulseWidth + (-ARM.kBookEnd_0);
   }
 
   public double getPercentOutput() {

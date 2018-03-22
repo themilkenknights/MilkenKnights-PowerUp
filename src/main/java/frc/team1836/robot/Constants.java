@@ -42,8 +42,8 @@ public final class Constants {
     public static final double DRIVE_FOLLOWER_A = 0.00125;
     public static final double DRIVE_FOLLOWER_ANG = -1.25;
 
-    public static final double LEFT_RPM_MAX = 500.0;//488.0; //Observed Max Speed for Drivetrain in RPM
-    public static final double RIGHT_RPM_MAX = 558.0; //502//Observed Max Speed for Drivetrain in RPM
+    public static final double LEFT_RPM_MAX = 490.0;//488.0; //Observed Max Speed for Drivetrain in RPM
+    public static final double RIGHT_RPM_MAX = 530.0; //502//Observed Max Speed for Drivetrain in RPM
 
     public static final double MAX_VEL =
         (LEFT_RPM_MAX / 60) * (CIRCUMFERENCE); // Max Speed in Inches per second
@@ -54,8 +54,8 @@ public final class Constants {
         * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
     public static final double RIGHT_DRIVE_F = (1023.0 / ((RIGHT_RPM_MAX / 60.0 / 10.0)
         * 4096.0)); //Feedforwrd Term for Drivetrain using MAX Motor Units / Max Speed in Native Units Per 100ms
-    public static final double MIN_TEST_POS = 720;
-    public static final double MIN_TEST_VEL = 145;
+    public static final double MIN_TEST_POS = 200;
+    public static final double MIN_TEST_VEL = 140;
 
     public static final double mPangFollower = -0.075;
     public static final double MOTION_MAGIC_CRUISE_VEL =
@@ -88,7 +88,7 @@ public final class Constants {
         ((RPM_MAX / 60.0 / 10.0) * 4096.0) / GEAR_RATIO; // Degrees per second
     public static final double ARM_P = 25 * ((0.1 * 1023.0) / (1600)); //7.5 deg or 1390 units
     public static final double ARM_I = 0;
-    public static final double ARM_D = ARM_P * 45;
+    public static final double ARM_D = ARM_P * 50;
     public static final double ARM_F = (1023.0 / MAX_RAW_VEL);
 
     public static final double ARM_FORWARD_LIMIT = 250;

@@ -1,5 +1,6 @@
 package frc.team1836.robot.subsystems;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,13 +22,17 @@ public class Superstructure extends Subsystem {
   private boolean hPSignal;
   private boolean turnOffLED;
   private double mLastPacketTime;
+  private UsbCamera cameraServer;
 
   public Superstructure() {
     mkLED = new MkLED(Constants.SUPERSTRUCTURE.CANIFIER_ID);
     hPSignal = false;
     turnOffLED = false;
     mLastPacketTime = 0.0;
-    CameraServer.getInstance().startAutomaticCapture().setResolution(640, 480);
+    cameraServer = CameraServer.getInstance().startAutomaticCapture();
+    cameraServer.setResolution(640, 480);
+   // cameraServer.setExposureAuto();
+  //  cameraServer.setWhiteBalanceAuto();
   }
 
   public static Superstructure getInstance() {
@@ -93,7 +98,7 @@ public class Superstructure extends Subsystem {
       mkLED.set_rgb(LEDColors.GREEN);
     } else if (RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT
         && RobotState.mMatchState != MatchState.AUTO) {
-      mkLED.setPulse(LEDColors.GREEN, LEDColors.OFF, 0.25);
+      mkLED.setPulse(LEDColors.PURPLE, LEDColors.OFF, 0.25);
     } else if (RobotState.mMatchState == MatchState.DISABLED) {
       mkLED.set_rgb(MkLED.LEDColors.PURPLE);
     } else if (RobotState.matchData.alliance == DriverStation.Alliance.Red) {

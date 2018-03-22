@@ -3,6 +3,8 @@ package frc.team1836.robot.util.logging;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
@@ -17,7 +19,7 @@ public class ReflectingCSVWriter<T> {
   public ReflectingCSVWriter(String fileName, Class<T> typeClass) {
     mFields = typeClass.getFields();
     try {
-      mOutput = new PrintWriter(fileName);
+      mOutput = new PrintWriter(fileName + new SimpleDateFormat(" - hh:mm:ss aaa").format(new Date()).toString());
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }

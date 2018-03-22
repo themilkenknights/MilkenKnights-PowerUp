@@ -10,7 +10,7 @@ public class PathGenerator {
   public static final HashMap<String, Path> robotPaths = new HashMap<>();
   public static final Trajectory.Config fastConfig = new Trajectory.Config(
       Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
-      0.005, 145, 135, 800);
+      0.005, 145, 120, 800);
   public static final Trajectory.Config defaultConfig = new Trajectory.Config(
       Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config
       .SAMPLES_HIGH, 0.005, 130, 100, 800);
@@ -21,7 +21,7 @@ public class PathGenerator {
 
   public static final double BLUE_LEFT_SWITCH_TO_SIDE_WALL = 0;
   public static final double BLUE_RIGHT_SWITCH_TO_SIDE_WALL = 0;
-  public static final double BLUE_SWITCH_TO_WALL = 140;
+  public static final double BLUE_SWITCH_TO_WALL = 150;
   public static final double BLUE_SWITCH_X_OFFSET = BLUE_SWITCH_TO_WALL - 140;
   public static final double BLUE_SWITCH_Y_OFFSET =
       (BLUE_RIGHT_SWITCH_TO_SIDE_WALL - BLUE_LEFT_SWITCH_TO_SIDE_WALL) / 2;
@@ -42,7 +42,7 @@ public class PathGenerator {
 
     robotPaths.put("CS-2", new Path(new Waypoint[]{
         new Waypoint(121, -59, Pathfinder.d2r(0)),
-        new Waypoint(48, 8, Pathfinder.d2r(-35)),
+        new Waypoint(48, 16, Pathfinder.d2r(-35)),
     }, fastConfig));
 
     robotPaths.put("CS-3", new Path(new Waypoint[]{
@@ -57,12 +57,12 @@ public class PathGenerator {
 
     robotPaths.put("CS-5", new Path(new Waypoint[]{
         new Waypoint(62, 8, Pathfinder.d2r(-40)),
-        new Waypoint(121, -59, Pathfinder.d2r(0)),
+        new Waypoint(121, -49, Pathfinder.d2r(0)),
     }, fastConfig));
 
     robotPaths.put("CS-6", new Path(new Waypoint[]{
         new Waypoint(121, -59, Pathfinder.d2r(0)),
-        new Waypoint(63, 10, Pathfinder.d2r(-40)),
+        new Waypoint(63, 20, Pathfinder.d2r(-40)),
     }, fastConfig));
 
     robotPaths.put("CS-7", new Path(new Waypoint[]{
@@ -77,7 +77,7 @@ public class PathGenerator {
 
     robotPaths.put("CS-9", new Path(new Waypoint[]{
         new Waypoint(80, 5, Pathfinder.d2r(-30)),
-        new Waypoint(119, -49, Pathfinder.d2r(-15)),
+        new Waypoint(119, -39, Pathfinder.d2r(-15)),
     }, fastConfig));
 
     robotPaths.put("DriveStraight", new Path(new Waypoint[]{

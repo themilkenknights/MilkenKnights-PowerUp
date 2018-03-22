@@ -98,6 +98,10 @@ public class Arm extends Subsystem {
       @Override
       public void onStart(double timestamp) {
         synchronized (Arm.this) {
+          if (armTalon.getZer() > Constants.CODES_PER_REV) {
+            Log.marker("Arm Absolution Position > 4096");
+            RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+          }
           armPosEnable = armTalon.getPosition();
           RobotState.mArmState = ArmState.ENABLE;
         }
@@ -171,10 +175,6 @@ public class Arm extends Subsystem {
   private void armSafetyCheck() {
     if (!armTalon.isEncoderConnected()) {
       Log.marker("Arm Encoder Not Connected");
-      RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
-    }
-    if (armTalon.getAbsolutePosition() > Constants.CODES_PER_REV) {
-      Log.marker("Arm Absolution Position > 4096");
       RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
     }
     if (armTalon.getCurrentOutput() > ARM.MAX_SAFE_CURRENT && armSafety) {
