@@ -522,3 +522,961 @@ March 22 2018 02:33:27 PM: robot init
 March 22 2018 02:33:28 PM: disabled init
 March 22 2018 02:33:34 PM: teleop init
 March 22 2018 02:33:40 PM: disabled init
+February 04 2018 11:10:42 AM: robot startup
+February 04 2018 11:10:42 AM: robot init
+February 04 2018 11:14:07 AM: disabled init
+March 22 2018 02:42:08 PM: auto init
+March 22 2018 02:42:08 PM: Alliance: Red Match Number: 13 Match Type: Practice Switch Position: RIGHT Scale Position: RIGHT
+March 22 2018 02:42:08 PM: Auto Mode Start: Position - CENTER Action - SWITCH
+March 22 2018 02:42:23 PM: disabled init
+March 22 2018 02:42:24 PM: teleop init
+March 22 2018 02:42:26 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 02:42:31 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 02:42:32 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 02:42:35 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 02:42:38 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 02:42:40 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 02:42:42 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 02:42:45 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 02:43:01 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 02:43:07 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 02:43:12 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 02:43:17 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 02:43:17 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 02:43:23 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 02:43:23 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 02:43:24 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 02:43:27 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 02:43:31 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 02:43:33 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 02:43:36 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 02:43:38 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 02:43:42 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 02:43:43 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 02:43:45 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 02:43:48 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 02:43:50 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 02:43:53 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 02:44:08 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 02:44:12 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 02:44:18 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 02:44:20 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 02:44:22 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 02:44:23 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 02:44:24 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 02:44:26 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 02:44:29 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 02:44:31 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 02:44:33 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 02:44:39 PM: disabled init
+February 04 2018 11:10:42 AM: robot startup
+February 04 2018 11:10:42 AM: robot init
+February 04 2018 11:11:59 AM: disabled init
+March 22 2018 03:15:20 PM: robot startup
+March 22 2018 03:15:20 PM: robot init
+March 22 2018 03:15:21 PM: disabled init
+March 22 2018 03:24:28 PM: test init
+March 22 2018 03:24:30 PM: Left Master Position: 299.10611246997485 Left Master Speed: 153.3301234396709
+March 22 2018 03:24:33 PM: Left Slave Position: 355.6084693546086 Left Slave Speed: 149.3856452417015
+March 22 2018 03:24:36 PM: Right Master Position: 307.74727168506126 Right Master Speed: 169.15390225710627
+March 22 2018 03:24:39 PM: Right Slave Position: 374.6474565636446 Right Slave Speed: 152.13760677516854
+March 22 2018 03:24:39 PM: Drive Test Success
+March 22 2018 03:24:49 PM: disabled init
+February 04 2018 11:10:40 AM: robot startup
+February 04 2018 11:10:40 AM: robot init
+February 04 2018 11:11:21 AM: disabled init
+March 22 2018 03:35:26 PM: auto init
+March 22 2018 03:35:26 PM: Alliance: Blue Match Number: 19 Match Type: Practice Switch Position: RIGHT Scale Position: LEFT
+March 22 2018 03:35:26 PM: Auto Mode Start: Position - CENTER Action - SWITCH
+March 22 2018 03:35:41 PM: disabled init
+March 22 2018 03:35:41 PM: teleop init
+March 22 2018 03:35:43 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:35:55 PM: [Joystick] 0	[Button]1	 Pressed ( Change Drive Mode )
+March 22 2018 03:35:56 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 03:35:56 PM: [Joystick] 0	[Button]1	 Pressed ( Change Drive Mode )
+March 22 2018 03:36:00 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 03:36:02 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:36:05 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:36:10 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:36:13 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:36:14 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:36:15 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:36:17 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:36:20 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:36:26 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:36:30 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:36:35 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:36:45 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 03:36:50 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:36:51 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 03:36:54 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:36:57 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 03:36:59 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:37:00 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 03:37:03 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 03:37:03 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:37:06 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:37:06 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 03:37:09 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:37:11 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 03:37:17 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:37:17 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 03:37:22 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:37:22 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 03:37:25 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 03:37:25 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:37:28 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:37:30 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:37:30 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:37:33 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:37:36 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:37:39 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:37:44 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:37:47 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:37:50 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 03:37:52 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 03:37:57 PM: disabled init
+February 04 2018 11:10:40 AM: robot startup
+February 04 2018 11:10:40 AM: robot init
+February 04 2018 11:10:40 AM: robot startup
+February 04 2018 11:10:40 AM: robot init
+February 04 2018 11:12:20 AM: disabled init
+March 22 2018 03:47:08 PM: auto init
+March 22 2018 03:47:08 PM: Alliance: Blue Match Number: 20 Match Type: Practice Switch Position: LEFT Scale Position: LEFT
+March 22 2018 03:47:08 PM: Auto Mode Start: Position - CENTER Action - SWITCH
+March 22 2018 03:47:23 PM: disabled init
+March 22 2018 03:47:23 PM: teleop init
+March 22 2018 03:47:25 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:47:27 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 03:47:30 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:47:34 PM: [Joystick] 1	[Button]7	 Pressed ( Arm Zero )
+March 22 2018 03:47:35 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 03:47:38 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 03:47:40 PM: [Joystick] 1	[Button]7	 Pressed ( Arm Zero )
+March 22 2018 03:47:42 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:47:44 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 03:47:46 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 03:47:47 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 03:47:50 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 03:48:00 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 03:48:00 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 03:49:19 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 03:49:33 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 03:49:34 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 03:49:39 PM: disabled init
+March 22 2018 04:19:14 PM: robot startup
+March 22 2018 04:19:14 PM: robot init
+March 22 2018 04:19:16 PM: disabled init
+March 22 2018 04:19:32 PM: robot startup
+March 22 2018 04:19:32 PM: robot init
+March 22 2018 04:19:33 PM: disabled init
+March 22 2018 04:19:47 PM: robot startup
+March 22 2018 04:19:47 PM: robot init
+March 22 2018 04:19:48 PM: disabled init
+March 22 2018 04:20:06 PM: teleop init
+March 22 2018 04:20:19 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:20:20 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:20:22 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:20:25 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:20:28 PM: [Joystick] 1	[Button]7	 Pressed ( Arm Zero )
+March 22 2018 04:20:33 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:20:33 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:20:35 PM: disabled init
+March 22 2018 04:20:39 PM: teleop init
+March 22 2018 04:20:40 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:20:42 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:20:44 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:20:47 PM: [Joystick] 1	[Button]7	 Pressed ( Arm Zero )
+March 22 2018 04:20:48 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:20:59 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:21:02 PM: [Joystick] 1	[Button]7	 Pressed ( Arm Zero )
+March 22 2018 04:21:03 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:21:04 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:21:06 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:21:12 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:21:12 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:21:12 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:21:13 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:21:14 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:21:16 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:21:22 PM: [Joystick] 1	[Button]7	 Pressed ( Arm Zero )
+March 22 2018 04:21:23 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:21:24 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:21:27 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:21:35 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:21:44 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:21:50 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:22:06 PM: [Joystick] 1	[Button]7	 Pressed ( Arm Zero )
+March 22 2018 04:22:07 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:22:09 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:22:18 PM: disabled init
+March 22 2018 04:22:53 PM: teleop init
+March 22 2018 04:23:00 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:23:04 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:23:16 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:23:26 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:23:27 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:23:28 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:23:50 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:23:51 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:23:57 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:23:58 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:23:58 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:23:58 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:23:59 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:23:59 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:23:59 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:00 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:02 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:03 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:03 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:24:04 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:04 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:24:07 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:24:08 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:08 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:09 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:09 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:24:09 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:24:10 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:24:10 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:24:11 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:24:12 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:24:12 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:24:13 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:13 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:13 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:14 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:14 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:14 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:14 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:14 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:15 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:24:15 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:24:16 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:24:16 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:24:17 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:18 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:24:18 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:19 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:24:20 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:20 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 04:24:21 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:24:26 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:24:26 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:24:27 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:24:28 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:24:33 PM: disabled init
+March 22 2018 04:25:15 PM: test init
+March 22 2018 04:25:17 PM: Left Master Position: 292.9187856222298 Left Master Speed: 165.25529008469465
+March 22 2018 04:25:20 PM: Left Slave Position: 353.47569916617164 Left Slave Speed: 149.79843947172157
+March 22 2018 04:25:23 PM: Right Master Position: 306.7657387381247 Right Master Speed: 181.721193259939
+March 22 2018 04:25:26 PM: Right Slave Position: 365.77238061821345 Right Slave Speed: 152.458668954073
+March 22 2018 04:25:26 PM: Drive Test Success
+February 04 2018 11:10:42 AM: robot startup
+February 04 2018 11:10:42 AM: robot init
+February 04 2018 11:11:41 AM: disabled init
+March 22 2018 04:40:26 PM: robot startup
+March 22 2018 04:40:26 PM: robot init
+March 22 2018 04:40:27 PM: disabled init
+March 22 2018 04:42:46 PM: auto init
+March 22 2018 04:42:46 PM: Alliance: Blue Match Number: 25 Match Type: Practice Switch Position: RIGHT Scale Position: RIGHT
+March 22 2018 04:42:46 PM: Auto Mode Start: Position - CENTER Action - SWITCH
+March 22 2018 04:43:01 PM: disabled init
+March 22 2018 04:43:02 PM: teleop init
+March 22 2018 04:43:04 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:43:05 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:43:12 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:43:13 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:43:23 PM: [Joystick] 1	[Button]7	 Pressed ( Arm Zero )
+March 22 2018 04:43:24 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:43:25 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:43:29 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:43:36 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:43:45 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:43:48 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:43:51 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:43:54 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:43:57 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 04:44:03 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:44:03 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 04:44:04 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 04:44:07 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:44:11 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:44:17 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:44:22 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:44:23 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 04:44:25 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:44:26 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:44:29 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:44:40 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:44:45 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:44:46 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:44:47 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:44:49 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:44:54 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:44:56 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:45:01 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:45:04 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:45:06 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:45:09 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:45:12 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:45:17 PM: disabled init
+February 04 2018 11:10:40 AM: robot startup
+February 04 2018 11:10:40 AM: robot init
+March 22 2018 04:48:40 PM: disabled init
+March 22 2018 04:49:12 PM: robot startup
+March 22 2018 04:49:12 PM: robot init
+March 22 2018 04:49:14 PM: disabled init
+February 04 2018 11:10:40 AM: robot startup
+February 04 2018 11:10:40 AM: robot init
+February 04 2018 11:12:16 AM: disabled init
+March 22 2018 04:53:11 PM: auto init
+March 22 2018 04:53:11 PM: Alliance: Red Match Number: 26 Match Type: Practice Switch Position: LEFT Scale Position: RIGHT
+March 22 2018 04:53:11 PM: Auto Mode Start: Position - CENTER Action - SWITCH
+March 22 2018 04:53:26 PM: disabled init
+March 22 2018 04:53:26 PM: teleop init
+March 22 2018 04:53:29 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:53:36 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:53:38 PM: [Joystick] 1	[Button]7	 Pressed ( Arm Zero )
+March 22 2018 04:53:39 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:53:40 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:53:45 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:53:48 PM: [Joystick] 1	[Button]7	 Pressed ( Arm Zero )
+March 22 2018 04:53:49 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 04:53:50 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:53:54 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:53:56 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:53:59 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:54:01 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:54:02 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:54:04 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:54:06 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:54:29 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 04:54:33 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:54:33 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 04:54:38 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:54:38 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 04:54:44 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:54:46 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 04:54:50 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 04:54:51 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:54:53 PM: [Joystick] 0	[Button]2	 Pressed ( Toggle HP Signal )
+March 22 2018 04:54:54 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 04:55:00 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:55:13 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:55:15 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:55:16 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 04:55:17 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:55:20 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:55:22 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:55:25 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 04:55:29 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 04:55:42 PM: disabled init
+February 04 2018 11:10:42 AM: robot startup
+February 04 2018 11:10:42 AM: robot init
+February 04 2018 11:10:42 AM: robot startup
+February 04 2018 11:10:42 AM: robot init
+February 04 2018 11:11:17 AM: disabled init
+March 22 2018 05:05:24 PM: auto init
+March 22 2018 05:05:25 PM: Alliance: Red Match Number: 27 Match Type: Practice Switch Position: LEFT Scale Position: RIGHT
+March 22 2018 05:05:25 PM: Auto Mode Start: Position - CENTER Action - SWITCH
+March 22 2018 05:05:40 PM: disabled init
+March 22 2018 05:05:40 PM: teleop init
+March 22 2018 05:05:42 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:05:43 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:05:46 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:05:48 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:05:51 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:06:03 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:06:06 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:06:08 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:06:12 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:06:16 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:06:20 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 05:06:26 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:06:30 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 05:06:36 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:06:38 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 05:06:40 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:06:52 PM: [Joystick] 1	[Button]7	 Pressed ( Arm Zero )
+March 22 2018 05:06:54 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 05:06:54 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:07:05 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 05:07:08 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:07:13 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 05:07:17 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:07:19 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 05:07:20 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:07:23 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:07:25 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:07:29 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:07:32 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:07:32 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:07:35 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:07:36 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:07:40 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:07:43 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:07:46 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:07:48 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:07:55 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:07:55 PM: disabled init
+February 04 2018 11:10:40 AM: robot startup
+February 04 2018 11:10:40 AM: robot init
+February 04 2018 11:10:40 AM: robot startup
+February 04 2018 11:10:40 AM: robot init
+February 04 2018 11:18:18 AM: disabled init
+March 22 2018 05:36:21 PM: robot startup
+March 22 2018 05:36:21 PM: robot init
+March 22 2018 05:36:23 PM: disabled init
+March 22 2018 05:36:38 PM: teleop init
+March 22 2018 05:36:41 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:36:43 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:36:44 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:36:45 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:36:54 PM: disabled init
+March 22 2018 05:37:04 PM: teleop init
+March 22 2018 05:37:07 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:37:08 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:37:08 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:37:09 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:37:10 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:37:21 PM: disabled init
+March 22 2018 05:41:30 PM: teleop init
+March 22 2018 05:41:33 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:41:34 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:41:35 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:41:35 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:41:37 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:42:54 PM: disabled init
+March 22 2018 05:43:18 PM: robot startup
+March 22 2018 05:43:18 PM: robot init
+March 22 2018 05:43:20 PM: disabled init
+March 22 2018 05:43:40 PM: teleop init
+March 22 2018 05:45:17 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:45:34 PM: disabled init
+March 22 2018 05:46:35 PM: teleop init
+March 22 2018 05:46:47 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:46:48 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:46:49 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:47:09 PM: disabled init
+March 22 2018 05:47:11 PM: teleop init
+March 22 2018 05:47:51 PM: disabled init
+March 22 2018 05:51:12 PM: robot startup
+March 22 2018 05:51:12 PM: robot init
+March 22 2018 05:51:13 PM: disabled init
+March 22 2018 05:51:31 PM: teleop init
+March 22 2018 05:51:36 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 05:53:02 PM: robot startup
+March 22 2018 05:53:02 PM: robot init
+March 22 2018 05:53:04 PM: disabled init
+March 22 2018 05:53:06 PM: teleop init
+March 22 2018 05:53:08 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 05:53:31 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 05:53:33 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:53:35 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:53:38 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 05:53:39 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 05:54:15 PM: disabled init
+March 22 2018 05:56:00 PM: robot startup
+March 22 2018 05:56:00 PM: robot init
+March 22 2018 05:56:01 PM: disabled init
+March 22 2018 05:56:04 PM: teleop init
+March 22 2018 05:56:05 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:56:08 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 05:56:14 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 05:56:25 PM: disabled init
+March 22 2018 05:57:43 PM: robot startup
+March 22 2018 05:57:43 PM: robot init
+March 22 2018 05:57:44 PM: disabled init
+March 22 2018 05:57:45 PM: teleop init
+March 22 2018 05:57:49 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 05:57:58 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 05:58:34 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:58:37 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 05:58:39 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:58:42 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 05:58:46 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 05:58:47 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 05:59:13 PM: disabled init
+March 22 2018 06:07:53 PM: robot startup
+March 22 2018 06:07:53 PM: robot init
+March 22 2018 06:07:54 PM: disabled init
+March 22 2018 06:10:35 PM: robot startup
+March 22 2018 06:10:35 PM: robot init
+March 22 2018 06:10:36 PM: disabled init
+March 22 2018 06:11:32 PM: robot startup
+March 22 2018 06:11:32 PM: robot init
+March 22 2018 06:11:34 PM: disabled init
+March 22 2018 06:11:57 PM: robot startup
+March 22 2018 06:11:57 PM: robot init
+March 22 2018 06:11:59 PM: disabled init
+March 22 2018 06:13:30 PM: robot startup
+March 22 2018 06:13:30 PM: robot init
+March 22 2018 06:13:31 PM: disabled init
+March 22 2018 06:14:03 PM: robot startup
+March 22 2018 06:14:03 PM: robot init
+March 22 2018 06:14:04 PM: disabled init
+March 22 2018 06:14:19 PM: robot startup
+March 22 2018 06:14:19 PM: robot init
+March 22 2018 06:14:20 PM: disabled init
+March 22 2018 06:14:42 PM: robot startup
+March 22 2018 06:14:42 PM: robot init
+March 22 2018 06:14:43 PM: disabled init
+March 22 2018 06:15:17 PM: robot startup
+March 22 2018 06:15:17 PM: robot init
+March 22 2018 06:15:18 PM: disabled init
+March 22 2018 06:15:57 PM: robot startup
+March 22 2018 06:15:57 PM: robot init
+March 22 2018 06:15:59 PM: disabled init
+March 22 2018 06:16:23 PM: robot startup
+March 22 2018 06:16:23 PM: robot init
+March 22 2018 06:16:24 PM: disabled init
+March 22 2018 06:17:50 PM: robot startup
+March 22 2018 06:17:50 PM: robot init
+March 22 2018 06:17:52 PM: disabled init
+March 22 2018 06:18:26 PM: robot startup
+March 22 2018 06:18:26 PM: robot init
+March 22 2018 06:18:27 PM: disabled init
+March 22 2018 06:19:38 PM: robot startup
+March 22 2018 06:19:38 PM: robot init
+March 22 2018 06:19:40 PM: disabled init
+March 22 2018 06:19:54 PM: robot startup
+March 22 2018 06:19:54 PM: robot init
+March 22 2018 06:19:56 PM: disabled init
+March 22 2018 06:20:28 PM: robot startup
+March 22 2018 06:20:28 PM: robot init
+March 22 2018 06:20:30 PM: disabled init
+March 22 2018 06:20:56 PM: robot startup
+March 22 2018 06:20:56 PM: robot init
+March 22 2018 06:20:57 PM: disabled init
+March 22 2018 06:21:05 PM: robot startup
+March 22 2018 06:21:05 PM: robot init
+March 22 2018 06:21:07 PM: disabled init
+March 22 2018 06:21:25 PM: robot startup
+March 22 2018 06:21:25 PM: robot init
+March 22 2018 06:21:27 PM: disabled init
+March 22 2018 06:21:54 PM: robot startup
+March 22 2018 06:21:54 PM: robot init
+March 22 2018 06:21:57 PM: disabled init
+March 22 2018 06:22:21 PM: teleop init
+March 22 2018 06:22:25 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 06:22:29 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 06:22:30 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 06:23:01 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 06:23:03 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 06:23:05 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 06:23:06 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 06:23:18 PM: disabled init
+March 22 2018 06:25:14 PM: robot startup
+March 22 2018 06:25:14 PM: robot init
+March 22 2018 06:25:15 PM: disabled init
+March 22 2018 06:27:03 PM: robot startup
+March 22 2018 06:27:03 PM: robot init
+March 22 2018 06:27:05 PM: disabled init
+March 22 2018 06:27:16 PM: teleop init
+March 22 2018 06:27:18 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 06:27:21 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 06:27:39 PM: disabled init
+March 22 2018 06:39:42 PM: robot startup
+March 22 2018 06:39:42 PM: robot init
+March 22 2018 06:39:43 PM: disabled init
+February 04 2018 11:10:40 AM: robot startup
+February 04 2018 11:10:40 AM: robot init
+February 04 2018 11:11:36 AM: disabled init
+March 22 2018 06:43:09 PM: robot startup
+March 22 2018 06:43:09 PM: robot init
+March 22 2018 06:43:10 PM: disabled init
+March 22 2018 06:43:19 PM: robot startup
+March 22 2018 06:43:19 PM: robot init
+March 22 2018 06:43:21 PM: disabled init
+March 22 2018 06:44:17 PM: robot startup
+March 22 2018 06:44:17 PM: robot init
+March 22 2018 06:44:18 PM: disabled init
+March 22 2018 06:46:59 PM: robot startup
+March 22 2018 06:46:59 PM: robot init
+March 22 2018 06:47:00 PM: disabled init
+March 22 2018 06:47:48 PM: robot startup
+March 22 2018 06:47:48 PM: robot init
+March 22 2018 06:47:49 PM: disabled init
+March 22 2018 06:48:18 PM: robot startup
+March 22 2018 06:48:18 PM: robot init
+March 22 2018 06:48:19 PM: disabled init
+March 22 2018 06:49:12 PM: robot startup
+March 22 2018 06:49:12 PM: robot init
+March 22 2018 06:49:13 PM: disabled init
+March 22 2018 06:50:58 PM: robot startup
+March 22 2018 06:50:58 PM: robot init
+March 22 2018 06:51:00 PM: disabled init
+March 22 2018 06:52:57 PM: robot startup
+March 22 2018 06:52:57 PM: robot init
+March 22 2018 06:52:58 PM: disabled init
+March 22 2018 06:53:37 PM: robot startup
+March 22 2018 06:53:37 PM: robot init
+March 22 2018 06:53:38 PM: disabled init
+March 22 2018 06:53:45 PM: teleop init
+March 22 2018 06:53:46 PM: disabled init
+March 22 2018 06:54:02 PM: robot startup
+March 22 2018 06:54:02 PM: robot init
+March 22 2018 06:54:04 PM: disabled init
+March 22 2018 06:54:20 PM: teleop init
+March 22 2018 06:54:20 PM: disabled init
+March 22 2018 06:57:42 PM: robot startup
+March 22 2018 06:57:42 PM: robot init
+March 22 2018 06:57:44 PM: disabled init
+March 22 2018 06:58:55 PM: teleop init
+March 22 2018 06:58:56 PM: disabled init
+March 22 2018 06:58:56 PM: teleop init
+March 22 2018 06:58:57 PM: disabled init
+March 22 2018 06:59:57 PM: robot startup
+March 22 2018 06:59:57 PM: robot init
+March 22 2018 06:59:58 PM: disabled init
+March 22 2018 07:00:23 PM: robot startup
+March 22 2018 07:00:23 PM: robot init
+March 22 2018 07:00:24 PM: disabled init
+March 22 2018 07:01:35 PM: robot startup
+March 22 2018 07:01:35 PM: robot init
+March 22 2018 07:01:36 PM: disabled init
+March 22 2018 07:01:42 PM: teleop init
+March 22 2018 07:01:43 PM: disabled init
+March 22 2018 07:03:26 PM: robot startup
+March 22 2018 07:03:26 PM: robot init
+March 22 2018 07:03:29 PM: disabled init
+March 22 2018 07:03:31 PM: teleop init
+March 22 2018 07:03:31 PM: disabled init
+March 22 2018 07:04:28 PM: robot startup
+March 22 2018 07:04:28 PM: robot init
+March 22 2018 07:04:29 PM: disabled init
+March 22 2018 07:04:36 PM: teleop init
+March 22 2018 07:04:36 PM: disabled init
+March 22 2018 07:10:07 PM: robot startup
+March 22 2018 07:10:07 PM: robot init
+March 22 2018 07:10:09 PM: disabled init
+March 22 2018 07:10:22 PM: teleop init
+March 22 2018 07:10:22 PM: disabled init
+March 22 2018 07:10:28 PM: teleop init
+March 22 2018 07:10:29 PM: disabled init
+March 22 2018 07:10:31 PM: teleop init
+March 22 2018 07:10:39 PM: disabled init
+March 22 2018 07:14:32 PM: robot startup
+March 22 2018 07:14:32 PM: robot init
+March 22 2018 07:14:34 PM: disabled init
+March 22 2018 07:14:53 PM: robot startup
+March 22 2018 07:14:53 PM: robot init
+March 22 2018 07:14:55 PM: disabled init
+March 22 2018 07:14:57 PM: teleop init
+March 22 2018 07:14:59 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:15:04 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:15:06 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:15:08 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:15:09 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:15:11 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:15:13 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:15:14 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:15:24 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:15:25 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:15:25 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:15:25 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:15:25 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:15:26 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:15:28 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:15:28 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:15:46 PM: disabled init
+March 22 2018 07:16:10 PM: teleop init
+March 22 2018 07:16:21 PM: disabled init
+March 22 2018 07:17:25 PM: robot startup
+March 22 2018 07:17:25 PM: robot init
+March 22 2018 07:17:27 PM: disabled init
+March 22 2018 07:17:46 PM: teleop init
+March 22 2018 07:18:19 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:18:37 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:18:54 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:19:00 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:19:15 PM: disabled init
+March 22 2018 07:20:00 PM: teleop init
+March 22 2018 07:20:00 PM: disabled init
+March 22 2018 07:20:02 PM: teleop init
+March 22 2018 07:20:03 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:20:05 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:20:07 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:20:57 PM: robot startup
+March 22 2018 07:20:57 PM: robot init
+March 22 2018 07:20:58 PM: disabled init
+March 22 2018 07:20:59 PM: teleop init
+March 22 2018 07:21:20 PM: disabled init
+March 22 2018 07:23:29 PM: robot startup
+March 22 2018 07:23:29 PM: robot init
+March 22 2018 07:23:31 PM: disabled init
+March 22 2018 07:23:36 PM: teleop init
+March 22 2018 07:23:49 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:23:53 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:24:02 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:24:04 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:24:16 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:24:17 PM: disabled init
+March 22 2018 07:26:05 PM: robot startup
+March 22 2018 07:26:05 PM: robot init
+March 22 2018 07:26:07 PM: disabled init
+March 22 2018 07:26:45 PM: robot startup
+March 22 2018 07:26:45 PM: robot init
+March 22 2018 07:26:46 PM: disabled init
+March 22 2018 07:28:00 PM: robot startup
+March 22 2018 07:28:00 PM: robot init
+March 22 2018 07:28:01 PM: disabled init
+March 22 2018 07:29:18 PM: robot startup
+March 22 2018 07:29:18 PM: robot init
+March 22 2018 07:29:19 PM: disabled init
+March 22 2018 07:29:21 PM: teleop init
+March 22 2018 07:29:23 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:29:24 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:29:25 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:29:27 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:29:28 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:29:32 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:29:33 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:29:35 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:29:35 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:29:36 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:07 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:08 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:09 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:10 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:11 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:11 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:12 PM: disabled init
+March 22 2018 07:30:16 PM: teleop init
+March 22 2018 07:30:19 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 07:30:22 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 07:30:28 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 07:30:32 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 07:30:42 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:42 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:43 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:44 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:45 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:46 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:30:46 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:48 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:48 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:50 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:50 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:51 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:51 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:51 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:51 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:51 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:51 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:51 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:52 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:52 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:52 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:30:53 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:53 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:53 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:54 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:54 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:54 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:54 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:54 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:54 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:54 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:54 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:55 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:55 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:55 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:55 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:55 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:55 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:55 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:55 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:55 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:56 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:56 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:56 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:56 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:56 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:56 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:56 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:56 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:56 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:56 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:57 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:57 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:57 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:57 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:57 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:57 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:57 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:57 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:57 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:57 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:58 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:58 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:58 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:58 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:58 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:58 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:59 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:59 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:30:59 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:30:59 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:31:00 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:00 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:31:00 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:01 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:01 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:02 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:31:03 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:03 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:04 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:04 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:05 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:05 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:06 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:06 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:06 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:06 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:06 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:07 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:07 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:07 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:07 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:08 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:08 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:08 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:08 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:09 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:09 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:09 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:09 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:09 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:10 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:10 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:10 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:10 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:10 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:11 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:12 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:31:12 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:13 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:13 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:31:13 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:14 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:14 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:15 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:15 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:16 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:16 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:31:17 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:17 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:31:18 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:18 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:18 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:19 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:19 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:31:20 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:20 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:20 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:31:23 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:23 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:23 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:23 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:24 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:24 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:24 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:24 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:31:24 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:24 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:24 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:24 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:24 PM: [Joystick] 1	[Button]6	 Pressed ( Arm Switch )
+March 22 2018 07:31:25 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:25 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:25 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:25 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:25 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:25 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:25 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:31:25 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:25 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:31:25 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:31:25 PM: disabled init
+March 22 2018 07:32:50 PM: teleop init
+March 22 2018 07:32:52 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 07:32:59 PM: [Joystick] 1	[Button]11	 Pressed ( Arm Disable Current Limit )
+March 22 2018 07:33:12 PM: disabled init
+March 22 2018 07:33:54 PM: teleop init
+March 22 2018 07:33:56 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 07:34:22 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 07:34:23 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:34:25 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:34:26 PM: [Joystick] 1	[Button]1	 Pressed ( Arm Second Switch )
+March 22 2018 07:34:28 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:34:28 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:34:30 PM: [Joystick] 1	[Button]2	 Pressed ( Arm Intake )
+March 22 2018 07:34:31 PM: [Joystick] 1	[Button]4	 Pressed ( Arm Switch Reverse )
+March 22 2018 07:34:34 PM: disabled init
+March 22 2018 07:40:11 PM: robot startup
+March 22 2018 07:40:11 PM: robot init
+March 22 2018 07:40:12 PM: disabled init
+March 22 2018 07:40:14 PM: teleop init
+March 22 2018 07:40:16 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 07:40:51 PM: disabled init
+March 22 2018 07:41:11 PM: robot startup
+March 22 2018 07:41:11 PM: robot init
+March 22 2018 07:41:12 PM: disabled init
+March 22 2018 07:43:37 PM: robot startup
+March 22 2018 07:43:37 PM: robot init
+March 22 2018 07:43:38 PM: disabled init
+March 22 2018 07:43:41 PM: test init
+March 22 2018 07:43:43 PM: Left Master Position: 288.48354095079213 Left Master Speed: 161.2190798356097
+March 22 2018 07:43:46 PM: Left Slave Position: 334.5009243929165 Left Slave Speed: 142.18467922912947
+March 22 2018 07:43:49 PM: Right Master Position: 294.79929267009896 Right Master Speed: 169.06217020599072
+March 22 2018 07:43:52 PM: Right Slave Position: 338.57841406500347 Right Slave Speed: 141.72601897355162
+March 22 2018 07:43:52 PM: Drive Test Success
+March 22 2018 07:44:05 PM: disabled init
+March 22 2018 07:44:22 PM: test init
+March 22 2018 07:44:27 PM: Left Slave Position: 276.2281389217523 Left Slave Speed: 142.68920551026508
+March 22 2018 07:44:30 PM: Right Master Position: 294.4644706835271 Right Master Speed: 170.2088208449353
+March 22 2018 07:44:33 PM: Right Slave Position: 343.4677323894632 Right Slave Speed: 143.10199974028512
+March 22 2018 07:44:53 PM: disabled init
+March 22 2018 07:45:35 PM: robot startup
+March 22 2018 07:45:35 PM: robot init
+March 22 2018 07:45:37 PM: disabled init
+March 22 2018 07:45:38 PM: test init
+March 22 2018 07:45:40 PM: Left Master Position: 285.7590990326598 Left Master Speed: 157.2746016376403
+March 22 2018 07:45:43 PM: Left Slave Position: 330.331702669714 Left Slave Speed: 142.18467922912947
+March 22 2018 07:45:46 PM: Right Master Position: 296.85409061508767 Right Master Speed: 168.74110802708623
+March 22 2018 07:45:49 PM: Right Slave Position: 343.9401524527084 Right Slave Speed: 143.65239204697855
+March 22 2018 07:45:49 PM: Drive Test Success
+March 22 2018 07:46:05 PM: disabled init
+March 22 2018 07:46:59 PM: robot startup
+March 22 2018 07:46:59 PM: robot init
+March 22 2018 07:47:00 PM: disabled init
+March 22 2018 07:47:10 PM: test init
+March 22 2018 07:47:12 PM: Left Master Position: 283.5712896135535 Left Master Speed: 158.6964484299316
+March 22 2018 07:47:15 PM: Left Slave Position: 332.56537811437806 Left Slave Speed: 142.45987538247616
+March 22 2018 07:47:18 PM: Right Master Position: 293.5930161979292 Right Master Speed: 168.8328400782018
+March 22 2018 07:47:21 PM: Right Slave Position: 342.8531276469889 Right Slave Speed: 143.88172217476748
+March 22 2018 07:47:21 PM: Drive Test Success
+March 22 2018 07:47:34 PM: disabled init
+March 22 2018 07:47:51 PM: teleop init
+March 22 2018 07:47:53 PM: [Joystick] 1	[Button]8	 Pressed ( Arm Change Mode )
+March 22 2018 07:48:05 PM: disabled init
+March 22 2018 07:48:07 PM: test init
+March 22 2018 07:48:09 PM: Left Master Position: 275.076901680252 Left Master Speed: 156.08208497313794
+March 22 2018 07:48:12 PM: Left Slave Position: 332.6295905501589 Left Slave Speed: 142.82680358693844
+March 22 2018 07:48:15 PM: Right Master Position: 292.9187856222298 Right Master Speed: 168.2824477715084
+March 22 2018 07:48:18 PM: Right Slave Position: 341.5184263032574 Right Slave Speed: 143.69825807253633
+March 22 2018 07:48:18 PM: Drive Test Success
+March 22 2018 07:48:39 PM: disabled init
+March 22 2018 07:50:07 PM: robot startup
+March 22 2018 07:50:07 PM: robot init
+March 22 2018 07:50:08 PM: disabled init
+March 22 2018 07:50:10 PM: test init
+March 22 2018 07:50:13 PM: Left Master Position: 279.70019705647655 Left Master Speed: 155.76102279423344
+March 22 2018 07:50:16 PM: Left Slave Position: 330.2812500416004 Left Slave Speed: 142.73507153582287
+March 22 2018 07:50:19 PM: Right Master Position: 294.09295587650905 Right Master Speed: 168.05311764371947
+March 22 2018 07:50:22 PM: Right Slave Position: 345.49959732167304 Right Slave Speed: 143.56065999586298
+March 22 2018 07:50:22 PM: Drive Test Success
+March 22 2018 07:50:36 PM: disabled init

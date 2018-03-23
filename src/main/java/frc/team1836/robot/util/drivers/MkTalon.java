@@ -14,6 +14,7 @@ import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.Constants.DRIVE;
 import frc.team1836.robot.util.math.MkMath;
+import org.opencv.core.Mat;
 
 public class MkTalon {
 
@@ -264,18 +265,29 @@ public class MkTalon {
 		newCenter = (Constants.ARM.kBookEnd_0 + Constants.ARM.kBookEnd_1) / 2;
 		newCenter &= 0xFFF;
 		pulseWidth -= newCenter; */
-    pulseWidth = pulseWidth & 0xFFF;
+    if (pulseWidth > 0) {
+      pulseWidth = pulseWidth & 0xFFF;
+    } else {
+      System.out.println(-Math.round(((double) pulseWidth / 4096) - 0.50));
+      pulseWidth += (-Math.round(((double) pulseWidth / 4096) - 0.50)) * 4096;
+    }
     masterTalon.setSelectedSensorPosition(pulseWidth + (-ARM.kBookEnd_0), Constants.kPIDLoopIdx,
         Constants.kTimeoutMs);
+    //System.out.println(pulseWidth + -(ARM.kBookEnd_0));
   }
 
-  public int getZer(){
+  public int getZer() {
     int pulseWidth = masterTalon.getSensorCollection().getPulseWidthPosition();
 		/*int newCenter;
 		newCenter = (Constants.ARM.kBookEnd_0 + Constants.ARM.kBookEnd_1) / 2;
 		newCenter &= 0xFFF;
 		pulseWidth -= newCenter; */
-    pulseWidth = pulseWidth & 0xFFF;
+    if (pulseWidth > 0) {
+      pulseWidth = pulseWidth & 0xFFF;
+    } else {
+      System.out.println(-Math.round(((double) pulseWidth / 4096) - 0.50));
+      pulseWidth += (-Math.round(((double) pulseWidth / 4096) - 0.50)) * 4096;
+    }
     return pulseWidth + (-ARM.kBookEnd_0);
   }
 

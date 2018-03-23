@@ -10,7 +10,7 @@ public class PathGenerator {
   public static final HashMap<String, Path> robotPaths = new HashMap<>();
   public static final Trajectory.Config fastConfig = new Trajectory.Config(
       Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
-      0.005, 145, 115, 800);
+      0.005, 145, 115.5, 800);
   public static final Trajectory.Config defaultConfig = new Trajectory.Config(
       Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config
       .SAMPLES_HIGH, 0.005, 130, 100, 800);
@@ -28,7 +28,7 @@ public class PathGenerator {
 
   public static final double RED_LEFT_SWITCH_TO_SIDE_WALL = 0;
   public static final double RED_RIGHT_SWITCH_TO_SIDE_WALL = 0;
-  public static final double RED_SWITCH_TO_WALL = 140;
+  public static final double RED_SWITCH_TO_WALL = 150;
   public static final double RED_SWITCH_X_OFFSET = RED_SWITCH_TO_WALL - 140;
   public static final double RED_SWITCH_Y_OFFSET =
       (RED_RIGHT_SWITCH_TO_SIDE_WALL - RED_LEFT_SWITCH_TO_SIDE_WALL) / 2;
@@ -100,9 +100,10 @@ public class PathGenerator {
     for (Map.Entry<String, Path> container : robotPaths.entrySet()) {
       if (container.getValue().isBothSides()) {
         Path bTraj = container.getValue();
-        bTraj.setOffset(BLUE_SWITCH_X_OFFSET, BLUE_SWITCH_Y_OFFSET);
 
         Path rTraj = container.getValue();
+        bTraj.setOffset(BLUE_SWITCH_X_OFFSET, BLUE_SWITCH_Y_OFFSET);
+
         rTraj.setOffset(RED_SWITCH_X_OFFSET, RED_SWITCH_Y_OFFSET);
 
         File leftBPathFile = new File("paths/" + container.getKey() + "LB.csv").getAbsoluteFile();

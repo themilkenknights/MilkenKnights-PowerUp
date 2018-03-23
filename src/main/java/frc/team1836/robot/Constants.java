@@ -96,7 +96,7 @@ public final class Constants {
     public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL;
     public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 10;
     public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
-    public static final double MAX_SAFE_CURRENT = 60;
+    public static final double MAX_SAFE_CURRENT = 15;
 
     public static final int LEFT_INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
     public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID

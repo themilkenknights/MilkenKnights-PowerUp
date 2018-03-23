@@ -29,6 +29,8 @@ public class Arm extends Subsystem {
   private boolean armSafety = true;
   private double armPosEnable = 0;
   private double rollerSetpoint = 0;
+  private double startDis = 0;
+  private boolean disCon = false;
 
   private Arm() {
     mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH, ArmDebugOutput.class);
@@ -43,7 +45,6 @@ public class Arm extends Subsystem {
     rightIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
     armTalon.invertMaster(ARM.ARM_MASTER_DIRECTION);
     armTalon.invertSlave(ARM.ARM_SLAVE_DIRECTION);
-    armTalon.zeroAbsolute();
     leftIntakeRollerTalon.setInverted(ARM.LEFT_INTAKE_DIRECTION);
     rightIntakeRollerTalon.setInverted(ARM.RIGHT_INTAKE_DIRECTION);
   }
@@ -85,6 +86,24 @@ public class Arm extends Subsystem {
           Timer.delay(2);
         }
       }
+
+      Timer.delay(1);
+
+      armTalon.setCoastMode();
+      armTalon.setMasterTalon(ControlMode.PercentOutput, 0);
+      armTalon.setSlaveTalon(ControlMode.PercentOutput, -0.3);
+
+      Timer.delay(1);
+
+      armTalon.setCoastMode();
+      armTalon.setSlaveTalon(ControlMode.PercentOutput, 0);
+      armTalon.setMasterTalon(ControlMode.PercentOutput, -0.3);
+
+      Timer.delay(1);
+
+      armTalon.setMasterTalon(ControlMode.PercentOutput, 0);
+      armTalon.setSlaveTalon(ControlMode.PercentOutput, 0);
+
       armTalon.resetConfig();
     } else {
       Log.marker("Arm Test Failed");
@@ -98,6 +117,7 @@ public class Arm extends Subsystem {
       @Override
       public void onStart(double timestamp) {
         synchronized (Arm.this) {
+          armTalon.zeroAbsolute();
           if (armTalon.getZer() > Constants.CODES_PER_REV) {
             Log.marker("Arm Absolution Position > 4096");
             RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
@@ -174,9 +194,28 @@ public class Arm extends Subsystem {
 
   private void armSafetyCheck() {
     if (!armTalon.isEncoderConnected()) {
+      if (disCon) {
+        if (Timer.getFPGATimestamp() - startDis > 0.5) {
+          RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+          disCon = false;
+          startDis = 0;
+        }
+      } else {
+        disCon = true;
+        startDis = Timer.getFPGATimestamp();
+      }
       Log.marker("Arm Encoder Not Connected");
-      RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+    } else {
+      if (disCon) {
+        disCon = false;
+        startDis = 0;
+        armTalon.zeroAbsolute();
+        Timer.delay(0.05);
+        setEnable();
+        RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
+      }
     }
+
     if (armTalon.getCurrentOutput() > ARM.MAX_SAFE_CURRENT && armSafety) {
       Log.marker("Unsafe Current " + armTalon.getCurrentOutput() + " Amps");
       RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
