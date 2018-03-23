@@ -19,7 +19,8 @@ public class ReflectingCSVWriter<T> {
   public ReflectingCSVWriter(String fileName, Class<T> typeClass) {
     mFields = typeClass.getFields();
     try {
-      mOutput = new PrintWriter(fileName + new SimpleDateFormat(" - hh:mm:ss aaa").format(new Date()).toString());
+      String dateStamp = new SimpleDateFormat(" - hh:mm:ss aaa").format(new Date());
+      mOutput = new PrintWriter(fileName + dateStamp);
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }

@@ -348,9 +348,6 @@ March 22 2018 01:25:33 PM: Right Master Position: 308.747151042221 Right Master 
 March 22 2018 01:25:36 PM: Right Slave Position: 369.859043495412 Right Slave Speed: 152.458668954073
 March 22 2018 01:25:36 PM: Drive Test Success
 March 22 2018 01:25:48 PM: disabled init
-February 04 2018 11:10:40 AM: robot startup
-February 04 2018 11:10:40 AM: robot init
-February 04 2018 11:18:00 AM: disabled init
 March 22 2018 01:41:19 PM: auto init
 March 22 2018 01:41:19 PM: Alliance: Red Match Number: 8 Match Type: Practice Switch Position: RIGHT Scale Position: RIGHT
 March 22 2018 01:41:19 PM: Auto Mode Start: Position - CENTER Action - SWITCH
