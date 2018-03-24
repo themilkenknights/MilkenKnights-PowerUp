@@ -244,18 +244,18 @@ public class MkTalon {
   }
 
   public void updateSmartDash() {
-    SmartDashboard.putNumber(side.toString() + " Velocity", getSpeed());
+   /* SmartDashboard.putNumber(side.toString() + " Velocity", getSpeed());
     SmartDashboard.putNumber(side.toString() + " Error", getError());
     SmartDashboard
         .putNumber(side.toString() + " Master Output", masterTalon.getMotorOutputPercent());
     SmartDashboard.putNumber(side.toString() + " Slave Output", slaveTalon.getMotorOutputPercent());
 
-    SmartDashboard.putNumber(side.toString() + " Current", masterTalon.getOutputCurrent());
+    SmartDashboard.putNumber(side.toString() + " Current", masterTalon.getOutputCurrent()); */
     SmartDashboard.putNumber(side.toString() + " Position", getPosition());
-    if (Math.abs(getRPM()) > maxRPM) {
+  /*  if (Math.abs(getRPM()) > maxRPM) {
       maxRPM = Math.abs(getRPM());
     }
-    SmartDashboard.putNumber(side.toString() + " RPM", maxRPM);
+    SmartDashboard.putNumber(side.toString() + " RPM", maxRPM); */
   }
 
   public double getAbsolutePosition() {

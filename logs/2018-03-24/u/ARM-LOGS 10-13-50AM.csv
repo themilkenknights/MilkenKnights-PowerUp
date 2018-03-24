@@ -1,0 +1,2 @@
+timestamp, controlMode, output, position, velocity, setpoint, current
+29.773628, MOTION_MAGIC, 0.0, 238.271484375, 0.0, 243.5, 0.0

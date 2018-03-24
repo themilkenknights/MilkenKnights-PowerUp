@@ -33,8 +33,6 @@ public class Superstructure extends Subsystem {
     _hue = 0;
     cameraServer = CameraServer.getInstance().startAutomaticCapture();
     cameraServer.setResolution(640, 480);
-    // cameraServer.setExposureAuto();
-    //  cameraServer.setWhiteBalanceAuto();
   }
 
   public static Superstructure getInstance() {

@@ -1,0 +1,2 @@
+timestamp, controlMode, leftOutput, rightOutput, leftSetpoint, rightSetpoint, leftPosition, rightPosition, leftVelocity, rightVelocity, heading, desiredHeading, headingError, leftDesiredVel, leftDesiredPos, leftPosError, leftVelError, rightDesiredVel, rightDesiredPos, rightPosError, rightVelError, desiredX, desiredY, leftCurrent, rightCurrent
+29.773628, OPEN_LOOP, 0.0, 0.0, 0.0, 0.0, 372.93224361557407, 58.9251108012126, 0.0, 0.0, 0.23999999463558197, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.125, 0.125

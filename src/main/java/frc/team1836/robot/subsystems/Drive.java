@@ -165,7 +165,7 @@ public class Drive extends Subsystem {
     SmartDashboard.putString("Drive State", RobotState.mDriveControlState.toString());
     SmartDashboard.putBoolean("Drivetrain Status",
         leftDrive.isEncoderConnected() && rightDrive.isEncoderConnected());
-    SmartDashboard.putNumber("Current Difference",
+    /*SmartDashboard.putNumber("Current Difference",
         leftDrive.getCurrentOutput() - rightDrive.getCurrentOutput());
     if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
         && leftStatus != TrajectoryStatus.NEUTRAL) {
@@ -184,7 +184,7 @@ public class Drive extends Subsystem {
       SmartDashboard.putNumber("Right Desired Velocity Error", leftStatus.getVelError());
       SmartDashboard.putNumber("Left Arb Feed", leftStatus.getArbFeed());
       SmartDashboard.putNumber("Right Arb Feed", rightStatus.getArbFeed());
-    }
+    } */
   }
 
   @Override

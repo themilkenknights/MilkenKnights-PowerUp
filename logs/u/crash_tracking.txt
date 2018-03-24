@@ -27310,3 +27310,82 @@ March 23 2018 04:55:36 PM: Began Path: CS-6RR
 March 23 2018 04:55:39 PM: Began Path: CS-7RR
 March 23 2018 04:55:40 PM: Began Path: CS-8RR
 March 23 2018 04:55:41 PM: Began Path: CS-9RR
+March 24 2018 08:55:05 AM: Starting Center Switch Mode
+March 24 2018 08:55:05 AM: Began Path: CS-1RB
+March 24 2018 08:55:08 AM: Began Path: CS-2RB
+March 24 2018 08:55:10 AM: Began Path: CS-3RB
+March 24 2018 08:55:11 AM: Began Path: CS-4RB
+March 24 2018 08:55:12 AM: Began Path: CS-5RB
+March 24 2018 08:55:14 AM: Began Path: CS-6RB
+March 24 2018 08:55:17 AM: Began Path: CS-7RB
+March 24 2018 08:55:18 AM: Began Path: CS-8RB
+March 24 2018 08:55:19 AM: Began Path: CS-9RB
+March 24 2018 08:57:15 AM: Arm Encoder Not Connected
+March 24 2018 08:57:15 AM: Arm Encoder Not Connected
+March 24 2018 08:57:15 AM: Arm Encoder Not Connected
+March 24 2018 08:57:15 AM: Arm Encoder Not Connected
+March 24 2018 08:57:15 AM: Arm Encoder Not Connected
+March 24 2018 09:39:19 AM: Starting Center Switch Mode
+March 24 2018 09:39:19 AM: Began Path: CS-1LR
+March 24 2018 09:39:22 AM: Began Path: CS-2LR
+March 24 2018 09:39:24 AM: Began Path: CS-3LR
+March 24 2018 09:39:25 AM: Began Path: CS-4LR
+March 24 2018 09:39:26 AM: Began Path: CS-5LR
+March 24 2018 09:39:28 AM: Began Path: CS-6LR
+March 24 2018 09:39:31 AM: Began Path: CS-7LR
+March 24 2018 09:39:32 AM: Began Path: CS-8LR
+March 24 2018 09:39:33 AM: Began Path: CS-9LR
+March 24 2018 11:23:25 AM: Starting Center Switch Mode
+March 24 2018 11:23:25 AM: Began Path: CS-1RR
+March 24 2018 11:23:27 AM: Began Path: CS-2RR
+March 24 2018 11:23:30 AM: Began Path: CS-3RR
+March 24 2018 11:23:31 AM: Began Path: CS-4RR
+March 24 2018 11:23:32 AM: Began Path: CS-5RR
+March 24 2018 11:23:34 AM: Began Path: CS-6RR
+March 24 2018 11:23:36 AM: Began Path: CS-7RR
+March 24 2018 11:23:38 AM: Began Path: CS-8RR
+March 24 2018 11:23:38 AM: Began Path: CS-9RR
+March 24 2018 01:39:32 PM: Starting Center Switch Mode
+March 24 2018 01:39:32 PM: Began Path: CS-1LR
+March 24 2018 01:39:34 PM: Began Path: CS-2LR
+March 24 2018 01:39:36 PM: Began Path: CS-3LR
+March 24 2018 01:39:38 PM: Began Path: CS-4LR
+March 24 2018 01:39:39 PM: Began Path: CS-5LR
+March 24 2018 01:39:41 PM: Began Path: CS-6LR
+March 24 2018 01:39:43 PM: Began Path: CS-7LR
+March 24 2018 01:39:44 PM: Began Path: CS-8LR
+March 24 2018 01:39:45 PM: Began Path: CS-9LR
+March 24 2018 02:11:57 PM: Starting Center Switch Mode
+March 24 2018 02:11:57 PM: Began Path: CS-1RR
+March 24 2018 02:11:59 PM: Began Path: CS-2RR
+March 24 2018 02:12:02 PM: Began Path: CS-3RR
+March 24 2018 02:12:03 PM: Began Path: CS-4RR
+March 24 2018 02:12:04 PM: Began Path: CS-5RR
+March 24 2018 02:12:06 PM: Began Path: CS-6RR
+March 24 2018 02:12:08 PM: Began Path: CS-7RR
+March 24 2018 02:12:09 PM: Began Path: CS-8RR
+March 24 2018 02:12:10 PM: Began Path: CS-9RR
+March 24 2018 02:35:44 PM: Starting Center Switch Mode
+March 24 2018 02:35:44 PM: Began Path: CS-1LB
+March 24 2018 02:35:47 PM: Began Path: CS-2LB
+March 24 2018 02:35:49 PM: Began Path: CS-3LB
+March 24 2018 02:35:50 PM: Began Path: CS-4LB
+March 24 2018 02:35:51 PM: Began Path: CS-5LB
+March 24 2018 02:35:53 PM: Began Path: CS-6LB
+March 24 2018 02:35:55 PM: Began Path: CS-7LB
+March 24 2018 02:35:57 PM: Began Path: CS-8LB
+March 24 2018 02:35:58 PM: Began Path: CS-9LB
+March 24 2018 02:37:36 PM: Arm Encoder Not Connected
+March 24 2018 02:37:36 PM: Arm Encoder Not Connected
+March 24 2018 02:37:36 PM: Arm Encoder Not Connected
+March 24 2018 02:37:36 PM: Arm Encoder Not Connected
+March 24 2018 02:55:32 PM: Starting Center Switch Mode
+March 24 2018 02:55:32 PM: Began Path: CS-1LB
+March 24 2018 02:55:35 PM: Began Path: CS-2LB
+March 24 2018 02:55:37 PM: Began Path: CS-3LB
+March 24 2018 02:55:38 PM: Began Path: CS-4LB
+March 24 2018 02:55:40 PM: Began Path: CS-5LB
+March 24 2018 02:55:42 PM: Began Path: CS-6LB
+March 24 2018 02:55:44 PM: Began Path: CS-7LB
+March 24 2018 02:55:45 PM: Began Path: CS-8LB
+March 24 2018 02:55:46 PM: Began Path: CS-9LB

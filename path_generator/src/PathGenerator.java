@@ -10,10 +10,10 @@ public class PathGenerator {
   public static final HashMap<String, Path> robotPaths = new HashMap<>();
   public static final Trajectory.Config fastConfig = new Trajectory.Config(
       Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
-      0.005, 145, 110, 1000);
+      0.005, 145, 111, 1007);
   public static final Trajectory.Config defaultConfig = new Trajectory.Config(
       Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config
-      .SAMPLES_HIGH, 0.005, 130, 100, 800);
+      .SAMPLES_HIGH, 0.005, 130, 95, 800);
 
   public static final Trajectory.Config slowerConfig = new Trajectory.Config(
       Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
@@ -42,7 +42,7 @@ public class PathGenerator {
 
     robotPaths.put("CS-2", new Path(new Waypoint[]{
         new Waypoint(121, -59, Pathfinder.d2r(0)),
-        new Waypoint(48, 16, Pathfinder.d2r(-35)),
+        new Waypoint(48, 18, Pathfinder.d2r(-35)),
     }, fastConfig));
 
     robotPaths.put("CS-3", new Path(new Waypoint[]{
@@ -62,12 +62,12 @@ public class PathGenerator {
 
     robotPaths.put("CS-6", new Path(new Waypoint[]{
         new Waypoint(121, -59, Pathfinder.d2r(0)),
-        new Waypoint(63, 20, Pathfinder.d2r(-40)),
+        new Waypoint(63, 19, Pathfinder.d2r(-40)),
     }, fastConfig));
 
     robotPaths.put("CS-7", new Path(new Waypoint[]{
         new Waypoint(63, 10, Pathfinder.d2r(-40)),
-        new Waypoint(96, 0, Pathfinder.d2r(0)),
+        new Waypoint(96, 4, Pathfinder.d2r(0)),
     }, defaultConfig));
 
     robotPaths.put("CS-8", new Path(new Waypoint[]{
@@ -119,18 +119,19 @@ public class PathGenerator {
         File leftRPathFile = new File("paths/" + container.getKey() + "LR.csv").getAbsoluteFile();
         File rightRPathFile = new File("paths/" + container.getKey() + "RR.csv").getAbsoluteFile();
 
-        Trajectory leftRTraj = Pathfinder
+       /* Trajectory leftRTraj = Pathfinder
             .generate(rTraj.getLeftPoints(), rTraj.getConfig());
         Trajectory rightRTraj = Pathfinder
-            .generate(rTraj.getPoints(), rTraj.getConfig());
+            .generate(rTraj.getPoints(), rTraj.getConfig()); */
 
-        Pathfinder.writeToCSV(leftRPathFile, leftRTraj);
-        Pathfinder.writeToCSV(rightRPathFile, rightRTraj);
+        Pathfinder.writeToCSV(leftRPathFile, leftBTraj);
+        Pathfinder.writeToCSV(rightRPathFile, rightBTraj);
 
         System.out.println(
             "Path: " + container.getKey() + " Time: " + leftBTraj.length() * 0.005 + " Sec");
         if (container.getKey().charAt(0) == 'C') {
-          tiL += leftRTraj.length() * 0.005;
+         // ti=L += leftRTraj.length() * 0.005;
+          tiL += leftBTraj.length()* 0.005;
           tiR += rightBTraj.length() * 0.005;
         }
       } else {

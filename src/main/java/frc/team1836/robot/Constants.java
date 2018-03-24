@@ -30,7 +30,7 @@ public final class Constants {
     public static final boolean LEFT_INVERT_SENSOR = true;
     public static final boolean RIGHT_INVERT_SENSOR = true;
 
-    public static final double WHEEL_DIAMETER = 5.925;
+    public static final double WHEEL_DIAMETER = 5.95;
     public static final double CIRCUMFERENCE = WHEEL_DIAMETER * PI;
     public static final double TURN_IN_PLACE_CIRCUMFERENCE = 104.1;
     public static final double PATH_WHEELBASE = 33.75;
@@ -86,9 +86,9 @@ public final class Constants {
     public static final double GEAR_RATIO = 1;//22.0/ 336.0; //Gear Ratio between en;coder and arm - Used to calulate arm position in degrees
     public static final double MAX_RAW_VEL =
         ((RPM_MAX / 60.0 / 10.0) * 4096.0) / GEAR_RATIO; // Degrees per second
-    public static final double ARM_P = 25 * ((0.1 * 1023.0) / (1600)); //7.5 deg or 1390 units
+    public static final double ARM_P = 22 * ((0.1 * 1023.0) / (1600)); //7.5 deg or 1390 units
     public static final double ARM_I = 0;
-    public static final double ARM_D = ARM_P * 50;
+    public static final double ARM_D = ARM_P * 52;
     public static final double ARM_F = (1023.0 / MAX_RAW_VEL);
 
     public static final double ARM_FORWARD_LIMIT = 250;
