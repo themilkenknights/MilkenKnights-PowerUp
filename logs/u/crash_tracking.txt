@@ -27034,3 +27034,279 @@ March 22 2018 07:43:52 PM: Unsafe Current 15.25 Amps
 March 22 2018 07:43:52 PM: Unsafe Current 15.125 Amps
 March 22 2018 07:44:24 PM: FAILED - LEFT MASTER DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION
 March 22 2018 07:44:24 PM: Left Master Drive Test Failed - Vel: 0.0 Pos: 148.52795056377096
+March 22 2018 07:51:55 PM: Unsafe Current 15.125 Amps
+March 22 2018 07:51:55 PM: Unsafe Current 15.625 Amps
+March 22 2018 07:51:56 PM: Unsafe Current 16.25 Amps
+March 22 2018 07:51:56 PM: Unsafe Current 15.875 Amps
+March 22 2018 07:51:56 PM: Unsafe Current 17.0 Amps
+March 22 2018 07:51:56 PM: Unsafe Current 16.25 Amps
+March 22 2018 07:51:59 PM: Arm Encoder Not Connected
+March 22 2018 07:51:59 PM: Arm Encoder Not Connected
+March 22 2018 07:51:59 PM: Arm Encoder Not Connected
+March 22 2018 07:52:20 PM: Unsafe Current 15.625 Amps
+March 22 2018 07:52:20 PM: Unsafe Current 16.0 Amps
+March 22 2018 07:52:20 PM: Unsafe Current 15.75 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 15.875 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 17.125 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 17.5 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 18.25 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 19.5 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 21.75 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 22.75 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 24.375 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 25.625 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 26.0 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 26.25 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 25.75 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 25.125 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 24.375 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 23.125 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 22.25 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 21.5 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 20.375 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 18.125 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 16.25 Amps
+March 23 2018 09:00:39 AM: Unsafe Current 15.5 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 19.125 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 23.375 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 26.5 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 28.0 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 29.25 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 31.625 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 32.875 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 33.0 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 32.5 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 30.625 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 29.125 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 27.0 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 22.125 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 18.5 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 16.875 Amps
+March 23 2018 09:01:11 AM: Unsafe Current 15.875 Amps
+March 23 2018 09:01:14 AM: Unsafe Current 16.625 Amps
+March 23 2018 09:01:14 AM: Unsafe Current 17.75 Amps
+March 23 2018 09:01:14 AM: Unsafe Current 21.625 Amps
+March 23 2018 09:01:14 AM: Unsafe Current 25.75 Amps
+March 23 2018 09:01:14 AM: Unsafe Current 31.0 Amps
+March 23 2018 09:01:14 AM: Unsafe Current 33.25 Amps
+March 23 2018 09:01:14 AM: Unsafe Current 34.125 Amps
+March 23 2018 09:01:14 AM: Unsafe Current 29.125 Amps
+March 23 2018 09:01:14 AM: Unsafe Current 24.5 Amps
+March 23 2018 09:01:14 AM: Unsafe Current 19.625 Amps
+March 23 2018 09:01:14 AM: Unsafe Current 18.5 Amps
+March 23 2018 09:01:14 AM: Unsafe Current 16.125 Amps
+March 23 2018 09:01:14 AM: Unsafe Current 15.25 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 17.625 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 24.5 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 32.25 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 39.5 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 62.25 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 65.875 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 65.5 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 64.875 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 61.125 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 55.125 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 49.375 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 34.25 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 26.375 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 22.125 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 20.875 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 18.5 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 17.5 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 16.625 Amps
+March 23 2018 09:01:15 AM: Unsafe Current 15.875 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 17.0 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 28.25 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 31.375 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 36.625 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 42.25 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 46.25 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 48.625 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 52.375 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 43.0 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 39.25 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 32.5 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 29.5 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 25.375 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 23.625 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 22.875 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 20.625 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 20.125 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 19.375 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 18.5 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 17.375 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 16.625 Amps
+March 23 2018 09:01:16 AM: Unsafe Current 15.75 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 17.75 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 25.25 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 47.375 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 54.0 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 64.0 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 66.5 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 67.5 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 67.375 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 53.0 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 47.25 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 41.625 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 28.375 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 23.625 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 18.875 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 16.25 Amps
+March 23 2018 09:01:17 AM: Unsafe Current 15.625 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 15.75 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 17.125 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 24.875 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 33.375 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 37.75 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 41.625 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 47.5 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 52.875 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 49.5 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 44.625 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 37.0 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 27.625 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 26.25 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 22.875 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 21.75 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 20.875 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 19.125 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 17.375 Amps
+March 23 2018 09:01:18 AM: Unsafe Current 16.5 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 22.0 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 29.75 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 37.375 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 52.875 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 60.125 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 71.125 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 74.625 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 76.625 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 71.875 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 66.75 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 61.5 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 46.625 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 44.0 Amps
+March 23 2018 09:01:19 AM: Unsafe Current 36.375 Amps
+March 23 2018 09:01:20 AM: Unsafe Current 34.125 Amps
+March 23 2018 09:01:20 AM: Unsafe Current 31.75 Amps
+March 23 2018 09:01:20 AM: Unsafe Current 27.875 Amps
+March 23 2018 09:01:20 AM: Unsafe Current 23.375 Amps
+March 23 2018 09:01:20 AM: Unsafe Current 19.625 Amps
+March 23 2018 09:01:20 AM: Unsafe Current 16.625 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 15.625 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 21.125 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 26.5 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 29.25 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 30.5 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 32.875 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 36.75 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 34.75 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 33.125 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 31.5 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 29.0 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 26.625 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 24.625 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 22.375 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 19.0 Amps
+March 23 2018 09:01:21 AM: Unsafe Current 15.375 Amps
+March 23 2018 09:02:57 AM: FAILED - LEFT SLAVE DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION
+March 23 2018 09:02:57 AM: Left Slave Drive Test Failed - Vel: 138.4236651333912 Pos: 316.2233132081397
+March 23 2018 09:03:03 AM: FAILED - RIGHT SLAVE DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION
+March 23 2018 09:03:03 AM: Right Drive Test Failed - Vel: 138.6529952611801 Pos: 327.2357459445636
+March 23 2018 09:43:35 AM: Starting Center Switch Mode
+March 23 2018 09:43:35 AM: Began Path: CS-1RR
+March 23 2018 09:43:37 AM: Began Path: CS-2RR
+March 23 2018 09:43:39 AM: Began Path: CS-3RR
+March 23 2018 09:43:41 AM: Began Path: CS-4RR
+March 23 2018 09:43:42 AM: Began Path: CS-5RR
+March 23 2018 09:43:44 AM: Began Path: CS-6RR
+March 23 2018 09:43:46 AM: Began Path: CS-7RR
+March 23 2018 09:43:47 AM: Began Path: CS-8RR
+March 23 2018 09:43:48 AM: Began Path: CS-9RR
+March 23 2018 11:09:57 AM: Starting Center Switch Mode
+March 23 2018 11:09:57 AM: Began Path: CS-1RB
+March 23 2018 11:09:59 AM: Began Path: CS-2RB
+March 23 2018 11:10:01 AM: Began Path: CS-3RB
+March 23 2018 11:10:03 AM: Began Path: CS-4RB
+March 23 2018 11:10:04 AM: Began Path: CS-5RB
+March 23 2018 11:10:06 AM: Began Path: CS-6RB
+March 23 2018 11:10:08 AM: Began Path: CS-7RB
+March 23 2018 11:10:09 AM: Began Path: CS-8RB
+March 23 2018 11:10:10 AM: Began Path: CS-9RB
+March 23 2018 11:53:40 AM: Starting Center Switch Mode
+March 23 2018 11:53:40 AM: Began Path: CS-1RB
+March 23 2018 11:53:42 AM: Began Path: CS-2RB
+March 23 2018 11:53:44 AM: Began Path: CS-3RB
+March 23 2018 11:53:46 AM: Began Path: CS-4RB
+March 23 2018 11:53:47 AM: Began Path: CS-5RB
+March 23 2018 11:53:49 AM: Began Path: CS-6RB
+March 23 2018 11:53:51 AM: Began Path: CS-7RB
+March 23 2018 11:53:52 AM: Began Path: CS-8RB
+March 23 2018 11:53:53 AM: Began Path: CS-9RB
+March 23 2018 02:25:05 PM: Starting Center Switch Mode
+March 23 2018 02:25:05 PM: Began Path: CS-1LB
+March 23 2018 02:25:07 PM: Began Path: CS-2LB
+March 23 2018 02:25:09 PM: Began Path: CS-3LB
+March 23 2018 02:25:11 PM: Began Path: CS-4LB
+March 23 2018 02:25:12 PM: Began Path: CS-5LB
+March 23 2018 02:25:14 PM: Began Path: CS-6LB
+March 23 2018 02:25:16 PM: Began Path: CS-7LB
+March 23 2018 02:25:17 PM: Began Path: CS-8LB
+March 23 2018 02:25:18 PM: Began Path: CS-9LB
+March 23 2018 02:35:20 PM: Exception, java.lang.StringIndexOutOfBoundsException: String index out of range: 0
+	at java.lang.String.charAt(String.java:658)
+	at frc.team1836.robot.AutoChooser.updateGameData(AutoChooser.java:150)
+	at frc.team1836.robot.AutoChooser.startAuto(AutoChooser.java:127)
+	at frc.team1836.robot.Robot.autonomousInit(Robot.java:58)
+	at edu.wpi.first.wpilibj.IterativeRobotBase.loopFunc(IterativeRobotBase.java:199)
+	at edu.wpi.first.wpilibj.IterativeRobot.startCompetition(IterativeRobot.java:41)
+	at edu.wpi.first.wpilibj.RobotBase.main(RobotBase.java:250)
+
+March 23 2018 02:35:36 PM: Exception, java.lang.StringIndexOutOfBoundsException: String index out of range: 0
+	at java.lang.String.charAt(String.java:658)
+	at frc.team1836.robot.AutoChooser.updateGameData(AutoChooser.java:150)
+	at frc.team1836.robot.AutoChooser.startAuto(AutoChooser.java:127)
+	at frc.team1836.robot.Robot.autonomousInit(Robot.java:58)
+	at edu.wpi.first.wpilibj.IterativeRobotBase.loopFunc(IterativeRobotBase.java:199)
+	at edu.wpi.first.wpilibj.IterativeRobot.startCompetition(IterativeRobot.java:41)
+	at edu.wpi.first.wpilibj.RobotBase.main(RobotBase.java:250)
+
+March 23 2018 02:35:47 PM: Starting Center Switch Mode
+March 23 2018 02:35:47 PM: Began Path: CS-1LB
+March 23 2018 02:35:50 PM: Began Path: CS-2LB
+March 23 2018 02:35:52 PM: Began Path: CS-3LB
+March 23 2018 02:35:53 PM: Began Path: CS-4LB
+March 23 2018 02:35:54 PM: Began Path: CS-5LB
+March 23 2018 02:35:56 PM: Began Path: CS-6LB
+March 23 2018 02:35:58 PM: Began Path: CS-7LB
+March 23 2018 02:36:00 PM: Began Path: CS-8LB
+March 23 2018 02:36:01 PM: Began Path: CS-9LB
+March 23 2018 02:55:07 PM: Starting Center Switch Mode
+March 23 2018 02:55:07 PM: Began Path: CS-1RR
+March 23 2018 02:55:09 PM: Began Path: CS-2RR
+March 23 2018 02:55:11 PM: Began Path: CS-3RR
+March 23 2018 02:55:13 PM: Began Path: CS-4RR
+March 23 2018 02:55:14 PM: Began Path: CS-5RR
+March 23 2018 02:55:16 PM: Began Path: CS-6RR
+March 23 2018 02:55:18 PM: Began Path: CS-7RR
+March 23 2018 02:55:19 PM: Began Path: CS-8RR
+March 23 2018 02:55:20 PM: Began Path: CS-9RR
+March 23 2018 03:44:38 PM: Starting Center Switch Mode
+March 23 2018 03:44:39 PM: Began Path: CS-1RB
+March 23 2018 03:44:41 PM: Began Path: CS-2RB
+March 23 2018 03:44:43 PM: Began Path: CS-3RB
+March 23 2018 03:44:44 PM: Began Path: CS-4RB
+March 23 2018 03:44:46 PM: Began Path: CS-5RB
+March 23 2018 03:44:48 PM: Began Path: CS-6RB
+March 23 2018 03:44:50 PM: Began Path: CS-7RB
+March 23 2018 03:44:51 PM: Began Path: CS-8RB
+March 23 2018 03:44:52 PM: Began Path: CS-9RB
+March 23 2018 04:55:27 PM: Starting Center Switch Mode
+March 23 2018 04:55:27 PM: Began Path: CS-1RR
+March 23 2018 04:55:30 PM: Began Path: CS-2RR
+March 23 2018 04:55:32 PM: Began Path: CS-3RR
+March 23 2018 04:55:33 PM: Began Path: CS-4RR
+March 23 2018 04:55:34 PM: Began Path: CS-5RR
+March 23 2018 04:55:36 PM: Began Path: CS-6RR
+March 23 2018 04:55:39 PM: Began Path: CS-7RR
+March 23 2018 04:55:40 PM: Began Path: CS-8RR
+March 23 2018 04:55:41 PM: Began Path: CS-9RR

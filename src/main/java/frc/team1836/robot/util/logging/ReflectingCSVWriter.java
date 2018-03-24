@@ -1,5 +1,6 @@
 package frc.team1836.robot.util.logging;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
@@ -19,8 +20,9 @@ public class ReflectingCSVWriter<T> {
   public ReflectingCSVWriter(String fileName, Class<T> typeClass) {
     mFields = typeClass.getFields();
     try {
-      String dateStamp = new SimpleDateFormat(" - hh:mm:ss aaa").format(new Date());
-      mOutput = new PrintWriter(fileName + dateStamp);
+      String dateStamp = new SimpleDateFormat(" hh-mm-ssaaa").format(new Date());
+      File fi = new File("/u/" + fileName + dateStamp + ".csv");
+      mOutput = new PrintWriter(fi);
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }

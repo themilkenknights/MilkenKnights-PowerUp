@@ -23,16 +23,18 @@ public class Superstructure extends Subsystem {
   private boolean turnOffLED;
   private double mLastPacketTime;
   private UsbCamera cameraServer;
+  private float _hue;
 
   public Superstructure() {
     mkLED = new MkLED(Constants.SUPERSTRUCTURE.CANIFIER_ID);
     hPSignal = false;
     turnOffLED = false;
     mLastPacketTime = 0.0;
+    _hue = 0;
     cameraServer = CameraServer.getInstance().startAutomaticCapture();
     cameraServer.setResolution(640, 480);
-   // cameraServer.setExposureAuto();
-  //  cameraServer.setWhiteBalanceAuto();
+    // cameraServer.setExposureAuto();
+    //  cameraServer.setWhiteBalanceAuto();
   }
 
   public static Superstructure getInstance() {
@@ -100,7 +102,11 @@ public class Superstructure extends Subsystem {
         && RobotState.mMatchState != MatchState.AUTO) {
       mkLED.setPulse(LEDColors.PURPLE, LEDColors.OFF, 0.25);
     } else if (RobotState.mMatchState == MatchState.DISABLED) {
-      mkLED.set_rgb(MkLED.LEDColors.PURPLE);
+      _hue += 0.75;
+      if (_hue > 360) {
+        _hue = 0;
+      }
+      mkLED.setHSV(_hue, 1.0f, 0.1f);
     } else if (RobotState.matchData.alliance == DriverStation.Alliance.Red) {
       mkLED.set_rgb(LEDColors.RED);
     } else {

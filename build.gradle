@@ -65,7 +65,7 @@ task swerdUpdate {
     doLast {
         FileTree myFileTree = fileTree(dir: 'paths')
         def date = new Date()
-        String formattedDate = date.format("yyyy-MM-dd").toString() + '/' + date.format('hh-mm a') + '/'
+        String formattedDate = date.format("yyyy-MM-dd").toString() + '/' //+ date.format('hh-mm a') + '/'
         def logBase = new File('logs')
         logBase.mkdirs()
         def logDir = new File(logBase.absolutePath + '/' + formattedDate)

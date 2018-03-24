@@ -42,6 +42,7 @@ public class Robot extends IterativeRobot {
       AutoChooser.disableAuto();
       mEnabledLooper.stop();
       RobotState.resetDefaultState();
+      RobotState.mMatchState = MatchState.DISABLED;
     } catch (Throwable t) {
       Log.logThrowableCrash(t);
       throw t;
@@ -102,12 +103,11 @@ public class Robot extends IterativeRobot {
   @Override
   public void teleopPeriodic() {
     allPeriodic();
-
   }
 
   @Override
   public void testPeriodic() {
-
+    allPeriodic();
   }
 
   private void allPeriodic() {

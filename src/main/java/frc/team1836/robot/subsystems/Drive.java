@@ -43,6 +43,8 @@ public class Drive extends Subsystem {
     rightDrive = new MkTalon(DRIVE.RIGHT_MASTER_ID, DRIVE.RIGHT_SLAVE_ID, TalonPosition.Right);
     leftDrive.setPIDF();
     rightDrive.setPIDF();
+    leftDrive.resetEncoder();
+    rightDrive.resetEncoder();
     navX = new MkGyro(Port.kMXP);
 
     leftDrive.invertMaster(DRIVE.LEFT_MASTER_INVERT);
@@ -165,7 +167,6 @@ public class Drive extends Subsystem {
         leftDrive.isEncoderConnected() && rightDrive.isEncoderConnected());
     SmartDashboard.putNumber("Current Difference",
         leftDrive.getCurrentOutput() - rightDrive.getCurrentOutput());
-
     if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
         && leftStatus != TrajectoryStatus.NEUTRAL) {
       SmartDashboard.putNumber("NavX Yaw", navX.getYaw());

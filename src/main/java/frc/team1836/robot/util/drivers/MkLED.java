@@ -1,6 +1,7 @@
 package frc.team1836.robot.util.drivers;
 
 import com.ctre.phoenix.CANifier;
+import frc.team1836.robot.util.math.HsvToRgb;
 
 public class MkLED extends CANifier {
 
@@ -36,6 +37,39 @@ public class MkLED extends CANifier {
     } else {
       set_rgb(color2);
     }
+  }
+
+  public void setHSV(float Hue, float Saturation, float Value) {
+
+    if (Saturation > 1) {
+      Saturation = 1;
+    }
+    if (Saturation < 0) {
+      Saturation = 0;
+    }
+
+    if (Value > 1) {
+      Value = 1;
+    }
+    if (Value < 0) {
+      Value = 0;
+    }
+
+    /* Convert to HSV to RGB */
+    _rgb = HsvToRgb.convert(Hue, Saturation, Value);
+
+    /* Update CANifier's LED strip */
+    double r = _rgb[0];
+    double g = _rgb[1];
+    double b = _rgb[2];
+
+    _rgb[0] = (float) g;
+    _rgb[1] = (float) r;
+    _rgb[2] = (float) b;
+
+    setLEDOutput(_rgb[0], CANifier.LEDChannel.LEDChannelA);
+    setLEDOutput(_rgb[1], CANifier.LEDChannel.LEDChannelB);
+    setLEDOutput(_rgb[2], CANifier.LEDChannel.LEDChannelC);
   }
 
   public enum LEDColors {

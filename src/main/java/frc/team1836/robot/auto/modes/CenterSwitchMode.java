@@ -41,7 +41,7 @@ public class CenterSwitchMode extends AutoModeBase {
     runAction(new ParallelAction(Arrays.asList(
         new DrivePathAction(5, false, false),
         new DelayAction(0.5, new MoveArmAction(ArmState.SWITCH_PLACE)),
-        new DelayAction(getTime(5) - 0.6, new RollerAction(0.5, ARM.INTAKE_OUT_ROLLER_SPEED / 1.5))
+        new DelayAction(getTime(5) - 0.475, new RollerAction(0.5, ARM.INTAKE_OUT_ROLLER_SPEED / 1.5))
     )));
 
     runAction(new ParallelAction(Arrays.asList(
@@ -60,7 +60,7 @@ public class CenterSwitchMode extends AutoModeBase {
         new DelayAction(0.5, new MoveArmAction(ArmState.SWITCH_PLACE)),
         new DrivePathAction(9, false, false),
         new DelayAction(
-            getTime(9) - 0.75, new RollerAction(0.75, ARM.INTAKE_OUT_ROLLER_SPEED / 1.5)))));
+            getTime(9) - 0.65, new RollerAction(0.75, ARM.INTAKE_OUT_ROLLER_SPEED / 1.5)))));
   }
 
   private double getTime(int pathNum) {

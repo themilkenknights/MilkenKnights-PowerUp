@@ -30,7 +30,7 @@ public final class Constants {
     public static final boolean LEFT_INVERT_SENSOR = true;
     public static final boolean RIGHT_INVERT_SENSOR = true;
 
-    public static final double WHEEL_DIAMETER = 5.98;
+    public static final double WHEEL_DIAMETER = 5.925;
     public static final double CIRCUMFERENCE = WHEEL_DIAMETER * PI;
     public static final double TURN_IN_PLACE_CIRCUMFERENCE = 104.1;
     public static final double PATH_WHEELBASE = 33.75;
@@ -68,8 +68,8 @@ public final class Constants {
 
   public static class LOGGING {
 
-    public static final String DRIVE_LOG_PATH = "/u/DRIVE-LOGS.csv";
-    public static final String ARM_LOG_PATH = "/u/ARM-LOGS.csv";
+    public static final String DRIVE_LOG_PATH = "DRIVE-LOGS";
+    public static final String ARM_LOG_PATH = "ARM-LOGS";
   }
 
   public static class ARM {
@@ -96,7 +96,7 @@ public final class Constants {
     public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL;
     public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 10;
     public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
-    public static final double MAX_SAFE_CURRENT = 15;
+    public static final double MAX_SAFE_CURRENT = 80;
 
     public static final int LEFT_INTAKE_ROLLER_ID = 6; //Intake Roller Talon ID
     public static final int RIGHT_INTAKE_ROLLER_ID = 1; //Intake Roller Talon ID

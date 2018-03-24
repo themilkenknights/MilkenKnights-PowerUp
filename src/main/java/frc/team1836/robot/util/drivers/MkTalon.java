@@ -184,6 +184,9 @@ public class MkTalon {
     }
     return (masterTalon.getSelectedSensorVelocity(0) * 60.0 * 10.0) / Constants.CODES_PER_REV;
   }
+  public double getRaw(){
+    return masterTalon.getSelectedSensorPosition(Constants.kPIDLoopIdx);
+  }
 
   public double nativeUnitsPer100MstoDegreesPerSec(double vel) {
     return nativeUnitsToDegrees(vel) * 10;
