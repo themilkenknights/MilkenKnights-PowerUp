@@ -14,37 +14,37 @@ import frc.team1836.robot.util.logging.Log;
 
 public class RightSwitchMode extends AutoModeBase {
 
-  public RightSwitchMode() {
+    public RightSwitchMode() {
 
-  }
-
-  @Override
-  protected void routine() throws AutoModeEndedException {
-    switch (RobotState.matchData.switchPosition) {
-      case LEFT:
-        leftRoutine();
-        break;
-      case RIGHT:
-        rightRoutine();
-        break;
-      default:
-        Log.marker("Error - Invalid Switch Position");
-        break;
     }
-  }
 
-  private void leftRoutine() throws AutoModeEndedException {
-    Log.marker("Starting Right Switch Mode (Left Side)");
-    runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight"), false, false, false));
-  }
+    @Override
+    protected void routine() throws AutoModeEndedException {
+        switch (RobotState.matchData.switchPosition) {
+            case LEFT:
+                leftRoutine();
+                break;
+            case RIGHT:
+                rightRoutine();
+                break;
+            default:
+                Log.marker("Error - Invalid Switch Position");
+                break;
+        }
+    }
 
-  private void rightRoutine() throws AutoModeEndedException {
-    Log.marker("Starting Right Switch Mode (Right Side)");
-    runAction(new MoveArmAction(RobotState.mArmState = ArmState.SWITCH_PLACE));
-    runAction(new DrivePathAction(AutoChooser.autoPaths.get(
-        "FS-1R" + ((RobotState.matchData.alliance
-            == Alliance.Blue) ? "B" : "R")), false, false, false));
-    runAction(new RollerAction(0.5, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
-  }
+    private void leftRoutine() throws AutoModeEndedException {
+        Log.marker("Starting Right Switch Mode (Left Side)");
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight"), false, false, false));
+    }
+
+    private void rightRoutine() throws AutoModeEndedException {
+        Log.marker("Starting Right Switch Mode (Right Side)");
+        runAction(new MoveArmAction(RobotState.mArmState = ArmState.SWITCH_PLACE));
+        runAction(new DrivePathAction(AutoChooser.autoPaths.get(
+                "FS-1R" + ((RobotState.matchData.alliance
+                        == Alliance.Blue) ? "B" : "R")), false, false, false));
+        runAction(new RollerAction(0.5, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
+    }
 
 }

@@ -13,13 +13,13 @@ import frc.team1836.robot.util.logging.Log;
 
 public class SwitchOpenLoop extends AutoModeBase {
 
-  @Override
-  protected void routine() throws AutoModeEndedException {
-    Log.marker("Started Open Loop Switch Auto");
-    runAction(new MoveArmAction(ArmState.OPPOSITE_SWITCH_PLACE));
-    runAction(new CurveOpenLoopAction(0.95, 1, false));
-    runAction(new OpenLoopAction(0.6, 0.35, true));
-    runAction(new WaitAction(0.1));
-    runAction(new RollerAction(0.35, ARM.INTAKE_OUT_ROLLER_SPEED));
-  }
+    @Override
+    protected void routine() throws AutoModeEndedException {
+        Log.marker("Started Open Loop Switch Auto");
+        runAction(new MoveArmAction(ArmState.OPPOSITE_SWITCH_PLACE));
+        runAction(new CurveOpenLoopAction(0.95, 1, false));
+        runAction(new OpenLoopAction(0.6, 0.35, true));
+        runAction(new WaitAction(0.1));
+        runAction(new RollerAction(0.35, ARM.INTAKE_OUT_ROLLER_SPEED));
+    }
 }

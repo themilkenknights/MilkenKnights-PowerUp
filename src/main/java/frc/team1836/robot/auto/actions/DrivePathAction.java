@@ -11,53 +11,53 @@ import frc.team1836.robot.util.auto.trajectory.Path;
 
 public class DrivePathAction implements Action {
 
-  private final Path path;
-  private boolean done;
-  private boolean brakeMode;
+    private final Path path;
+    private boolean done;
+    private boolean brakeMode;
 
-  public DrivePathAction(Path path, boolean dir, boolean flip, boolean brakeMode) {
-    this.path = path.copyPath();
-    this.brakeMode = brakeMode;
-    if (dir) {
-      this.path.invert();
+    public DrivePathAction(Path path, boolean dir, boolean flip, boolean brakeMode) {
+        this.path = path.copyPath();
+        this.brakeMode = brakeMode;
+        if (dir) {
+            this.path.invert();
+        }
+        if (flip) {
+            this.path.invertSide();
+        }
+        done = false;
     }
-    if (flip) {
-      this.path.invertSide();
+
+    public DrivePathAction(int pathNum, boolean dir, boolean brakeMode) {
+        this(AutoChooser.autoPaths.get(
+                "CS-" + Integer.toString(pathNum) + ((RobotState.matchData.switchPosition
+                        == GameObjectPosition.LEFT) ? "L" : "R") + ((RobotState.matchData.alliance
+                        == Alliance.Blue) ? "B" : "R")), dir, false, brakeMode);
     }
-    done = false;
-  }
 
-  public DrivePathAction(int pathNum, boolean dir, boolean brakeMode) {
-    this(AutoChooser.autoPaths.get(
-        "CS-" + Integer.toString(pathNum) + ((RobotState.matchData.switchPosition
-            == GameObjectPosition.LEFT) ? "L" : "R") + ((RobotState.matchData.alliance
-            == Alliance.Blue) ? "B" : "R")), dir, false, brakeMode);
-  }
-
-  @Override
-  public boolean isFinished() {
-    if (done) {
-      return true;
+    @Override
+    public boolean isFinished() {
+        if (done) {
+            return true;
+        }
+        if (Drive.getInstance().isPathFinished()) {
+            done = true;
+            return true;
+        }
+        return false;
     }
-    if (Drive.getInstance().isPathFinished()) {
-      done = true;
-      return true;
+
+    @Override
+    public void update() {
+
     }
-    return false;
-  }
 
-  @Override
-  public void update() {
+    @Override
+    public void done() {
+        RobotState.mDriveControlState = RobotState.DriveControlState.VELOCITY_SETPOINT;
+    }
 
-  }
-
-  @Override
-  public void done() {
-    RobotState.mDriveControlState = RobotState.DriveControlState.VELOCITY_SETPOINT;
-  }
-
-  @Override
-  public void start() {
-    Drive.getInstance().setDrivePath(path, DRIVE.PATH_DIST_TOL, DRIVE.PATH_ANGLE_TOL, brakeMode);
-  }
+    @Override
+    public void start() {
+        Drive.getInstance().setDrivePath(path, DRIVE.PATH_DIST_TOL, DRIVE.PATH_ANGLE_TOL, brakeMode);
+    }
 }

@@ -13,12 +13,12 @@ import frc.team1836.robot.util.structure.loops.Looper;
  */
 public abstract class Subsystem {
 
-  public abstract void outputToSmartDashboard();
+    public abstract void outputToSmartDashboard();
 
-  public void slowUpdate(double timestamp) {
-  }
+    public void slowUpdate(double timestamp) {
+    }
 
-  public abstract void checkSystem();
+    public abstract void checkSystem();
 
-  public abstract void registerEnabledLoops(Looper enabledLooper);
+    public abstract void registerEnabledLoops(Looper enabledLooper);
 }
