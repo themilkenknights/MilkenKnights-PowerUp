@@ -67,6 +67,7 @@
   <script> 
     var filesSelected = [];
     var currentFile = '';
+    var currentGraph;
     document.getElementById("filepicker").addEventListener("change", function (event) {
       $('#tester').empty();
       filesSelected = [];
@@ -87,12 +88,11 @@
     $(function () {
       $("#selectable").selectable({
         selected: function () {
-          var newFile;
           var currentFile = '';
           $(".ui-selected", this).each(function () {
-            newFile = filesSelected[this.getAttribute("data-value")];
+            currentGraph = filesSelected[this.getAttribute("data-value")];
           });
-          graphFile(newFile);
+          graphFile();
         }
       });
     });
@@ -120,13 +120,24 @@
         $('#tester').empty();
         $("#selectable").empty();
         document.getElementById("filepicker").value = '';
-        graphFile(fileInput.files[0]);
+        currentGraph = fileInput.files[0];
+        graphFile();
       });
     }
 
-    function graphFile(file) {
-      currentFile = file.name;
-      Papa.parse(file, {
+    var iMin = document.getElementById('min');
+    iMin.addEventListener('change', function (e) {
+      graphFile();
+    });
+
+    var iMax = document.getElementById('max');
+    iMax.addEventListener('change', function (e) {
+      graphFile();
+    });
+
+    function graphFile() {
+      currentFile = currentGraph.name;
+      Papa.parse(currentGraph, {
         header: true,
         complete: function (results) {
           $('#tester').empty();
