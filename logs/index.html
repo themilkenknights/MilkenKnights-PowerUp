@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Milken Knights Grapher</title>
+  <link rel="stylesheet" href="jquery-ui.css">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    #feedback {
+      font-size: 1.4em;
+    }
+
+    #selectable .ui-selecting {
+      background: #FECA40;
+    }
+
+    #selectable .ui-selected {
+      background: #F39814;
+      color: white;
+    }
+
+    #selectable {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      width: 60%;
+    }
+
+    #selectable li {
+      margin: 3px;
+      padding: 0.4em;
+      font-size: 1.4em;
+      height: 18px;
+    }
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script src="jquery-ui.js"></script>
+  <script src="plotly-latest.min.js"></script>
+  <script src="html2canvas.min.js"></script>
+</head>
+
+<body>
+  <div style="vertical-align: top; float: center; display:block; padding-bottom: 25px;">
+    <input type="file" id="filepicker" name="fileList" webkitdirectory multiple />
+    <button onclick='download_file()'>Download Screenshot</button>
+    <input type="text" placeholder="Custom X axis min" id="min">
+    <input type="text" placeholder="Custom X axis max" id="max">
+  </div>
+  <div>
+
+    <ol id="selectable" style="float: left; display:block; width: 25%;">
+    </ol>
+
+    <div id="tester" style="float: right; display:block; width: 75%;">
+
+    </div>
+
+  </div>
+
+  <script> 
+
+    document.getElementById("filepicker").addEventListener("change", function (event) {
+      let output = document.getElementById("listing");
+      let files = event.target.files;
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].name.split('.').pop() === 'csv' && files[i].size > 600) {
+          $("#selectable").append(' <li style=\"font-size: 16px;\" class=\"ui-widget-content\" data-value=\"' + files[i].name + '\" >' + files[i].name + '</li>');
+        }
+      };
+      $("#selectable").selectable("refresh");
+
+    }, false);
+
+
+  </script>
+
+  <script>
+
+    var currentFile = '';
+
+    $(function () {
+
+      $("#selectable").selectable({
+        selected: function () {
+          var fileName = '';
+          $(".ui-selected", this).each(function () {
+            fileName = this.getAttribute("data-value");
+            currentFile = fileName;
+          });
+          drawGraph(fileName);
+        }
+      });
+    });
+
+    function drawGraph(fileName) {
+      $('#tester').empty();
+      Plotly.d3.csv("2018-03-24/u/" + fileName, function (err, rows) {
+        if (err) {
+          alert('Couldn\'t find or parse file');
+          return;
+        }
+        if (rows[1] == null) {
+          return;
+        }
+        var arr = Array(Object.keys(rows[0]).length - 1).fill(null).map(() => Array(rows.length).fill(null));
+        var timestamps = [];
+
+        for (var i = 0; i < rows.length; i++) {
+          row = rows[i];
+          for (var j = 1; j < Object.keys(row).length; j++) {
+            arr[j - 1][i] = row[Object.keys(row)[j]];
+          }
+          timestamps.push(row['timestamp']);
+        }
+        for (var j = 1; j < Object.keys(rows[0]).length; j++) {
+          var name = Object.keys(rows[0])[j];
+          $("#tester").append('<div style=\"height: 200px;\" id=\"' + name + '\"></div>');
+          var trace1 = {
+            x: timestamps.map(Number),
+            y: arr[j - 1].map(Number),
+            type: 'scatter'
+          };
+          var min = document.getElementById("min").value;
+          var max = document.getElementById("max").value;
+          var layout;
+          if (min == null || max == null) {
+            layout = {
+              title: name,
+              margin: {
+                l: 50,
+                r: 50,
+                b: 35,
+                t: 35,
+                pad: 4
+              },
+            };
+          }
+          else {
+            layout = {
+              title: name,
+              margin: {
+                l: 50,
+                r: 50,
+                b: 35,
+                t: 35,
+                pad: 4
+              },
+              xaxis: { range: [min, max] },
+            };
+          }
+          Plotly.newPlot(name, [trace1], layout);
+        }
+      });
+    }
+
+    function download_file() {
+      html2canvas(document.querySelector("#tester")).then(canvas => {
+        var dlink = document.createElement('a');
+        dlink.download = currentFile.replace(/\..+$/, '') + ".png";
+        dlink.href = canvas.toDataURL('image/png');
+        dlink.onclick = function (e) {
+          // revokeObjectURL needs a delay to work properly
+          var that = this;
+          setTimeout(function () {
+            window.URL.revokeObjectURL(that.href);
+          }, 1500);
+        };
+
+        dlink.click();
+        dlink.remove();
+      });
+    }
+
+  </script>
+</body>
+
+</html>
