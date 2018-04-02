@@ -70,6 +70,7 @@
     document.getElementById("filepicker").addEventListener("change", function (event) {
       $('#tester').empty();
       filesSelected = [];
+      var currentFile = '';
       document.getElementById('file').value = '';
       let output = document.getElementById("listing");
       let files = event.target.files;
@@ -83,15 +84,13 @@
       document.getElementById("filepicker").value = '';
     }, false);
 
-
-
     $(function () {
       $("#selectable").selectable({
         selected: function () {
           var newFile;
+          var currentFile = '';
           $(".ui-selected", this).each(function () {
             newFile = filesSelected[this.getAttribute("data-value")];
-            currentFile = newFile.name;
           });
           graphFile(newFile);
         }
@@ -126,6 +125,7 @@
     }
 
     function graphFile(file) {
+      currentFile = file.name;
       Papa.parse(file, {
         header: true,
         complete: function (results) {

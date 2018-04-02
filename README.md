@@ -58,7 +58,7 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 
 ## Useful Links
 - [Custom Path Visualizer](https://themilkenknights.github.io/MilkenKnights-PowerUp/light_path)
-- [Milken Knights Grapher](https://themilkenknights.github.io/MilkenKnights-PowerUp/logs/)
+- [Milken Knights Grapher](https://themilkenknights.github.io/MilkenKnights-PowerUp/grapher/index.html)
 - [Talon Software Reference Manual](https://github.com/CrossTheRoadElec/Phoenix-Documentation/raw/master/Talon%20SRX%20Victor%20SPX%20-%20Software%20Reference%20Manual.pdf)
 - [CTRE Control System](http://www.ctr-electronics.com/control-system/hro.html#product_tabs_technical_resources)
 - [CTRE Github Documentation](https://github.com/CrossTheRoadElec/Phoenix-Documentation)
