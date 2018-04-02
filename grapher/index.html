@@ -9,10 +9,6 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    #feedback {
-      font-size: 1.4em;
-    }
-
     #selectable .ui-selecting {
       background: #FECA40;
     }
@@ -35,6 +31,45 @@
       font-size: 1.4em;
       height: 18px;
     }
+
+    #feedback {
+      font-size: 1.4em;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    body,
+    html,
+    .container {
+      height: 100%;
+    }
+
+    .top {
+      margin-top: 15px;
+      margin-bottom: 0px;
+      margin-right: 15px;
+      margin-left: 15px;
+    }
+
+    .container,
+    .content {
+      display: flex;
+    }
+
+    .container {
+      flex-direction: column;
+    }
+
+    .content,
+    .content>div {
+      flex: 1;
+    }
+
+    .content>div {
+      overflow: scroll;
+    }
   </style>
   <script src="jquery-1.12.4.js"></script>
   <script src="jquery-ui.js"></script>
@@ -44,26 +79,30 @@
 </head>
 
 <body>
-  <div style="vertical-align: top; float: center; display:block; padding-bottom: 25px;">
-    <label for="filepicker">Choose folder</label>
-    <input type="file" id="filepicker" name="filepicker" webkitdirectory multiple />
-    <label for="file">Choose file</label>
-    <input type="file" id="file" accept=".csv" multiple>
-    <button onclick='download_file()'>Download Screenshot</button>
-    <input type="text" placeholder="Custom X axis min" id="min">
-    <input type="text" placeholder="Custom X axis max" id="max">
-  </div>
-  <div>
+  <div class="container">
+    <div class="top" style="vertical-align: top; float: center; display:block; padding-bottom: 25px;">
+      <label for="filepicker">Choose folder</label>
+      <input type="file" id="filepicker" name="filepicker" webkitdirectory multiple />
+      <label for="file">Choose file</label>
+      <input type="file" id="file" accept=".csv" multiple>
+      <button onclick='download_file()'>Download Graph (PNG)</button>
+      <div style="float: right; display:block;">
+        <input type="text" placeholder="Custom X axis min" id="min">
+        <input type="text" placeholder="Custom X axis max" id="max">
+      </div>
+    </div>
+    <div class="content">
 
-    <ol id="selectable" style="float: left; display:block; width: 25%;">
-    </ol>
+      <div style="flex-basis: 25%;">
+        <ol id="selectable" style="float: left; display:block; width: 100%">
+        </ol>
+      </div>
+      <div id="tester" style="float: right; display:block; flex-basis: 75%;">
 
-    <div id="tester" style="float: right; display:block; width: 75%;">
+      </div>
 
     </div>
-
   </div>
-
   <script> 
     var filesSelected = [];
     var currentFile = '';
