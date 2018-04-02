@@ -40,11 +40,15 @@
   <script src="jquery-ui.js"></script>
   <script src="plotly-latest.min.js"></script>
   <script src="html2canvas.min.js"></script>
+  <script src="papaparse.min.js"></script>
 </head>
 
 <body>
   <div style="vertical-align: top; float: center; display:block; padding-bottom: 25px;">
-    <input type="file" id="filepicker" name="fileList" webkitdirectory multiple />
+    <label for="filepicker">Choose folder</label>
+    <input type="file" id="filepicker" name="filepicker" webkitdirectory multiple />
+    <label for="file">Choose file</label>
+    <input type="file" id="file" accept=".csv" multiple>
     <button onclick='download_file()'>Download Screenshot</button>
     <input type="text" placeholder="Custom X axis min" id="min">
     <input type="text" placeholder="Custom X axis max" id="max">
@@ -61,100 +65,38 @@
   </div>
 
   <script> 
-
+    var filesSelected = [];
+    var currentFile = '';
     document.getElementById("filepicker").addEventListener("change", function (event) {
+      $('#tester').empty();
+      filesSelected = [];
+      document.getElementById('file').value = '';
       let output = document.getElementById("listing");
       let files = event.target.files;
       for (let i = 0; i < files.length; i++) {
         if (files[i].name.split('.').pop() === 'csv' && files[i].size > 600) {
-          $("#selectable").append(' <li style=\"font-size: 16px;\" class=\"ui-widget-content\" data-value=\"' + files[i].name + '\" >' + files[i].name + '</li>');
+          filesSelected[i] = files[i];
+          $("#selectable").append(' <li style=\"font-size: 16px;\" class=\"ui-widget-content\" data-value=\"' + i + '\" >' + files[i].name + '</li>');
         }
       };
       $("#selectable").selectable("refresh");
-
+      document.getElementById("filepicker").value = '';
     }, false);
 
 
-  </script>
-
-  <script>
-
-    var currentFile = '';
 
     $(function () {
-
       $("#selectable").selectable({
         selected: function () {
-          var fileName = '';
+          var newFile;
           $(".ui-selected", this).each(function () {
-            fileName = this.getAttribute("data-value");
-            currentFile = fileName;
+            newFile = filesSelected[this.getAttribute("data-value")];
+            currentFile = newFile.name;
           });
-          drawGraph(fileName);
+          graphFile(newFile);
         }
       });
     });
-
-    function drawGraph(fileName) {
-      $('#tester').empty();
-      Plotly.d3.csv("2018-03-24/u/" + fileName, function (err, rows) {
-        if (err) {
-          alert('Couldn\'t find or parse file');
-          return;
-        }
-        if (rows[1] == null) {
-          return;
-        }
-        var arr = Array(Object.keys(rows[0]).length - 1).fill(null).map(() => Array(rows.length).fill(null));
-        var timestamps = [];
-
-        for (var i = 0; i < rows.length; i++) {
-          row = rows[i];
-          for (var j = 1; j < Object.keys(row).length; j++) {
-            arr[j - 1][i] = row[Object.keys(row)[j]];
-          }
-          timestamps.push(row['timestamp']);
-        }
-        for (var j = 1; j < Object.keys(rows[0]).length; j++) {
-          var name = Object.keys(rows[0])[j];
-          $("#tester").append('<div style=\"height: 200px;\" id=\"' + name + '\"></div>');
-          var trace1 = {
-            x: timestamps.map(Number),
-            y: arr[j - 1].map(Number),
-            type: 'scatter'
-          };
-          var min = document.getElementById("min").value;
-          var max = document.getElementById("max").value;
-          var layout;
-          if (min == null || max == null) {
-            layout = {
-              title: name,
-              margin: {
-                l: 50,
-                r: 50,
-                b: 35,
-                t: 35,
-                pad: 4
-              },
-            };
-          }
-          else {
-            layout = {
-              title: name,
-              margin: {
-                l: 50,
-                r: 50,
-                b: 35,
-                t: 35,
-                pad: 4
-              },
-              xaxis: { range: [min, max] },
-            };
-          }
-          Plotly.newPlot(name, [trace1], layout);
-        }
-      });
-    }
 
     function download_file() {
       html2canvas(document.querySelector("#tester")).then(canvas => {
@@ -162,15 +104,85 @@
         dlink.download = currentFile.replace(/\..+$/, '') + ".png";
         dlink.href = canvas.toDataURL('image/png');
         dlink.onclick = function (e) {
-          // revokeObjectURL needs a delay to work properly
           var that = this;
           setTimeout(function () {
             window.URL.revokeObjectURL(that.href);
           }, 1500);
         };
-
         dlink.click();
         dlink.remove();
+      });
+    }
+
+    window.onload = function () {
+      var fileInput = document.getElementById('file');
+      fileInput.addEventListener('change', function (e) {
+        filesSelected = [];
+        $('#tester').empty();
+        $("#selectable").empty();
+        document.getElementById("filepicker").value = '';
+        graphFile(fileInput.files[0]);
+      });
+    }
+
+    function graphFile(file) {
+      Papa.parse(file, {
+        header: true,
+        complete: function (results) {
+          $('#tester').empty();
+          var rows = Object.values(results)[0];
+          if (rows[1] == null) {
+            alert("Error Parsing File");
+            return;
+          }
+          var arr = Array(Object.keys(rows[0]).length - 1).fill(null).map(() => Array(rows.length).fill(null));
+          var timestamps = [];
+          for (var i = 0; i < rows.length; i++) {
+            row = rows[i];
+            for (var j = 1; j < Object.keys(row).length; j++) {
+              arr[j - 1][i] = row[Object.keys(row)[j]];
+            }
+            timestamps.push(row['timestamp']);
+          }
+          for (var j = 1; j < Object.keys(rows[0]).length; j++) {
+            var name = Object.keys(rows[0])[j];
+            $("#tester").append('<div style=\"height: 200px;\" id=\"' + name + '\"></div>');
+            var trace1 = {
+              x: timestamps.map(Number),
+              y: arr[j - 1].map(Number),
+              type: 'scatter'
+            };
+            var min = document.getElementById("min").value;
+            var max = document.getElementById("max").value;
+            var layout;
+            if (min == null || max == null) {
+              layout = {
+                title: name,
+                margin: {
+                  l: 50,
+                  r: 50,
+                  b: 35,
+                  t: 35,
+                  pad: 4
+                },
+              };
+            }
+            else {
+              layout = {
+                title: name,
+                margin: {
+                  l: 50,
+                  r: 50,
+                  b: 35,
+                  t: 35,
+                  pad: 4
+                },
+                xaxis: { range: [min, max] },
+              };
+            }
+            Plotly.newPlot(name, [trace1], layout);
+          }
+        }
       });
     }
 
