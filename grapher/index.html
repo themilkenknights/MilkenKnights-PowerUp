@@ -87,6 +87,7 @@
       <input type="file" id="file" accept=".csv" multiple>
       <button onclick='download_file()'>Download Graph (PNG)</button>
       <div style="float: right; display:block;">
+        <input type="text" value="timestamp" id="rowName">
         <input type="text" placeholder="Custom X axis min" id="min">
         <input type="text" placeholder="Custom X axis max" id="max">
       </div>
@@ -192,7 +193,7 @@
             for (var j = 1; j < Object.keys(row).length; j++) {
               arr[j - 1][i] = row[Object.keys(row)[j]];
             }
-            timestamps.push(row['timestamp']);
+            timestamps.push(row[document.getElementById("rowName").value]);
           }
           for (var j = 1; j < Object.keys(rows[0]).length; j++) {
             var name = Object.keys(rows[0])[j];
