@@ -57,6 +57,7 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 - ALL PID CONSTANTS SENT TO THE TALON ARE IN NATIVE UNITS (4096 Per Rotation)
 
 ## Useful Links
+- [Technical Document](https://docs.google.com/document/d/1SkH3Tf8X7M0ER-CSTqxW57_ZjCmwKkHd1Vx8WUiqudM/edit?usp=sharing)
 - [Custom Path Visualizer](https://themilkenknights.github.io/MilkenKnights-PowerUp/light_path)
 - [Milken Knights Grapher](https://themilkenknights.github.io/MilkenKnights-PowerUp/grapher/index.html)
 - [Talon Software Reference Manual](https://github.com/CrossTheRoadElec/Phoenix-Documentation/raw/master/Talon%20SRX%20Victor%20SPX%20-%20Software%20Reference%20Manual.pdf)
