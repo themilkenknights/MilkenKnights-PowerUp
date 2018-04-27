@@ -66,6 +66,6 @@ A box will pop up -> Select Auto-Import and select JAVA_HOME if needed -> Click 
 - [GradleRIO](https://github.com/Open-RIO/GradleRIO)
 - [Pathfinder](https://github.com/JacisNonsense/Pathfinder)
 
-## Credits
+## Credit
  - Several classes and methods were taken from [254's 2017 Code](https://github.com/Team254/FRC-2017-Public)
  - [Lightning Path](https://github.com/frc-862/glitch) was built by Team 862
