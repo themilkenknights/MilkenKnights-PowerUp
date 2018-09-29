@@ -6,7 +6,8 @@
 - [Basic Teleop Control](#Basic-Teleop-Control)
 
 ## **VS Code Setup**
-To get started, [download](https://code.visualstudio.com/Download) and install VS Code. Once open, install the [Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) and create a new file titled 'Robot.java'.
+To get started, [go to the WPILIB Docs](https://wpilib.screenstepslive.com/s/currentCS/m/79833/l/932382-installing-vs-code) and follow the instructions to download Visual Studio Code and instal the WPILIB/Java Extensions (Java only, not C++)
+
 
 ## **Robot.java structure**
 The main file where all robot code is called is the Robot.java file. The file acts similar to a 'main' file or function in many programming languages except in this case, we are relying on a library, WPILIB, to call the methods that we override at specific times. The IterativeRobot class that we will be extending has several methods that provide extra functionality such as running code in any robot state, in order to perform robot testing, or only when the robot is in a 'disabled state'. The three main states or modes that are important to understand are teleop, autonomous, and disabled. The first two states corrospond to periods in a match where the robot is either controlled by a human driver, or under autonomous control with no human interation. The disabled state refers to any period of time when the robot's motors and actuators are disabled which occurs before and after a match, in the brief transition between teleop and autonomous modes, and any other time during testing. 
