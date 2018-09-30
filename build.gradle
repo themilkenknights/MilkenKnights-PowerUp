@@ -1,16 +1,14 @@
 plugins {
     id "java"
     id "idea"
-    id "edu.wpi.first.GradleRIO" version "2018.06.21"
+    id "edu.wpi.first.GradleRIO" version "2019.0.0-alpha-3"
     id 'org.hidetake.ssh' version '2.9.0'
 }
 
-def TEAM = 1836
 def ROBOT_CLASS = "frc.team1836.robot.Robot"
-wpi {
-    wpilibVersion = '2018.4.1'
-    ctreVersion = '5.3.1.0'
-}
+
+// Define my targets (RoboRIO) and artifacts (deployable files)
+// This is added by GradleRIO's backing project EmbeddedTools.
 deploy {
     targets {
         target("roborio", edu.wpi.first.gradlerio.frc.RoboRIO) {
@@ -42,7 +40,7 @@ jar {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.7'
+    gradleVersion = '4.9'
 }
 
 remotes {
@@ -75,8 +73,6 @@ task swerdUpdate {
         }
     }
 }
-
-
 
 task deployAll {
     dependsOn 'swerdUpdate'
