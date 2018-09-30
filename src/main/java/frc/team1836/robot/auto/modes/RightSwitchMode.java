@@ -44,7 +44,7 @@ public class RightSwitchMode extends AutoModeBase {
         runAction(new DrivePathAction(AutoChooser.autoPaths.get(
                 "FS-1R" + ((RobotState.matchData.alliance
                         == Alliance.Blue) ? "B" : "R")), false, false, false));
-        runAction(new RollerAction(0.5, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
+        runAction(new RollerAction(0.5, Constants.ELEVATOR.INTAKE_OUT_ROLLER_SPEED));
     }
 
 }

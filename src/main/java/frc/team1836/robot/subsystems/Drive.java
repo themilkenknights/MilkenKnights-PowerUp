@@ -27,7 +27,7 @@ import jaci.pathfinder.Trajectory;
 
 public class Drive extends Subsystem {
 
-    private final ReflectingCSVWriter<DriveDebugOutput> mCSVWriter;
+    private ReflectingCSVWriter<DriveDebugOutput> mCSVWriter = null;
     private final MkTalon leftDrive, rightDrive;
     private final MkGyro navX;
     private DriveDebugOutput mDebug = new DriveDebugOutput();
@@ -55,8 +55,6 @@ public class Drive extends Subsystem {
         rightDrive.invertSlave(DRIVE.RIGHT_SLAVE_INVERT);
         rightDrive.setSensorPhase(DRIVE.RIGHT_INVERT_SENSOR);
 
-        mCSVWriter = new ReflectingCSVWriter<DriveDebugOutput>(LOGGING.DRIVE_LOG_PATH,
-                DriveDebugOutput.class);
         leftStatus = TrajectoryStatus.NEUTRAL;
         rightStatus = TrajectoryStatus.NEUTRAL;
         currentSetpoint = DriveSignal.BRAKE;
@@ -167,9 +165,9 @@ public class Drive extends Subsystem {
                 leftDrive.isEncoderConnected() && rightDrive.isEncoderConnected());
         SmartDashboard.putNumber("Current Difference",
                 leftDrive.getCurrentOutput() - rightDrive.getCurrentOutput());
-        //if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
-        //        && leftStatus != TrajectoryStatus.NEUTRAL) {
-            SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
+        SmartDashboard.putNumber("NavX Yaw", navX.getYaw());
+        if (RobotState.mDriveControlState == DriveControlState.PATH_FOLLOWING
+                && leftStatus != TrajectoryStatus.NEUTRAL) {
             SmartDashboard.putNumber("Left Desired Velocity", currentSetpoint.getLeft());
             SmartDashboard.putNumber("Right Desired Velocity", currentSetpoint.getRight());
             SmartDashboard.putNumber("Desired Heading", leftStatus.getSeg().heading);
@@ -184,7 +182,7 @@ public class Drive extends Subsystem {
             SmartDashboard.putNumber("Right Desired Velocity Error", leftStatus.getVelError());
             SmartDashboard.putNumber("Left Arb Feed", leftStatus.getArbFeed());
             SmartDashboard.putNumber("Right Arb Feed", rightStatus.getArbFeed());
-       // }
+       }
     }
 
     @Override
@@ -290,6 +288,10 @@ public class Drive extends Subsystem {
                     leftDrive.resetEncoder();
                     rightDrive.resetEncoder();
                     navX.zeroYaw();
+                    if (mCSVWriter == null) {
+                        mCSVWriter = new ReflectingCSVWriter<>(LOGGING.DRIVE_LOG_PATH,
+                                DriveDebugOutput.class);
+                    }
                 }
             }
 
@@ -322,7 +324,10 @@ public class Drive extends Subsystem {
             @Override
             public void onStop(double timestamp) {
                 setOpenLoop(DriveSignal.BRAKE);
-                mCSVWriter.flush();
+                if (mCSVWriter != null) {
+                    mCSVWriter.flush();
+                    mCSVWriter = null;
+                }
             }
         };
         enabledLooper.register(mLoop);

@@ -1,8 +1,8 @@
 package frc.team1836.robot.auto.actions;
 
 import edu.wpi.first.wpilibj.Timer;
-import frc.team1836.robot.Constants.ARM;
-import frc.team1836.robot.subsystems.Arm;
+import frc.team1836.robot.Constants;
+import frc.team1836.robot.subsystems.Elevator;
 import frc.team1836.robot.util.auto.Action;
 
 public class RollerAction implements Action {
@@ -31,15 +31,15 @@ public class RollerAction implements Action {
 
     @Override
     public void update() {
-        Arm.getInstance().setIntakeRollers(speed);
+        Elevator.getInstance().setIntakeRollers(speed);
     }
 
     @Override
     public void done() {
         if (end) {
-            Arm.getInstance().setIntakeRollers(ARM.SLOW_INTAKE_HOLD_SPEED * 1.5);
+            Elevator.getInstance().setIntakeRollers(Constants.ELEVATOR.SLOW_INTAKE_HOLD_SPEED * 1.5);
         } else {
-            Arm.getInstance().setIntakeRollers(0);
+            Elevator.getInstance().setIntakeRollers(0);
         }
 
     }

@@ -6,7 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
-import frc.team1836.robot.Constants.ARM;
+import frc.team1836.robot.Constants.ELEVATOR;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.ArmControlState;
 import frc.team1836.robot.RobotState.ArmState;
@@ -19,7 +19,7 @@ import frc.team1836.robot.util.structure.Subsystem;
 import frc.team1836.robot.util.structure.loops.Loop;
 import frc.team1836.robot.util.structure.loops.Looper;
 
-public class Arm extends Subsystem {
+public class Elevator extends Subsystem {
 
     private final ReflectingCSVWriter<ArmDebugOutput> mCSVWriter;
     private final MkTalon armTalon;
@@ -31,37 +31,38 @@ public class Arm extends Subsystem {
     private double rollerSetpoint = 0;
     private double startDis = 0;
     private boolean disCon = false;
+    private boolean mHasBeenZeroed = false;
 
-    private Arm() {
+    private Elevator() {
         mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH, ArmDebugOutput.class);
-        armTalon = new MkTalon(ARM.ARM_MASTER_TALON_ID, ARM.ARM_SLAVE_TALON_ID, TalonPosition.Arm);
-        armTalon.setSensorPhase(ARM.ARM_SENSOR_PHASE);
+        armTalon = new MkTalon(ELEVATOR.ARM_MASTER_TALON_ID, Constants.ELEVATOR.ARM_SLAVE_TALON_ID, TalonPosition.Elevator);
+        armTalon.setSensorPhase(ELEVATOR.ARM_SENSOR_PHASE);
         armTalon.configMotionMagic();
-        armTalon.setSoftLimit(ARM.ARM_FORWARD_LIMIT, ARM.ARM_REVERSE_LIMIT);
+        armTalon.setSoftLimit(ELEVATOR.ARM_FORWARD_LIMIT, ELEVATOR.ARM_REVERSE_LIMIT);
         armTalon.setLimitEnabled(true);
-        leftIntakeRollerTalon = new VictorSPX(Constants.ARM.LEFT_INTAKE_ROLLER_ID);
-        rightIntakeRollerTalon = new VictorSPX(Constants.ARM.RIGHT_INTAKE_ROLLER_ID);
+        leftIntakeRollerTalon = new VictorSPX(Constants.ELEVATOR.LEFT_INTAKE_ROLLER_ID);
+        rightIntakeRollerTalon = new VictorSPX(ELEVATOR.RIGHT_INTAKE_ROLLER_ID);
         leftIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
         rightIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
-        armTalon.invertMaster(ARM.ARM_MASTER_DIRECTION);
-        armTalon.invertSlave(ARM.ARM_SLAVE_DIRECTION);
-        leftIntakeRollerTalon.setInverted(ARM.LEFT_INTAKE_DIRECTION);
-        rightIntakeRollerTalon.setInverted(ARM.RIGHT_INTAKE_DIRECTION);
+        armTalon.invertMaster(Constants.ELEVATOR.ARM_MASTER_DIRECTION);
+        armTalon.invertSlave(Constants.ELEVATOR.ARM_SLAVE_DIRECTION);
+        leftIntakeRollerTalon.setInverted(ELEVATOR.LEFT_INTAKE_DIRECTION);
+        rightIntakeRollerTalon.setInverted(ELEVATOR.RIGHT_INTAKE_DIRECTION);
     }
 
-    public static Arm getInstance() {
+    public static Elevator getInstance() {
         return InstanceHolder.mInstance;
     }
 
     @Override
     public void outputToSmartDashboard() {
         armTalon.updateSmartDash();
-  /*  SmartDashboard.putNumber("Arm Current", armTalon.getCurrentOutput()); */
-    SmartDashboard.putString("Arm Desired Position", RobotState.mArmState.toString());
-        SmartDashboard.putString("Arm Control Mode", RobotState.mArmControlState.toString());
-   /*  SmartDashboard.putBoolean("Arm Status", armTalon.isEncoderConnected());
+    /*  SmartDashboard.putNumber("Elevator Current", armTalon.getCurrentOutput()); */
+    SmartDashboard.putString("Elevator Desired Position", RobotState.mArmState.toString());
+        SmartDashboard.putString("Elevator Control Mode", RobotState.mArmControlState.toString());
+   /*  SmartDashboard.putBoolean("Elevator Status", armTalon.isEncoderConnected());
    SmartDashboard.putNumber("Roller Output", leftIntakeRollerTalon.getMotorOutputPercent());*/
-        SmartDashboard.putNumber("Arm Absolute Position", armTalon.getAbsolutePosition());
+        SmartDashboard.putNumber("Elevator Absolute Position", armTalon.getAbsolutePosition());
     }
 
     @Override
@@ -76,7 +77,7 @@ public class Arm extends Subsystem {
     @Override
     public void checkSystem() {
         if (!armTalon.isEncoderConnected()) {
-            Log.marker("Arm Encoder Not Connected");
+            Log.marker("Elevator Encoder Not Connected");
         }
         if (RobotState.mArmControlState == ArmControlState.MOTION_MAGIC) {
             for (ArmState state : ArmState.values()) {
@@ -106,7 +107,17 @@ public class Arm extends Subsystem {
 
             armTalon.resetConfig();
         } else {
-            Log.marker("Arm Test Failed");
+            Log.marker("Elevator Test Failed");
+        }
+    }
+
+    public synchronized boolean hasBeenZeroed() {
+        return mHasBeenZeroed;
+    }
+
+    public synchronized void resetIfAtLimit() {
+        if (mPeriodicIO.limit_switch) {
+            mHasBeenZeroed = true;
         }
     }
 
@@ -116,12 +127,7 @@ public class Arm extends Subsystem {
 
             @Override
             public void onStart(double timestamp) {
-                synchronized (Arm.this) {
-                    armTalon.zeroAbsolute();
-                    if (armTalon.getZer() > Constants.CODES_PER_REV) {
-                        Log.marker("Arm Absolution Position > 4096");
-                        RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
-                    }
+                synchronized (Elevator.this) {
                     armPosEnable = armTalon.getPosition();
                     RobotState.mArmState = ArmState.ENABLE;
                 }
@@ -133,7 +139,7 @@ public class Arm extends Subsystem {
              */
             @Override
             public void onLoop(double timestamp) {
-                synchronized (Arm.this) {
+                synchronized (Elevator.this) {
                     armSafetyCheck();
                     updateRollers();
                     switch (RobotState.mArmControlState) {
@@ -184,11 +190,10 @@ public class Arm extends Subsystem {
     }
 
     private void updateArmSetpoint() {
-        double armFeed = MkMath.sin(armTalon.getPosition() + ARM.ARM_OFFSET) * ARM.FEED_CONSTANT;
         if (RobotState.mArmState.equals(ArmState.ENABLE)) {
             armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(armPosEnable), true);
         } else {
-            armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state), true, -armFeed);
+            armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state), true);
         }
     }
 
@@ -204,19 +209,19 @@ public class Arm extends Subsystem {
                 disCon = true;
                 startDis = Timer.getFPGATimestamp();
             }
-            Log.marker("Arm Encoder Not Connected");
+            Log.marker("Elevator Encoder Not Connected");
         } else {
             if (disCon) {
                 disCon = false;
                 startDis = 0;
-                armTalon.zeroAbsolute();
+                armTalon.resetEncoder();
                 Timer.delay(0.05);
                 setEnable();
                 RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
             }
         }
 
-        if (armTalon.getCurrentOutput() > ARM.MAX_SAFE_CURRENT && armSafety) {
+        if (armTalon.getCurrentOutput() > Constants.ELEVATOR.MAX_SAFE_CURRENT && armSafety) {
             Log.marker("Unsafe Current " + armTalon.getCurrentOutput() + " Amps");
             RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
         }
@@ -248,6 +253,6 @@ public class Arm extends Subsystem {
 
     private static class InstanceHolder {
 
-        private static final Arm mInstance = new Arm();
+        private static final Elevator mInstance = new Elevator();
     }
 }

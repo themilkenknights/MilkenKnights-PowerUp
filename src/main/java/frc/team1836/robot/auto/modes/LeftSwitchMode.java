@@ -38,7 +38,7 @@ public class LeftSwitchMode extends AutoModeBase {
         runAction(new DrivePathAction(AutoChooser.autoPaths.get(
                 "FS-1L" + ((RobotState.matchData.alliance
                         == Alliance.Blue) ? "B" : "R")), false, false, false));
-        runAction(new RollerAction(0.5, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
+        runAction(new RollerAction(0.5, Constants.ELEVATOR.INTAKE_OUT_ROLLER_SPEED));
     }
 
     private void rightRoutine() throws AutoModeEndedException {

@@ -1,7 +1,7 @@
 package frc.team1836.robot.util.math;
 
 import frc.team1836.robot.Constants;
-import frc.team1836.robot.Constants.ARM;
+import frc.team1836.robot.Constants.ELEVATOR;
 import frc.team1836.robot.Constants.DRIVE;
 
 public class MkMath {
@@ -35,7 +35,7 @@ public class MkMath {
     }
 
     public static double angleToNativeUnits(double ang) {
-        return ((ang / 360.0) / ARM.GEAR_RATIO) * 4096.0;
+        return ((ang / 360.0) / ELEVATOR.GEAR_RATIO) * 4096.0;
     }
 
     public static double sin(double deg) {

@@ -11,6 +11,7 @@ public final class Constants {
     public static final int kSlotIdx = 0;
     public static final int kPIDLoopIdx = 0;
     public static final int kTimeoutMs = 0;
+    public static final int kLongCANTimeoutMs = 100;
     public static final double kLooperDt = 0.005;
     public static final double PI = 3.14159265359;
     public static final double CODES_PER_REV = 4096.0;
@@ -69,10 +70,10 @@ public final class Constants {
     public static class LOGGING {
 
         public static final String DRIVE_LOG_PATH = "DRIVE-LOGS";
-        public static final String ARM_LOG_PATH = "ARM-LOGS";
+        public static final String ARM_LOG_PATH = "ELEVATOR-LOGS";
     }
 
-    public static class ARM {
+    public static class ELEVATOR {
 
         public static final int ARM_MASTER_TALON_ID = 4;
         public static final int ARM_SLAVE_TALON_ID = 7;
@@ -82,17 +83,16 @@ public final class Constants {
         public static final boolean LEFT_INTAKE_DIRECTION = true;
         public static final boolean RIGHT_INTAKE_DIRECTION = false;
 
-        public static final double RPM_MAX = 35.6; //RPM Max of Arm
-        public static final double GEAR_RATIO = 1;//22.0/ 336.0; //Gear Ratio between en;coder and arm - Used to calulate arm position in degrees
+        public static final double RPM_MAX = 35.6; //RPM Max of Elevator
         public static final double MAX_RAW_VEL =
-                ((RPM_MAX / 60.0 / 10.0) * 4096.0) / GEAR_RATIO; // Degrees per second
-        public static final double ARM_P = 22 * ((0.1 * 1023.0) / (1600)); //7.5 deg or 1390 units
+                ((RPM_MAX / 60.0 / 10.0) * 4096.0);
+        public static final double ARM_P = 22 * ((0.1 * 1023.0) / (1600));
         public static final double ARM_I = 0;
         public static final double ARM_D = ARM_P * 52;
         public static final double ARM_F = (1023.0 / MAX_RAW_VEL);
 
-        public static final double ARM_FORWARD_LIMIT = 250;
-        public static final double ARM_REVERSE_LIMIT = 0;
+        public static final int ARM_FORWARD_LIMIT = 250;
+        public static final int ARM_REVERSE_LIMIT = 0;
         public static final double MOTION_MAGIC_CRUISE_VEL = MAX_RAW_VEL;
         public static final double MOTION_MAGIC_ACCEL = MAX_RAW_VEL * 10;
         public static final double SLOW_INTAKE_HOLD_SPEED = 0.1;
@@ -103,14 +103,8 @@ public final class Constants {
         public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
         public static final double INTAKE_OUT_ROLLER_SPEED = -0.40;
         public static final double INTAKE_OUT_FAST_ROLLER_SPEED = -0.90;
-        //Comp
-        public static final int kBookEnd_0 = 827;
-        public static final int kBookEnd_1 = 3790;
 
-        //Practice
-        //public static final int kBookEnd_0 = 2178;
-        //public static final int kBookEnd_1 = 5129;
-        public static final double ARM_OFFSET = -127.3;
+
         public static final double FEED_CONSTANT = 0.15;
     }
 
