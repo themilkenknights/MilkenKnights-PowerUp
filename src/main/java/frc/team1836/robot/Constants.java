@@ -79,7 +79,7 @@ public final class Constants {
         public static final boolean ARM_SENSOR_PHASE = false;
         public static final boolean ARM_MASTER_DIRECTION = false;
         public static final boolean ARM_SLAVE_DIRECTION = true;
-        public static final boolean LEFT_INTAKE_DIRECTION = false;
+        public static final boolean LEFT_INTAKE_DIRECTION = true;
         public static final boolean RIGHT_INTAKE_DIRECTION = false;
 
         public static final double RPM_MAX = 35.6; //RPM Max of Arm
@@ -103,8 +103,13 @@ public final class Constants {
         public static final double INTAKE_IN_ROLLER_SPEED = 0.95; //Intake Roller speed, reverse if it is the wrong direction
         public static final double INTAKE_OUT_ROLLER_SPEED = -0.40;
         public static final double INTAKE_OUT_FAST_ROLLER_SPEED = -0.90;
+        //Comp
         public static final int kBookEnd_0 = 827;
         public static final int kBookEnd_1 = 3790;
+
+        //Practice
+        //public static final int kBookEnd_0 = 2178;
+        //public static final int kBookEnd_1 = 5129;
         public static final double ARM_OFFSET = -127.3;
         public static final double FEED_CONSTANT = 0.15;
     }

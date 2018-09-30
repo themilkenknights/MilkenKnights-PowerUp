@@ -68,9 +68,9 @@ task swerdUpdate {
         ssh.run {
             session(remotes.webServer) {
                 put from: myFileTree.getFiles(), into: '/home/lvuser/paths'
-                get from: '/u/logs', into: 'logs/' + formattedDate, filter:{ it.name =~ /\.csv$/ }
-                get from: '/u', into: 'logs/', filter:{ it.name =~ /\.txt$/ }
-                remove '/u/logs'
+               // get from: '/u/logs', into: 'logs/' + formattedDate, filter:{ it.name =~ /\.csv$/ }
+                //get from: '/u', into: 'logs/', filter:{ it.name =~ /\.txt$/ }
+                //remove '/u/logs'
             }
         }
     }
