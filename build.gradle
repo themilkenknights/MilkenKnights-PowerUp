@@ -45,7 +45,7 @@ task wrapper(type: Wrapper) {
 
 remotes {
     webServer {
-        host = 'roborio-1836-frc.local'
+        host = '10.18.36.2'
         user = 'admin'
     }
 }
@@ -66,9 +66,9 @@ task swerdUpdate {
         ssh.run {
             session(remotes.webServer) {
                 put from: myFileTree.getFiles(), into: '/home/lvuser/paths'
-               // get from: '/u/logs', into: 'logs/' + formattedDate, filter:{ it.name =~ /\.csv$/ }
-                //get from: '/u', into: 'logs/', filter:{ it.name =~ /\.txt$/ }
-                //remove '/u/logs'
+                get from: '/u', into: 'logs/' + formattedDate, filter:{ it.name =~ /\.csv$/ }
+                get from: '/u', into: 'logs/', filter:{ it.name =~ /\.txt$/ }
+                remove '/u'
             }
         }
     }

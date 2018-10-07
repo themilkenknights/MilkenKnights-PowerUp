@@ -69,6 +69,7 @@ public class Drive extends Subsystem {
     /* Controls Drivetrain in PercentOutput Mode (without closed loop control) */
     public synchronized void setOpenLoop(DriveSignal signal) {
         RobotState.mDriveControlState = DriveControlState.OPEN_LOOP;
+        SmartDashboard.putNumber("Left Drive Sig", signal.getLeft());
         leftDrive.set(ControlMode.PercentOutput, signal.getLeft(), signal.getBrakeMode());
         rightDrive.set(ControlMode.PercentOutput, signal.getRight(), signal.getBrakeMode());
         currentSetpoint = signal;
