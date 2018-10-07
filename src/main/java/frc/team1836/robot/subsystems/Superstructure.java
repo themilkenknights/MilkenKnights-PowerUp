@@ -3,6 +3,7 @@ package frc.team1836.robot.subsystems;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.SUPERSTRUCTURE;
@@ -24,9 +25,11 @@ public class Superstructure extends Subsystem {
     private double mLastPacketTime;
     private UsbCamera cameraServer;
     private float _hue;
+    private PowerDistributionPanel pdp;
 
     public Superstructure() {
         mkLED = new MkLED(Constants.SUPERSTRUCTURE.CANIFIER_ID);
+        pdp = new PowerDistributionPanel();
         hPSignal = false;
         turnOffLED = false;
         mLastPacketTime = 0.0;
@@ -42,6 +45,7 @@ public class Superstructure extends Subsystem {
     @Override
     public void outputToSmartDashboard() {
         SmartDashboard.putString("Robot State", RobotState.mMatchState.toString());
+        SmartDashboard.putNumber("Total Current Output", pdp.getTotalCurrent());
     }
 
     @Override

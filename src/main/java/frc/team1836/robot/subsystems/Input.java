@@ -95,12 +95,9 @@ public class Input extends Subsystem {
                     RobotState.mDriveControlState.equals(DriveControlState.OPEN_LOOP)
                             ? DriveControlState.VELOCITY_SETPOINT : DriveControlState.OPEN_LOOP;
         }
-      /*  DriveSignal sig = DriveHelper
+        DriveSignal sig = DriveHelper
                 .cheesyDrive((-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3)),
-                        (-driverJoystick.getRawAxis(0)), true); */
-    DriveSignal sig = DriveHelper.cheesyDrive((-driverJoystick.getRawAxis(1)),
-                                (driverJoystick.getRawAxis(2)), true);
-
+                        (-driverJoystick.getRawAxis(0)), true); 
         if (RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
             Drive.getInstance().setVelocitySetpoint(sig, 0, 0);
         } else if (RobotState.mDriveControlState == DriveControlState.OPEN_LOOP) {
