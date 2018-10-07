@@ -1,18 +1,16 @@
 package frc.team1836.robot.util.logging;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
+import java.util.concurrent.ConcurrentLinkedDeque;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
  * Writes data to a CSV file
  */
 public class ReflectingCSVWriter<T> {
-
     ConcurrentLinkedDeque<String> mLinesToWrite = new ConcurrentLinkedDeque<>();
     PrintWriter mOutput = null;
     Field[] mFields;
@@ -20,9 +18,9 @@ public class ReflectingCSVWriter<T> {
     public ReflectingCSVWriter(String fileName, Class<T> typeClass) {
         mFields = typeClass.getFields();
         try {
-            String dateStamp = new SimpleDateFormat(" hh-mm-ssaaa").format(new Date());
-            File fi = new File("/u/" + fileName + dateStamp + ".csv");
-            mOutput = new PrintWriter(fi);
+            String dateStamp = new SimpleDateFormat("hh-mm-ssaaa").format(new Date());
+            String name1 = "/u/" + fileName + dateStamp + ".csv";
+            mOutput = new PrintWriter(name1);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -44,7 +42,11 @@ public class ReflectingCSVWriter<T> {
                 line.append(", ");
             }
             try {
-                line.append(field.get(value).toString());
+                if (CSVWritable.class.isAssignableFrom(field.getType())) {
+                    line.append(((CSVWritable) field.get(value)).toCSV());
+                } else {
+                    line.append(field.get(value).toString());
+                }
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
