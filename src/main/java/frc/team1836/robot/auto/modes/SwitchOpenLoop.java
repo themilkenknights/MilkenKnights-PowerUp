@@ -15,7 +15,7 @@ public class SwitchOpenLoop extends AutoModeBase {
 
     @Override
     protected void routine() throws AutoModeEndedException {
-        Log.marker("Started Open Loop Switch Auto");
+        Log.verbose("Started Open Loop Switch Auto");
         runAction(new MoveArmAction(ArmState.OPPOSITE_SWITCH_PLACE));
         runAction(new CurveOpenLoopAction(0.95, 1, false));
         runAction(new OpenLoopAction(0.6, 0.35, true));

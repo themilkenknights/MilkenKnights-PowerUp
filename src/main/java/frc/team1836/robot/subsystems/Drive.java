@@ -206,12 +206,11 @@ public class Drive extends Subsystem {
         leftDrive.setMasterTalon(ControlMode.PercentOutput, 1);
         Timer.delay(2.0);
         if (leftDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || leftDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
-            Log.marker("FAILED - LEFT MASTER DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
+            Log.verbose("FAILED - LEFT MASTER DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
             Log.marker("Left Master Drive Test Failed - Vel: " + leftDrive.getSpeed() + " Pos: " + leftDrive.getPosition());
             check = false;
         } else {
-            System.out.println("Left Master Position: " + leftDrive.getPosition() + "Left Master Speed: " + leftDrive.getSpeed());
-            Log.verbose("Left Master Position: " + leftDrive.getPosition() + " Left Master Speed: " + leftDrive.getSpeed());
+            Log.marker("Left Master Position: " + leftDrive.getPosition() + " Left Master Speed: " + leftDrive.getSpeed());
         }
 
         leftDrive.setSlaveTalon(ControlMode.PercentOutput, 0);
@@ -223,12 +222,11 @@ public class Drive extends Subsystem {
         leftDrive.setSlaveTalon(ControlMode.PercentOutput, 1);
         Timer.delay(2.0);
         if (leftDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || leftDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
-            Log.marker("FAILED - LEFT SLAVE DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
+            Log.verbose("FAILED - LEFT SLAVE DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
             Log.marker("Left Slave Drive Test Failed - Vel: " + leftDrive.getSpeed() + " Pos: " + leftDrive.getPosition());
             check = false;
         } else {
-            System.out.println("Left Slave Position: " + leftDrive.getPosition() + "Left Slave Speed: " + leftDrive.getSpeed());
-            Log.verbose("Left Slave Position: " + leftDrive.getPosition() + " Left Slave Speed: " + leftDrive.getSpeed());
+            Log.marker("Left Slave Position: " + leftDrive.getPosition() + " Left Slave Speed: " + leftDrive.getSpeed());
         }
         leftDrive.setSlaveTalon(ControlMode.PercentOutput, 0);
         leftDrive.setMasterTalon(ControlMode.PercentOutput, 0);
@@ -240,12 +238,11 @@ public class Drive extends Subsystem {
         rightDrive.setMasterTalon(ControlMode.PercentOutput, 1);
         Timer.delay(2.0);
         if (rightDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || rightDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
-            Log.marker("FAILED - RIGHT MASTER DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
+            Log.verbose("FAILED - RIGHT MASTER DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
             Log.marker("Right Drive Test Failed - Vel: " + leftDrive.getSpeed() + " Pos: " + leftDrive.getPosition());
             check = false;
         } else {
-            System.out.println("Right Master Position: " + rightDrive.getPosition() + "Right Master Speed: " + rightDrive.getSpeed());
-            Log.verbose("Right Master Position: " + rightDrive.getPosition() + " Right Master Speed: " + rightDrive.getSpeed());
+            Log.marker("Right Master Position: " + rightDrive.getPosition() + " Right Master Speed: " + rightDrive.getSpeed());
         }
 
         rightDrive.setSlaveTalon(ControlMode.PercentOutput, 0);
@@ -257,12 +254,11 @@ public class Drive extends Subsystem {
         rightDrive.setSlaveTalon(ControlMode.PercentOutput, 1);
         Timer.delay(2.0);
         if (rightDrive.getPosition() < Constants.DRIVE.MIN_TEST_POS || rightDrive.getSpeed() < Constants.DRIVE.MIN_TEST_VEL) {
-            Log.marker("FAILED - RIGHT SLAVE DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
+            Log.verbose("FAILED - RIGHT SLAVE DRIVE FAILED TO REACH REQUIRED SPEED OR POSITION");
             Log.marker("Right Drive Test Failed - Vel: " + rightDrive.getSpeed() + " Pos: " + rightDrive.getPosition());
             check = false;
         } else {
-            System.out.println("Right Slave Position: " + rightDrive.getPosition() + "Right Slave Speed: " + rightDrive.getSpeed());
-            Log.verbose("Right Slave Position: " + rightDrive.getPosition() + " Right Slave Speed: " + rightDrive.getSpeed());
+            Log.marker("Right Slave Position: " + rightDrive.getPosition() + " Right Slave Speed: " + rightDrive.getSpeed());
         }
         rightDrive.setMasterTalon(ControlMode.PercentOutput, 0);
         rightDrive.setSlaveTalon(ControlMode.PercentOutput, 0);
@@ -273,7 +269,6 @@ public class Drive extends Subsystem {
         }
 
         if (check) {
-            System.out.println("Drive Test Success");
             Log.verbose("Drive Test Success");
         }
 

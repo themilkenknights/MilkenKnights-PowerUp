@@ -55,6 +55,7 @@ public class Log {
     }
 
     private static void marker(String mark, Throwable nullableException) {
+        System.out.println(mark);
         try (PrintWriter writer = new PrintWriter(new FileWriter("/u/crash_tracking.txt", true))) {
             writer.print(new SimpleDateFormat("MMMM dd yyyy hh:mm:ss aaa").format(new Date()));
             writer.print(": ");
@@ -72,6 +73,7 @@ public class Log {
     }
 
     private static void logVerboseMarker(String mark, Throwable nullableException) {
+        System.out.println(mark);
         try (PrintWriter writer = new PrintWriter(new FileWriter("/u/verbose_log.txt", true))) {
             writer.print(new SimpleDateFormat("MMMM dd yyyy hh:mm:ss aaa").format(new Date()));
             writer.print(": ");

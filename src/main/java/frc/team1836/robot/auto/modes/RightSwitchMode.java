@@ -34,12 +34,12 @@ public class RightSwitchMode extends AutoModeBase {
     }
 
     private void leftRoutine() throws AutoModeEndedException {
-        Log.marker("Starting Right Switch Mode (Left Side)");
+        Log.verbose("Starting Right Switch Mode (Left Side)");
         runAction(new DrivePathAction(AutoChooser.autoPaths.get("DriveStraight"), false, false, false));
     }
 
     private void rightRoutine() throws AutoModeEndedException {
-        Log.marker("Starting Right Switch Mode (Right Side)");
+        Log.verbose("Starting Right Switch Mode (Right Side)");
         runAction(new MoveArmAction(RobotState.mArmState = ArmState.SWITCH_PLACE));
         runAction(new DrivePathAction(AutoChooser.autoPaths.get(
                 "FS-1R" + ((RobotState.matchData.alliance

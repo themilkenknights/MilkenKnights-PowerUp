@@ -21,7 +21,7 @@ public class CenterSwitchMode extends AutoModeBase {
 
     @Override
     protected void routine() throws AutoModeEndedException {
-        Log.marker("Starting Center Switch Mode");
+        Log.verbose("Starting Center Switch Mode");
         runAction(new ParallelAction(Arrays.asList(
                 new DrivePathAction(1, false, false),
                 new MoveArmAction(ArmState.SWITCH_PLACE),

@@ -106,7 +106,7 @@ public class Arm extends Subsystem {
 
             armTalon.resetConfig();
         } else {
-            Log.marker("Arm Test Failed");
+            Log.verbose("Arm Test Failed");
         }
     }
 
