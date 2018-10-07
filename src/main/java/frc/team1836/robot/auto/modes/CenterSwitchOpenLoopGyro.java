@@ -17,7 +17,7 @@ public class CenterSwitchOpenLoopGyro extends AutoModeBase {
 
     @Override
     protected void routine() throws AutoModeEndedException {
-        RobotState.mArmState = RobotState.ArmState.OPPOSITE_SWITCH_PLACE;
+        RobotState.mElevatorState = RobotState.ElevatorState.OPPOSITE_SWITCH_PLACE;
         switch (RobotState.matchData.switchPosition) {
             case LEFT:
                 leftRoutine();

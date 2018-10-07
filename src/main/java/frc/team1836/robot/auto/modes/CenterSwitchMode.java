@@ -6,7 +6,7 @@ import frc.team1836.robot.AutoChooser.GameObjectPosition;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ELEVATOR;
 import frc.team1836.robot.RobotState;
-import frc.team1836.robot.RobotState.ArmState;
+import frc.team1836.robot.RobotState.ElevatorState;
 import frc.team1836.robot.auto.actions.DelayAction;
 import frc.team1836.robot.auto.actions.DrivePathAction;
 import frc.team1836.robot.auto.actions.MoveArmAction;
@@ -25,12 +25,12 @@ public class CenterSwitchMode extends AutoModeBase {
         Log.marker("Starting Center Switch Mode");
         runAction(new ParallelAction(Arrays.asList(
                 new DrivePathAction(1, false, false),
-                new MoveArmAction(ArmState.SWITCH_PLACE),
+                new MoveArmAction(ElevatorState.SWITCH_PLACE),
                 new DelayAction(getTime(1) - 0.5, new RollerAction(0.45, ELEVATOR.INTAKE_OUT_ROLLER_SPEED)))));
 
         runAction(new ParallelAction(Arrays.asList(
                 new DrivePathAction(2, true, true),
-                new DelayAction(0.3, new MoveArmAction(ArmState.INTAKE))
+                new DelayAction(0.3, new MoveArmAction(ElevatorState.INTAKE))
         )));
 
         runAction(new ParallelAction(Arrays.asList(
@@ -42,13 +42,13 @@ public class CenterSwitchMode extends AutoModeBase {
 
         runAction(new ParallelAction(Arrays.asList(
                 new DrivePathAction(5, false, false),
-                new DelayAction(0.5, new MoveArmAction(ArmState.SWITCH_PLACE)),
+                new DelayAction(0.5, new MoveArmAction(ElevatorState.SWITCH_PLACE)),
                 new DelayAction(getTime(5) - 0.475, new RollerAction(0.5, ELEVATOR.INTAKE_OUT_ROLLER_SPEED / 1.5))
         )));
 
         runAction(new ParallelAction(Arrays.asList(
                 new DrivePathAction(6, true, true),
-                new DelayAction(0.5, new MoveArmAction(ArmState.SECOND_SWITCH_PLACE))
+                new DelayAction(0.5, new MoveArmAction(ElevatorState.SECOND_SWITCH_PLACE))
         )));
 
         runAction(new ParallelAction(Arrays.asList(
@@ -59,7 +59,7 @@ public class CenterSwitchMode extends AutoModeBase {
         runAction(new DrivePathAction(8, true, false));
 
         runAction(new ParallelAction(Arrays.asList(
-                new DelayAction(0.5, new MoveArmAction(ArmState.SWITCH_PLACE)),
+                new DelayAction(0.5, new MoveArmAction(ElevatorState.SWITCH_PLACE)),
                 new DrivePathAction(9, false, false),
                 new DelayAction(
                         getTime(9) - 0.65, new RollerAction(0.75, Constants.ELEVATOR.INTAKE_OUT_ROLLER_SPEED / 1.5)))));

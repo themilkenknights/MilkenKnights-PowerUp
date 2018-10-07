@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.SUPERSTRUCTURE;
 import frc.team1836.robot.RobotState;
-import frc.team1836.robot.RobotState.ArmControlState;
+import frc.team1836.robot.RobotState.ElevatorControlState;
 import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.util.drivers.MkLED;
@@ -92,13 +92,15 @@ public class Superstructure extends Subsystem {
         if (turnOffLED) {
             mkLED.set_rgb(LEDColors.OFF);
         } else if (timestamp - mLastPacketTime > SUPERSTRUCTURE.CONNECTION_TIMEOUT
-                || RobotState.mArmControlState == ArmControlState.OPEN_LOOP) {
+                || RobotState.mElevatorControlState == ElevatorControlState.OPEN_LOOP) {
             mkLED.setPulse(LEDColors.RED, LEDColors.OFF, 0.25);
         } else if (hPSignal) {
             mkLED.set_rgb(LEDColors.GREEN);
         } else if (RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT
                 && RobotState.mMatchState != MatchState.AUTO) {
             mkLED.setPulse(LEDColors.PURPLE, LEDColors.OFF, 0.25);
+        } else if (RobotState.mMatchState == MatchState.DISABLED && !Elevator.getInstance().hasBeenZeroed()) {
+            mkLED.setPulse(LEDColors.PURPLE, LEDColors.RED, 0.25);
         } else if (RobotState.mMatchState == MatchState.DISABLED) {
             _hue += 0.75;
             if (_hue > 360) {

@@ -49,6 +49,16 @@ public class Robot extends IterativeRobot {
     }
 
     @Override
+    public void disabledPeriodic() {
+        try {
+            Elevator.getInstance().resetIfAtLimit();
+        } catch (Throwable t) {
+            Log.logThrowableCrash(t);
+            throw t;
+        }
+    }
+
+    @Override
     public void autonomousInit() {
         try {
             Log.logAutoInit();
@@ -84,6 +94,7 @@ public class Robot extends IterativeRobot {
         }
     }
 
+    @Override
     public void robotPeriodic() {
         try {
             mSubsystemManager.slowUpdate();

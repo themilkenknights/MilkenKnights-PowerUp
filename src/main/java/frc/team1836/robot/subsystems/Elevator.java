@@ -2,16 +2,18 @@ package frc.team1836.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ELEVATOR;
 import frc.team1836.robot.RobotState;
-import frc.team1836.robot.RobotState.ArmControlState;
-import frc.team1836.robot.RobotState.ArmState;
+import frc.team1836.robot.RobotState.ElevatorControlState;
+import frc.team1836.robot.RobotState.ElevatorState;
 import frc.team1836.robot.util.drivers.MkTalon;
 import frc.team1836.robot.util.drivers.MkTalon.TalonPosition;
+import frc.team1836.robot.util.drivers.TalonSRXFactory;
 import frc.team1836.robot.util.logging.Log;
 import frc.team1836.robot.util.logging.ReflectingCSVWriter;
 import frc.team1836.robot.util.math.MkMath;
@@ -21,31 +23,50 @@ import frc.team1836.robot.util.structure.loops.Looper;
 
 public class Elevator extends Subsystem {
 
-    private final ReflectingCSVWriter<ArmDebugOutput> mCSVWriter;
-    private final MkTalon armTalon;
+    private final ReflectingCSVWriter<ElevatorDebugOutput> mCSVWriter;
+    private final TalonSRX mMaster;
+    private final VictorSPX mRightSlave, mLeftSlaveA, mLeftSlaveB;
     private final VictorSPX leftIntakeRollerTalon;
     private final VictorSPX rightIntakeRollerTalon;
-    private ArmDebugOutput mDebug = new ArmDebugOutput();
-    private boolean armSafety = true;
-    private double armPosEnable = 0;
+    private ElevatorDebugOutput mDebug = new ElevatorDebugOutput();
+    private boolean elevatorSafety = true;
+    private double elevatorPosEnable = 0;
     private double rollerSetpoint = 0;
     private double startDis = 0;
     private boolean disCon = false;
     private boolean mHasBeenZeroed = false;
 
     private Elevator() {
-        mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH, ArmDebugOutput.class);
-        armTalon = new MkTalon(ELEVATOR.ARM_MASTER_TALON_ID, Constants.ELEVATOR.ARM_SLAVE_TALON_ID, TalonPosition.Elevator);
-        armTalon.setSensorPhase(ELEVATOR.ARM_SENSOR_PHASE);
-        armTalon.configMotionMagic();
-        armTalon.setSoftLimit(ELEVATOR.ARM_FORWARD_LIMIT, ELEVATOR.ARM_REVERSE_LIMIT);
-        armTalon.setLimitEnabled(true);
+        mMaster = TalonSRXFactory.createDefaultTalon(ELEVATOR.ELEVATOR_MASTER_TALON_ID);
+        mCSVWriter = new ReflectingCSVWriter<>(Constants.LOGGING.ARM_LOG_PATH, ElevatorDebugOutput.class);
+        elevatorTalon = new MkTalon(ELEVATOR.ELEVATOR_MASTER_TALON_ID, Constants.ELEVATOR.ARM_SLAVE_TALON_ID, TalonPosition.Elevator);
+        elevatorTalon.setSensorPhase(ELEVATOR.ARM_SENSOR_PHASE);
+        elevatorTalon.configMotionMagic();
+        elevatorTalon.setSoftLimit(ELEVATOR.ARM_FORWARD_LIMIT, ELEVATOR.ARM_REVERSE_LIMIT);
+        elevatorTalon.setLimitEnabled(true);
         leftIntakeRollerTalon = new VictorSPX(Constants.ELEVATOR.LEFT_INTAKE_ROLLER_ID);
         rightIntakeRollerTalon = new VictorSPX(ELEVATOR.RIGHT_INTAKE_ROLLER_ID);
         leftIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
         rightIntakeRollerTalon.setNeutralMode(NeutralMode.Brake);
-        armTalon.invertMaster(Constants.ELEVATOR.ARM_MASTER_DIRECTION);
-        armTalon.invertSlave(Constants.ELEVATOR.ARM_SLAVE_DIRECTION);
+        elevatorTalon.invertMaster(Constants.ELEVATOR.ARM_MASTER_DIRECTION);
+
+
+        mRightSlave = TalonSRXFactory.createPermanentSlaveTalon(Constants.kElevatorRightSlaveId,
+                Constants.kElevatorMasterId);
+        mRightSlave.setInverted(true);
+
+        mLeftSlaveA = TalonSRXFactory.createPermanentSlaveTalon(Constants.kElevatorLeftSlaveAId,
+                Constants.kElevatorMasterId);
+        mLeftSlaveA.setInverted(false);
+
+        mLeftSlaveB = TalonSRXFactory.createPermanentSlaveTalon(Constants.kElevatorLeftSlaveBId,
+                Constants.kElevatorMasterId);
+        mLeftSlaveB.setInverted(false);
+
+
+
+
+
         leftIntakeRollerTalon.setInverted(ELEVATOR.LEFT_INTAKE_DIRECTION);
         rightIntakeRollerTalon.setInverted(ELEVATOR.RIGHT_INTAKE_DIRECTION);
     }
@@ -56,13 +77,13 @@ public class Elevator extends Subsystem {
 
     @Override
     public void outputToSmartDashboard() {
-        armTalon.updateSmartDash();
-    /*  SmartDashboard.putNumber("Elevator Current", armTalon.getCurrentOutput()); */
-    SmartDashboard.putString("Elevator Desired Position", RobotState.mArmState.toString());
-        SmartDashboard.putString("Elevator Control Mode", RobotState.mArmControlState.toString());
-   /*  SmartDashboard.putBoolean("Elevator Status", armTalon.isEncoderConnected());
-   SmartDashboard.putNumber("Roller Output", leftIntakeRollerTalon.getMotorOutputPercent());*/
-        SmartDashboard.putNumber("Elevator Absolute Position", armTalon.getAbsolutePosition());
+        elevatorTalon.updateSmartDash();
+        SmartDashboard.putNumber("Elevator Current", elevatorTalon.getCurrentOutput());
+        SmartDashboard.putString("Elevator Desired Position", RobotState.mElevatorState.toString());
+        SmartDashboard.putString("Elevator Control Mode", RobotState.mElevatorControlState.toString());
+        SmartDashboard.putBoolean("Elevator Status", elevatorTalon.isEncoderConnected() && mHasBeenZeroed);
+        SmartDashboard.putNumber("Roller Output", leftIntakeRollerTalon.getMotorOutputPercent());
+        SmartDashboard.putNumber("Elevator Position", elevatorTalon.getPosition());
     }
 
     @Override
@@ -76,13 +97,13 @@ public class Elevator extends Subsystem {
 
     @Override
     public void checkSystem() {
-        if (!armTalon.isEncoderConnected()) {
+        if (!elevatorTalon.isEncoderConnected()) {
             Log.marker("Elevator Encoder Not Connected");
         }
-        if (RobotState.mArmControlState == ArmControlState.MOTION_MAGIC) {
-            for (ArmState state : ArmState.values()) {
-                if (state != ArmState.ENABLE) {
-                    RobotState.mArmState = state;
+        if (RobotState.mElevatorControlState == ElevatorControlState.MOTION_MAGIC) {
+            for (ElevatorState state : ElevatorState.values()) {
+                if (state != ElevatorState.ENABLE) {
+                    RobotState.mElevatorState = state;
                     setIntakeRollers(-0.25);
                     Timer.delay(2);
                 }
@@ -90,22 +111,22 @@ public class Elevator extends Subsystem {
 
             Timer.delay(1);
 
-            armTalon.setCoastMode();
-            armTalon.setMasterTalon(ControlMode.PercentOutput, 0);
-            armTalon.setSlaveTalon(ControlMode.PercentOutput, -0.3);
+            elevatorTalon.setCoastMode();
+            elevatorTalon.setMasterTalon(ControlMode.PercentOutput, 0);
+            elevatorTalon.setSlaveTalon(ControlMode.PercentOutput, -0.3);
 
             Timer.delay(1);
 
-            armTalon.setCoastMode();
-            armTalon.setSlaveTalon(ControlMode.PercentOutput, 0);
-            armTalon.setMasterTalon(ControlMode.PercentOutput, -0.3);
+            elevatorTalon.setCoastMode();
+            elevatorTalon.setSlaveTalon(ControlMode.PercentOutput, 0);
+            elevatorTalon.setMasterTalon(ControlMode.PercentOutput, -0.3);
 
             Timer.delay(1);
 
-            armTalon.setMasterTalon(ControlMode.PercentOutput, 0);
-            armTalon.setSlaveTalon(ControlMode.PercentOutput, 0);
+            elevatorTalon.setMasterTalon(ControlMode.PercentOutput, 0);
+            elevatorTalon.setSlaveTalon(ControlMode.PercentOutput, 0);
 
-            armTalon.resetConfig();
+            elevatorTalon.resetConfig();
         } else {
             Log.marker("Elevator Test Failed");
         }
@@ -116,7 +137,9 @@ public class Elevator extends Subsystem {
     }
 
     public synchronized void resetIfAtLimit() {
-        if (mPeriodicIO.limit_switch) {
+        if (elevatorTalon.getForwardLimitSwitch()) {
+            elevatorTalon.resetEncoder();
+            elevatorPosEnable = elevatorTalon.getPosition();
             mHasBeenZeroed = true;
         }
     }
@@ -128,8 +151,8 @@ public class Elevator extends Subsystem {
             @Override
             public void onStart(double timestamp) {
                 synchronized (Elevator.this) {
-                    armPosEnable = armTalon.getPosition();
-                    RobotState.mArmState = ArmState.ENABLE;
+                    elevatorPosEnable = elevatorTalon.getPosition();
+                    RobotState.mElevatorState = ElevatorState.ENABLE;
                 }
             }
 
@@ -140,16 +163,16 @@ public class Elevator extends Subsystem {
             @Override
             public void onLoop(double timestamp) {
                 synchronized (Elevator.this) {
-                    armSafetyCheck();
+                    elevatorSafetyCheck();
                     updateRollers();
-                    switch (RobotState.mArmControlState) {
+                    switch (RobotState.mElevatorControlState) {
                         case MOTION_MAGIC:
-                            updateArmSetpoint();
+                            updateElevatorSetpoint();
                             return;
                         case OPEN_LOOP:
                             return;
                         default:
-                            Log.marker("Unexpected arm control state: " + RobotState.mArmControlState);
+                            Log.marker("Unexpected elevator control state: " + RobotState.mElevatorControlState);
                             break;
                     }
                 }
@@ -165,43 +188,38 @@ public class Elevator extends Subsystem {
     }
 
     public void setEnable() {
-        armPosEnable = armTalon.getPosition();
-        RobotState.mArmState = ArmState.ENABLE;
+        elevatorPosEnable = elevatorTalon.getPosition();
+        RobotState.mElevatorState = ElevatorState.ENABLE;
     }
 
     public void changeSafety() {
-        armSafety = !armSafety;
-        armTalon.setLimitEnabled(armSafety);
+        elevatorSafety = !elevatorSafety;
+        elevatorTalon.setLimitEnabled(elevatorSafety);
     }
 
     private void updateDebugOutput(double timestamp) {
-        mDebug.controlMode = RobotState.mArmControlState.toString();
-        mDebug.output = armTalon.getPercentOutput();
-        mDebug.position = armTalon.getPosition();
-        mDebug.velocity = armTalon.getSpeed();
-        mDebug.setpoint = RobotState.mArmState.state;
+        mDebug.controlMode = RobotState.mElevatorControlState.toString();
+        mDebug.output = elevatorTalon.getPercentOutput();
+        mDebug.position = elevatorTalon.getPosition();
+        mDebug.velocity = elevatorTalon.getSpeed();
+        mDebug.setpoint = RobotState.mElevatorState.state;
         mDebug.timestamp = timestamp;
-        mDebug.current = armTalon.getCurrentOutput();
+        mDebug.current = elevatorTalon.getCurrentOutput();
     }
 
-    public void zeroRel() {
-        armTalon.resetEncoder();
-        armPosEnable = armTalon.getPosition();
-    }
-
-    private void updateArmSetpoint() {
-        if (RobotState.mArmState.equals(ArmState.ENABLE)) {
-            armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(armPosEnable), true);
+    private void updateElevatorSetpoint() {
+        if (RobotState.mElevatorState.equals(ElevatorState.ENABLE)) {
+            elevatorTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(elevatorPosEnable), true);
         } else {
-            armTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mArmState.state), true);
+            elevatorTalon.set(ControlMode.MotionMagic, MkMath.angleToNativeUnits(RobotState.mElevatorState.state), true);
         }
     }
 
-    private void armSafetyCheck() {
-        if (!armTalon.isEncoderConnected()) {
+    private void elevatorSafetyCheck() {
+        if (!elevatorTalon.isEncoderConnected()) {
             if (disCon) {
                 if (Timer.getFPGATimestamp() - startDis > 0.5) {
-                    RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+                    RobotState.mElevatorControlState = ElevatorControlState.OPEN_LOOP;
                     disCon = false;
                     startDis = 0;
                 }
@@ -214,16 +232,16 @@ public class Elevator extends Subsystem {
             if (disCon) {
                 disCon = false;
                 startDis = 0;
-                armTalon.resetEncoder();
+                elevatorTalon.resetEncoder();
                 Timer.delay(0.05);
                 setEnable();
-                RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
+                RobotState.mElevatorControlState = ElevatorControlState.MOTION_MAGIC;
             }
         }
 
-        if (armTalon.getCurrentOutput() > Constants.ELEVATOR.MAX_SAFE_CURRENT && armSafety) {
-            Log.marker("Unsafe Current " + armTalon.getCurrentOutput() + " Amps");
-            RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
+        if (elevatorTalon.getCurrentOutput() > Constants.ELEVATOR.MAX_SAFE_CURRENT && elevatorSafety) {
+            Log.marker("Unsafe Current " + elevatorTalon.getCurrentOutput() + " Amps");
+            RobotState.mElevatorControlState = ElevatorControlState.OPEN_LOOP;
         }
     }
 
@@ -233,14 +251,14 @@ public class Elevator extends Subsystem {
     }
 
     public void setOpenLoop(double output) {
-        armTalon.set(ControlMode.PercentOutput, output, true);
+        elevatorTalon.set(ControlMode.PercentOutput, output, true);
     }
 
     public void setIntakeRollers(double output) {
         rollerSetpoint = output;
     }
 
-    public static class ArmDebugOutput {
+    public static class ElevatorDebugOutput {
 
         public double timestamp;
         public String controlMode;

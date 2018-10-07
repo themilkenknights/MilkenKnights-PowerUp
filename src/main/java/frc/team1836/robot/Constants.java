@@ -75,7 +75,7 @@ public final class Constants {
 
     public static class ELEVATOR {
 
-        public static final int ARM_MASTER_TALON_ID = 4;
+        public static final int ELEVATOR_MASTER_TALON_ID = 4;
         public static final int ARM_SLAVE_TALON_ID = 7;
         public static final boolean ARM_SENSOR_PHASE = false;
         public static final boolean ARM_MASTER_DIRECTION = false;

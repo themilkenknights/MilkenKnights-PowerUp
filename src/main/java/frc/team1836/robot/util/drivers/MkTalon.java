@@ -291,6 +291,14 @@ public class MkTalon {
         return masterTalon.getOutputCurrent();
     }
 
+    public boolean getForwardLimitSwitch(){
+        return masterTalon.getSensorCollection().isFwdLimitSwitchClosed();
+    }
+
+    public boolean getReverseLimitSwitch(){
+        return masterTalon.getSensorCollection().isRevLimitSwitchClosed();
+    }
+
     public enum TalonPosition {
         Left, Right, Elevator
     }

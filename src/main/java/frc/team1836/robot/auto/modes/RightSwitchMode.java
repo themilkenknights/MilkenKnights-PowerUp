@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import frc.team1836.robot.AutoChooser;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.RobotState;
-import frc.team1836.robot.RobotState.ArmState;
+import frc.team1836.robot.RobotState.ElevatorState;
 import frc.team1836.robot.auto.actions.DrivePathAction;
 import frc.team1836.robot.auto.actions.MoveArmAction;
 import frc.team1836.robot.auto.actions.RollerAction;
@@ -40,7 +40,7 @@ public class RightSwitchMode extends AutoModeBase {
 
     private void rightRoutine() throws AutoModeEndedException {
         Log.marker("Starting Right Switch Mode (Right Side)");
-        runAction(new MoveArmAction(RobotState.mArmState = ArmState.SWITCH_PLACE));
+        runAction(new MoveArmAction(RobotState.mElevatorState = ElevatorState.SWITCH_PLACE));
         runAction(new DrivePathAction(AutoChooser.autoPaths.get(
                 "FS-1R" + ((RobotState.matchData.alliance
                         == Alliance.Blue) ? "B" : "R")), false, false, false));
