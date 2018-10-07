@@ -61,7 +61,7 @@ public class Arm extends Subsystem {
         SmartDashboard.putString("Arm Control Mode", RobotState.mArmControlState.toString());
    /*  SmartDashboard.putBoolean("Arm Status", armTalon.isEncoderConnected());
    SmartDashboard.putNumber("Roller Output", leftIntakeRollerTalon.getMotorOutputPercent());*/
-        SmartDashboard.putNumber("Arm Absolute Position", armTalon.getAbsolutePosition());
+      //  SmartDashboard.putNumber("Arm Absolute Position", armTalon.getAbsolutePosition());
     }
 
     @Override

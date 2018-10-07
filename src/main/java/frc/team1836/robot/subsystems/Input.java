@@ -1,5 +1,6 @@
 package frc.team1836.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ARM;
 import frc.team1836.robot.RobotState;
@@ -52,7 +53,7 @@ public class Input extends Subsystem {
 
     @Override
     public void outputToSmartDashboard() {
-
+        SmartDashboard.putNumber("Drive Command",-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3));
     }
 
     @Override
@@ -89,12 +90,12 @@ public class Input extends Subsystem {
     }
 
     private void updateDriveInput() {
-        if (changeDriveMode.isPressed()) {
+      /*  if (changeDriveMode.isPressed()) {
             Drive.getInstance().configVelocityControl();
             RobotState.mDriveControlState =
                     RobotState.mDriveControlState.equals(DriveControlState.OPEN_LOOP)
                             ? DriveControlState.VELOCITY_SETPOINT : DriveControlState.OPEN_LOOP;
-        }
+        } */
         DriveSignal sig = DriveHelper
                 .cheesyDrive((-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3)),
                         (-driverJoystick.getRawAxis(0)), true); 
