@@ -61,3 +61,4 @@ build/
 *.ipr
 *.iws
 .project
+gradle.properties
