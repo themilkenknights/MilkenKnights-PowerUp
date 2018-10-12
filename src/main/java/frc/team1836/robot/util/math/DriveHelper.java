@@ -42,7 +42,7 @@ public class DriveHelper {
             }
         }
 
-        return new DriveSignal(leftMotorSpeed/2, rightMotorSpeed/2);
+        return new DriveSignal(leftMotorSpeed, rightMotorSpeed);
     }
 
     protected static double limit(double num) {
