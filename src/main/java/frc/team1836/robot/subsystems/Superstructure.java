@@ -5,6 +5,9 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.SUPERSTRUCTURE;
 import frc.team1836.robot.RobotState;
@@ -114,6 +117,16 @@ public class Superstructure extends Subsystem {
         } else {
             mkLED.set_rgb(LEDColors.BLUE);
         }
+    }
+
+    public synchronized void updateLimelight(){
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+        NetworkTableEntry tx = table.getEntry("tx");
+        NetworkTableEntry ty = table.getEntry("ty");
+        NetworkTableEntry ta = table.getEntry("ta");
+        double x = tx.getDouble(0);
+        double y = ty.getDouble(0);
+        double area = ta.getDouble(0);
     }
 
     public synchronized void setLastPacketTime(double timestamp) {
