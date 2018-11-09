@@ -29,6 +29,7 @@ public class Superstructure extends Subsystem {
     private UsbCamera cameraServer;
     private float _hue;
     private PowerDistributionPanel pdp;
+    double x,y, area, rate = 0;
 
     public Superstructure() {
         mkLED = new MkLED(Constants.SUPERSTRUCTURE.CANIFIER_ID);
@@ -49,6 +50,12 @@ public class Superstructure extends Subsystem {
     public void outputToSmartDashboard() {
         SmartDashboard.putString("Robot State", RobotState.mMatchState.toString());
         SmartDashboard.putNumber("Total Current Output", pdp.getTotalCurrent());
+        SmartDashboard.putNumber("X", x);
+        SmartDashboard.putNumber("Y", y);
+        SmartDashboard.putNumber("Latency", rate);
+        SmartDashboard.putNumber("Area", area);
+
+
     }
 
     @Override
@@ -124,9 +131,11 @@ public class Superstructure extends Subsystem {
         NetworkTableEntry tx = table.getEntry("tx");
         NetworkTableEntry ty = table.getEntry("ty");
         NetworkTableEntry ta = table.getEntry("ta");
-        double x = tx.getDouble(0);
-        double y = ty.getDouble(0);
-        double area = ta.getDouble(0);
+        NetworkTableEntry tl = table.getEntry("tl");
+        x = tx.getDouble(0);
+        y = ty.getDouble(0);
+        area = ta.getDouble(0);
+        rate = tl.getDouble(0);
     }
 
     public synchronized void setLastPacketTime(double timestamp) {
