@@ -1,7 +1,7 @@
 plugins {
     id "java"
     id "idea"
-    id "edu.wpi.first.GradleRIO" version "2018.06.21"
+    id "edu.wpi.first.GradleRIO" version "2019.0.0-alpha-3"
     id 'org.hidetake.ssh' version '2.9.0'
 }
 
@@ -12,8 +12,11 @@ def ROBOT_CLASS = "frc.team1836.robot.Robot"
 deploy {
     targets {
         target("roborio", edu.wpi.first.gradlerio.frc.RoboRIO) {
-            // Team can be overridden by command line, for use with VSCode
-            team = getTeamOrDefault(1836)
+            // Team number is loaded either from the .wpilib/wpilib_preferences.json
+            // or from command line. If not found an exception will be thrown.
+            // You can use getTeamOrDefault(team) instead of getTeamNumber if you
+            // want to store a team number in this file.
+            team = getTeamNumber()
         }
     }
     artifacts {
@@ -34,13 +37,23 @@ dependencies {
     compile pathfinder()
 }
 
+// Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
+// in order to make them all available at runtime. Also adding the manifest so WPILib
+// knows where to look for our Robot Class.
 jar {
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_CLASS)
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.7'
+// Force Java 8 Compatibility mode for deployed code, in case the develoment
+// system is using Java 10.
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+wrapper {
+    gradleVersion = '4.9'
 }
 
 remotes {
