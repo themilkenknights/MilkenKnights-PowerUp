@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import frc.team1836.robot.AutoChooser;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.RobotState;
-import frc.team1836.robot.RobotState.ArmState;
+import frc.team1836.robot.RobotState.ElevatorState;
 import frc.team1836.robot.auto.actions.DrivePathAction;
 import frc.team1836.robot.auto.actions.MoveArmAction;
 import frc.team1836.robot.auto.actions.RollerAction;
@@ -34,11 +34,11 @@ public class LeftSwitchMode extends AutoModeBase {
 
     private void leftRoutine() throws AutoModeEndedException {
         Log.verbose("Starting Left Switch Mode (Left Side)");
-        runAction(new MoveArmAction(RobotState.mArmState = ArmState.SWITCH_PLACE));
+        runAction(new MoveArmAction(RobotState.mElevatorState = ElevatorState.SWITCH_PLACE));
         runAction(new DrivePathAction(AutoChooser.autoPaths.get(
                 "FS-1L" + ((RobotState.matchData.alliance
                         == Alliance.Blue) ? "B" : "R")), false, false, false));
-        runAction(new RollerAction(0.5, Constants.ARM.INTAKE_OUT_ROLLER_SPEED));
+        runAction(new RollerAction(0.5, Constants.ELEVATOR.INTAKE_OUT_ROLLER_SPEED));
     }
 
     private void rightRoutine() throws AutoModeEndedException {

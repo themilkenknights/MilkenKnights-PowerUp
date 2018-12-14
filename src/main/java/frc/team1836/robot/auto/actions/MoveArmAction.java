@@ -5,9 +5,9 @@ import frc.team1836.robot.util.auto.Action;
 
 public class MoveArmAction implements Action {
 
-    private final RobotState.ArmState mState;
+    private final RobotState.ElevatorState mState;
 
-    public MoveArmAction(RobotState.ArmState state) {
+    public MoveArmAction(RobotState.ElevatorState state) {
         mState = state;
     }
 
@@ -44,6 +44,6 @@ public class MoveArmAction implements Action {
      */
     @Override
     public void start() {
-        RobotState.mArmState = mState;
+        RobotState.mElevatorState = mState;
     }
 }

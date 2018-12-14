@@ -69,20 +69,20 @@ public final class Constants {
     public static class LOGGING {
 
         public static final String DRIVE_LOG_PATH = "DRIVE-LOGS";
-        public static final String ARM_LOG_PATH = "ARM-LOGS";
+        public static final String ARM_LOG_PATH = "ELEVATOR-LOGS";
     }
 
-    public static class ARM {
+    public static class ELEVATOR {
 
-        public static final int ARM_MASTER_TALON_ID = 4;
-        public static final int ARM_SLAVE_TALON_ID = 7;
-        public static final boolean ARM_SENSOR_PHASE = false;
-        public static final boolean ARM_MASTER_DIRECTION = false;
-        public static final boolean ARM_SLAVE_DIRECTION = true;
+        public static final int ELEVATOR_MASTER_TALON_ID = 4;
+        public static final int ELEVATOR_SLAVE_TALON_ID = 7;
+        public static final boolean ELEVATOR_SENSOR_PHASE = false;
+        public static final boolean ELEVATOR_MASTER_DIRECTION = false;
+        public static final boolean ELEVATOR_SLAVE_DIRECTION = true;
         public static final boolean LEFT_INTAKE_DIRECTION = true;
         public static final boolean RIGHT_INTAKE_DIRECTION = false;
 
-        public static final double RPM_MAX = 35.6; //RPM Max of Arm
+        public static final double RPM_MAX = 35.6; //RPM Max of Elevator
         public static final double GEAR_RATIO = 1;//22.0/ 336.0; //Gear Ratio between en;coder and arm - Used to calulate arm position in degrees
         public static final double MAX_RAW_VEL =
                 ((RPM_MAX / 60.0 / 10.0) * 4096.0) / GEAR_RATIO; // Degrees per second

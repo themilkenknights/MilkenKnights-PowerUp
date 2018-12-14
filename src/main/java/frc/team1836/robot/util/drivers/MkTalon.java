@@ -10,10 +10,9 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
-import frc.team1836.robot.Constants.ARM;
+import frc.team1836.robot.Constants.ELEVATOR;
 import frc.team1836.robot.Constants.DRIVE;
 import frc.team1836.robot.util.math.MkMath;
-import org.opencv.core.Mat;
 
 public class MkTalon {
 
@@ -64,12 +63,12 @@ public class MkTalon {
 
     public void configMotionMagic() {
         if (side == TalonPosition.Arm) {
-            masterTalon.config_kF(Constants.kPIDLoopIdx, ARM.ARM_F, Constants.kTimeoutMs);
-            masterTalon.config_kP(Constants.kPIDLoopIdx, ARM.ARM_P, Constants.kTimeoutMs);
-            masterTalon.config_kI(Constants.kPIDLoopIdx, ARM.ARM_I, Constants.kTimeoutMs);
-            masterTalon.config_kD(Constants.kPIDLoopIdx, ARM.ARM_D, Constants.kTimeoutMs);
-            masterTalon.configMotionCruiseVelocity((int) ARM.MOTION_MAGIC_CRUISE_VEL, Constants.kTimeoutMs);
-            masterTalon.configMotionAcceleration((int) ARM.MOTION_MAGIC_ACCEL, Constants.kTimeoutMs);
+            masterTalon.config_kF(Constants.kPIDLoopIdx, Constants.ELEVATOR.ARM_F, Constants.kTimeoutMs);
+            masterTalon.config_kP(Constants.kPIDLoopIdx, ELEVATOR.ARM_P, Constants.kTimeoutMs);
+            masterTalon.config_kI(Constants.kPIDLoopIdx, Constants.ELEVATOR.ARM_I, Constants.kTimeoutMs);
+            masterTalon.config_kD(Constants.kPIDLoopIdx, ELEVATOR.ARM_D, Constants.kTimeoutMs);
+            masterTalon.configMotionCruiseVelocity((int) Constants.ELEVATOR.MOTION_MAGIC_CRUISE_VEL, Constants.kTimeoutMs);
+            masterTalon.configMotionAcceleration((int) ELEVATOR.MOTION_MAGIC_ACCEL, Constants.kTimeoutMs);
             zeroAbsolute();
         } else {
             if (side == TalonPosition.Left) {
@@ -178,7 +177,7 @@ public class MkTalon {
     public double getRPM() {
         if (side == TalonPosition.Arm) {
             return ((masterTalon.getSelectedSensorVelocity(0) * 60.0 * 10.0) / Constants.CODES_PER_REV)
-                    * ARM.GEAR_RATIO;
+                    * ELEVATOR.GEAR_RATIO;
         }
         return (masterTalon.getSelectedSensorVelocity(0) * 60.0 * 10.0) / Constants.CODES_PER_REV;
     }
@@ -192,7 +191,7 @@ public class MkTalon {
     }
 
     public double nativeUnitsToDegrees(double raw) {
-        return ((raw / 4096.0) * 360.0) * ARM.GEAR_RATIO;
+        return ((raw / 4096.0) * 360.0) * Constants.ELEVATOR.GEAR_RATIO;
     }
 
     private double nativeUnitsPer100MstoInchesPerSec(double vel) {
@@ -268,7 +267,7 @@ public class MkTalon {
         } else {
             pulseWidth += (-Math.round(((double) pulseWidth / 4096) - 0.50)) * 4096;
         }
-        masterTalon.setSelectedSensorPosition(pulseWidth + (-ARM.kBookEnd_0), Constants.kPIDLoopIdx,
+        masterTalon.setSelectedSensorPosition(pulseWidth + (-Constants.ELEVATOR.kBookEnd_0), Constants.kPIDLoopIdx,
                 Constants.kTimeoutMs);
     }
 
@@ -279,7 +278,7 @@ public class MkTalon {
         } else {
             pulseWidth += (-Math.round(((double) pulseWidth / 4096) - 0.50)) * 4096;
         }
-        return pulseWidth + (-ARM.kBookEnd_0);
+        return pulseWidth + (-Constants.ELEVATOR.kBookEnd_0);
     }
 
     public double getPercentOutput() {

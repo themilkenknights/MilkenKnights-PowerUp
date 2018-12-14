@@ -2,10 +2,10 @@ package frc.team1836.robot.subsystems;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
-import frc.team1836.robot.Constants.ARM;
+import frc.team1836.robot.Constants.ELEVATOR;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.ArmControlState;
-import frc.team1836.robot.RobotState.ArmState;
+import frc.team1836.robot.RobotState.ElevatorState;
 import frc.team1836.robot.RobotState.DriveControlState;
 import frc.team1836.robot.util.drivers.MkJoystick;
 import frc.team1836.robot.util.drivers.MkJoystickButton;
@@ -26,17 +26,17 @@ public class Input extends Subsystem {
     private final MkJoystickButton toggleLEDSignal = driverJoystick.getButton(2, "Toggle HP Signal");
     private final MkJoystickButton turnOffLED = driverJoystick.getButton(3, "Turn Off LED");
 
-    private final MkJoystickButton armIntakeButton = operatorJoystick.getButton(2, "Arm Intake");
+    private final MkJoystickButton armIntakeButton = operatorJoystick.getButton(2, "Elevator Intake");
     private final MkJoystickButton armDisableSafety = operatorJoystick
-            .getButton(11, "Arm Disable Current Limit");
-    private final MkJoystickButton armSwitchButton = operatorJoystick.getButton(6, "Arm Switch");
+            .getButton(11, "Elevator Disable Current Limit");
+    private final MkJoystickButton armSwitchButton = operatorJoystick.getButton(6, "Elevator Switch");
     private final MkJoystickButton armSecondSwitchButton = operatorJoystick
-            .getButton(1, "Arm Second Switch");
+            .getButton(1, "Elevator Second Switch");
     private final MkJoystickButton armSwitchReverseButton = operatorJoystick
-            .getButton(4, "Arm Switch Reverse");
+            .getButton(4, "Elevator Switch Reverse");
     private final MkJoystickButton armChangeModeButton = operatorJoystick
-            .getButton(8, "Arm Change Mode");
-    private final MkJoystickButton armZeroButton = operatorJoystick.getButton(7, "Arm Zero");
+            .getButton(8, "Elevator Change Mode");
+    private final MkJoystickButton armZeroButton = operatorJoystick.getButton(7, "Elevator Zero");
     private final MkJoystickButton intakeRollerIn = operatorJoystick.getButton(3, "Intake Roller In");
     private final MkJoystickButton intakeRollerOut = operatorJoystick
             .getButton(5, "Intake Roller Out");
@@ -115,52 +115,52 @@ public class Input extends Subsystem {
 
     private void updateArmInput() {
         if (armDisableSafety.isPressed()) {
-            Arm.getInstance().changeSafety();
+            Elevator.getInstance().changeSafety();
         }
         if (armZeroButton.isPressed()) {
-            Arm.getInstance().zeroRel();
+            Elevator.getInstance().zeroRel();
         }
         switch (RobotState.mArmControlState) {
             case MOTION_MAGIC:
                 if (armIntakeButton.isPressed()) {
-                    RobotState.mArmState = ArmState.INTAKE;
+                    RobotState.mElevatorState = ElevatorState.INTAKE;
                 } else if (armSecondSwitchButton.isPressed()) {
-                    RobotState.mArmState = ArmState.SECOND_SWITCH_PLACE;
+                    RobotState.mElevatorState = ElevatorState.SECOND_SWITCH_PLACE;
                 } else if (armSwitchButton.isPressed()) {
-                    RobotState.mArmState = ArmState.SWITCH_PLACE;
+                    RobotState.mElevatorState = ElevatorState.SWITCH_PLACE;
                 } else if (armSwitchReverseButton.isPressed()) {
-                    RobotState.mArmState = ArmState.OPPOSITE_STOW;
+                    RobotState.mElevatorState = ElevatorState.OPPOSITE_STOW;
                 } else if (operatorJoystick.getPOV() != -1) {
-                    RobotState.mArmState = ArmState.OPPOSITE_SWITCH_PLACE;
+                    RobotState.mElevatorState = ElevatorState.OPPOSITE_SWITCH_PLACE;
                 }
                 if (armChangeModeButton.isPressed()) {
                     RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
                 }
                 break;
             case OPEN_LOOP:
-                Arm.getInstance().setOpenLoop(MkMath
+                Elevator.getInstance().setOpenLoop(MkMath
                         .handleDeadband(operatorJoystick.getRawAxis(1), Constants.INPUT.OPERATOR_DEADBAND));
                 if (armChangeModeButton.isPressed()) {
-                    Arm.getInstance().setEnable();
+                    Elevator.getInstance().setEnable();
                     RobotState.mArmControlState = ArmControlState.MOTION_MAGIC;
                 }
                 break;
             default:
-                Log.marker("Unexpected Arm control state: " + RobotState.mArmControlState);
+                Log.marker("Unexpected Elevator control state: " + RobotState.mArmControlState);
                 break;
         }
 
         if (intakeRollerIn.isHeld()) {
-            Arm.getInstance().setIntakeRollers(ARM.INTAKE_IN_ROLLER_SPEED);
+            Elevator.getInstance().setIntakeRollers(ELEVATOR.INTAKE_IN_ROLLER_SPEED);
         } else if (intakeRollerOut.isHeld()) {
-            Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_ROLLER_SPEED);
+            Elevator.getInstance().setIntakeRollers(ELEVATOR.INTAKE_OUT_ROLLER_SPEED);
         } else if (intakeRollerOutFast.isHeld()) {
-            Arm.getInstance().setIntakeRollers(ARM.INTAKE_OUT_FAST_ROLLER_SPEED);
+            Elevator.getInstance().setIntakeRollers(Constants.ELEVATOR.INTAKE_OUT_FAST_ROLLER_SPEED);
         } else {
-            if (!RobotState.mArmState.equals(ArmState.ENABLE)) {
-                Arm.getInstance().setIntakeRollers(ARM.SLOW_INTAKE_HOLD_SPEED);
+            if (!RobotState.mElevatorState.equals(ElevatorState.ENABLE)) {
+                Elevator.getInstance().setIntakeRollers(Constants.ELEVATOR.SLOW_INTAKE_HOLD_SPEED);
             } else {
-                Arm.getInstance().setIntakeRollers(0);
+                Elevator.getInstance().setIntakeRollers(0);
             }
         }
     }
