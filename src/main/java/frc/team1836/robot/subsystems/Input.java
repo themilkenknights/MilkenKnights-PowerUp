@@ -2,11 +2,10 @@ package frc.team1836.robot.subsystems;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
-import frc.team1836.robot.Constants.ELEVATOR;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.ArmControlState;
-import frc.team1836.robot.RobotState.ElevatorState;
 import frc.team1836.robot.RobotState.DriveControlState;
+import frc.team1836.robot.RobotState.ElevatorState;
 import frc.team1836.robot.util.drivers.MkJoystick;
 import frc.team1836.robot.util.drivers.MkJoystickButton;
 import frc.team1836.robot.util.logging.Log;
@@ -53,7 +52,7 @@ public class Input extends Subsystem {
 
     @Override
     public void outputToSmartDashboard() {
-        SmartDashboard.putNumber("Drive Command",-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3));
+        SmartDashboard.putNumber("Drive Command", -driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3));
     }
 
     @Override
@@ -98,7 +97,7 @@ public class Input extends Subsystem {
         } */
         DriveSignal sig = DriveHelper
                 .cheesyDrive((-driverJoystick.getRawAxis(2) + driverJoystick.getRawAxis(3)),
-                        (-driverJoystick.getRawAxis(0)), true); 
+                        (-driverJoystick.getRawAxis(0)), true);
         if (RobotState.mDriveControlState == DriveControlState.VELOCITY_SETPOINT) {
             Drive.getInstance().setVelocitySetpoint(sig, 0, 0);
         } else if (RobotState.mDriveControlState == DriveControlState.OPEN_LOOP) {
@@ -150,19 +149,6 @@ public class Input extends Subsystem {
                 break;
         }
 
-        if (intakeRollerIn.isHeld()) {
-            Elevator.getInstance().setIntakeRollers(ELEVATOR.INTAKE_IN_ROLLER_SPEED);
-        } else if (intakeRollerOut.isHeld()) {
-            Elevator.getInstance().setIntakeRollers(ELEVATOR.INTAKE_OUT_ROLLER_SPEED);
-        } else if (intakeRollerOutFast.isHeld()) {
-            Elevator.getInstance().setIntakeRollers(Constants.ELEVATOR.INTAKE_OUT_FAST_ROLLER_SPEED);
-        } else {
-            if (!RobotState.mElevatorState.equals(ElevatorState.ENABLE)) {
-                Elevator.getInstance().setIntakeRollers(Constants.ELEVATOR.SLOW_INTAKE_HOLD_SPEED);
-            } else {
-                Elevator.getInstance().setIntakeRollers(0);
-            }
-        }
     }
 
     private static class InstanceHolder {

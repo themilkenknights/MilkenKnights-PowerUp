@@ -1,17 +1,14 @@
 package frc.team1836.robot.subsystems;
 
-import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ELEVATOR;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.ArmControlState;
 import frc.team1836.robot.RobotState.ElevatorState;
-import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.util.logging.Log;
 import frc.team1836.robot.util.structure.Subsystem;
 import frc.team1836.robot.util.structure.loops.Loop;
@@ -28,6 +25,7 @@ public class Elevator extends Subsystem {
 
     private double armPosEnable = 0;
     private boolean zeroed = false;
+    private double maxOutput = 0.3;
 
     private Elevator() {
 
@@ -43,15 +41,16 @@ public class Elevator extends Subsystem {
         masterTalon.config_kD(Constants.kPIDLoopIdx, ELEVATOR.ARM_D, Constants.kTimeoutMs);
         masterTalon.configMotionCruiseVelocity((int) Constants.ELEVATOR.MOTION_MAGIC_CRUISE_VEL, Constants.kTimeoutMs);
         masterTalon.configMotionAcceleration((int) ELEVATOR.MOTION_MAGIC_ACCEL, Constants.kTimeoutMs);
-        /*masterTalon.configForwardSoftLimitThreshold((int) 0,
-                Constants.kTimeoutMs);
-        masterTalon.configReverseSoftLimitThreshold((int) 0,
-                Constants.kTimeoutMs); */
+
+        masterTalon.configForwardSoftLimitThreshold(5, Constants.kTimeoutMs);
+
         masterTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, Constants.kTimeoutMs);
 
-        masterTalon.overrideLimitSwitchesEnable(false);
+        masterTalon.overrideLimitSwitchesEnable(true);
 
+        masterTalon.configForwardSoftLimitEnable(false, Constants.kTimeoutMs);
 
+        masterTalon.configSelectedFeedbackCoefficient(1.0 / 4096.0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 
         masterTalon.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
         masterTalon
@@ -65,32 +64,31 @@ public class Elevator extends Subsystem {
                 .setStatusFramePeriod(StatusFrameEnhanced.Status_8_PulseWidth, 3, Constants.kTimeoutMs);
         masterTalon
                 .setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 20, Constants.kTimeoutMs);
-        masterTalon.configNominalOutputForward(0, Constants.kTimeoutMs);
-        masterTalon.configNominalOutputReverse(0, Constants.kTimeoutMs);
-        masterTalon.configPeakOutputForward(0.3, Constants.kTimeoutMs);
-        masterTalon.configPeakOutputReverse(-0.3, Constants.kTimeoutMs);
 
-        slaveTalon1.configPeakOutputForward(0.3, Constants.kTimeoutMs);
-        slaveTalon1.configPeakOutputReverse(-0.3, Constants.kTimeoutMs);
+        masterTalon.configPeakOutputForward(maxOutput, Constants.kTimeoutMs);
+        masterTalon.configPeakOutputReverse(-maxOutput, Constants.kTimeoutMs);
 
-        slaveTalon2.configPeakOutputForward(0.3, Constants.kTimeoutMs);
-        slaveTalon2.configPeakOutputReverse(-0.3, Constants.kTimeoutMs);
+        slaveTalon1.configPeakOutputForward(maxOutput, Constants.kTimeoutMs);
+        slaveTalon1.configPeakOutputReverse(-maxOutput, Constants.kTimeoutMs);
 
-        slaveTalon3.configPeakOutputForward(0.3, Constants.kTimeoutMs);
-        slaveTalon3.configPeakOutputReverse(-0.3, Constants.kTimeoutMs);
+        slaveTalon2.configPeakOutputForward(maxOutput, Constants.kTimeoutMs);
+        slaveTalon2.configPeakOutputReverse(-maxOutput, Constants.kTimeoutMs);
+
+        slaveTalon3.configPeakOutputForward(maxOutput, Constants.kTimeoutMs);
+        slaveTalon3.configPeakOutputReverse(-maxOutput, Constants.kTimeoutMs);
 
 
         masterTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,
                 Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 
         masterTalon.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_100Ms, Constants.kTimeoutMs);
+
         masterTalon.configVelocityMeasurementWindow(64, Constants.kTimeoutMs);
 
         masterTalon.setNeutralMode(NeutralMode.Brake);
         slaveTalon1.setNeutralMode(NeutralMode.Brake);
         slaveTalon2.setNeutralMode(NeutralMode.Brake);
         slaveTalon3.setNeutralMode(NeutralMode.Brake);
-
 
         masterTalon.setInverted(true);
         slaveTalon1.setInverted(true);
@@ -121,21 +119,15 @@ public class Elevator extends Subsystem {
         SmartDashboard.putBoolean("Elevator Rev Limit", masterTalon.getSensorCollection().isRevLimitSwitchClosed());
         SmartDashboard.putNumber("Elevator Follower 1", slaveTalon1.getMotorOutputPercent());
         SmartDashboard.putNumber("Elevator Follower 2", slaveTalon2.getMotorOutputPercent());
-
         SmartDashboard.putNumber("Elevator Follower 3", slaveTalon3.getMotorOutputPercent());
-
     }
 
     @Override
     public void slowUpdate(double timestamp) {
-      
-        if(RobotState.mMatchState == MatchState.DISABLED){
-if(masterTalon.getSensorCollection().isRevLimitSwitchClosed() == true){
-masterTalon.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
-zeroed = true;
-}
+        if (masterTalon.getSensorCollection().isRevLimitSwitchClosed()) {
+            masterTalon.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+            zeroed = true;
         }
-   
     }
 
     @Override
@@ -143,12 +135,12 @@ zeroed = true;
 
     }
 
-    public synchronized double getPosition() {
-        return masterTalon.getSelectedSensorPosition(Constants.kPIDLoopIdx) / 4096.0;
+    private synchronized double getPosition() {
+        return masterTalon.getSelectedSensorPosition(Constants.kPIDLoopIdx);
     }
 
-    public synchronized double getSpeed() {
-        return (masterTalon.getSelectedSensorVelocity(Constants.kPIDLoopIdx) * 10.0 * 60.0) / 4096.0;
+    private synchronized double getSpeed() {
+        return (masterTalon.getSelectedSensorVelocity(Constants.kPIDLoopIdx) * 10.0 * 60.0);
     }
 
 
@@ -159,7 +151,6 @@ zeroed = true;
             @Override
             public void onStart(double timestamp) {
                 synchronized (Elevator.this) {
-
                     armPosEnable = getPosition();
                     RobotState.mElevatorState = ElevatorState.ENABLE;
                 }
@@ -173,7 +164,6 @@ zeroed = true;
             public void onLoop(double timestamp) {
                 synchronized (Elevator.this) {
                     armSafetyCheck();
-                    updateRollers();
                     switch (RobotState.mArmControlState) {
                         case MOTION_MAGIC:
                             updateElevatorSetpoint();
@@ -189,7 +179,6 @@ zeroed = true;
 
             @Override
             public void onStop(double timestamp) {
-                setIntakeRollers(0);
 
             }
         };
@@ -211,36 +200,27 @@ zeroed = true;
     }
 
     private void updateElevatorSetpoint() {
-        if(zeroed){
-            if (RobotState.mElevatorState.equals(ElevatorState.ENABLE)) {
-                masterTalon.set(ControlMode.MotionMagic, armPosEnable * 4096.0);
-            } else {
-                masterTalon.set(ControlMode.MotionMagic, (RobotState.mElevatorState.state) * 4096.0);
-            }
+        if (RobotState.mElevatorState.equals(ElevatorState.ENABLE)) {
+            masterTalon.set(ControlMode.MotionMagic, armPosEnable);
+        } else {
+            masterTalon.set(ControlMode.MotionMagic, (RobotState.mElevatorState.state));
         }
-        else{
-            masterTalon.set(ControlMode.PercentOutput,0);
-        }
-        
     }
 
     private void armSafetyCheck() {
-        if (!isEncoderConnected()) {
-
+        if (!zeroed && RobotState.mArmControlState == ArmControlState.MOTION_MAGIC) {
             RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
-
+        }
+        if (!isEncoderConnected()) {
+            RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
             Log.marker("Elevator Encoder Not Connected");
         }
-
         if (masterTalon.getOutputCurrent() > ELEVATOR.MAX_SAFE_CURRENT) {
             Log.marker("Unsafe Current " + masterTalon.getOutputCurrent() + " Amps");
             RobotState.mArmControlState = ArmControlState.OPEN_LOOP;
         }
     }
 
-    public void updateRollers() {
-
-    }
 
     public boolean isEncoderConnected() {
         return masterTalon.getSensorCollection().getPulseWidthRiseToRiseUs() > 100;
@@ -248,18 +228,9 @@ zeroed = true;
 
 
     public void setOpenLoop(double output) {
-        if(zeroed){
-            masterTalon.set(ControlMode.PercentOutput, output);
-
-        }
-        else{
-            masterTalon.set(ControlMode.PercentOutput, 0);
-        }
+        masterTalon.set(ControlMode.PercentOutput, output);
     }
 
-    public void setIntakeRollers(double output) {
-
-    }
 
     private static class InstanceHolder {
 

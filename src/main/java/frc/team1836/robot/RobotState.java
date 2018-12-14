@@ -34,11 +34,11 @@ public class RobotState {
 
     public enum ElevatorState {
         ENABLE(0), //State directly after robot is enabled (not mapped to a specific angle)
-        OPPOSITE_STOW(28.5), //Used to Outtake into the exchange or store cube at start of auto
-        OPPOSITE_SWITCH_PLACE(78.5), //Outtakes into the switch on the backside of the robot
-        SWITCH_PLACE(163.5), //Main switch outtake position
-        SECOND_SWITCH_PLACE(219.5), //Used to intake cubes from the second-floor of the pyramid
-        INTAKE(243.5); //Intake Setpoint to get cubes from the ground
+        OPPOSITE_STOW(5), //Used to Outtake into the exchange or store cube at start of auto
+        OPPOSITE_SWITCH_PLACE(10), //Outtakes into the switch on the backside of the robot
+        SWITCH_PLACE(13), //Main switch outtake position
+        SECOND_SWITCH_PLACE(15), //Used to intake cubes from the second-floor of the pyramid
+        INTAKE(17); //Intake Setpoint to get cubes from the ground
 
         public final double state;
 

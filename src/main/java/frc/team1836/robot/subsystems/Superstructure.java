@@ -1,13 +1,9 @@
 package frc.team1836.robot.subsystems;
 
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.SUPERSTRUCTURE;
 import frc.team1836.robot.RobotState;
@@ -29,7 +25,7 @@ public class Superstructure extends Subsystem {
     private UsbCamera cameraServer;
     private float _hue;
     private PowerDistributionPanel pdp;
-    double x,y, area, rate = 0;
+    double x, y, area, rate = 0;
 
     public Superstructure() {
         mkLED = new MkLED(Constants.SUPERSTRUCTURE.CANIFIER_ID);
@@ -38,8 +34,8 @@ public class Superstructure extends Subsystem {
         turnOffLED = false;
         mLastPacketTime = 0.0;
         _hue = 0;
-     //   cameraServer = CameraServer.getInstance().startAutomaticCapture();
-       // cameraServer.setResolution(640, 480);
+        //   cameraServer = CameraServer.getInstance().startAutomaticCapture();
+        // cameraServer.setResolution(640, 480);
     }
 
     public static Superstructure getInstance() {
@@ -126,7 +122,7 @@ public class Superstructure extends Subsystem {
         }
     }
 
-    public synchronized void updateLimelight(){
+    public synchronized void updateLimelight() {
      /*   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry tx = table.getEntry("tx");
         NetworkTableEntry ty = table.getEntry("ty");
