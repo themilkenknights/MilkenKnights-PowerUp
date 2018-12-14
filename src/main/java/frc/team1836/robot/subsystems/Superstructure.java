@@ -38,8 +38,8 @@ public class Superstructure extends Subsystem {
         turnOffLED = false;
         mLastPacketTime = 0.0;
         _hue = 0;
-        cameraServer = CameraServer.getInstance().startAutomaticCapture();
-        cameraServer.setResolution(640, 480);
+     //   cameraServer = CameraServer.getInstance().startAutomaticCapture();
+       // cameraServer.setResolution(640, 480);
     }
 
     public static Superstructure getInstance() {
@@ -49,11 +49,11 @@ public class Superstructure extends Subsystem {
     @Override
     public void outputToSmartDashboard() {
         SmartDashboard.putString("Robot State", RobotState.mMatchState.toString());
-        SmartDashboard.putNumber("Total Current Output", pdp.getTotalCurrent());
+     /*   SmartDashboard.putNumber("Total Current Output", pdp.getTotalCurrent());
         SmartDashboard.putNumber("X", x);
         SmartDashboard.putNumber("Y", y);
         SmartDashboard.putNumber("Latency", rate);
-        SmartDashboard.putNumber("Area", area);
+        SmartDashboard.putNumber("Area", area);*/
 
 
     }
@@ -127,7 +127,7 @@ public class Superstructure extends Subsystem {
     }
 
     public synchronized void updateLimelight(){
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+     /*   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry tx = table.getEntry("tx");
         NetworkTableEntry ty = table.getEntry("ty");
         NetworkTableEntry ta = table.getEntry("ta");
@@ -135,7 +135,7 @@ public class Superstructure extends Subsystem {
         x = tx.getDouble(0);
         y = ty.getDouble(0);
         area = ta.getDouble(0);
-        rate = tl.getDouble(0);
+        rate = tl.getDouble(0); */
     }
 
     public synchronized void setLastPacketTime(double timestamp) {

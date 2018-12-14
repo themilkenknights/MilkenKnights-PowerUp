@@ -1,13 +1,17 @@
 package frc.team1836.robot.subsystems;
 
+import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team1836.robot.Constants;
 import frc.team1836.robot.Constants.ELEVATOR;
 import frc.team1836.robot.RobotState;
 import frc.team1836.robot.RobotState.ArmControlState;
 import frc.team1836.robot.RobotState.ElevatorState;
+import frc.team1836.robot.RobotState.MatchState;
 import frc.team1836.robot.util.logging.Log;
 import frc.team1836.robot.util.structure.Subsystem;
 import frc.team1836.robot.util.structure.loops.Loop;
@@ -17,19 +21,20 @@ public class Elevator extends Subsystem {
 
 
     private final TalonSRX masterTalon;
-    private final TalonSRX slaveTalon1;
-    private final TalonSRX slaveTalon2;
-    private final TalonSRX slaveTalon3;
+    private final VictorSPX slaveTalon1;
+    private final VictorSPX slaveTalon2;
+    private final VictorSPX slaveTalon3;
 
 
     private double armPosEnable = 0;
+    private boolean zeroed = false;
 
     private Elevator() {
 
         masterTalon = new TalonSRX(4);
-        slaveTalon1 = new TalonSRX(7);
-        slaveTalon2 = new TalonSRX(6);
-        slaveTalon3 = new TalonSRX(1);
+        slaveTalon1 = new VictorSPX(7);
+        slaveTalon2 = new VictorSPX(6);
+        slaveTalon3 = new VictorSPX(1);
 
         masterTalon.setSensorPhase(false);
         masterTalon.config_kF(Constants.kPIDLoopIdx, Constants.ELEVATOR.ARM_F, Constants.kTimeoutMs);
@@ -42,6 +47,11 @@ public class Elevator extends Subsystem {
                 Constants.kTimeoutMs);
         masterTalon.configReverseSoftLimitThreshold((int) 0,
                 Constants.kTimeoutMs); */
+        masterTalon.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, Constants.kTimeoutMs);
+
+        masterTalon.overrideLimitSwitchesEnable(false);
+
+
 
         masterTalon.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
         masterTalon
@@ -57,17 +67,17 @@ public class Elevator extends Subsystem {
                 .setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 20, Constants.kTimeoutMs);
         masterTalon.configNominalOutputForward(0, Constants.kTimeoutMs);
         masterTalon.configNominalOutputReverse(0, Constants.kTimeoutMs);
-        masterTalon.configPeakOutputForward(0.1, Constants.kTimeoutMs);
-        masterTalon.configPeakOutputReverse(-0.1, Constants.kTimeoutMs);
+        masterTalon.configPeakOutputForward(0.3, Constants.kTimeoutMs);
+        masterTalon.configPeakOutputReverse(-0.3, Constants.kTimeoutMs);
 
-        slaveTalon1.configPeakOutputForward(0.1, Constants.kTimeoutMs);
-        slaveTalon1.configPeakOutputReverse(-0.1, Constants.kTimeoutMs);
+        slaveTalon1.configPeakOutputForward(0.3, Constants.kTimeoutMs);
+        slaveTalon1.configPeakOutputReverse(-0.3, Constants.kTimeoutMs);
 
-        slaveTalon2.configPeakOutputForward(0.1, Constants.kTimeoutMs);
-        slaveTalon2.configPeakOutputReverse(-0.1, Constants.kTimeoutMs);
+        slaveTalon2.configPeakOutputForward(0.3, Constants.kTimeoutMs);
+        slaveTalon2.configPeakOutputReverse(-0.3, Constants.kTimeoutMs);
 
-        slaveTalon3.configPeakOutputForward(0.1, Constants.kTimeoutMs);
-        slaveTalon3.configPeakOutputReverse(-0.1, Constants.kTimeoutMs);
+        slaveTalon3.configPeakOutputForward(0.3, Constants.kTimeoutMs);
+        slaveTalon3.configPeakOutputReverse(-0.3, Constants.kTimeoutMs);
 
 
         masterTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,
@@ -82,13 +92,14 @@ public class Elevator extends Subsystem {
         slaveTalon3.setNeutralMode(NeutralMode.Brake);
 
 
-        masterTalon.setInverted(false);
-        slaveTalon1.setInverted(false);
+        masterTalon.setInverted(true);
+        slaveTalon1.setInverted(true);
         slaveTalon2.setInverted(false);
         slaveTalon3.setInverted(false);
 
         slaveTalon1.follow(masterTalon);
         slaveTalon2.follow(masterTalon);
+
         slaveTalon3.follow(masterTalon);
 
     }
@@ -106,13 +117,25 @@ public class Elevator extends Subsystem {
         SmartDashboard.putNumber("Elevator Velocity", getSpeed());
         SmartDashboard.putNumber("Elevator Error", masterTalon.getClosedLoopError(Constants.kPIDLoopIdx));
         SmartDashboard.putNumber("Elevator Master Output", masterTalon.getMotorOutputPercent());
-        SmartDashboard.putNumber("Elevator Current", masterTalon.getOutputCurrent());
         SmartDashboard.putNumber("Elevator Position", getPosition());
+        SmartDashboard.putBoolean("Elevator Rev Limit", masterTalon.getSensorCollection().isRevLimitSwitchClosed());
+        SmartDashboard.putNumber("Elevator Follower 1", slaveTalon1.getMotorOutputPercent());
+        SmartDashboard.putNumber("Elevator Follower 2", slaveTalon2.getMotorOutputPercent());
+
+        SmartDashboard.putNumber("Elevator Follower 3", slaveTalon3.getMotorOutputPercent());
+
     }
 
     @Override
     public void slowUpdate(double timestamp) {
-
+      
+        if(RobotState.mMatchState == MatchState.DISABLED){
+if(masterTalon.getSensorCollection().isRevLimitSwitchClosed() == true){
+masterTalon.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+zeroed = true;
+}
+        }
+   
     }
 
     @Override
@@ -136,6 +159,7 @@ public class Elevator extends Subsystem {
             @Override
             public void onStart(double timestamp) {
                 synchronized (Elevator.this) {
+
                     armPosEnable = getPosition();
                     RobotState.mElevatorState = ElevatorState.ENABLE;
                 }
@@ -187,11 +211,17 @@ public class Elevator extends Subsystem {
     }
 
     private void updateElevatorSetpoint() {
-        if (RobotState.mElevatorState.equals(ElevatorState.ENABLE)) {
-            masterTalon.set(ControlMode.MotionMagic, armPosEnable * 4096.0);
-        } else {
-            masterTalon.set(ControlMode.MotionMagic, (RobotState.mElevatorState.state) * 4096.0);
+        if(zeroed){
+            if (RobotState.mElevatorState.equals(ElevatorState.ENABLE)) {
+                masterTalon.set(ControlMode.MotionMagic, armPosEnable * 4096.0);
+            } else {
+                masterTalon.set(ControlMode.MotionMagic, (RobotState.mElevatorState.state) * 4096.0);
+            }
         }
+        else{
+            masterTalon.set(ControlMode.PercentOutput,0);
+        }
+        
     }
 
     private void armSafetyCheck() {
@@ -218,7 +248,13 @@ public class Elevator extends Subsystem {
 
 
     public void setOpenLoop(double output) {
-        masterTalon.set(ControlMode.PercentOutput, output);
+        if(zeroed){
+            masterTalon.set(ControlMode.PercentOutput, output);
+
+        }
+        else{
+            masterTalon.set(ControlMode.PercentOutput, 0);
+        }
     }
 
     public void setIntakeRollers(double output) {
